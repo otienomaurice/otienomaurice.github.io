@@ -1,0 +1,77 @@
+{
+  "projects": [
+    {
+      "title": "Autonomous Sensor Platform",
+      "type": "hybrid",
+      "status": "Prototype",
+      "summary": "A sample hardware and software project entry for an embedded sensing system with firmware, enclosure notes, and test documentation.",
+      "stack": ["C++", "Python", "Microcontrollers", "CAD"],
+      "highlights": [
+        "Designed firmware flow for sensor sampling, local processing, and serial data output.",
+        "Documented wiring, board bring-up, and validation steps for reviewers.",
+        "Packaged diagrams and test notes so the build can be evaluated quickly."
+      ],
+      "resources": [
+        {
+          "label": "GitHub repo",
+          "url": "https://github.com/YOUR-GITHUB-USERNAME/sensor-platform"
+        },
+        {
+          "label": "System diagram",
+          "url": "docs/sensor-platform-diagram.pdf"
+        },
+        {
+          "label": "Build notes",
+          "url": "docs/sensor-platform-notes.pdf"
+        }
+      ],
+      "accent": "#117c7a"
+    },
+    {
+      "title": "Project Documentation Hub",
+      "type": "software",
+      "status": "Live",
+      "summary": "A sample software project entry for a web app that organizes source code, documents, diagrams, and project metadata.",
+      "stack": ["JavaScript", "HTML", "CSS", "GitHub Pages"],
+      "highlights": [
+        "Built a searchable project library for fast recruiter review.",
+        "Separated project data from presentation so new work can be added without redesigning the page.",
+        "Prepared the site for static hosting with no build tooling required."
+      ],
+      "resources": [
+        {
+          "label": "GitHub repo",
+          "url": "https://github.com/YOUR-GITHUB-USERNAME/documentation-hub"
+        },
+        {
+          "label": "Source code",
+          "url": "https://github.com/YOUR-GITHUB-USERNAME/documentation-hub/tree/main/src"
+        }
+      ],
+      "accent": "#d18b21"
+    },
+    {
+      "title": "Control System Bench Test",
+      "type": "hardware",
+      "status": "Documented",
+      "summary": "A sample hardware project entry for a bench-tested control system with schematics, measurements, and lessons learned.",
+      "stack": ["Electronics", "Oscilloscope", "KiCad", "Testing"],
+      "highlights": [
+        "Captured design assumptions, test setup, and measurement results.",
+        "Linked diagrams and supporting documents for technical inspection.",
+        "Recorded failure modes and next iteration priorities."
+      ],
+      "resources": [
+        {
+          "label": "Schematic",
+          "url": "docs/control-system-schematic.pdf"
+        },
+        {
+          "label": "Test report",
+          "url": "docs/control-system-test-report.pdf"
+        }
+      ],
+      "accent": "#bc5648"
+    }
+  ]
+}

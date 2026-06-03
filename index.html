@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="A recruiter-ready engineering portfolio featuring hardware projects, software projects, source code, diagrams, documents, and GitHub links."
+    />
+    <title>Engineering Project Portfolio</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header" id="top">
+      <a class="brand" href="#top" aria-label="Go to top">
+        <span class="brand-mark">EP</span>
+        <span>
+          <strong>Maurice Otieno</strong>
+          <small>Hardware + Software Portfolio</small>
+        </span>
+      </a>
+
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="#projects">Projects</a>
+        <a href="#resume">Resume</a>
+        <a href="#process">Process</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="hero-title">
+        <img
+          class="hero-image"
+          src="assets/hero-workbench.png"
+          alt="Engineering workbench with laptop, electronics, diagrams, and documents"
+        />
+        <div class="hero-shade" aria-hidden="true"></div>
+        <div class="hero-content">
+          <p class="eyebrow">Build archive for recruiters, collaborators, and curious visitors</p>
+          <h1 id="hero-title">Projects that connect circuits, code, and real-world problem solving.</h1>
+          <p class="hero-copy">
+            A curated portfolio of hardware builds, software systems, diagrams, documents, and GitHub repositories.
+            Replace the sample content with your real work, then publish the folder as a public site.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#projects">View projects</a>
+            <a class="button secondary" href="#resume">View resume</a>
+            <a class="button secondary" href="https://github.com/YOUR-GITHUB-USERNAME" target="_blank" rel="noreferrer">
+              GitHub profile
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="summary-band" aria-label="Portfolio highlights">
+        <div class="metric">
+          <strong id="project-count">0</strong>
+          <span>documented projects</span>
+        </div>
+        <div class="metric">
+          <strong>HW + SW</strong>
+          <span>mixed engineering scope</span>
+        </div>
+        <div class="metric">
+          <strong>Docs</strong>
+          <span>source, diagrams, and notes</span>
+        </div>
+      </section>
+
+      <section class="section" id="projects" aria-labelledby="projects-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Selected work</p>
+            <h2 id="projects-title">Project Library</h2>
+          </div>
+          <label class="search-wrap" for="project-search">
+            <span>Search</span>
+            <input id="project-search" type="search" placeholder="microcontroller, Python, CAD..." />
+          </label>
+        </div>
+
+        <div class="filters" aria-label="Project filters">
+          <button class="filter-button active" type="button" data-filter="all">All</button>
+          <button class="filter-button" type="button" data-filter="hardware">Hardware</button>
+          <button class="filter-button" type="button" data-filter="software">Software</button>
+          <button class="filter-button" type="button" data-filter="hybrid">Hybrid</button>
+        </div>
+
+        <div class="project-grid" id="project-grid" aria-live="polite"></div>
+      </section>
+
+      <section class="section resume-section" id="resume" aria-labelledby="resume-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Recruiter packet</p>
+            <h2 id="resume-title">Resume</h2>
+          </div>
+          <div class="resume-actions">
+            <a class="button primary" href="assets/resume.pdf" target="_blank" rel="noreferrer">Open PDF</a>
+            <a class="button secondary" href="assets/resume.pdf" download>Download</a>
+          </div>
+        </div>
+
+        <div class="resume-viewer">
+          <object data="assets/resume.pdf" type="application/pdf">
+            <p>
+              The resume preview is unavailable in this browser.
+              <a href="assets/resume.pdf" target="_blank" rel="noreferrer">Open the PDF instead.</a>
+            </p>
+          </object>
+        </div>
+      </section>
+
+      <section class="section process" id="process" aria-labelledby="process-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">How each project is presented</p>
+            <h2 id="process-title">Evidence First</h2>
+          </div>
+        </div>
+        <div class="process-grid">
+          <article>
+            <span class="step">01</span>
+            <h3>Problem and constraints</h3>
+            <p>Each write-up starts with the goal, users, technical limits, and why the project mattered.</p>
+          </article>
+          <article>
+            <span class="step">02</span>
+            <h3>Build artifacts</h3>
+            <p>Repositories, diagrams, documents, CAD files, test notes, and demos are linked in one place.</p>
+          </article>
+          <article>
+            <span class="step">03</span>
+            <h3>Results and reflection</h3>
+            <p>Impact, tradeoffs, failures, and next steps make the work easier for reviewers to evaluate.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="contact-band" id="contact" aria-labelledby="contact-title">
+        <div>
+          <p class="eyebrow">Open to opportunities</p>
+          <h2 id="contact-title">Want to talk through a build?</h2>
+          <p>
+            Email, call, review the resume, or inspect linked project repositories from one place.
+          </p>
+        </div>
+        <div class="contact-links">
+          <a
+            href="https://mail.google.com/mail/?view=cm&fs=1&to=otienomaurice12340@gmail.com"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Email
+          </a>
+          <a href="tel:+14845451567">Call</a>
+          <a href="https://www.linkedin.com/in/YOUR-LINKEDIN" target="_blank" rel="noreferrer">LinkedIn</a>
+          <a href="https://github.com/YOUR-GITHUB-USERNAME" target="_blank" rel="noreferrer">GitHub</a>
+          <a href="assets/resume.pdf" target="_blank" rel="noreferrer">Resume</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>© <span id="year"></span> Maurice Otieno</span>
+      <a href="#top">Back to top</a>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
