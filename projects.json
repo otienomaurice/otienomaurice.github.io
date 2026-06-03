@@ -14,7 +14,7 @@
       "resources": [
         {
           "label": "GitHub repo",
-          "url": "https://github.com/otienomaurice/sensor-platform"
+          "url": "https://github.com/otienomaurice1/sensor-platform"
         },
         {
           "label": "System diagram",
@@ -41,11 +41,11 @@
       "resources": [
         {
           "label": "GitHub repo",
-          "url": "https://github.com/otienomaurice/documentation-hub"
+          "url": "https://github.com/otienomaurice1/documentation-hub"
         },
         {
           "label": "Source code",
-          "url": "https://github.com/otienomaurice/documentation-hub/tree/main/src"
+          "url": "https://github.com/otienomaurice1/documentation-hub/tree/main/src"
         }
       ],
       "accent": "#d18b21"
