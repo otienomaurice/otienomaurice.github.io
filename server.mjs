@@ -13,7 +13,9 @@ const types = {
   ".js": "application/javascript",
   ".json": "application/json",
   ".pdf": "application/pdf",
-  ".png": "image/png"
+  ".png": "image/png",
+  ".txt": "text/plain",
+  ".xml": "application/xml"
 };
 
 createServer(async (request, response) => {
