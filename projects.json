@@ -1,15 +1,15 @@
 ﻿{
   "projects": [
     {
-      "title": "Autonomous Sensor Platform",
+      "title": "Embedded Sensor Platform",
       "type": "hybrid",
       "status": "Prototype",
-      "summary": "A sample hardware and software project entry for an embedded sensing system with firmware, enclosure notes, and test documentation.",
+      "summary": "An embedded sensing platform focused on acquisition, firmware control, signal handling, and repeatable test documentation.",
       "stack": ["C++", "Python", "Microcontrollers", "CAD"],
       "highlights": [
-        "Designed firmware flow for sensor sampling, local processing, and serial data output.",
-        "Documented wiring, board bring-up, and validation steps for reviewers.",
-        "Packaged diagrams and test notes so the build can be evaluated quickly."
+        "Developed firmware flow for sensor sampling, local processing, and serial data output.",
+        "Captured wiring, board bring-up, and validation steps for technical review.",
+        "Organized diagrams and test notes to make the design intent easy to evaluate."
       ],
       "resources": [
         {
@@ -28,15 +28,15 @@
       "accent": "#117c7a"
     },
     {
-      "title": "Project Documentation Hub",
+      "title": "Portfolio Documentation System",
       "type": "software",
       "status": "Live",
-      "summary": "A sample software project entry for a web app that organizes source code, documents, diagrams, and project metadata.",
+      "summary": "A static portfolio system that organizes engineering projects, source links, diagrams, documents, and resume materials.",
       "stack": ["JavaScript", "HTML", "CSS", "GitHub Pages"],
       "highlights": [
-        "Built a searchable project library for fast recruiter review.",
-        "Separated project data from presentation so new work can be added without redesigning the page.",
-        "Prepared the site for static hosting with no build tooling required."
+        "Built a searchable project library for fast technical review.",
+        "Separated project data from presentation to keep project entries structured.",
+        "Published the portfolio through GitHub Pages with a custom domain."
       ],
       "resources": [
         {
@@ -51,15 +51,15 @@
       "accent": "#d18b21"
     },
     {
-      "title": "Control System Bench Test",
+      "title": "Analog Control Bench Test",
       "type": "hardware",
       "status": "Documented",
-      "summary": "A sample hardware project entry for a bench-tested control system with schematics, measurements, and lessons learned.",
+      "summary": "A bench-tested analog control project with schematics, measurements, instrumentation notes, and design reflections.",
       "stack": ["Electronics", "Oscilloscope", "KiCad", "Testing"],
       "highlights": [
-        "Captured design assumptions, test setup, and measurement results.",
-        "Linked diagrams and supporting documents for technical inspection.",
-        "Recorded failure modes and next iteration priorities."
+        "Defined design assumptions, test setup, and measurement strategy.",
+        "Presented schematics and supporting documents for technical inspection.",
+        "Recorded observed behavior, failure modes, and next iteration priorities."
       ],
       "resources": [
         {
