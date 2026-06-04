@@ -1,0 +1,476 @@
+--- Page 1 ---
+ECE323   Spring 2025 
+    
+1 
+ECE323 Lab – Voltage-Controlled Oscillator 
+  
+I.  Introduction 
+In many systems, timing circuits are needed not only for synchronous digital design but also to control 
+mixed-signal circuits and interface functions.   A few examples of clocked analog circuits include analog-
+to-digital converters, digital- to-analog converters, switched -capacitor filters, and chopper -stabilized 
+opamps.  A single IC may require several different clock frequencies for the analog and digital cells.  Since 
+these clocks may not be related by simple integer ratios and created with dividers, voltage -controlled 
+oscillators (VCO) are popular circuits to generate the required frequencies on chip.  In this lab, we will 
+analyze, design, and characterize one example of a VCO topology. 
+ 
+II.  Objectives 
+The objectives of this laboratory are 
+1. Calculate the VCO circuit component values to meet a design specification. 
+2. Learn the KiCad PCB design flow including LTSpice simulation with a sequential capture 
+and PCB layout plan. 
+3. Use LTSpice to simulate your captured circuits and verify expected performance and capture 
+schematic integrity. 
+4. Use Kicad to layout the PCB, verify it meets the schematic, and export the fabrication files to 
+a professional outside PCB fabricator. 
+5. Develop a schematic and PCB test plan at both the subcircuit and overall circuit levels. 
+6. Assemble and characterize the VCO PCB prototype for subcircuit performance and output 
+frequency vs. voltage for the overall VCO. 
+ 
+III.  Motivation 
+In this semester’s lab projects, we will often consider analog and mixed-signal design techniques.   VCO’s 
+and phase-locked loops (PLL’s) provide a great entry point into circuits that incorporate both analog and 
+digital circuit techniques to create a high performance mixed-signal function. 
+ 
+IV.  Prelab  
+Consider the “roughly” conceptual circuit of Figure 1, where a capacitor is charged and discharged thru 
+two switches using complementary clocks. 
+ 
+C
+ICharge
+IDisCharge
+CLK
+CLK
+VCAP
++
+-
+ 
+ 
+Figure 1.  Conceptual Charge/Discharge Circuit 
+ 
+
+--- Page 2 ---
+ECE323   Spring 2025 
+    
+2 
+For the case of the charge and discharge currents being equal and the clock signal being 50/50 duty cycle, 
+the capacitor waveform would be as shown in Figure 2.   
+CLK
+T
+VCAP
+Time  
+ 
+Figure 2.  Conceptual Circuit Waveforms 
+ 
+ 
+For first half cycle, the top current source will supply (or push) current to the cap and it will charge.  For 
+the second half cycle, the lower current source will sink (or pull) current from the cap and it will discharge.  
+The peak-to-peak amplitude of the capacitor transient voltage is then given by (1). 
+ 
+ 
+(1) 
+ 
+  
+ 
+Consider an example embodiment of this idea in the circuit in Figure 3 and description below.   
+ 
+(1) The devices MPCS and MNCS will have respective DC gate biasing (VBiasP and VBiasN from current 
+mirroring configurations)  to give a known current flow ( I ) when operated in saturation.  
+Complimentary MOS devices MPSW and MNSW are driven with a single logic signal VDisCharge 
+with a digital value of either 0 volts (Lo) or VCC volts (Hi) to exclusively turn on either of the 
+switches MPSW or MNSW. 
+(2) Charge State (VDisCharge logic Lo):  When VDischarge is logic Lo (0V), the PMOS switch MPSW will 
+be on (triode) and NMOS switch MNSW will be off  (cutoff).  Current source MPCS will be in 
+saturation and have current flow ( I ) as long as this device remains in saturation.  Current source 
+MNSW will have zero current and zero V DS since the NMOS switch is off.   So net result is that 
+capacitor charges.   
+(3) Discharge State (VDisCharge logic Hi):   When VDischarge is logic Hi (VCC), the NMOS switch MNSW 
+will be on (triode) and PMOS switch MPSW will be off  (cutoff).  Current source MNCS will be 
+in saturation and have current flow ( I ) as long as this device remains in saturation.  Current source 
+MPSW will have zero current and zero V SD since the PMOS switch is off.   So net result is that 
+capacitor discharges. 
+2
+T
+C
+IVCAP ⋅=∆
+
+--- Page 3 ---
+ECE323   Spring 2025 
+    
+3 
+VC AP
+VCC
+VBiasP
+VBiasN
+VD isC harge
+MPCS
+MNCS
+MNSW
+MPSW
+ 
+ 
+Figure 3.  CMOS embodiment of charge/discharge circuit 
+ 
+ 
+Now review the VCO circuit of Figure 4 noting the following important functional cells: 
+ 
+1. Voltage to current converter – you should recognize it from last semester.  It was used to set 
+the laser current in your audio transmitter board. 
+2. Current mirrors – we’ve discussed these in class and they establish the needed gate bias 
+voltages and current sources to create our target charge/discharge currents. 
+3. Two MOS devices used as switches as discussed above. 
+4. Integrating Capacitor 
+5. Voltage divider network to set reference levels for the comparators. 
+6. Analog Comparators – we will discuss. 
+7. RS-Latch from NAND gates.  (Latch has memory, see Appendix I) 
+ 
+In this arrangement (and if properly designed), the capacitor is unable to attain a DC steady state 
+condition.  Notice that the switches in the current steering network are being driven by the output of the 
+latch such that current mirrors will be either pushing current to or pulling current from the capacitor based 
+on the output ( FB ) logic state.  The capacitor voltage is monitored by a window comparator network 
+formed by the analog comparators and the voltage divider and their results fed to an RS-latch.  An 
+important architectural feature in this system is that the initial current reference for the current mirror 
+steering network is developed from a voltage-to-current converter.  So the input voltage VCTRL sets the 
+oscillation frequency, leading to the overall circuit name of voltage-controlled oscillator (VCO).   
+
+--- Page 4 ---
+ECE323   Spring 2025 
+    
+4 
+Theoretical Investigations: 
+ 
+1.  Assuming ideal analog comparators feeding the RS latch, zero delay NAND gates, all NMOS mirror 
+devices identical, and all PMOS mirror devices identical, sketch the transient voltage waveform seen 
+across the capacitor.  Label important values.  Find an expression for the output frequency with the circuit 
+component values left as variables.   In your analysis refer to the two analog voltage divider reference 
+levels simply as VHI and VLO. 
+ 
+2.  One important issue with oscillators is whether or not they will start; does this design start from all 
+initial conditions?  Explain why or why not.  
+ 
+3.  What happens if the charge and discharge currents don’t match?  Show a sketch. 
+ 
+4.  What other ways from a circuit component standpoint can the frequency be changed if the input 
+voltage VCTRL is held constant? 
+ 
+ 
+VCAPFB
+VCTRL
+VCC
+RCTRL
+R1
+R2
+R3
+VCAP
++
++
++
+-
+-
+-
+FB
+C
+LM324
+LM2901
+LM2901
+5LN01Sp
+ 
+ 
+Figure 4.  Conceptual VCO Topology 
+ 
+
+--- Page 5 ---
+ECE323   Spring 2025 
+    
+5 
+V.  Additional Circuits 
+ 
+(A)  The full design will also include a voltage regulator to set the supply level VCC for the entire board 
+from an input unipolar voltage supply of 10 Volts  (VPOWER).  The voltage regulator will be an LM317 
+TO-220 package and we will use the typical design a suggested in the TI LM317 datasheet and shown 
+below. 
+ 
+Figure 5.  LM317 application taken from TI LM317 datasheet 
+ 
+In our case, the regulated VCC voltage (VO) is to be approximately 5 Volts so R2 is to be calculated from 
+the relationship in the datasheet.  CADJ is to be a 25uF electrolytic, CO a 10uF electrolytic, and Ci a 0.1uF 
+ceramic. 
+ 
+(B)  The full VCO PCB design shall also include an on-board PWM driven LED circuit for quick 
+verification of PCB functionality. 
++
+-
+VPWM
+VCAP
+RLED
+VCC
+VCC
+5mm 
+LEDWiper
+10k pot LM2901
+ 
+ 
+Figure 6. PWM LED driver circuit 
+2
+2
+1
+1 50o REF
+RV V AR
+R
+µ= ⋅+ + ⋅ 
+
+
+--- Page 6 ---
+ECE323   Spring 2025 
+    
+6 
+(C)  The full VCO PCB design will also include a voltage divider on the input VCTRL voltage input line 
+to establish an approximate 1V input when the external VCTRL voltage is not present.  The voltage 
+divider should have equivalent resistance input resistance in the low kilo-ohms. 
+ 
+(D)  Provide decoupling of IC’s and voltage dividers as discussed in the technical notes section. 
+ 
+ 
+V.  Materials 
+The materials for this project will include computer workstation for PCB design and simulation.  Your 
+bench equipment, fabricated PCB, and provided circuit components for bench verificaiton.  Components:  
+LM324, CD4007’s, 74AC00, LM2901 (comparators), 5LN01SP, LM317, capacitor, and resistors.  Other 
+components needed for the overall circuit will be provided. 
+ 
+VI.  Design Specification 
+You are to design, simulate, build, and test a VCO prototype.  In this design, the power supply input is 10 
+Volts (no negative supply!) which is regulated to 5 Volts to supply the entire VCO design, the capacitor 
+value is 0.022uF, and the design should provide an output frequency of approximately 1KHz for an input 
+control voltage of 1.0 Volt. 
+ 
+VII.  Technical Notes 
+1. The LM2901 is a quad comparator IC.  Review the device schematic in the datasheet paying 
+attention to the output.  This is an open collector device.  You will need to use a pull-up 
+resistor (suggest 10k) from the LM2901 output to VCC (5V) to make the comparator 
+work.  Another issue with the comparator is input common mode voltage range which we 
+will discuss in the coming weeks in class.   For the comparator to work properly the 
+comparison voltages you select on the voltage divider should be no larger than 3 volts. 
+2. The only discrete transistor is the 5LN01SP in the voltage to current converter (V2I). All 
+other transistors are contained in the CD4007 chips. 
+3. The CD4007 contains 3 PMOS and 3 NMOS devices that are “partially” isolated.  Your 
+project includes the part CD4007 for your schematic capture, you are not to use discrete 
+transistor symbols.  This IC has power and ground (which must be tied to power and 
+ground) and you will need to figure out how to use 2 of these IC’s to design the current 
+mirrors and current steering switches. Unused devices will have some floating terminals.  
+Remember that good mirrors require process matching.  Verify the CD4007 symbol pinout 
+with the datasheet.   
+4. Your RS latch is created from the quad NAND IC 74AC00, see appendix for NAND Latch 
+discussion. 
+5. IC’s should include a 0.1uF decoupling cap between their power and ground pins.  You 
+would like these to be near each IC.   Ask about this concept. 
+ 
+VIII.  Milestones and Deadlines - Preliminary 
+  
+Milestone 1- (End of class Wednesday 2/5) - KiCad tool training and process flow with the LM317 
+regulator circuit. Implementation of the LM317 voltage regulator circuit.  Theoretical design (R
+2 
+calc), schematic capture of the regulator block, LTSpice verification of intended regulator 
+performance, PCB layout and verification, and documented work in a PowerPoint presentation. 
+ 
+Milestone 2 - (Before class Monday 2/10) – Overall design of the VCO circuit.  Selection of the 
+reference voltages for the window comparator divider and hence the divider resistor values.  
+Calculation of the charge/discharge current for the specified capacitor value and 1kHz frequency 
+spec.  Calculation of the V2I converter resistor value for the corresponding 1V VCTRL input at 
+
+--- Page 7 ---
+ECE323   Spring 2025 
+    
+7 
+target frequency spec and integrator capacitor value .  Schematic capture plan for V2I and current 
+mirror block (For Monday 2/10).  Schematic capture plan for window comparator block (For 
+Wednesday 2/12). 
+ 
+Milestone 3 – (End of Monday 2/10) – Schematic capture of the V2I and current mirror network, 
+LTSpice verification, PCB layout and verification, and documented work appended to the 
+PowerPoint presentation.    
+ 
+Milestone 4 – (End of Wednesday 2/12) – Schematic capture of the window comparator and latch 
+circuitry, LTSpice verification, PCB layout and verification, and documented work appended to 
+the PowerPoint presentation.    
+ 
+Milestone 5 – (End of Friday 2/14) – Schematic capture of additional system components and 
+interconnect of the blocks , LTSpice verification, f inal PCB rou ting and verification, and 
+documented work appended to the PowerPoint presentation.    
+ 
+Milestone 6 – (End of Monday 2/17) – Schematic and PCB cleanup.  Export of final layout files 
+to Gerber fabrication database.  Upload of Gerber files to JLCPCB.  Selection of fabrication options 
+and screen capture of JLC estimate.  Final PowerPoint Update Due by NOON Tuesday 2/18/25. 
+ 
+Milestone 7 – (Tuesday 2/18) – Submission of Gerber files to purchasing for submission of the 
+JLCPCB order. 
+ 
+Milestone 8 – (TBD, determined by receipt of PCBs) – Assemble PCBs and bench test.  Append 
+bench test results to the PowerPoint document.   
+ 
+ VCO Project Quiz  – Wednesday 2/19/25 (ish) 
+ 
+IX.  Workspace   
+Each student will work from a shared google drive created by the instructor.  Your working KiCad project 
+folder will be located in this drive folder along with all simulation files, documentation, data files, etc.  
+Files are not to reside on windows desktops or to local machine hard drives.  They are required to be in 
+this protected space.  All simulation will use the Windows version of LTSpice and the text based Spice 
+deck interface. 
+ 
+X.  Summary 
+Your lab effort documentation will be a regularly updated PowerPoint presentation including 
+- Title Slide 
+- Circuit Schematics (Visio) 
+- Theoretical Information – How does it work? 
+- Design Specification and Your Corresponding Design Values with calculations 
+- Comparison of Experimental and Simulated Results   
+o 2 slides of simulated sub-block performance verification (with Visio schematics) 
+o 2 slides of measured sub-block performance verification (with Visio schematics) 
+o 1 or 2 slides of waveforms, experimental and simulated VCO with 1V on the VCO 
+control voltage. 
+o 1 slide with plot of measured and simulated frequency vs. control voltage. 
+o 1 slide with discussion of prototype inaccuracy contributors. 
+- Sequential Circuit and Layout Screen shots from KiCad 
+- Sequential Verification Simulations 
+- Conclusions Slide 
+
+--- Page 8 ---
+ECE323   Spring 2025 
+    
+8 
+Appendix I. RS  NAND Latch Operation 
+ 
+ 
+Q2
+Q1
+A
+B Z
+A        B        Z
+0        0        1
+0        1        1
+1        0        1
+1        1        0
+Note:   If A=0  or B=0 , Z=1
+             If A=1, acts as inverter to B and vice versa
+R
+S
+R        S       Q1       Q2
+0        0        1          1          
+0        1        1          0
+1        0        0          1
+1        1       Q1*    Q2*      
+Not Allowed
+NAND Gate
+RS NAND Latch
+Memory State
+Memory Model R=1 and S=1
+Q1
+Q2
+Positive Feedback!
+Q1=1 and Q2=0 is a solution.
+Q1=0 and Q2=1 is a solution.
+Solution depends on last state, set or reset.
+Emphasizes why we don’t typically want R=0 
+S=0 state (we won’t know memory state, set 
+by race condition).  
+ 
+ 
+  
+
+--- Page 9 ---
+ECE323   Spring 2025 
+    
+9 
+Appendix II.  KiCad Reduced Schematic Parts List 
+ 
+1N4001 – Diode 
+74HC00 Quad Nand 
+C – Unpolarized capacitor  (All caps less than 1uF)  Set to standard size ceramics on hand   
+CD4007UBE – CMOS transistor IC – 3PMOS, 3NMOS 14pin 
+Conn_01x08 – 8 pin 1 row connector.  2 preplaced on the template schematic for board interfacing 
+C_polarized_us – Polarized capacitor (caps greater than 1 uF) Set standard size electrolytics on hand 
+LED – 5mm LED  
+LM317_TO-220  -  LM317 in 3 terminal TO-220 Package 
+LM324 – Quad opamp 14 pin 
+LM2901 – Quad analog comparator 14pin 
+Mountinghold – Preplaced in the template schematic 
+pwr_flg  - Power port identifier for KiCad for schematic checks 
+Q_NMOS_SDB  - Generic 3 pin transistor symbol to instantiate for the 5LN01SP 
+R – Resistor symbol with package size set to standard 0.25W package 
+R_potentiometer-US – 3 terminal POT sized selected POT from Digikey 
+ 
+ 
+Appendix III.  KiCad PCB process flow for the ECE323 (After analysis, component calcs, initial 
+connection maps, etc.) 
+ 
+1. Capture sequential schematic block in KiCad 
+2. Export text simulation netlist from KiCad 
+3. LTSpice simulate the full sequential schematic step for correct operation 
+4. Transfer capture to PCB layout (Update PCB from schematic) 
+5. Position parts and perform routing 
+6. Run Design Rules Check which will perform LVS (Layout vs. Schematic connections), 
+clearance, and min/max feature limits. 
+7. Upon full success, return to top and implement next sequential block.   
+ 
+
+--- Page 10 ---
+ECE323   Spring 2025 
+    
+10 
+Appendix IV.  CD4007 Functional Drawing from TI and Custom KiCad Symbol 
+ 
+ 
+ 
+ 
+     
+Notes:  Pin 14 and 7 establish power and ground biasing of all the PMOS and NMOS bodies.  So these 
+need to be tied to VCC and RTN.   
+ 
+  
+
+
+--- Page 11 ---
+ECE323   Spring 2025 
+    
+11 
+Appendix V.  KiCad Schematic Template 
+ 
+Preplaced J1 connector with pins for interfacing of the VCO control voltage VCTRL, input power and 
+ground VPOWER (10V) and RTN.  Preplaced J2 output interface connector with connection to circuit 
+signals VFB, VCAP, VHI, VLO, and RTN for a convenient reference location. 
+ 
+Preplaced power flags for 10V and RTN for Kicad circuit checks. 
+ 
+3 Preplaced boxes for sequential schematic capture effort. 
+ 
+4 Preplaced mounting holes. 
+ 
+Preplaced Hierarchal port names for simulation subcircuit generation (Box labeled LTSpice Simulation 
+Ports).  Format of created subcircuit file: 
+.subcircuit Project_Name  
++ RTN  
++ VCAP  
++ VCC 
++ VCTRL 
++ VFB  
++ VHI  
++ VLO 
+ 
+ 
+
+
+--- Page 12 ---
+ECE323   Spring 2025 
+    
+12 
+Appendix VI.  KiCad Layout Template 
+ 
+1. Predefined board size 
+2. 2 Preplaced 8 PIN interface connectors 
+3. 4 Preplace mounting holes 
+4. Rat lines for RTNs unconnected 
+5. SilkScreen labels for connectors and VCO Board preplaced. 
+6. Copper fill regions defined (not obviously seen in this view)  
+ 
+ 
+ 
+ 
+ 

@@ -479,6 +479,40 @@ h3 {
   color: var(--muted);
 }
 
+.project-drawer {
+  padding: 12px 14px;
+  border: 1px solid color-mix(in srgb, var(--accent), #ffffff 62%);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.56);
+}
+
+.project-drawer summary,
+.evidence-block summary {
+  cursor: pointer;
+  color: var(--ink);
+  font-size: 0.84rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.project-drawer summary::marker,
+.evidence-block summary::marker {
+  color: var(--accent);
+}
+
+.project-drawer[open] summary,
+.evidence-block[open] summary {
+  margin-bottom: 10px;
+}
+
+.highlight-list {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding-left: 18px;
+  color: #344353;
+}
+
 .project-card ul {
   display: grid;
   gap: 8px;
@@ -506,6 +540,10 @@ h3 {
   background: rgba(255, 255, 255, 0.52);
 }
 
+.evidence-wide {
+  grid-column: 1 / -1;
+}
+
 .evidence-block h4,
 .project-tooling h4 {
   margin: 0;
@@ -525,6 +563,12 @@ h3 {
 .evidence-block li {
   display: grid;
   gap: 3px;
+}
+
+.evidence-block li p {
+  margin: 2px 0 0;
+  color: #526d82;
+  font-size: 0.84rem;
 }
 
 .evidence-block li span,
@@ -548,6 +592,50 @@ h3 {
 
 .language-tag {
   color: #8a5a12;
+}
+
+.media-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.media-grid figure {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+}
+
+.media-grid a {
+  display: block;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.media-grid img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  transition: transform 180ms ease;
+}
+
+.media-grid a:hover img {
+  transform: scale(1.03);
+}
+
+.media-grid figcaption {
+  display: grid;
+  gap: 3px;
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.media-grid figcaption strong {
+  color: var(--ink);
+  font-size: 0.82rem;
 }
 
 .resource-list {
@@ -739,6 +827,7 @@ h3 {
   .project-card,
   .evidence-grid,
   .project-tooling,
+  .media-grid,
   .process-grid,
   .contact-band {
     grid-template-columns: 1fr;

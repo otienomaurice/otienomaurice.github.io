@@ -27,11 +27,13 @@ function flattenProject(project) {
     project.status,
     project.summary,
     ...(project.focus || []),
+    ...(project.highlights || []),
     ...(project.tools || []),
     ...(project.languages || []),
     ...(project.documents || []).flatMap((item) => [item.title, item.type, item.status, item.url]),
-    ...(project.tests || []).flatMap((item) => [item.name, item.method, item.status, item.artifact]),
+    ...(project.tests || []).flatMap((item) => [item.name, item.method, item.status, item.result, item.artifact]),
     ...(project.pcbs || []).flatMap((item) => [item.name, item.revision, item.status, item.artifact]),
+    ...(project.media || []).flatMap((item) => [item.title, item.caption, item.url]),
     ...(project.links || []).flatMap((item) => [item.label, item.url])
   ]
     .map(normalize)
@@ -72,6 +74,37 @@ function evidenceList(items, renderItem, emptyMessage) {
   return `<ul>${items.map(renderItem).join("")}</ul>`;
 }
 
+function detailBlock(title, className, content) {
+  return `
+    <details class="${className}">
+      <summary>${title}</summary>
+      ${content}
+    </details>
+  `;
+}
+
+function mediaGrid(items) {
+  if (!items || !items.length) {
+    return `<p class="evidence-empty">No project images have been added yet.</p>`;
+  }
+
+  return `
+    <div class="media-grid">
+      ${items.map((item) => `
+        <figure>
+          <a href="${item.url}"${linkAttributes(item.url)}>
+            <img src="${item.url}" alt="${item.title}">
+          </a>
+          <figcaption>
+            <strong>${item.title}</strong>
+            <span>${item.caption || ""}</span>
+          </figcaption>
+        </figure>
+      `).join("")}
+    </div>
+  `;
+}
+
 function projectCard(project) {
   const category = categories.find((item) => item.id === project.category) || {};
   const accent = category.accent || "#117c7a";
@@ -88,48 +121,50 @@ function projectCard(project) {
         <h3>${project.title}</h3>
         <p>${project.summary}</p>
 
-        <div class="evidence-grid">
-          <section class="evidence-block" aria-label="${project.title} documents">
-            <h4>Documents</h4>
-            ${evidenceList(project.documents, (item) => `
-              <li>
-                ${resourceLink(item, item.title)}
-                <span>${item.type || "Document"} · ${item.status || "tracked"}</span>
-              </li>
-            `, "No document artifact has been added yet.")}
-          </section>
+        ${project.highlights && project.highlights.length ? detailBlock("Project highlights", "project-drawer", `
+          <ul class="highlight-list">
+            ${project.highlights.map((item) => `<li>${item}</li>`).join("")}
+          </ul>
+        `) : ""}
 
-          <section class="evidence-block" aria-label="${project.title} tests">
-            <h4>Tests</h4>
-            ${evidenceList(project.tests, (item) => `
-              <li>
-                ${resourceLink({ url: item.artifact, status: item.status }, item.name)}
-                <span>${item.method || "Validation"} · ${item.status || "tracked"}</span>
-              </li>
-            `, "No test artifact has been added yet.")}
-          </section>
+        <div class="evidence-grid" aria-label="${project.title} evidence blocks">
+          ${detailBlock("Documents", "evidence-block", evidenceList(project.documents, (item) => `
+            <li>
+              ${resourceLink(item, item.title)}
+              <span>${item.type || "Document"} &middot; ${item.status || "tracked"}</span>
+            </li>
+          `, "No document artifact has been added yet."))}
 
-          <section class="evidence-block" aria-label="${project.title} PCB builds">
-            <h4>PCBs Built</h4>
-            ${evidenceList(project.pcbs, (item) => `
-              <li>
-                ${resourceLink({ url: item.artifact, status: item.status }, item.name)}
-                <span>${item.revision || "Revision"} · ${item.status || "tracked"}</span>
-              </li>
-            `, "No PCB build has been added yet.")}
-          </section>
+          ${detailBlock("Tests and results", "evidence-block", evidenceList(project.tests, (item) => `
+            <li>
+              ${resourceLink({ url: item.artifact, status: item.status }, item.name)}
+              <span>${item.method || "Validation"} &middot; ${item.status || "tracked"}</span>
+              ${item.result ? `<p>${item.result}</p>` : ""}
+            </li>
+          `, "No test artifact has been added yet."))}
+
+          ${detailBlock("PCBs built", "evidence-block", evidenceList(project.pcbs, (item) => `
+            <li>
+              ${resourceLink({ url: item.artifact, status: item.status }, item.name)}
+              <span>${item.revision || "Revision"} &middot; ${item.status || "tracked"}</span>
+            </li>
+          `, "No PCB build has been added yet."))}
+
+          ${detailBlock("Images", "evidence-block evidence-wide", mediaGrid(project.media))}
         </div>
 
-        <div class="project-tooling">
-          <div>
-            <h4>Tools Used</h4>
-            <div class="project-meta">${pillList(project.tools, "tool-tag")}</div>
+        ${detailBlock("Tools and implementation files", "project-drawer", `
+          <div class="project-tooling">
+            <div>
+              <h4>Tools Used</h4>
+              <div class="project-meta">${pillList(project.tools, "tool-tag")}</div>
+            </div>
+            <div>
+              <h4>Languages</h4>
+              <div class="project-meta">${pillList(project.languages, "language-tag")}</div>
+            </div>
           </div>
-          <div>
-            <h4>Languages</h4>
-            <div class="project-meta">${pillList(project.languages, "language-tag")}</div>
-          </div>
-        </div>
+        `)}
 
         <div class="resource-list">
           ${(project.links || []).map((item) => resourceLink(item)).join("")}

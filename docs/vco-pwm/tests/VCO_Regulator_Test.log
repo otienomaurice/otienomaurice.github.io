@@ -1,0 +1,30 @@
+LTspice 24.0.12 for Windows
+Circuit: *VCO test
+Start Time: Mon Feb  3 12:49:26 2025
+solver = Normal
+Maximum thread count: 24
+tnom = 27
+temp = 27
+method = modified trap
+WARNING: Less than two connections to node 1:nc-u1-0.  This node is used by r:1:u1:x.
+.OP point found by inspection.
+Ignoring empty pin current: Ix(u1:adj)
+Ignoring empty pin current: Ix(u1:out)
+Ignoring empty pin current: Ix(u1:in)
+Ignoring empty pin current: Ix(u1:tab)
+Ignoring empty pin current: Ix(1:vcap)
+Ignoring empty pin current: Ix(1:vctrl)
+Ignoring empty pin current: Ix(1:vfb)
+Ignoring empty pin current: Ix(1:vhi)
+Ignoring empty pin current: Ix(1:vlo)
+Ignoring empty pin current: Ix(u1:adj)
+Ignoring empty pin current: Ix(u1:out)
+Ignoring empty pin current: Ix(u1:in)
+Ignoring empty pin current: Ix(u1:tab)
+Ignoring empty pin current: Ix(1:vcap)
+Ignoring empty pin current: Ix(1:vctrl)
+Ignoring empty pin current: Ix(1:vfb)
+Ignoring empty pin current: Ix(1:vhi)
+Ignoring empty pin current: Ix(1:vlo)
+Total elapsed time: 0.080 seconds.
+

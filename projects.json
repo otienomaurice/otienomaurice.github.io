@@ -21,6 +21,142 @@
   ],
   "projects": [
     {
+      "id": "pwm-driven-vco",
+      "title": "PWM-Driven Voltage Controlled Oscillator PCB",
+      "category": "analog-mixed-signal",
+      "status": "Built and characterized",
+      "summary": "Designed, simulated, fabricated, and characterized a mixed-signal VCO that converts a control voltage into an oscillator output through a V2I stage, current mirrors, comparator thresholds, latch logic, and a PWM load interface.",
+      "focus": ["Analog design", "Mixed-signal timing", "PCB bring-up", "Bench characterization"],
+      "highlights": [
+        "Targeted a 1 kHz oscillator operating point at a 1 V control input using a 0.022 uF timing capacitor.",
+        "Built the VCO around an LM317 supply regulator, LM324-based V2I conversion, CD4007 MOS devices, LM2901 comparators, and 74AC00 NAND latch logic.",
+        "Measured V2I/current mirror behavior near the 0.10 mA design target across capacitor-voltage sweeps.",
+        "Recorded final frequency-versus-control-voltage characterization from 0 V to 5 V; the workbook shows 1.342 at 1.0 V and a high-control plateau around 3.18."
+      ],
+      "documents": [
+        {
+          "title": "VCO design brief",
+          "type": "PDF",
+          "url": "docs/vco-pwm/documents/ece323-vco-lab-handout.pdf",
+          "status": "source specification"
+        },
+        {
+          "title": "Extracted design notes",
+          "type": "Text",
+          "url": "docs/vco-pwm/documents/handout-extracted-text.txt",
+          "status": "source notes"
+        },
+        {
+          "title": "Build rolling document",
+          "type": "PowerPoint",
+          "url": "docs/vco-pwm/documents/vco-build-rolling-doc.pptx",
+          "status": "documented"
+        },
+        {
+          "title": "KiCad schematic",
+          "type": "KiCad",
+          "url": "docs/vco-pwm/documents/VCO_MauriceO.kicad_sch",
+          "status": "released"
+        }
+      ],
+      "tests": [
+        {
+          "name": "LM317 regulator simulation",
+          "method": "LTspice operating-point validation for the 10 V input to 5 V regulated rail",
+          "status": "completed",
+          "artifact": "docs/vco-pwm/tests/VCO_Regulator_Test.log",
+          "result": "Operating point was found, supporting the regulated VCC block before full-system integration."
+        },
+        {
+          "name": "V2I and current mirror sweep",
+          "method": "Nested DC sweep over VCTRL, VCAP, and VFB operating states",
+          "status": "completed",
+          "artifact": "docs/vco-pwm/tests/final-build-characterization.xlsx",
+          "result": "Measured current values stayed near the 0.10 mA design target across much of the capacitor-voltage sweep."
+        },
+        {
+          "name": "Window comparator and latch verification",
+          "method": "LTspice comparator-threshold simulation with 1 V low and 3 V high references",
+          "status": "completed",
+          "artifact": "docs/vco-pwm/tests/WINDOW_COMPARATOR_TEST.log",
+          "result": "The comparator/latch stage was checked against the threshold behavior used to reverse the capacitor charge direction."
+        },
+        {
+          "name": "Full oscillator transient simulation",
+          "method": "Integrated LTspice oscillator run including capacitor charge/discharge behavior",
+          "status": "completed",
+          "artifact": "docs/vco-pwm/tests/VCO_full_oscillator.log",
+          "result": "Integrated simulation converged and was used to inspect the oscillator waveform path before PCB bring-up."
+        },
+        {
+          "name": "Final PWM load integration",
+          "method": "LTspice full-circuit test with PWM-driven output load",
+          "status": "completed",
+          "artifact": "docs/vco-pwm/tests/VCO_final_test_with_pwm.log",
+          "result": "Final simulation connected the oscillator output behavior to the PWM load interface."
+        },
+        {
+          "name": "Frequency vs. control-voltage characterization",
+          "method": "Bench characterization recorded in the final build workbook",
+          "status": "completed",
+          "artifact": "docs/vco-pwm/tests/final-build-characterization.xlsx",
+          "result": "Recorded values rise from 0 at 0 V to 1.342 at 1.0 V, then approach a plateau around 3.18 at higher control voltages."
+        }
+      ],
+      "pcbs": [
+        {
+          "name": "VCO_MauriceO PCB layout",
+          "revision": "Rev A",
+          "status": "fabricated",
+          "artifact": "docs/vco-pwm/pcbs/VCO_MauriceO.kicad_pcb"
+        },
+        {
+          "name": "Gerber fabrication package",
+          "revision": "Rev A",
+          "status": "released",
+          "artifact": "docs/vco-pwm/pcbs/Maurice_O_Gerber.zip"
+        }
+      ],
+      "media": [
+        {
+          "title": "VCO circuit architecture",
+          "url": "docs/vco-pwm/images/vco-readme-01.png",
+          "caption": "System-level view of the analog timing path and switching stages."
+        },
+        {
+          "title": "Simulation result",
+          "url": "docs/vco-pwm/images/vco-readme-02.png",
+          "caption": "Waveform evidence from the VCO design verification flow."
+        },
+        {
+          "title": "PCB layout",
+          "url": "docs/vco-pwm/images/vco-readme-04.png",
+          "caption": "KiCad PCB implementation prepared for fabrication."
+        },
+        {
+          "title": "Assembled hardware",
+          "url": "docs/vco-pwm/images/vco-readme-06.png",
+          "caption": "Built VCO board used during final characterization."
+        }
+      ],
+      "tools": ["LTspice", "KiCad", "Oscilloscope", "Bench supply", "Function generator", "Multimeter", "Excel", "GitHub"],
+      "languages": ["SPICE netlists", "KiCad schematic/PCB files", "Markdown"],
+      "links": [
+        {
+          "label": "GitHub repo",
+          "url": "https://github.com/otienomaurice/VOLTAGE_CONTROLLED_OSCILLATOR"
+        },
+        {
+          "label": "Characterization workbook",
+          "url": "docs/vco-pwm/tests/final-build-characterization.xlsx"
+        },
+        {
+          "label": "Gerber package",
+          "url": "docs/vco-pwm/pcbs/Maurice_O_Gerber.zip"
+        }
+      ]
+    },
+    {
       "id": "analog-control-bench-test",
       "title": "Analog Control Bench Test",
       "category": "analog-mixed-signal",
