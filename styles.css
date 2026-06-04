@@ -9,6 +9,7 @@
   --amber: #d18b21;
   --coral: #bc5648;
   --graphite: #26313d;
+  --omb-copper: #c7772d;
   --focus: #0b6fce;
   --shadow: 0 18px 48px rgba(23, 32, 42, 0.14);
 }
@@ -63,15 +64,43 @@ input:focus-visible {
   min-width: 0;
 }
 
-.brand-mark {
-  display: grid;
-  width: 42px;
-  height: 42px;
-  place-items: center;
+.brand-lockup {
+  position: relative;
+  display: block;
+  flex: 0 0 auto;
+  width: 54px;
+  height: 44px;
+}
+
+.brand-icon {
+  display: block;
+  width: 44px;
+  height: 44px;
   border-radius: 8px;
+  object-fit: cover;
+  object-position: center;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.18);
+}
+
+.omb-engraving {
+  position: absolute;
+  right: 0;
+  bottom: -2px;
+  display: inline-grid;
+  min-width: 34px;
+  height: 18px;
+  place-items: center;
+  border: 1px solid rgba(199, 119, 45, 0.42);
+  border-radius: 6px;
   color: #fff;
-  background: var(--graphite);
-  font-weight: 800;
+  background: linear-gradient(135deg, var(--omb-copper), #7d3f1f);
+  box-shadow:
+    0 6px 14px rgba(38, 49, 61, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.32);
+  font-size: 0.64rem;
+  font-weight: 900;
+  line-height: 1;
+  text-shadow: 0 1px 0 rgba(23, 32, 42, 0.48);
 }
 
 .brand strong,
@@ -82,6 +111,14 @@ input:focus-visible {
 .brand small {
   color: var(--muted);
   font-size: 0.78rem;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: clamp(14px, 3vw, 30px);
+  min-width: 0;
 }
 
 .site-nav {
@@ -95,6 +132,25 @@ input:focus-visible {
 
 .site-nav a:hover {
   color: var(--teal);
+}
+
+.header-avatar {
+  display: block;
+  flex: 0 0 auto;
+  width: 46px;
+  height: 46px;
+  overflow: hidden;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  box-shadow: 0 8px 24px rgba(23, 32, 42, 0.18);
+}
+
+.header-avatar img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 26%;
 }
 
 .hero {
@@ -552,6 +608,11 @@ h3 {
     justify-content: space-between;
   }
 
+  .header-right {
+    width: 100%;
+    justify-content: space-between;
+  }
+
   .hero {
     min-height: 680px;
   }
@@ -585,6 +646,31 @@ h3 {
 @media (max-width: 560px) {
   .site-nav {
     font-size: 0.86rem;
+  }
+
+  .brand {
+    align-items: flex-start;
+  }
+
+  .brand-lockup {
+    width: 48px;
+    height: 40px;
+  }
+
+  .brand-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .omb-engraving {
+    min-width: 31px;
+    height: 16px;
+    font-size: 0.58rem;
+  }
+
+  .header-avatar {
+    width: 42px;
+    height: 42px;
   }
 
   .hero-actions,
