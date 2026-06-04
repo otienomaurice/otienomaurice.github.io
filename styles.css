@@ -384,15 +384,50 @@ h3 {
 
 .project-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 18px;
+  gap: 28px;
   max-width: 1180px;
   margin: 0 auto;
 }
 
+.category-section {
+  display: grid;
+  gap: 16px;
+}
+
+.category-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 18px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+}
+
+.category-heading h3 {
+  font-size: clamp(1.4rem, 3vw, 2.1rem);
+}
+
+.category-heading > span {
+  color: var(--muted);
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.category-description {
+  max-width: 900px;
+  margin: 0;
+  color: var(--muted);
+}
+
+.category-projects {
+  display: grid;
+  gap: 18px;
+}
+
 .project-card {
   display: grid;
-  min-height: 440px;
+  grid-template-columns: minmax(150px, 0.28fr) minmax(0, 1fr);
+  min-height: 0;
   overflow: hidden;
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -401,7 +436,7 @@ h3 {
 }
 
 .project-visual {
-  min-height: 132px;
+  min-height: 100%;
   background:
     linear-gradient(135deg, var(--accent), transparent 64%),
     repeating-linear-gradient(90deg, rgba(13, 127, 145, 0.13) 0 1px, transparent 1px 28px),
@@ -411,8 +446,8 @@ h3 {
 .project-body {
   display: grid;
   align-content: start;
-  gap: 14px;
-  padding: 20px;
+  gap: 16px;
+  padding: 22px;
 }
 
 .project-meta {
@@ -434,6 +469,11 @@ h3 {
   font-weight: 800;
 }
 
+.category-tag {
+  border-color: color-mix(in srgb, var(--accent), #ffffff 34%);
+  color: var(--accent);
+}
+
 .project-card p {
   margin: 0;
   color: var(--muted);
@@ -445,6 +485,69 @@ h3 {
   margin: 0;
   padding-left: 18px;
   color: #344353;
+}
+
+.evidence-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.evidence-block,
+.project-tooling {
+  display: grid;
+  gap: 10px;
+}
+
+.evidence-block {
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.52);
+}
+
+.evidence-block h4,
+.project-tooling h4 {
+  margin: 0;
+  color: var(--ink);
+  font-size: 0.84rem;
+  text-transform: uppercase;
+}
+
+.evidence-block ul {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.evidence-block li {
+  display: grid;
+  gap: 3px;
+}
+
+.evidence-block li span,
+.evidence-empty {
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.evidence-empty {
+  margin: 0;
+}
+
+.project-tooling {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  padding-top: 2px;
+}
+
+.tool-tag {
+  color: #0f6f7f;
+}
+
+.language-tag {
+  color: #8a5a12;
 }
 
 .resource-list {
@@ -461,6 +564,11 @@ h3 {
   color: var(--teal);
   background: rgba(17, 124, 122, 0.06);
   font-size: 0.84rem;
+}
+
+.resource-link.muted {
+  color: var(--muted);
+  background: rgba(82, 109, 130, 0.08);
 }
 
 .empty-state {
@@ -628,7 +736,9 @@ h3 {
   }
 
   .summary-band,
-  .project-grid,
+  .project-card,
+  .evidence-grid,
+  .project-tooling,
   .process-grid,
   .contact-band {
     grid-template-columns: 1fr;

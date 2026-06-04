@@ -1,78 +1,171 @@
-﻿{
-  "projects": [
+{
+  "categories": [
     {
-      "title": "Embedded Sensor Platform",
-      "type": "hybrid",
-      "status": "Prototype",
-      "summary": "An embedded sensing platform focused on acquisition, firmware control, signal handling, and repeatable test documentation.",
-      "stack": ["C++", "Python", "Microcontrollers", "CAD"],
-      "highlights": [
-        "Developed firmware flow for sensor sampling, local processing, and serial data output.",
-        "Captured wiring, board bring-up, and validation steps for technical review.",
-        "Organized diagrams and test notes to make the design intent easy to evaluate."
-      ],
-      "resources": [
-        {
-          "label": "GitHub repo",
-          "url": "https://github.com/otienomaurice/sensor-platform"
-        },
-        {
-          "label": "System diagram",
-          "url": "docs/sensor-platform-diagram.pdf"
-        },
-        {
-          "label": "Build notes",
-          "url": "docs/sensor-platform-notes.pdf"
-        }
-      ],
+      "id": "analog-mixed-signal",
+      "label": "Analog and Mixed Signal",
+      "description": "Circuit-level work including amplifiers, filters, converters, measurement front ends, power stages, and mixed-signal interfaces.",
       "accent": "#117c7a"
     },
     {
-      "title": "Portfolio Documentation System",
-      "type": "software",
-      "status": "Live",
-      "summary": "A static portfolio system that organizes engineering projects, source links, diagrams, documents, and resume materials.",
-      "stack": ["JavaScript", "HTML", "CSS", "GitHub Pages"],
-      "highlights": [
-        "Built a searchable project library for fast technical review.",
-        "Separated project data from presentation to keep project entries structured.",
-        "Published the portfolio through GitHub Pages with a custom domain."
-      ],
-      "resources": [
-        {
-          "label": "GitHub repo",
-          "url": "https://github.com/otienomaurice/documentation-hub"
-        },
-        {
-          "label": "Source code",
-          "url": "https://github.com/otienomaurice/documentation-hub/tree/main/src"
-        }
-      ],
-      "accent": "#d18b21"
+      "id": "digital",
+      "label": "Digital",
+      "description": "Digital design projects involving logic design, FPGA workflows, verification, timing, and ASIC-oriented architecture.",
+      "accent": "#52606d"
     },
     {
+      "id": "embedded",
+      "label": "Embedded",
+      "description": "MCU-based systems with firmware, board bring-up, interfaces, sensing, control, and hardware/software integration.",
+      "accent": "#d18b21"
+    }
+  ],
+  "projects": [
+    {
+      "id": "analog-control-bench-test",
       "title": "Analog Control Bench Test",
-      "type": "hardware",
+      "category": "analog-mixed-signal",
       "status": "Documented",
       "summary": "A bench-tested analog control project with schematics, measurements, instrumentation notes, and design reflections.",
-      "stack": ["Electronics", "Oscilloscope", "KiCad", "Testing"],
-      "highlights": [
-        "Defined design assumptions, test setup, and measurement strategy.",
-        "Presented schematics and supporting documents for technical inspection.",
-        "Recorded observed behavior, failure modes, and next iteration priorities."
+      "focus": ["Analog design", "Control", "Bench validation"],
+      "documents": [
+        {
+          "title": "Design brief",
+          "type": "PDF",
+          "url": "docs/analog-control/documents/design-brief.pdf",
+          "status": "planned"
+        },
+        {
+          "title": "Schematic notes",
+          "type": "PDF",
+          "url": "docs/analog-control/documents/schematic-notes.pdf",
+          "status": "planned"
+        }
       ],
-      "resources": [
+      "tests": [
+        {
+          "name": "Frequency response sweep",
+          "method": "Oscilloscope and signal generator",
+          "status": "planned",
+          "artifact": "docs/analog-control/tests/frequency-response.pdf"
+        },
+        {
+          "name": "Transient response",
+          "method": "Step input measurement",
+          "status": "planned",
+          "artifact": "docs/analog-control/tests/transient-response.pdf"
+        }
+      ],
+      "pcbs": [
+        {
+          "name": "Analog control test board",
+          "revision": "Rev A",
+          "status": "planned",
+          "artifact": "docs/analog-control/pcbs/pcb-rev-a.pdf"
+        }
+      ],
+      "tools": ["LTspice", "KiCad", "Oscilloscope", "Bench supply", "Signal generator"],
+      "languages": ["SPICE netlists"],
+      "links": [
         {
           "label": "Schematic",
-          "url": "docs/control-system-schematic.pdf"
+          "url": "docs/analog-control/documents/schematic.pdf"
         },
         {
           "label": "Test report",
-          "url": "docs/control-system-test-report.pdf"
+          "url": "docs/analog-control/tests/test-report.pdf"
+        }
+      ]
+    },
+    {
+      "id": "fpga-digital-design-lab",
+      "title": "FPGA Digital Design Lab",
+      "category": "digital",
+      "status": "In progress",
+      "summary": "A digital hardware project focused on FPGA implementation, simulation, timing, and design documentation.",
+      "focus": ["FPGA", "RTL", "Digital design"],
+      "documents": [
+        {
+          "title": "Architecture notes",
+          "type": "Markdown",
+          "url": "docs/fpga-digital/documents/architecture.md",
+          "status": "planned"
         }
       ],
-      "accent": "#bc5648"
+      "tests": [
+        {
+          "name": "RTL simulation",
+          "method": "Testbench-driven verification",
+          "status": "planned",
+          "artifact": "docs/fpga-digital/tests/simulation-results.pdf"
+        },
+        {
+          "name": "Timing review",
+          "method": "Vivado timing reports",
+          "status": "planned",
+          "artifact": "docs/fpga-digital/reports/timing-report.pdf"
+        }
+      ],
+      "pcbs": [],
+      "tools": ["Vivado", "GTKWave", "Logic analyzer"],
+      "languages": ["Verilog", "SystemVerilog", "Tcl"],
+      "links": [
+        {
+          "label": "GitHub repo",
+          "url": "https://github.com/otienomaurice/fpga-digital-design-lab"
+        }
+      ]
+    },
+    {
+      "id": "embedded-sensor-platform",
+      "title": "Embedded Sensor Platform",
+      "category": "embedded",
+      "status": "Prototype",
+      "summary": "An embedded sensing platform focused on acquisition, firmware control, signal handling, and repeatable test documentation.",
+      "focus": ["Embedded firmware", "Sensors", "Board bring-up"],
+      "documents": [
+        {
+          "title": "System diagram",
+          "type": "PDF",
+          "url": "docs/embedded-sensor/documents/system-diagram.pdf",
+          "status": "planned"
+        },
+        {
+          "title": "Build notes",
+          "type": "PDF",
+          "url": "docs/embedded-sensor/documents/build-notes.pdf",
+          "status": "planned"
+        }
+      ],
+      "tests": [
+        {
+          "name": "Sensor acquisition validation",
+          "method": "Serial logging and bench comparison",
+          "status": "planned",
+          "artifact": "docs/embedded-sensor/tests/acquisition-test.pdf"
+        },
+        {
+          "name": "Firmware interface test",
+          "method": "UART/I2C/SPI functional checks",
+          "status": "planned",
+          "artifact": "docs/embedded-sensor/tests/interface-test.pdf"
+        }
+      ],
+      "pcbs": [
+        {
+          "name": "Sensor interface board",
+          "revision": "Rev A",
+          "status": "planned",
+          "artifact": "docs/embedded-sensor/pcbs/pcb-rev-a.pdf"
+        }
+      ],
+      "tools": ["STM32CubeIDE", "KiCad", "Oscilloscope", "Logic analyzer"],
+      "languages": ["C", "C++", "Python"],
+      "links": [
+        {
+          "label": "GitHub repo",
+          "url": "https://github.com/otienomaurice/embedded-sensor-platform"
+        }
+      ]
     }
   ]
 }
-

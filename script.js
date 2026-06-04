@@ -4,48 +4,162 @@ const filterButtons = [...document.querySelectorAll(".filter-button")];
 const projectCount = document.querySelector("#project-count");
 const year = document.querySelector("#year");
 
+let categories = [];
 let projects = [];
 let activeFilter = "all";
 
 year.textContent = new Date().getFullYear();
 
-const accents = ["#117c7a", "#d18b21", "#bc5648", "#52606d", "#4f7f5f", "#8b6f3d"];
-
 function normalize(value) {
   return String(value || "").toLowerCase();
 }
 
-function projectMatches(project, query) {
-  if (!query) return true;
+function slugLabel(value) {
+  const category = categories.find((item) => item.id === value);
+  return category ? category.label : value;
+}
 
-  const haystack = [
+function flattenProject(project) {
+  return [
+    project.id,
     project.title,
-    project.type,
+    slugLabel(project.category),
     project.status,
     project.summary,
-    ...(project.stack || []),
-    ...(project.highlights || []),
-    ...(project.resources || []).map((resource) => resource.label),
+    ...(project.focus || []),
+    ...(project.tools || []),
+    ...(project.languages || []),
+    ...(project.documents || []).flatMap((item) => [item.title, item.type, item.status, item.url]),
+    ...(project.tests || []).flatMap((item) => [item.name, item.method, item.status, item.artifact]),
+    ...(project.pcbs || []).flatMap((item) => [item.name, item.revision, item.status, item.artifact]),
+    ...(project.links || []).flatMap((item) => [item.label, item.url])
   ]
     .map(normalize)
     .join(" ");
-
-  return haystack.includes(query);
 }
 
-function resourceLink(resource) {
-  const target = resource.url || "#";
-  const external = /^https?:\/\//.test(target);
-  const attrs = external ? ' target="_blank" rel="noreferrer"' : "";
-  return `<a class="resource-link" href="${target}"${attrs}>${resource.label}</a>`;
+function projectMatches(project, query) {
+  return !query || flattenProject(project).includes(query);
+}
+
+function projectVisible(project, query) {
+  const categoryMatch = activeFilter === "all" || project.category === activeFilter;
+  return categoryMatch && projectMatches(project, query);
+}
+
+function linkAttributes(url) {
+  return /^https?:\/\//.test(url || "") ? ' target="_blank" rel="noreferrer"' : "";
+}
+
+function resourceLink(item, label = item.label || item.title || item.name) {
+  if ((!item.url && !item.artifact) || item.status === "planned") {
+    return `<span class="resource-link muted">${label}</span>`;
+  }
+
+  const target = item.url || item.artifact;
+  return `<a class="resource-link" href="${target}"${linkAttributes(target)}>${label}</a>`;
+}
+
+function pillList(items, className = "") {
+  return (items || []).map((item) => `<span class="tag ${className}">${item}</span>`).join("");
+}
+
+function evidenceList(items, renderItem, emptyMessage) {
+  if (!items || !items.length) {
+    return `<p class="evidence-empty">${emptyMessage}</p>`;
+  }
+
+  return `<ul>${items.map(renderItem).join("")}</ul>`;
+}
+
+function projectCard(project) {
+  const category = categories.find((item) => item.id === project.category) || {};
+  const accent = category.accent || "#117c7a";
+
+  return `
+    <article class="project-card catalog-card" id="${project.id}" style="--accent: ${accent}">
+      <div class="project-visual" aria-hidden="true"></div>
+      <div class="project-body">
+        <div class="project-meta">
+          <span class="tag category-tag">${category.label || project.category}</span>
+          <span class="tag">${project.status}</span>
+          ${pillList(project.focus)}
+        </div>
+        <h3>${project.title}</h3>
+        <p>${project.summary}</p>
+
+        <div class="evidence-grid">
+          <section class="evidence-block" aria-label="${project.title} documents">
+            <h4>Documents</h4>
+            ${evidenceList(project.documents, (item) => `
+              <li>
+                ${resourceLink(item, item.title)}
+                <span>${item.type || "Document"} · ${item.status || "tracked"}</span>
+              </li>
+            `, "No document artifact has been added yet.")}
+          </section>
+
+          <section class="evidence-block" aria-label="${project.title} tests">
+            <h4>Tests</h4>
+            ${evidenceList(project.tests, (item) => `
+              <li>
+                ${resourceLink({ url: item.artifact, status: item.status }, item.name)}
+                <span>${item.method || "Validation"} · ${item.status || "tracked"}</span>
+              </li>
+            `, "No test artifact has been added yet.")}
+          </section>
+
+          <section class="evidence-block" aria-label="${project.title} PCB builds">
+            <h4>PCBs Built</h4>
+            ${evidenceList(project.pcbs, (item) => `
+              <li>
+                ${resourceLink({ url: item.artifact, status: item.status }, item.name)}
+                <span>${item.revision || "Revision"} · ${item.status || "tracked"}</span>
+              </li>
+            `, "No PCB build has been added yet.")}
+          </section>
+        </div>
+
+        <div class="project-tooling">
+          <div>
+            <h4>Tools Used</h4>
+            <div class="project-meta">${pillList(project.tools, "tool-tag")}</div>
+          </div>
+          <div>
+            <h4>Languages</h4>
+            <div class="project-meta">${pillList(project.languages, "language-tag")}</div>
+          </div>
+        </div>
+
+        <div class="resource-list">
+          ${(project.links || []).map((item) => resourceLink(item)).join("")}
+        </div>
+      </div>
+    </article>
+  `;
+}
+
+function categorySection(category, visibleProjects) {
+  return `
+    <section class="category-section" aria-labelledby="${category.id}-title">
+      <div class="category-heading">
+        <div>
+          <p class="eyebrow">Hardware category</p>
+          <h3 id="${category.id}-title">${category.label}</h3>
+        </div>
+        <span>${visibleProjects.length} project${visibleProjects.length === 1 ? "" : "s"}</span>
+      </div>
+      <p class="category-description">${category.description}</p>
+      <div class="category-projects">
+        ${visibleProjects.map(projectCard).join("")}
+      </div>
+    </section>
+  `;
 }
 
 function renderProjects() {
   const query = normalize(searchInput.value).trim();
-  const visible = projects.filter((project) => {
-    const filterMatch = activeFilter === "all" || normalize(project.type) === activeFilter;
-    return filterMatch && projectMatches(project, query);
-  });
+  const visible = projects.filter((project) => projectVisible(project, query));
 
   projectCount.textContent = projects.length;
 
@@ -53,33 +167,16 @@ function renderProjects() {
     grid.innerHTML = `
       <div class="empty-state">
         <h3>No projects match that view.</h3>
-        <p>Try a different filter or search term.</p>
+        <p>Search covers categories, project names, documents, tests, PCB builds, tools, languages, and links.</p>
       </div>
     `;
     return;
   }
 
-  grid.innerHTML = visible
-    .map((project, index) => {
-      const tags = [project.type, project.status, ...(project.stack || []).slice(0, 4)];
-      const highlights = (project.highlights || []).map((item) => `<li>${item}</li>`).join("");
-      const resources = (project.resources || []).map(resourceLink).join("");
-      const accent = project.accent || accents[index % accents.length];
-
-      return `
-        <article class="project-card" style="--accent: ${accent}">
-          <div class="project-visual" aria-hidden="true"></div>
-          <div class="project-body">
-            <div class="project-meta">
-              ${tags.map((tag) => `<span class="tag">${tag}</span>`).join("")}
-            </div>
-            <h3>${project.title}</h3>
-            <p>${project.summary}</p>
-            <ul>${highlights}</ul>
-            <div class="resource-list">${resources}</div>
-          </div>
-        </article>
-      `;
+  grid.innerHTML = categories
+    .map((category) => {
+      const visibleProjects = visible.filter((project) => project.category === category.id);
+      return visibleProjects.length ? categorySection(category, visibleProjects) : "";
     })
     .join("");
 }
@@ -100,6 +197,7 @@ fetch("projects.json")
     return response.json();
   })
   .then((data) => {
+    categories = data.categories || [];
     projects = data.projects || [];
     renderProjects();
   })
@@ -107,7 +205,7 @@ fetch("projects.json")
     grid.innerHTML = `
       <div class="empty-state">
         <h3>Project data did not load.</h3>
-        <p>Open this site through a local server or check projects.json for formatting errors.</p>
+        <p>The project catalog is temporarily unavailable.</p>
       </div>
     `;
   });
