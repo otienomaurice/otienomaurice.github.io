@@ -7,11 +7,202 @@ const year = document.querySelector("#year");
 let categories = [];
 let projects = [];
 let activeFilter = "all";
+let activeSectionDialogDrag = null;
+let activeSectionDialogResize = null;
+let sectionDialogDragEnabled = false;
 
 year.textContent = new Date().getFullYear();
 
 function normalize(value) {
   return String(value || "").toLowerCase();
+}
+
+function clampSectionDialogPosition(left, top, dialog) {
+  const rect = dialog.getBoundingClientRect();
+  const margin = 12;
+  const maxLeft = Math.max(margin, window.innerWidth - rect.width - margin);
+  const maxTop = Math.max(margin, window.innerHeight - rect.height - margin);
+  return {
+    left: Math.min(Math.max(left, margin), maxLeft),
+    top: Math.min(Math.max(top, margin), maxTop)
+  };
+}
+
+function anchorSectionDialog(dialog) {
+  const rect = dialog.getBoundingClientRect();
+  const position = clampSectionDialogPosition(rect.left, rect.top, dialog);
+  dialog.classList.add("is-draggable-dialog");
+  dialog.style.left = `${position.left}px`;
+  dialog.style.top = `${position.top}px`;
+  dialog.style.right = "auto";
+  dialog.style.bottom = "auto";
+  dialog.style.margin = "0";
+}
+
+function ensureSectionResizeHandles(dialog) {
+  if (dialog.querySelector("[data-section-dialog-resize-handle]")) return;
+  ["n", "e", "s", "w", "ne", "nw", "se", "sw"].forEach((direction) => {
+    const handle = document.createElement("div");
+    handle.className = `dialog-resize-handle resize-${direction}`;
+    handle.dataset.sectionDialogResizeHandle = direction;
+    handle.setAttribute("aria-hidden", "true");
+    dialog.append(handle);
+  });
+}
+
+function anchorSectionDialogForResize(dialog) {
+  anchorSectionDialog(dialog);
+  const rect = dialog.getBoundingClientRect();
+  dialog.classList.add("is-resized-dialog");
+  dialog.style.width = `${rect.width}px`;
+  dialog.style.height = `${rect.height}px`;
+  dialog.style.maxHeight = "none";
+}
+
+function sectionDialogResizeBounds(state, event) {
+  const margin = 12;
+  const minWidth = Math.min(320, Math.max(180, window.innerWidth - margin * 2));
+  const minHeight = Math.min(170, Math.max(120, window.innerHeight - margin * 2));
+  const direction = state.direction;
+  let { left, top, width, height } = state.rect;
+  const dx = event.clientX - state.startX;
+  const dy = event.clientY - state.startY;
+
+  if (direction.includes("e")) {
+    width = Math.min(Math.max(state.rect.width + dx, minWidth), window.innerWidth - left - margin);
+  }
+  if (direction.includes("s")) {
+    height = Math.min(Math.max(state.rect.height + dy, minHeight), window.innerHeight - top - margin);
+  }
+  if (direction.includes("w")) {
+    const right = state.rect.left + state.rect.width;
+    left = Math.min(Math.max(state.rect.left + dx, margin), right - minWidth);
+    width = right - left;
+  }
+  if (direction.includes("n")) {
+    const bottom = state.rect.top + state.rect.height;
+    top = Math.min(Math.max(state.rect.top + dy, margin), bottom - minHeight);
+    height = bottom - top;
+  }
+
+  return { height, left, top, width };
+}
+
+function sectionDialogFromDragEvent(event) {
+  if (event.target.closest("[data-section-dialog-resize-handle]")) return null;
+  const handle = event.target.closest("[data-section-dialog-drag='true']");
+  if (!handle) return null;
+  if (event.target.closest("button, a, input, textarea, select, label, summary")) return null;
+  const dialog = handle.closest("dialog");
+  return dialog?.open ? dialog : null;
+}
+
+function beginSectionDialogDrag(event) {
+  if (event.button !== 0) return;
+  const dialog = sectionDialogFromDragEvent(event);
+  if (!dialog) return;
+  anchorSectionDialog(dialog);
+  const rect = dialog.getBoundingClientRect();
+  activeSectionDialogDrag = {
+    dialog,
+    offsetX: event.clientX - rect.left,
+    offsetY: event.clientY - rect.top,
+    pointerId: event.pointerId,
+    pointerTarget: event.target
+  };
+  event.target.setPointerCapture?.(event.pointerId);
+  dialog.classList.add("is-dragging-dialog");
+  event.preventDefault();
+}
+
+function moveSectionDialogDrag(event) {
+  if (!activeSectionDialogDrag) return;
+  const next = clampSectionDialogPosition(
+    event.clientX - activeSectionDialogDrag.offsetX,
+    event.clientY - activeSectionDialogDrag.offsetY,
+    activeSectionDialogDrag.dialog
+  );
+  activeSectionDialogDrag.dialog.style.left = `${next.left}px`;
+  activeSectionDialogDrag.dialog.style.top = `${next.top}px`;
+}
+
+function endSectionDialogDrag() {
+  if (!activeSectionDialogDrag) return;
+  activeSectionDialogDrag.pointerTarget?.releasePointerCapture?.(activeSectionDialogDrag.pointerId);
+  activeSectionDialogDrag.dialog.classList.remove("is-dragging-dialog");
+  activeSectionDialogDrag = null;
+}
+
+function beginSectionDialogResize(event) {
+  if (event.button !== 0) return;
+  const handle = event.target.closest("[data-section-dialog-resize-handle]");
+  const dialog = handle?.closest("dialog");
+  if (!handle || !dialog?.open || dialog.classList.contains("is-minimized-dialog")) return;
+  anchorSectionDialogForResize(dialog);
+  activeSectionDialogResize = {
+    dialog,
+    direction: handle.dataset.sectionDialogResizeHandle,
+    pointerId: event.pointerId,
+    pointerTarget: event.target,
+    rect: dialog.getBoundingClientRect(),
+    startX: event.clientX,
+    startY: event.clientY
+  };
+  event.target.setPointerCapture?.(event.pointerId);
+  dialog.classList.add("is-resizing-dialog");
+  event.preventDefault();
+}
+
+function moveSectionDialogResize(event) {
+  if (!activeSectionDialogResize) return;
+  const next = sectionDialogResizeBounds(activeSectionDialogResize, event);
+  activeSectionDialogResize.dialog.style.left = `${next.left}px`;
+  activeSectionDialogResize.dialog.style.top = `${next.top}px`;
+  activeSectionDialogResize.dialog.style.width = `${next.width}px`;
+  activeSectionDialogResize.dialog.style.height = `${next.height}px`;
+}
+
+function endSectionDialogResize() {
+  if (!activeSectionDialogResize) return;
+  activeSectionDialogResize.pointerTarget?.releasePointerCapture?.(activeSectionDialogResize.pointerId);
+  activeSectionDialogResize.dialog.classList.remove("is-resizing-dialog");
+  activeSectionDialogResize = null;
+}
+
+function updateSectionDialogMinimize(dialog) {
+  const minimized = dialog.classList.contains("is-minimized-dialog");
+  const button = dialog.querySelector(".section-view-minimize");
+  if (!button) return;
+  button.textContent = minimized ? "+" : "-";
+  button.title = minimized ? "Restore window" : "Minimize window";
+  button.setAttribute("aria-label", minimized ? "Restore window" : "Minimize window");
+}
+
+function toggleSectionDialogMinimized(dialog) {
+  anchorSectionDialog(dialog);
+  dialog.classList.toggle("is-minimized-dialog");
+  updateSectionDialogMinimize(dialog);
+}
+
+function enableSectionDialogDrag() {
+  if (sectionDialogDragEnabled) return;
+  sectionDialogDragEnabled = true;
+  document.addEventListener("pointerdown", beginSectionDialogResize);
+  document.addEventListener("pointerdown", beginSectionDialogDrag);
+  document.addEventListener("pointermove", moveSectionDialogResize);
+  document.addEventListener("pointermove", moveSectionDialogDrag);
+  document.addEventListener("pointerup", endSectionDialogResize);
+  document.addEventListener("pointerup", endSectionDialogDrag);
+  document.addEventListener("pointercancel", endSectionDialogResize);
+  document.addEventListener("pointercancel", endSectionDialogDrag);
+  window.addEventListener("resize", () => {
+    document.querySelectorAll(".section-view-dialog.is-draggable-dialog[open]").forEach((dialog) => {
+      const rect = dialog.getBoundingClientRect();
+      const next = clampSectionDialogPosition(rect.left, rect.top, dialog);
+      dialog.style.left = `${next.left}px`;
+      dialog.style.top = `${next.top}px`;
+    });
+  });
 }
 
 function escapeHtml(value) {
@@ -95,6 +286,18 @@ function hasPublicTemplate(project) {
   return Boolean(projectTemplateId(project));
 }
 
+function parsedItemTerms(item) {
+  return [
+    item?.title,
+    item?.description,
+    item?.meta,
+    item?.url,
+    item?.kind,
+    ...(item?.rich?.blocks || []).flatMap((block) => [block.text, block.formula, block.title, block.caption]),
+    ...(item?.children || []).flatMap(parsedItemTerms)
+  ];
+}
+
 function flattenProject(project) {
   const categoryLabel = slugLabel(project.category);
   const electronicsKeywords = window.electronicsSearchKeywords
@@ -106,14 +309,21 @@ function flattenProject(project) {
     block.title,
     block.caption
   ]);
-  const parsedRichTerms = (project.portfolioView?.sections || []).flatMap((section) =>
-    (section.items || []).flatMap((item) => (item.rich?.blocks || []).flatMap((block) => [
-      block.text,
-      block.formula,
-      block.title,
-      block.caption
-    ]))
+  const parsedChildTerms = (project.portfolioView?.sections || []).flatMap((section) =>
+    (section.items || []).flatMap(parsedItemTerms)
   );
+  const design = project.design || {};
+  const designTerms = [
+    design.brief?.summary,
+    ...(design.brief?.files || []).flatMap((item) => [item.title, item.description, item.url]),
+    design.documentation?.summary,
+    ...(design.documentation?.files || []).flatMap((item) => [item.title, item.description, item.url]),
+    ...(design.documentation?.references || []).flatMap((item) => [item.title, item.description, item.url]),
+    ...(design.documentation?.mathAnalysis || []).flatMap((item) => [item.title, item.description]),
+    design.simulation?.summary,
+    ...(design.simulation?.files || []).flatMap((item) => [item.title, item.description, item.url]),
+    ...(design.simulation?.results || []).flatMap((item) => [item.title, item.description, item.url])
+  ];
   return [
     project.id,
     project.title,
@@ -121,7 +331,8 @@ function flattenProject(project) {
     project.status,
     project.summary,
     ...richSummaryTerms,
-    ...parsedRichTerms,
+    ...parsedChildTerms,
+    ...designTerms,
     ...(project.focus || []),
     ...(project.highlights || []),
     ...(project.tools || []).map((item) => typeof item === "string" ? item : [item.name, item.title, item.label, item.description].filter(Boolean).join(" ")),
@@ -229,49 +440,115 @@ function renderParsedBriefBlock(section, fallbackSummary = "") {
   const briefItem = section?.items?.[0] || {};
   const briefText = briefItem.description || fallbackSummary || "";
   return `
-    <div class="project-brief-default">
-      <h4>${section?.title || "Project Brief"}</h4>
+    <details class="project-brief-default parsed-summary" open>
+      <summary>${section?.title || "Project Brief"}</summary>
       ${briefItem.rich?.blocks?.length || briefText
         ? renderRichContent(briefItem.rich, briefText)
         : `<p class="evidence-empty">No project brief has been added yet.</p>`}
+    </details>
+  `;
+}
+
+function pathToString(path = []) {
+  return path.join(".");
+}
+
+function pathFromString(value = "") {
+  if (!value) return [];
+  return value.split(".").map((item) => Number(item)).filter((item) => Number.isInteger(item));
+}
+
+function nodeAtPath(section, path = []) {
+  let node = section;
+  let children = section?.items || [];
+  for (const index of path) {
+    node = children[index];
+    if (!node) return null;
+    children = node.children || [];
+  }
+  return node;
+}
+
+function nodeChildren(node) {
+  return node?.items || node?.children || [];
+}
+
+function nodeSummary(title, rich, text, emptyMessage = "No summary has been added yet.") {
+  return `
+    <details class="parsed-summary" open>
+      <summary>${title}</summary>
+      ${rich?.blocks?.length || text
+        ? renderRichContent(rich, text || "")
+        : `<p class="evidence-empty">${emptyMessage}</p>`}
+    </details>
+  `;
+}
+
+function parsedNodeMeta(node) {
+  if (node.kind === "subsection") {
+    const count = nodeChildren(node).length;
+    return `${count} item${count === 1 ? "" : "s"}`;
+  }
+  if (node.kind === "image") return "Image";
+  if (node.url) return node.meta || "File";
+  return node.meta || node.kind || "Text";
+}
+
+function parsedNodeCard(node, projectId, sectionIndex, path) {
+  return `
+    <button
+      class="section-open-card evidence-block resource-open-card"
+      type="button"
+      data-section-project="${projectId}"
+      data-section-index="${sectionIndex}"
+      data-resource-path="${pathToString(path)}"
+    >
+      <span>${node.title || "Untitled item"}</span>
+      <small>${parsedNodeMeta(node)}</small>
+    </button>
+  `;
+}
+
+function parsedChildCards(children, projectId, sectionIndex, basePath = []) {
+  if (!children.length) return `<p class="evidence-empty">No content has been added yet.</p>`;
+  return `
+    <div class="subsection-grid section-content-grid">
+      ${children.map((child, index) => parsedNodeCard(child, projectId, sectionIndex, [...basePath, index])).join("")}
     </div>
   `;
 }
 
-function parsedResource(item) {
-  if (item.kind === "image" && item.url) {
-    return `
-      <figure>
-        <a href="${item.url}"${linkAttributes(item.url)}><img src="${item.url}" alt="${item.title}"></a>
-        <figcaption>
-          <strong>${item.title}</strong>
-          ${item.description ? `<span>${item.description}</span>` : ""}
-        </figcaption>
-      </figure>
-    `;
-  }
-
+function parsedLeafDetail(item) {
+  const hasImage = item.kind === "image" && item.url;
   return `
-    <li>
-      ${item.url ? resourceLink({ url: item.url, status: "uploaded" }, item.title) : `<strong>${item.title}</strong>`}
+    ${nodeSummary("Summary", item.rich, item.description || "", "No summary has been added for this item.")}
+    <article class="resource-detail">
+      <strong>${item.url ? resourceLink({ url: item.url, status: "uploaded" }, item.title) : item.title}</strong>
       ${item.meta ? `<span>${item.meta}</span>` : ""}
-      ${item.rich?.blocks?.length
-        ? renderRichContent(item.rich, item.description || "")
-        : item.description ? `<p>${item.description}</p>` : ""}
-    </li>
+      ${hasImage ? `
+        <figure class="rich-image justify-center">
+          <a href="${item.url}"${linkAttributes(item.url)}><img src="${item.url}" alt="${item.title}"></a>
+          ${item.description ? `<figcaption><span>${item.description}</span></figcaption>` : ""}
+        </figure>
+      ` : ""}
+    </article>
   `;
 }
 
-function parsedSectionContent(section) {
-  const hasImages = (section.items || []).some((item) => item.kind === "image");
+function parsedNodeContent(node, projectId, sectionIndex, path = []) {
+  const isContainer = !node.kind || node.kind === "subsection";
+  if (!isContainer) return parsedLeafDetail(node);
+  const children = nodeChildren(node);
   return `
-    ${section.description ? `<p class="evidence-empty">${section.description}</p>` : ""}
-    ${(section.items || []).length ? (
-      hasImages
-        ? `<div class="media-grid">${section.items.map(parsedResource).join("")}</div>`
-        : `<ul>${section.items.map(parsedResource).join("")}</ul>`
-    ) : `<p class="evidence-empty">No content has been added yet.</p>`}
+    ${nodeSummary("Summary", node.rich, node.description || "", "No section summary has been added yet.")}
+    ${parsedChildCards(children, projectId, sectionIndex, path)}
   `;
+}
+
+function parsedSectionContent(section, projectId, sectionIndex, path = []) {
+  const node = path.length ? nodeAtPath(section, path) : section;
+  if (!node) return `<p class="evidence-empty">This section could not be found.</p>`;
+  return parsedNodeContent(node, projectId, sectionIndex, path);
 }
 
 function parsedSection(section, index, project) {
@@ -446,26 +723,55 @@ function ensureSectionDialog() {
           <p class="eyebrow">Project section</p>
           <h2 id="section-view-title">Section</h2>
         </div>
-        <button class="section-view-close" type="button" aria-label="Close section">&times;</button>
+        <div class="section-view-actions">
+          <button class="section-view-back" type="button" hidden>Back</button>
+          <button class="section-view-minimize" type="button" title="Minimize window" aria-label="Minimize window">-</button>
+          <button class="section-view-close" type="button" aria-label="Close section">&times;</button>
+        </div>
       </div>
       <div class="section-view-content" id="section-view-content"></div>
     </div>
   `;
   document.body.append(dialog);
+  dialog.querySelector(".section-view-heading").dataset.sectionDialogDrag = "true";
+  ensureSectionResizeHandles(dialog);
+  enableSectionDialogDrag();
+  dialog.querySelector(".section-view-minimize").addEventListener("click", () => toggleSectionDialogMinimized(dialog));
   dialog.querySelector(".section-view-close").addEventListener("click", () => dialog.close());
+  dialog.addEventListener("close", () => {
+    dialog.classList.remove("is-minimized-dialog");
+    updateSectionDialogMinimize(dialog);
+  });
+  dialog.querySelector(".section-view-back").addEventListener("click", () => {
+    const path = pathFromString(dialog.dataset.resourcePath || "");
+    path.pop();
+    openParsedSection(dialog.dataset.projectId, dialog.dataset.sectionIndex, pathToString(path));
+  });
+  dialog.querySelector("#section-view-content").addEventListener("click", (event) => {
+    const nodeButton = event.target.closest("[data-resource-path]");
+    if (!nodeButton) return;
+    openParsedSection(nodeButton.dataset.sectionProject, nodeButton.dataset.sectionIndex, nodeButton.dataset.resourcePath);
+  });
   return dialog;
 }
 
-function openParsedSection(projectId, sectionIndex) {
+function openParsedSection(projectId, sectionIndex, resourcePath = "") {
   const project = projects.find((item) => item.id === projectId);
   const sections = (project?.portfolioView?.sections || []).filter((section) => section.id !== "brief");
   const section = sections[Number(sectionIndex)];
   if (!section) return;
+  const path = pathFromString(resourcePath);
+  const node = path.length ? nodeAtPath(section, path) : section;
+  if (!node) return;
 
   const dialog = ensureSectionDialog();
-  dialog.querySelector("#section-view-title").textContent = section.title;
-  dialog.querySelector("#section-view-content").innerHTML = parsedSectionContent(section);
-  dialog.showModal();
+  dialog.dataset.projectId = projectId;
+  dialog.dataset.sectionIndex = String(sectionIndex);
+  dialog.dataset.resourcePath = pathToString(path);
+  dialog.querySelector("#section-view-title").textContent = node.title || section.title;
+  dialog.querySelector(".section-view-back").hidden = !path.length;
+  dialog.querySelector("#section-view-content").innerHTML = parsedSectionContent(section, projectId, Number(sectionIndex), path);
+  if (!dialog.open) dialog.showModal();
 }
 
 filterButtons.forEach((button) => {

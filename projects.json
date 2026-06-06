@@ -21,8 +21,670 @@
   ],
   "projects": [
     {
+      "id": "ac-dc-power-or-charger-circuit",
+      "title": "Laser Link",
+      "category": "analog-mixed-signal",
+      "status": "Built and tested",
+      "summary": "kpohjoihjoihn",
+      "focus": [
+        "Power electronics",
+        "Regulation",
+        "Load testing"
+      ],
+      "highlights": [
+        "Defined input, output, ripple, and current targets.",
+        "Validated the regulator and protection path.",
+        "Measured output behavior under load."
+      ],
+      "documents": [
+        {
+          "title": "Power-stage design brief",
+          "type": "PDF",
+          "url": "docs/ac-dc-power-or-charger-circuit/documents/design-brief.pdf",
+          "status": "planned"
+        }
+      ],
+      "tests": [
+        {
+          "name": "Load regulation test",
+          "method": "Bench supply, load, and oscilloscope",
+          "status": "planned",
+          "artifact": "docs/ac-dc-power-or-charger-circuit/tests/load-regulation.pdf",
+          "result": "Load regulation result will be added."
+        },
+        {
+          "name": "Ripple measurement",
+          "method": "Oscilloscope capture",
+          "status": "planned",
+          "artifact": "docs/ac-dc-power-or-charger-circuit/tests/ripple-capture.pdf",
+          "result": "Ripple result will be added."
+        }
+      ],
+      "pcbs": [
+        {
+          "name": "Power board layout",
+          "revision": "Rev A",
+          "status": "planned",
+          "artifact": "docs/ac-dc-power-or-charger-circuit/pcbs/pcb-layout.kicad_pcb"
+        }
+      ],
+      "media": [],
+      "tools": [
+        {
+          "name": "LTspice",
+          "description": "Circuit simulation"
+        },
+        "KiCad",
+        "Oscilloscope",
+        "Electronic load",
+        "Bench supply"
+      ],
+      "languages": [
+        "SPICE netlists",
+        "KiCad schematic/PCB files"
+      ],
+      "links": [
+        {
+          "label": "GitHub repo",
+          "url": "https://github.com/otienomaurice/ac-dc-power-or-charger-circuit"
+        }
+      ],
+      "sections": [
+        {
+          "id": "tests",
+          "title": "Tests",
+          "description": "",
+          "items": []
+        }
+      ],
+      "design": {
+        "brief": {
+          "summary": "",
+          "summaryRich": null,
+          "files": []
+        },
+        "documentation": {
+          "summary": "",
+          "files": [],
+          "references": [],
+          "mathAnalysis": []
+        },
+        "simulation": {
+          "summary": "",
+          "summaryRich": null,
+          "files": [],
+          "results": []
+        }
+      },
+      "summaryRich": {
+        "blocks": [
+          {
+            "align": "left",
+            "fontSize": "normal",
+            "text": "kpohjoihjoihn",
+            "type": "paragraph"
+          }
+        ]
+      },
+      "portfolioView": {
+        "builtAt": "2026-06-06T16:57:26.712Z",
+        "template": {
+          "group": "Analog and Mixed Signal",
+          "id": "",
+          "label": ""
+        },
+        "title": "Laser Link",
+        "sections": [
+          {
+            "description": "",
+            "id": "brief",
+            "items": [
+              {
+                "children": [],
+                "description": "kpohjoihjoihn",
+                "kind": "summary",
+                "meta": "Brief",
+                "title": "Summary",
+                "url": "",
+                "rich": {
+                  "blocks": [
+                    {
+                      "align": "left",
+                      "fontSize": "normal",
+                      "text": "kpohjoihjoihn",
+                      "type": "paragraph"
+                    }
+                  ]
+                }
+              }
+            ],
+            "title": "Project Brief"
+          },
+          {
+            "description": "",
+            "id": "design",
+            "items": [
+              {
+                "children": [],
+                "description": "",
+                "kind": "subsection",
+                "meta": "Subsection",
+                "title": "Design Brief",
+                "url": ""
+              },
+              {
+                "children": [
+                  {
+                    "children": [],
+                    "description": "",
+                    "kind": "document",
+                    "meta": "PDF",
+                    "title": "Power-stage design brief",
+                    "url": "docs/ac-dc-power-or-charger-circuit/documents/design-brief.pdf"
+                  },
+                  {
+                    "children": [],
+                    "description": "",
+                    "kind": "subsection",
+                    "meta": "Subsection",
+                    "title": "References",
+                    "url": ""
+                  },
+                  {
+                    "children": [],
+                    "description": "",
+                    "kind": "subsection",
+                    "meta": "Subsection",
+                    "title": "Math / Analysis",
+                    "url": ""
+                  }
+                ],
+                "description": "",
+                "kind": "subsection",
+                "meta": "Subsection",
+                "title": "Documentation",
+                "url": ""
+              },
+              {
+                "children": [
+                  {
+                    "children": [],
+                    "description": "Load regulation result will be added.",
+                    "kind": "test",
+                    "meta": "Bench supply, load, and oscilloscope",
+                    "title": "Load regulation test",
+                    "url": "docs/ac-dc-power-or-charger-circuit/tests/load-regulation.pdf"
+                  },
+                  {
+                    "children": [],
+                    "description": "Ripple result will be added.",
+                    "kind": "test",
+                    "meta": "Oscilloscope capture",
+                    "title": "Ripple measurement",
+                    "url": "docs/ac-dc-power-or-charger-circuit/tests/ripple-capture.pdf"
+                  },
+                  {
+                    "children": [],
+                    "description": "",
+                    "kind": "subsection",
+                    "meta": "Subsection",
+                    "title": "Simulation Results",
+                    "url": ""
+                  }
+                ],
+                "description": "",
+                "kind": "subsection",
+                "meta": "Subsection",
+                "title": "Design Simulation",
+                "url": ""
+              },
+              {
+                "children": [
+                  {
+                    "children": [],
+                    "description": "Rev A",
+                    "kind": "pcb",
+                    "meta": "planned",
+                    "title": "Power board layout",
+                    "url": "docs/ac-dc-power-or-charger-circuit/pcbs/pcb-layout.kicad_pcb"
+                  }
+                ],
+                "description": "",
+                "kind": "subsection",
+                "meta": "Subsection",
+                "title": "PCB and Visual Evidence",
+                "url": ""
+              }
+            ],
+            "title": "Design"
+          },
+          {
+            "description": "",
+            "id": "custom:tests",
+            "items": [],
+            "title": "Tests"
+          }
+        ]
+      }
+    },
+    {
+      "id": "oscillator",
+      "title": "Oscillator",
+      "category": "analog-mixed-signal",
+      "status": "Designed and characterized",
+      "summary": "For transistor-level amplifier projects with biasing, gain, stability, and measured waveform evidence.",
+      "focus": [
+        "Analog design",
+        "Transistor-level analysis",
+        "Bench validation"
+      ],
+      "highlights": [
+        "Defined gain, swing, bias, and stability targets.",
+        "Simulated operating points and transient behavior.",
+        "Compared measured behavior against the design target."
+      ],
+      "documents": [
+        {
+          "title": "Topology notes",
+          "type": "PDF",
+          "url": "docs/oscillator/documents/topology-notes.pdf",
+          "status": "planned"
+        },
+        {
+          "title": "Schematic",
+          "type": "KiCad",
+          "url": "docs/oscillator/documents/schematic.kicad_sch",
+          "status": "planned"
+        }
+      ],
+      "tests": [
+        {
+          "name": "AC and transient simulation",
+          "method": "LTspice analysis",
+          "status": "planned",
+          "artifact": "docs/oscillator/tests/simulation-results.pdf",
+          "result": "Simulation result summary will be added."
+        },
+        {
+          "name": "Bench waveform capture",
+          "method": "Oscilloscope measurement",
+          "status": "planned",
+          "artifact": "docs/oscillator/tests/bench-waveforms.pdf",
+          "result": "Measured waveform result will be added."
+        }
+      ],
+      "pcbs": [],
+      "media": [],
+      "tools": [
+        "LTspice",
+        "KiCad",
+        "Oscilloscope",
+        "Bench supply"
+      ],
+      "languages": [
+        "SPICE netlists"
+      ],
+      "links": [
+        {
+          "label": "GitHub repo",
+          "url": "https://github.com/otienomaurice/oscillator"
+        }
+      ],
+      "sections": [
+        {
+          "id": "pcbs",
+          "title": "PCBs",
+          "description": "",
+          "items": [
+            {
+              "title": "SN74HC00.lib.cir",
+              "description": "",
+              "type": "File",
+              "url": "docs/oscillator/pcbs/sn74hc00.lib.cir",
+              "status": "uploaded"
+            }
+          ]
+        }
+      ],
+      "design": {
+        "brief": {
+          "summary": "",
+          "summaryRich": null,
+          "files": []
+        },
+        "documentation": {
+          "summary": "",
+          "files": [],
+          "references": [],
+          "mathAnalysis": []
+        },
+        "simulation": {
+          "summary": "",
+          "summaryRich": null,
+          "files": [],
+          "results": []
+        }
+      },
+      "portfolioView": {
+        "builtAt": "2026-06-06T16:57:26.712Z",
+        "template": {
+          "group": "Analog and Mixed Signal",
+          "id": "",
+          "label": ""
+        },
+        "title": "Oscillator",
+        "sections": [
+          {
+            "description": "",
+            "id": "brief",
+            "items": [
+              {
+                "children": [],
+                "description": "For transistor-level amplifier projects with biasing, gain, stability, and measured waveform evidence.",
+                "kind": "summary",
+                "meta": "Brief",
+                "title": "Summary",
+                "url": ""
+              }
+            ],
+            "title": "Project Brief"
+          },
+          {
+            "description": "",
+            "id": "design",
+            "items": [
+              {
+                "children": [],
+                "description": "",
+                "kind": "subsection",
+                "meta": "Subsection",
+                "title": "Design Brief",
+                "url": ""
+              },
+              {
+                "children": [
+                  {
+                    "children": [],
+                    "description": "",
+                    "kind": "document",
+                    "meta": "PDF",
+                    "title": "Topology notes",
+                    "url": "docs/oscillator/documents/topology-notes.pdf"
+                  },
+                  {
+                    "children": [],
+                    "description": "",
+                    "kind": "document",
+                    "meta": "KiCad",
+                    "title": "Schematic",
+                    "url": "docs/oscillator/documents/schematic.kicad_sch"
+                  },
+                  {
+                    "children": [],
+                    "description": "",
+                    "kind": "subsection",
+                    "meta": "Subsection",
+                    "title": "References",
+                    "url": ""
+                  },
+                  {
+                    "children": [],
+                    "description": "",
+                    "kind": "subsection",
+                    "meta": "Subsection",
+                    "title": "Math / Analysis",
+                    "url": ""
+                  }
+                ],
+                "description": "",
+                "kind": "subsection",
+                "meta": "Subsection",
+                "title": "Documentation",
+                "url": ""
+              },
+              {
+                "children": [
+                  {
+                    "children": [],
+                    "description": "Simulation result summary will be added.",
+                    "kind": "test",
+                    "meta": "LTspice analysis",
+                    "title": "AC and transient simulation",
+                    "url": "docs/oscillator/tests/simulation-results.pdf"
+                  },
+                  {
+                    "children": [],
+                    "description": "Measured waveform result will be added.",
+                    "kind": "test",
+                    "meta": "Oscilloscope measurement",
+                    "title": "Bench waveform capture",
+                    "url": "docs/oscillator/tests/bench-waveforms.pdf"
+                  },
+                  {
+                    "children": [],
+                    "description": "",
+                    "kind": "subsection",
+                    "meta": "Subsection",
+                    "title": "Simulation Results",
+                    "url": ""
+                  }
+                ],
+                "description": "",
+                "kind": "subsection",
+                "meta": "Subsection",
+                "title": "Design Simulation",
+                "url": ""
+              },
+              {
+                "children": [],
+                "description": "",
+                "kind": "subsection",
+                "meta": "Subsection",
+                "title": "PCB and Visual Evidence",
+                "url": ""
+              }
+            ],
+            "title": "Design"
+          },
+          {
+            "description": "",
+            "id": "custom:pcbs",
+            "items": [
+              {
+                "children": [],
+                "description": "",
+                "kind": "file",
+                "meta": "File",
+                "title": "SN74HC00.lib.cir",
+                "url": "docs/oscillator/pcbs/sn74hc00.lib.cir"
+              }
+            ],
+            "title": "PCBs"
+          }
+        ]
+      }
+    },
+    {
+      "id": "filter",
+      "title": "Filter",
+      "category": "analog-mixed-signal",
+      "status": "Validated",
+      "summary": "For filters, sensor front ends, gain stages, noise review, and frequency-response measurement.",
+      "focus": [
+        "Filtering",
+        "Measurement",
+        "Signal conditioning"
+      ],
+      "highlights": [
+        "Set cutoff, gain, and measurement requirements.",
+        "Simulated frequency response before build.",
+        "Captured measured response and compared to design expectations."
+      ],
+      "documents": [
+        {
+          "title": "Frequency-response notes",
+          "type": "PDF",
+          "url": "docs/filter/documents/frequency-response-notes.pdf",
+          "status": "planned"
+        }
+      ],
+      "tests": [
+        {
+          "name": "Bode sweep",
+          "method": "Signal generator and oscilloscope",
+          "status": "planned",
+          "artifact": "docs/filter/tests/bode-sweep.pdf",
+          "result": "Measured response will be added."
+        }
+      ],
+      "pcbs": [],
+      "media": [],
+      "tools": [
+        "LTspice",
+        "Oscilloscope",
+        "Signal generator",
+        "KiCad"
+      ],
+      "languages": [
+        "SPICE netlists"
+      ],
+      "links": [
+        {
+          "label": "GitHub repo",
+          "url": "https://github.com/otienomaurice/filter"
+        }
+      ],
+      "sections": [],
+      "design": {
+        "brief": {
+          "summary": "",
+          "summaryRich": null,
+          "files": []
+        },
+        "documentation": {
+          "summary": "",
+          "files": [],
+          "references": [],
+          "mathAnalysis": []
+        },
+        "simulation": {
+          "summary": "",
+          "summaryRich": null,
+          "files": [],
+          "results": []
+        }
+      },
+      "portfolioView": {
+        "builtAt": "2026-06-06T16:57:26.712Z",
+        "template": {
+          "group": "Analog and Mixed Signal",
+          "id": "",
+          "label": ""
+        },
+        "title": "Filter",
+        "sections": [
+          {
+            "description": "",
+            "id": "brief",
+            "items": [
+              {
+                "children": [],
+                "description": "For filters, sensor front ends, gain stages, noise review, and frequency-response measurement.",
+                "kind": "summary",
+                "meta": "Brief",
+                "title": "Summary",
+                "url": ""
+              }
+            ],
+            "title": "Project Brief"
+          },
+          {
+            "description": "",
+            "id": "design",
+            "items": [
+              {
+                "children": [],
+                "description": "",
+                "kind": "subsection",
+                "meta": "Subsection",
+                "title": "Design Brief",
+                "url": ""
+              },
+              {
+                "children": [
+                  {
+                    "children": [],
+                    "description": "",
+                    "kind": "document",
+                    "meta": "PDF",
+                    "title": "Frequency-response notes",
+                    "url": "docs/filter/documents/frequency-response-notes.pdf"
+                  },
+                  {
+                    "children": [],
+                    "description": "",
+                    "kind": "subsection",
+                    "meta": "Subsection",
+                    "title": "References",
+                    "url": ""
+                  },
+                  {
+                    "children": [],
+                    "description": "",
+                    "kind": "subsection",
+                    "meta": "Subsection",
+                    "title": "Math / Analysis",
+                    "url": ""
+                  }
+                ],
+                "description": "",
+                "kind": "subsection",
+                "meta": "Subsection",
+                "title": "Documentation",
+                "url": ""
+              },
+              {
+                "children": [
+                  {
+                    "children": [],
+                    "description": "Measured response will be added.",
+                    "kind": "test",
+                    "meta": "Signal generator and oscilloscope",
+                    "title": "Bode sweep",
+                    "url": "docs/filter/tests/bode-sweep.pdf"
+                  },
+                  {
+                    "children": [],
+                    "description": "",
+                    "kind": "subsection",
+                    "meta": "Subsection",
+                    "title": "Simulation Results",
+                    "url": ""
+                  }
+                ],
+                "description": "",
+                "kind": "subsection",
+                "meta": "Subsection",
+                "title": "Design Simulation",
+                "url": ""
+              },
+              {
+                "children": [],
+                "description": "",
+                "kind": "subsection",
+                "meta": "Subsection",
+                "title": "PCB and Visual Evidence",
+                "url": ""
+              }
+            ],
+            "title": "Design"
+          }
+        ]
+      }
+    },
+    {
       "id": "pwm-driven-vco",
-      "title": "PWM-Driven Voltage Controlled Oscillator PCB",
+      "title": "Voltage controlled Oscillator based PWM generator",
       "category": "analog-mixed-signal",
       "status": "Built and characterized",
       "summary": "Designed, simulated, fabricated, and characterized a mixed-signal VCO that converts a control voltage into an oscillator output through a V2I stage, current mirrors, comparator thresholds, latch logic, and a PWM load interface.\n\nPasted image\n\nimage_2.jpg",
@@ -197,20 +859,40 @@
           }
         ]
       },
+      "design": {
+        "brief": {
+          "summary": "",
+          "summaryRich": null,
+          "files": []
+        },
+        "documentation": {
+          "summary": "",
+          "files": [],
+          "references": [],
+          "mathAnalysis": []
+        },
+        "simulation": {
+          "summary": "",
+          "summaryRich": null,
+          "files": [],
+          "results": []
+        }
+      },
       "portfolioView": {
-        "builtAt": "2026-06-06T07:55:49.204Z",
+        "builtAt": "2026-06-06T16:57:26.712Z",
         "template": {
           "group": "Analog and Mixed Signal",
           "id": "",
           "label": ""
         },
-        "title": "PWM-Driven Voltage Controlled Oscillator PCB",
+        "title": "Voltage controlled Oscillator based PWM generator",
         "sections": [
           {
             "description": "",
             "id": "brief",
             "items": [
               {
+                "children": [],
                 "description": "Designed, simulated, fabricated, and characterized a mixed-signal VCO that converts a control voltage into an oscillator output through a V2I stage, current mirrors, comparator thresholds, latch logic, and a PWM load interface.\n\nPasted image\n\nimage_2.jpg",
                 "kind": "summary",
                 "meta": "Brief",
@@ -249,74 +931,545 @@
             "id": "design",
             "items": [
               {
+                "children": [],
+                "description": "",
+                "kind": "subsection",
+                "meta": "Subsection",
+                "title": "Design Brief",
+                "url": ""
+              },
+              {
+                "children": [
+                  {
+                    "children": [],
+                    "description": "",
+                    "kind": "document",
+                    "meta": "PDF",
+                    "title": "VCO design brief",
+                    "url": "docs/vco-pwm/documents/ece323-vco-lab-handout.pdf"
+                  },
+                  {
+                    "children": [],
+                    "description": "",
+                    "kind": "document",
+                    "meta": "Text",
+                    "title": "Extracted design notes",
+                    "url": "docs/vco-pwm/documents/handout-extracted-text.txt"
+                  },
+                  {
+                    "children": [],
+                    "description": "",
+                    "kind": "document",
+                    "meta": "PowerPoint",
+                    "title": "Build rolling document",
+                    "url": "docs/vco-pwm/documents/vco-build-rolling-doc.pptx"
+                  },
+                  {
+                    "children": [],
+                    "description": "",
+                    "kind": "document",
+                    "meta": "KiCad",
+                    "title": "KiCad schematic",
+                    "url": "docs/vco-pwm/documents/VCO_MauriceO.kicad_sch"
+                  },
+                  {
+                    "children": [],
+                    "description": "",
+                    "kind": "subsection",
+                    "meta": "Subsection",
+                    "title": "References",
+                    "url": ""
+                  },
+                  {
+                    "children": [],
+                    "description": "",
+                    "kind": "subsection",
+                    "meta": "Subsection",
+                    "title": "Math / Analysis",
+                    "url": ""
+                  }
+                ],
+                "description": "",
+                "kind": "subsection",
+                "meta": "Subsection",
+                "title": "Documentation",
+                "url": ""
+              },
+              {
+                "children": [
+                  {
+                    "children": [],
+                    "description": "Operating point was found, supporting the regulated VCC block before full-system integration.",
+                    "kind": "test",
+                    "meta": "LTspice operating-point validation for the 10 V input to 5 V regulated rail",
+                    "title": "LM317 regulator simulation",
+                    "url": "docs/vco-pwm/tests/VCO_Regulator_Test.log"
+                  },
+                  {
+                    "children": [],
+                    "description": "Measured current values stayed near the 0.10 mA design target across much of the capacitor-voltage sweep.",
+                    "kind": "test",
+                    "meta": "Nested DC sweep over VCTRL, VCAP, and VFB operating states",
+                    "title": "V2I and current mirror sweep",
+                    "url": "docs/vco-pwm/tests/final-build-characterization.xlsx"
+                  },
+                  {
+                    "children": [],
+                    "description": "The comparator/latch stage was checked against the threshold behavior used to reverse the capacitor charge direction.",
+                    "kind": "test",
+                    "meta": "LTspice comparator-threshold simulation with 1 V low and 3 V high references",
+                    "title": "Window comparator and latch verification",
+                    "url": "docs/vco-pwm/tests/WINDOW_COMPARATOR_TEST.log"
+                  },
+                  {
+                    "children": [],
+                    "description": "Integrated simulation converged and was used to inspect the oscillator waveform path before PCB bring-up.",
+                    "kind": "test",
+                    "meta": "Integrated LTspice oscillator run including capacitor charge/discharge behavior",
+                    "title": "Full oscillator transient simulation",
+                    "url": "docs/vco-pwm/tests/VCO_full_oscillator.log"
+                  },
+                  {
+                    "children": [],
+                    "description": "Final simulation connected the oscillator output behavior to the PWM load interface.",
+                    "kind": "test",
+                    "meta": "LTspice full-circuit test with PWM-driven output load",
+                    "title": "Final PWM load integration",
+                    "url": "docs/vco-pwm/tests/VCO_final_test_with_pwm.log"
+                  },
+                  {
+                    "children": [],
+                    "description": "Recorded values rise from 0 at 0 V to 1.342 at 1.0 V, then approach a plateau around 3.18 at higher control voltages.",
+                    "kind": "test",
+                    "meta": "Bench characterization recorded in the final build workbook",
+                    "title": "Frequency vs. control-voltage characterization",
+                    "url": "docs/vco-pwm/tests/final-build-characterization.xlsx"
+                  },
+                  {
+                    "children": [],
+                    "description": "",
+                    "kind": "subsection",
+                    "meta": "Subsection",
+                    "title": "Simulation Results",
+                    "url": ""
+                  }
+                ],
+                "description": "",
+                "kind": "subsection",
+                "meta": "Subsection",
+                "title": "Design Simulation",
+                "url": ""
+              },
+              {
+                "children": [
+                  {
+                    "children": [],
+                    "description": "Rev A",
+                    "kind": "pcb",
+                    "meta": "fabricated",
+                    "title": "VCO_MauriceO PCB layout",
+                    "url": "docs/vco-pwm/pcbs/VCO_MauriceO.kicad_pcb"
+                  },
+                  {
+                    "children": [],
+                    "description": "Rev A",
+                    "kind": "pcb",
+                    "meta": "released",
+                    "title": "Gerber fabrication package",
+                    "url": "docs/vco-pwm/pcbs/Maurice_O_Gerber.zip"
+                  },
+                  {
+                    "children": [],
+                    "description": "System-level view of the analog timing path and switching stages.",
+                    "kind": "image",
+                    "meta": "Image",
+                    "title": "VCO circuit architecture",
+                    "url": "docs/vco-pwm/images/vco-readme-01.png"
+                  },
+                  {
+                    "children": [],
+                    "description": "Waveform evidence from the VCO design verification flow.",
+                    "kind": "image",
+                    "meta": "Image",
+                    "title": "Simulation result",
+                    "url": "docs/vco-pwm/images/vco-readme-02.png"
+                  },
+                  {
+                    "children": [],
+                    "description": "KiCad PCB implementation prepared for fabrication.",
+                    "kind": "image",
+                    "meta": "Image",
+                    "title": "PCB layout",
+                    "url": "docs/vco-pwm/images/vco-readme-04.png"
+                  },
+                  {
+                    "children": [],
+                    "description": "Built VCO board used during final characterization.",
+                    "kind": "image",
+                    "meta": "Image",
+                    "title": "Assembled hardware",
+                    "url": "docs/vco-pwm/images/vco-readme-06.png"
+                  }
+                ],
+                "description": "",
+                "kind": "subsection",
+                "meta": "Subsection",
+                "title": "PCB and Visual Evidence",
+                "url": ""
+              }
+            ],
+            "title": "Design"
+          }
+        ]
+      }
+    },
+    {
+      "id": "wireless-sensor-node",
+      "title": "Wireless Sensor Node",
+      "templateId": "embedded-wireless-node",
+      "templateLabel": "Wireless Sensor Node",
+      "templateGroup": "Embedded",
+      "category": "embedded",
+      "status": "Prototype",
+      "summary": "For low-power sensing, wireless communication, packet logging, and field-test documentation.",
+      "focus": [
+        "Wireless",
+        "Low power",
+        "Sensor node"
+      ],
+      "highlights": [
+        "Defined sensing and communication requirements.",
+        "Implemented packet handling and logging.",
+        "Measured power behavior and communication reliability."
+      ],
+      "documents": [
+        {
+          "title": "Wireless node architecture",
+          "type": "PDF",
+          "url": "docs/wireless-sensor-node/documents/wireless-node-architecture.pdf",
+          "status": "planned"
+        }
+      ],
+      "tests": [
+        {
+          "name": "Packet reliability test",
+          "method": "Logged send/receive trials",
+          "status": "planned",
+          "artifact": "docs/wireless-sensor-node/tests/packet-reliability.pdf",
+          "result": "Packet result will be added."
+        }
+      ],
+      "pcbs": [],
+      "media": [],
+      "tools": [
+        "STM32CubeIDE",
+        "Logic analyzer",
+        "Serial monitor"
+      ],
+      "languages": [
+        "C",
+        "Python"
+      ],
+      "links": [
+        {
+          "label": "GitHub repo",
+          "url": "https://github.com/otienomaurice/wireless-sensor-node"
+        }
+      ],
+      "sections": [],
+      "portfolioView": {
+        "builtAt": "2026-06-06T16:57:26.712Z",
+        "template": {
+          "group": "Embedded",
+          "id": "embedded-wireless-node",
+          "label": "Wireless Sensor Node"
+        },
+        "title": "Wireless Sensor Node",
+        "sections": [
+          {
+            "description": "",
+            "id": "brief",
+            "items": [
+              {
+                "children": [],
+                "description": "For low-power sensing, wireless communication, packet logging, and field-test documentation.",
+                "kind": "summary",
+                "meta": "Brief",
+                "title": "Summary",
+                "url": ""
+              }
+            ],
+            "title": "Project Brief"
+          },
+          {
+            "description": "",
+            "id": "design",
+            "items": [
+              {
+                "children": [],
                 "description": "",
                 "kind": "document",
                 "meta": "PDF",
-                "title": "VCO design brief",
-                "url": "docs/vco-pwm/documents/ece323-vco-lab-handout.pdf"
-              },
+                "title": "Wireless node architecture",
+                "url": "docs/wireless-sensor-node/documents/wireless-node-architecture.pdf"
+              }
+            ],
+            "title": "Design"
+          }
+        ]
+      }
+    },
+    {
+      "id": "battery-status-monitor",
+      "title": "Battery Status Monitor",
+      "category": "embedded",
+      "status": "Built and characterized",
+      "summary": "This",
+      "focus": [
+        "Analog design",
+        "Mixed-signal validation",
+        "PCB bring-up"
+      ],
+      "highlights": [
+        "Defined the circuit objective, electrical constraints, and measurable success criteria.",
+        "Simulated the critical analog blocks before board-level implementation.",
+        "Brought up the PCB on the bench and recorded measurements against the design target."
+      ],
+      "documents": [
+        {
+          "title": "Design brief",
+          "type": "PDF",
+          "url": "docs/battery-status-monitor/documents/design-brief.pdf",
+          "status": "planned"
+        },
+        {
+          "title": "Schematic",
+          "type": "KiCad",
+          "url": "docs/battery-status-monitor/documents/schematic.kicad_sch",
+          "status": "planned"
+        }
+      ],
+      "tests": [
+        {
+          "name": "LTspice simulation",
+          "method": "Block-level and integrated circuit simulation",
+          "status": "planned",
+          "artifact": "docs/battery-status-monitor/tests/ltspice-results.pdf",
+          "result": "Simulation evidence will be added after the project files are attached."
+        },
+        {
+          "name": "Bench characterization",
+          "method": "Oscilloscope, bench supply, signal generator, and multimeter measurements",
+          "status": "planned",
+          "artifact": "docs/battery-status-monitor/tests/bench-characterization.pdf",
+          "result": "Measured results will be summarized against the design target."
+        }
+      ],
+      "pcbs": [
+        {
+          "name": "PCB layout",
+          "revision": "Rev A",
+          "status": "planned",
+          "artifact": "docs/battery-status-monitor/pcbs/pcb-layout.kicad_pcb"
+        },
+        {
+          "name": "Gerber package",
+          "revision": "Rev A",
+          "status": "planned",
+          "artifact": "docs/battery-status-monitor/pcbs/gerbers.zip"
+        }
+      ],
+      "media": [
+        {
+          "title": "Circuit or board image",
+          "url": "docs/battery-status-monitor/images/project-image.png",
+          "status": "planned",
+          "caption": "Image caption will be updated after attaching the project media."
+        }
+      ],
+      "tools": [
+        "LTspice",
+        "KiCad",
+        "Oscilloscope",
+        "Bench supply",
+        "Signal generator",
+        "Multimeter"
+      ],
+      "languages": [
+        "SPICE netlists",
+        "KiCad schematic/PCB files"
+      ],
+      "links": [
+        {
+          "label": "GitHub repo",
+          "url": "https://github.com/otienomaurice/battery-status-monitor"
+        }
+      ],
+      "sections": [],
+      "portfolioView": {
+        "builtAt": "2026-06-06T16:57:26.712Z",
+        "template": {
+          "group": "Embedded",
+          "id": "",
+          "label": ""
+        },
+        "title": "Battery Status Monitor",
+        "sections": [
+          {
+            "description": "",
+            "id": "brief",
+            "items": [
               {
+                "children": [],
+                "description": "This",
+                "kind": "summary",
+                "meta": "Brief",
+                "title": "Summary",
+                "url": ""
+              }
+            ],
+            "title": "Project Brief"
+          },
+          {
+            "description": "",
+            "id": "design",
+            "items": [
+              {
+                "children": [],
                 "description": "",
                 "kind": "document",
-                "meta": "Text",
-                "title": "Extracted design notes",
-                "url": "docs/vco-pwm/documents/handout-extracted-text.txt"
+                "meta": "PDF",
+                "title": "Design brief",
+                "url": "docs/battery-status-monitor/documents/design-brief.pdf"
               },
               {
-                "description": "",
-                "kind": "document",
-                "meta": "PowerPoint",
-                "title": "Build rolling document",
-                "url": "docs/vco-pwm/documents/vco-build-rolling-doc.pptx"
-              },
-              {
+                "children": [],
                 "description": "",
                 "kind": "document",
                 "meta": "KiCad",
-                "title": "KiCad schematic",
-                "url": "docs/vco-pwm/documents/VCO_MauriceO.kicad_sch"
+                "title": "Schematic",
+                "url": "docs/battery-status-monitor/documents/schematic.kicad_sch"
               },
               {
+                "children": [],
                 "description": "Rev A",
                 "kind": "pcb",
-                "meta": "fabricated",
-                "title": "VCO_MauriceO PCB layout",
-                "url": "docs/vco-pwm/pcbs/VCO_MauriceO.kicad_pcb"
-              },
-              {
-                "description": "Rev A",
-                "kind": "pcb",
-                "meta": "released",
-                "title": "Gerber fabrication package",
-                "url": "docs/vco-pwm/pcbs/Maurice_O_Gerber.zip"
-              },
-              {
-                "description": "System-level view of the analog timing path and switching stages.",
-                "kind": "image",
-                "meta": "Image",
-                "title": "VCO circuit architecture",
-                "url": "docs/vco-pwm/images/vco-readme-01.png"
-              },
-              {
-                "description": "Waveform evidence from the VCO design verification flow.",
-                "kind": "image",
-                "meta": "Image",
-                "title": "Simulation result",
-                "url": "docs/vco-pwm/images/vco-readme-02.png"
-              },
-              {
-                "description": "KiCad PCB implementation prepared for fabrication.",
-                "kind": "image",
-                "meta": "Image",
+                "meta": "planned",
                 "title": "PCB layout",
-                "url": "docs/vco-pwm/images/vco-readme-04.png"
+                "url": "docs/battery-status-monitor/pcbs/pcb-layout.kicad_pcb"
               },
               {
-                "description": "Built VCO board used during final characterization.",
+                "children": [],
+                "description": "Rev A",
+                "kind": "pcb",
+                "meta": "planned",
+                "title": "Gerber package",
+                "url": "docs/battery-status-monitor/pcbs/gerbers.zip"
+              },
+              {
+                "children": [],
+                "description": "Image caption will be updated after attaching the project media.",
                 "kind": "image",
-                "meta": "Image",
-                "title": "Assembled hardware",
-                "url": "docs/vco-pwm/images/vco-readme-06.png"
+                "meta": "planned",
+                "title": "Circuit or board image",
+                "url": "docs/battery-status-monitor/images/project-image.png"
+              }
+            ],
+            "title": "Design"
+          }
+        ]
+      }
+    },
+    {
+      "id": "digital-signal-processing-block",
+      "title": "Digital Signal Processing Block",
+      "templateId": "digital-signal-processing",
+      "templateLabel": "Digital Signal Processing Block",
+      "templateGroup": "Digital",
+      "category": "digital",
+      "status": "In progress",
+      "summary": "For FIR/IIR, counters, fixed-point logic, filtering, and sample-stream verification.",
+      "focus": [
+        "DSP",
+        "Fixed-point design",
+        "RTL simulation"
+      ],
+      "highlights": [
+        "Defined sample rate, precision, and throughput.",
+        "Verified behavior with known vectors.",
+        "Reviewed resource use and timing impact."
+      ],
+      "documents": [
+        {
+          "title": "DSP architecture",
+          "type": "Markdown",
+          "url": "docs/digital-signal-processing-block/documents/dsp-architecture.md",
+          "status": "planned"
+        }
+      ],
+      "tests": [
+        {
+          "name": "Vector test",
+          "method": "Known input/output simulation",
+          "status": "planned",
+          "artifact": "docs/digital-signal-processing-block/tests/vector-test.pdf",
+          "result": "Vector result will be added."
+        }
+      ],
+      "pcbs": [],
+      "media": [],
+      "tools": [
+        "Vivado",
+        "Python",
+        "GTKWave"
+      ],
+      "languages": [
+        "Verilog",
+        "SystemVerilog",
+        "Python"
+      ],
+      "links": [
+        {
+          "label": "GitHub repo",
+          "url": "https://github.com/otienomaurice/digital-signal-processing-block"
+        }
+      ],
+      "sections": [],
+      "portfolioView": {
+        "builtAt": "2026-06-06T16:57:26.712Z",
+        "template": {
+          "group": "Digital",
+          "id": "digital-signal-processing",
+          "label": "Digital Signal Processing Block"
+        },
+        "title": "Digital Signal Processing Block",
+        "sections": [
+          {
+            "description": "",
+            "id": "brief",
+            "items": [
+              {
+                "children": [],
+                "description": "For FIR/IIR, counters, fixed-point logic, filtering, and sample-stream verification.",
+                "kind": "summary",
+                "meta": "Brief",
+                "title": "Summary",
+                "url": ""
+              }
+            ],
+            "title": "Project Brief"
+          },
+          {
+            "description": "",
+            "id": "design",
+            "items": [
+              {
+                "children": [],
+                "description": "",
+                "kind": "document",
+                "meta": "Markdown",
+                "title": "DSP architecture",
+                "url": "docs/digital-signal-processing-block/documents/dsp-architecture.md"
               }
             ],
             "title": "Design"

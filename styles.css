@@ -506,14 +506,32 @@ h3 {
   background: rgba(255, 255, 255, 0.62);
 }
 
-.project-brief-default h4,
 .project-brief-default p {
   margin: 0;
 }
 
-.project-brief-default h4 {
+.parsed-summary {
+  display: grid;
+  gap: 8px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.parsed-summary summary {
+  cursor: pointer;
   color: var(--ink);
   font-size: 0.92rem;
+  font-weight: 900;
+}
+
+.parsed-summary[open] summary {
+  margin-bottom: 4px;
+}
+
+.parsed-summary summary::marker {
+  color: var(--accent);
 }
 
 .rich-content {
@@ -706,6 +724,11 @@ h3 {
   transform: translateY(1px);
 }
 
+.resource-open-card {
+  min-height: 74px;
+  background: #ffffff;
+}
+
 .evidence-wide {
   grid-column: 1 / -1;
 }
@@ -729,6 +752,31 @@ h3 {
 .evidence-block li {
   display: grid;
   gap: 3px;
+}
+
+.parsed-subsection {
+  display: grid;
+  gap: 10px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.parsed-subsection h4,
+.parsed-subsection p {
+  margin: 0;
+}
+
+.parsed-subsection h4 {
+  color: var(--ink);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+}
+
+.subsection-grid {
+  display: grid;
+  gap: 12px;
 }
 
 .evidence-block li p {
@@ -755,6 +803,104 @@ h3 {
   border-radius: 8px;
   background: #ffffff;
   box-shadow: 0 24px 70px rgba(23, 32, 42, 0.24);
+  position: relative;
+}
+
+.section-view-dialog.is-draggable-dialog {
+  position: fixed;
+}
+
+.section-view-dialog.is-minimized-dialog {
+  width: min(520px, calc(100vw - 24px)) !important;
+  height: auto !important;
+  max-height: none;
+  overflow: hidden;
+}
+
+.section-view-dialog.is-dragging-dialog {
+  user-select: none;
+  box-shadow: 0 30px 86px rgba(23, 32, 42, 0.32);
+}
+
+.section-view-dialog.is-resizing-dialog {
+  user-select: none;
+  box-shadow: 0 30px 86px rgba(23, 32, 42, 0.32);
+}
+
+.dialog-resize-handle {
+  position: absolute;
+  z-index: 12;
+  background: transparent;
+}
+
+.section-view-dialog.is-minimized-dialog .dialog-resize-handle {
+  display: none;
+}
+
+.resize-n,
+.resize-s {
+  right: 12px;
+  left: 12px;
+  height: 8px;
+}
+
+.resize-n {
+  top: 0;
+  cursor: ns-resize;
+}
+
+.resize-s {
+  bottom: 0;
+  cursor: ns-resize;
+}
+
+.resize-e,
+.resize-w {
+  top: 12px;
+  bottom: 12px;
+  width: 8px;
+}
+
+.resize-e {
+  right: 0;
+  cursor: ew-resize;
+}
+
+.resize-w {
+  left: 0;
+  cursor: ew-resize;
+}
+
+.resize-ne,
+.resize-nw,
+.resize-se,
+.resize-sw {
+  width: 16px;
+  height: 16px;
+}
+
+.resize-ne {
+  top: 0;
+  right: 0;
+  cursor: nesw-resize;
+}
+
+.resize-nw {
+  top: 0;
+  left: 0;
+  cursor: nwse-resize;
+}
+
+.resize-se {
+  right: 0;
+  bottom: 0;
+  cursor: nwse-resize;
+}
+
+.resize-sw {
+  bottom: 0;
+  left: 0;
+  cursor: nesw-resize;
 }
 
 .section-view-dialog::backdrop {
@@ -764,7 +910,16 @@ h3 {
 .section-view-shell {
   display: grid;
   gap: 16px;
-  padding: clamp(18px, 3vw, 28px);
+  padding: 0 clamp(18px, 3vw, 28px) clamp(18px, 3vw, 28px);
+}
+
+.section-view-dialog.is-minimized-dialog .section-view-shell {
+  gap: 0;
+  padding-bottom: 0;
+}
+
+.section-view-dialog.is-minimized-dialog .section-view-content {
+  display: none;
 }
 
 .section-view-heading {
@@ -776,6 +931,12 @@ h3 {
   border: 1px solid var(--line);
   border-radius: 8px;
   background: #f7fcff;
+  cursor: grab;
+  touch-action: none;
+}
+
+.section-view-dialog.is-dragging-dialog .section-view-heading {
+  cursor: grabbing;
 }
 
 .section-view-heading h2,
@@ -783,11 +944,21 @@ h3 {
   margin: 0;
 }
 
+.section-view-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.section-view-back,
+.section-view-minimize,
 .section-view-close {
   display: inline-grid;
   place-items: center;
-  width: 36px;
+  min-width: 36px;
   height: 32px;
+  padding: 0 10px;
   border: 1px solid #b9d8e8;
   border-radius: 8px;
   color: var(--ink);
@@ -795,6 +966,22 @@ h3 {
   font: inherit;
   font-weight: 900;
   cursor: pointer;
+}
+
+.section-view-minimize:hover {
+  border-color: #1f6ed4;
+  color: #ffffff;
+  background: #1f6ed4;
+}
+
+.section-view-back[hidden] {
+  display: none;
+}
+
+.section-view-back:hover {
+  border-color: #1f6ed4;
+  color: #ffffff;
+  background: #1f6ed4;
 }
 
 .section-view-close:hover {
@@ -806,6 +993,24 @@ h3 {
 .section-view-content {
   display: grid;
   gap: 14px;
+}
+
+.section-content-grid {
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+}
+
+.resource-detail {
+  display: grid;
+  gap: 8px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.resource-detail span {
+  color: var(--muted);
+  font-size: 0.84rem;
 }
 
 .project-tooling {
