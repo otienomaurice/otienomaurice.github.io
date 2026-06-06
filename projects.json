@@ -83,7 +83,7 @@
         ]
       },
       "portfolioView": {
-        "builtAt": "2026-06-06T18:02:18.788Z",
+        "builtAt": "2026-06-06T18:03:11.357Z",
         "template": {
           "group": "Analog and Mixed Signal",
           "id": "",
@@ -261,7 +261,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-06T18:02:18.788Z",
+        "builtAt": "2026-06-06T18:03:11.357Z",
         "template": {
           "group": "Embedded",
           "id": "embedded-rtos-control",
