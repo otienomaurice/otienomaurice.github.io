@@ -516,6 +516,98 @@ h3 {
   font-size: 0.92rem;
 }
 
+.rich-content {
+  display: grid;
+  gap: 12px;
+}
+
+.rich-paragraph {
+  margin: 0;
+  color: var(--ink);
+  line-height: 1.6;
+}
+
+.rich-text-small {
+  font-size: 0.86rem;
+}
+
+.rich-text-normal {
+  font-size: 1rem;
+}
+
+.rich-text-large {
+  font-size: 1.18rem;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.rich-inline-formula,
+.rich-formula {
+  font-family: "Cambria Math", "Times New Roman", serif;
+}
+
+.rich-inline-formula {
+  padding: 0 4px;
+  border-radius: 4px;
+  background: #eef8fc;
+}
+
+.rich-formula {
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #f7fcff;
+  color: var(--ink);
+  font-size: 1.08rem;
+  overflow-x: auto;
+}
+
+.rich-image {
+  display: grid;
+  gap: 8px;
+  max-width: min(100%, 720px);
+  margin: 0;
+}
+
+.rich-image img {
+  max-width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.rich-image figcaption {
+  display: grid;
+  gap: 3px;
+  color: var(--muted);
+  font-size: 0.84rem;
+}
+
+.justify-left {
+  justify-self: start;
+  text-align: left;
+}
+
+.justify-center {
+  justify-self: center;
+  text-align: center;
+}
+
+.justify-right {
+  justify-self: end;
+  text-align: right;
+}
+
 .project-drawer {
   padding: 12px 14px;
   border: 1px solid color-mix(in srgb, var(--accent), #ffffff 62%);

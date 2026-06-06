@@ -14,6 +14,69 @@ function normalize(value) {
   return String(value || "").toLowerCase();
 }
 
+function escapeHtml(value) {
+  return String(value || "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+
+function textBlocksFromPlainText(text) {
+  const lines = String(text || "").split(/\n{2,}/).map((item) => item.trim()).filter(Boolean);
+  return (lines.length ? lines : [""]).map((item) => ({
+    align: "left",
+    fontSize: "normal",
+    text: item,
+    type: "paragraph"
+  }));
+}
+
+function unwrapFormula(value) {
+  const text = String(value || "").trim();
+  const wrappers = [
+    [/^\$\$([\s\S]+)\$\$$/, 1],
+    [/^\\\[([\s\S]+)\\\]$/, 1],
+    [/^\\\(([\s\S]+)\\\)$/, 1],
+    [/^\$([^$]+)\$$/, 1]
+  ];
+  for (const [pattern, group] of wrappers) {
+    const match = text.match(pattern);
+    if (match) return match[group].trim();
+  }
+  return text;
+}
+
+function renderInlineMath(text) {
+  const escaped = escapeHtml(text);
+  return escaped.replace(/\$([^$]+)\$/g, '<span class="rich-inline-formula">$1</span>');
+}
+
+function renderRichContent(rich, fallbackText = "") {
+  const blocks = rich?.blocks?.length ? rich.blocks : textBlocksFromPlainText(fallbackText);
+  return `
+    <div class="rich-content">
+      ${blocks.map((block) => {
+        const align = ["left", "center", "right"].includes(block.align) ? block.align : "left";
+        if (block.type === "image") {
+          return `
+            <figure class="rich-image justify-${align}">
+              <img src="${escapeHtml(block.url)}" alt="${escapeHtml(block.title || "Summary image")}">
+              ${(block.title || block.caption) ? `<figcaption>${block.title ? `<strong>${escapeHtml(block.title)}</strong>` : ""}${block.caption ? `<span>${escapeHtml(block.caption)}</span>` : ""}</figcaption>` : ""}
+            </figure>
+          `;
+        }
+        if (block.type === "formula") {
+          return `<div class="rich-formula justify-${align}">${escapeHtml(unwrapFormula(block.formula))}</div>`;
+        }
+        const size = ["small", "normal", "large"].includes(block.fontSize) ? block.fontSize : "normal";
+        return `<p class="rich-paragraph rich-text-${size} text-${align}">${renderInlineMath(block.text || "")}</p>`;
+      }).join("")}
+    </div>
+  `;
+}
+
 function slugLabel(value) {
   const category = categories.find((item) => item.id === value);
   return category ? category.label : value;
@@ -37,12 +100,28 @@ function flattenProject(project) {
   const electronicsKeywords = window.electronicsSearchKeywords
     ? window.electronicsSearchKeywords(project, categoryLabel)
     : [];
+  const richSummaryTerms = (project.summaryRich?.blocks || []).flatMap((block) => [
+    block.text,
+    block.formula,
+    block.title,
+    block.caption
+  ]);
+  const parsedRichTerms = (project.portfolioView?.sections || []).flatMap((section) =>
+    (section.items || []).flatMap((item) => (item.rich?.blocks || []).flatMap((block) => [
+      block.text,
+      block.formula,
+      block.title,
+      block.caption
+    ]))
+  );
   return [
     project.id,
     project.title,
     categoryLabel,
     project.status,
     project.summary,
+    ...richSummaryTerms,
+    ...parsedRichTerms,
     ...(project.focus || []),
     ...(project.highlights || []),
     ...(project.tools || []).map((item) => typeof item === "string" ? item : [item.name, item.title, item.label, item.description].filter(Boolean).join(" ")),
@@ -152,7 +231,9 @@ function renderParsedBriefBlock(section, fallbackSummary = "") {
   return `
     <div class="project-brief-default">
       <h4>${section?.title || "Project Brief"}</h4>
-      ${briefText ? `<p>${briefText}</p>` : `<p class="evidence-empty">No project brief has been added yet.</p>`}
+      ${briefItem.rich?.blocks?.length || briefText
+        ? renderRichContent(briefItem.rich, briefText)
+        : `<p class="evidence-empty">No project brief has been added yet.</p>`}
     </div>
   `;
 }
@@ -174,7 +255,9 @@ function parsedResource(item) {
     <li>
       ${item.url ? resourceLink({ url: item.url, status: "uploaded" }, item.title) : `<strong>${item.title}</strong>`}
       ${item.meta ? `<span>${item.meta}</span>` : ""}
-      ${item.description ? `<p>${item.description}</p>` : ""}
+      ${item.rich?.blocks?.length
+        ? renderRichContent(item.rich, item.description || "")
+        : item.description ? `<p>${item.description}</p>` : ""}
     </li>
   `;
 }
