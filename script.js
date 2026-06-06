@@ -11,6 +11,24 @@ let activeSectionDialogDrag = null;
 let activeSectionDialogResize = null;
 let sectionDialogDragEnabled = false;
 
+const legacyTemplateSkins = {
+  "analog-opamp-topology": "skin-light-blue",
+  "analog-power-charger": "skin-amber-power",
+  "analog-filter-front-end": "skin-light-blue",
+  "analog-sensor-interface": "skin-emerald-instrument",
+  "analog-mixed-signal-timing": "skin-violet-mixed",
+  "digital-fpga-pipeline": "skin-deep-navy",
+  "digital-asic-block": "skin-graphite-asic",
+  "digital-verification-suite": "skin-graphite-asic",
+  "digital-interface-controller": "skin-deep-navy",
+  "digital-signal-processing": "skin-violet-mixed",
+  "embedded-stm32-sensor": "skin-emerald-instrument",
+  "embedded-rtos-control": "skin-graphite-asic",
+  "embedded-power-monitor": "skin-amber-power",
+  "embedded-wireless-node": "skin-deep-navy",
+  "embedded-motor-control": "skin-violet-mixed"
+};
+
 year.textContent = new Date().getFullYear();
 
 function normalize(value) {
@@ -273,8 +291,12 @@ function slugLabel(value) {
   return category ? category.label : value;
 }
 
+function canonicalTemplateId(id) {
+  return legacyTemplateSkins[id] || id || "";
+}
+
 function projectTemplateId(project) {
-  return project.portfolioView?.template?.id || project.templateId || "";
+  return canonicalTemplateId(project.portfolioView?.template?.id || project.templateId || "");
 }
 
 function projectTemplateClass(project) {
@@ -284,6 +306,54 @@ function projectTemplateClass(project) {
 
 function hasPublicTemplate(project) {
   return Boolean(projectTemplateId(project));
+}
+
+function projectTemplateVisual(project) {
+  return project?.portfolioView?.template?.visual || project?.templateVisual || null;
+}
+
+function projectTemplateStyle(project, accent) {
+  const visual = projectTemplateVisual(project) || {};
+  const values = {
+    "--accent": accent,
+    "--template-bg": visual.background,
+    "--template-panel": visual.panel,
+    "--template-accent": visual.accent,
+    "--template-hover": visual.hover,
+    "--template-click": visual.click,
+    "--template-line": visual.line,
+    "--template-text": visual.text
+  };
+  return Object.entries(values)
+    .filter(([, value]) => value)
+    .map(([key, value]) => `${key}: ${value}`)
+    .join("; ");
+}
+
+function applyProjectTemplateToElement(element, project, accent) {
+  if (!element) return;
+  [...element.classList]
+    .filter((className) => className === "project-template" || className === "project-template-white" || className.startsWith("project-template-"))
+    .forEach((className) => element.classList.remove(className));
+  projectTemplateClass(project).split(" ").forEach((className) => element.classList.add(className));
+  const visual = projectTemplateVisual(project) || {};
+  const values = {
+    "--accent": accent,
+    "--template-bg": visual.background,
+    "--template-panel": visual.panel,
+    "--template-accent": visual.accent,
+    "--template-hover": visual.hover,
+    "--template-click": visual.click,
+    "--template-line": visual.line,
+    "--template-text": visual.text
+  };
+  Object.entries(values).forEach(([key, value]) => {
+    if (value) {
+      element.style.setProperty(key, value);
+    } else {
+      element.style.removeProperty(key);
+    }
+  });
 }
 
 function parsedItemTerms(item) {
@@ -578,7 +648,7 @@ function projectCard(project) {
     const otherSections = sections.filter((section) => section.id !== "brief");
 
     return `
-      <article class="project-card catalog-card ${projectTemplateClass(project)}" id="${project.id}" style="--accent: ${accent}">
+      <article class="project-card catalog-card ${projectTemplateClass(project)}" id="${project.id}" style="${projectTemplateStyle(project, accent)}">
         ${showTemplateChrome ? `<div class="project-visual" aria-hidden="true"></div>` : ""}
         <div class="project-body">
           ${showTemplateChrome ? `<div class="project-meta">
@@ -601,7 +671,7 @@ function projectCard(project) {
   const showTemplateChrome = hasPublicTemplate(project);
 
   return `
-    <article class="project-card catalog-card ${projectTemplateClass(project)}" id="${project.id}" style="--accent: ${accent}">
+    <article class="project-card catalog-card ${projectTemplateClass(project)}" id="${project.id}" style="${projectTemplateStyle(project, accent)}">
       ${showTemplateChrome ? `<div class="project-visual" aria-hidden="true"></div>` : ""}
       <div class="project-body">
         ${showTemplateChrome ? `<div class="project-meta">
@@ -765,6 +835,8 @@ function openParsedSection(projectId, sectionIndex, resourcePath = "") {
   if (!node) return;
 
   const dialog = ensureSectionDialog();
+  const category = categories.find((item) => item.id === project.category) || {};
+  applyProjectTemplateToElement(dialog, project, category.accent || "#117c7a");
   dialog.dataset.projectId = projectId;
   dialog.dataset.sectionIndex = String(sectionIndex);
   dialog.dataset.resourcePath = pathToString(path);
