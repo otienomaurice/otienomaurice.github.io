@@ -20,21 +20,31 @@ function slugLabel(value) {
 }
 
 function flattenProject(project) {
+  const categoryLabel = slugLabel(project.category);
+  const electronicsKeywords = window.electronicsSearchKeywords
+    ? window.electronicsSearchKeywords(project, categoryLabel)
+    : [];
   return [
     project.id,
     project.title,
-    slugLabel(project.category),
+    categoryLabel,
     project.status,
     project.summary,
     ...(project.focus || []),
     ...(project.highlights || []),
-    ...(project.tools || []),
+    ...(project.tools || []).map((item) => typeof item === "string" ? item : [item.name, item.title, item.label, item.description].filter(Boolean).join(" ")),
     ...(project.languages || []),
     ...(project.documents || []).flatMap((item) => [item.title, item.type, item.status, item.url]),
     ...(project.tests || []).flatMap((item) => [item.name, item.method, item.status, item.result, item.artifact]),
     ...(project.pcbs || []).flatMap((item) => [item.name, item.revision, item.status, item.artifact]),
     ...(project.media || []).flatMap((item) => [item.title, item.caption, item.url]),
-    ...(project.links || []).flatMap((item) => [item.label, item.url])
+    ...(project.sections || []).flatMap((section) => [
+      section.title,
+      section.description,
+      ...(section.items || []).flatMap((item) => [item.title, item.description, item.type, item.status, item.url])
+    ]),
+    ...(project.links || []).flatMap((item) => [item.label, item.url]),
+    ...electronicsKeywords
   ]
     .map(normalize)
     .join(" ");
@@ -105,7 +115,93 @@ function mediaGrid(items) {
   `;
 }
 
+function customSectionBlocks(project) {
+  return (project.sections || []).map((section) => detailBlock(section.title, "evidence-block evidence-wide", `
+    ${section.description ? `<p class="evidence-empty">${section.description}</p>` : ""}
+    ${evidenceList(section.items || [], (item) => `
+      <li>
+        ${item.url ? resourceLink(item, item.title) : `<strong>${item.title}</strong>`}
+        <span>${item.type || "Section item"} &middot; ${item.status || "tracked"}</span>
+        ${item.description ? `<p>${item.description}</p>` : ""}
+      </li>
+    `, "No content has been added yet.")}
+  `)).join("");
+}
+
+function renderParsedBriefBlock(section, fallbackSummary = "") {
+  const briefItem = section?.items?.[0] || {};
+  const briefText = briefItem.description || fallbackSummary || "";
+  return `
+    <div class="project-brief-default">
+      <h4>${section?.title || "Project Brief"}</h4>
+      ${briefText ? `<p>${briefText}</p>` : `<p class="evidence-empty">No project brief has been added yet.</p>`}
+    </div>
+  `;
+}
+
+function parsedResource(item) {
+  if (item.kind === "image" && item.url) {
+    return `
+      <figure>
+        <a href="${item.url}"${linkAttributes(item.url)}><img src="${item.url}" alt="${item.title}"></a>
+        <figcaption>
+          <strong>${item.title}</strong>
+          ${item.description ? `<span>${item.description}</span>` : ""}
+        </figcaption>
+      </figure>
+    `;
+  }
+
+  return `
+    <li>
+      ${item.url ? resourceLink({ url: item.url, status: "uploaded" }, item.title) : `<strong>${item.title}</strong>`}
+      ${item.meta ? `<span>${item.meta}</span>` : ""}
+      ${item.description ? `<p>${item.description}</p>` : ""}
+    </li>
+  `;
+}
+
+function parsedSection(section) {
+  const hasImages = (section.items || []).some((item) => item.kind === "image");
+  const content = `
+    ${section.description ? `<p class="evidence-empty">${section.description}</p>` : ""}
+    ${(section.items || []).length ? (
+      hasImages
+        ? `<div class="media-grid">${section.items.map(parsedResource).join("")}</div>`
+        : `<ul>${section.items.map(parsedResource).join("")}</ul>`
+    ) : `<p class="evidence-empty">No content has been added yet.</p>`}
+  `;
+
+  return detailBlock(section.title, `evidence-block ${hasImages ? "evidence-wide" : ""}`, content);
+}
+
 function projectCard(project) {
+  if (project.portfolioView) {
+    const category = categories.find((item) => item.id === project.category) || {};
+    const accent = category.accent || "#117c7a";
+    const sections = project.portfolioView.sections || [];
+    const briefSection = sections.find((section) => section.id === "brief");
+    const otherSections = sections.filter((section) => section.id !== "brief");
+
+    return `
+      <article class="project-card catalog-card" id="${project.id}" style="--accent: ${accent}">
+        <div class="project-visual" aria-hidden="true"></div>
+        <div class="project-body">
+          <div class="project-meta">
+            <span class="tag category-tag">${category.label || project.category}</span>
+            <span class="tag">${project.status}</span>
+            ${pillList(project.focus)}
+          </div>
+          <h3>${project.portfolioView.title || project.title}</h3>
+          ${renderParsedBriefBlock(briefSection, project.summary)}
+          <div class="evidence-grid" aria-label="${project.title} parsed project sections">
+            ${otherSections.map(parsedSection).join("")}
+          </div>
+        </div>
+      </article>
+    `;
+  }
+
   const category = categories.find((item) => item.id === project.category) || {};
   const accent = category.accent || "#117c7a";
 
@@ -151,6 +247,7 @@ function projectCard(project) {
           `, "No PCB build has been added yet."))}
 
           ${detailBlock("Images", "evidence-block evidence-wide", mediaGrid(project.media))}
+          ${customSectionBlocks(project)}
         </div>
 
         ${detailBlock("Tools and implementation files", "project-drawer", `
@@ -176,15 +273,15 @@ function projectCard(project) {
 
 function categorySection(category, visibleProjects) {
   return `
-    <section class="category-section" aria-labelledby="${category.id}-title">
+    <section class="category-section ${visibleProjects.length ? "" : "empty-category-section"}" aria-labelledby="${category.id}-title">
       <div class="category-heading">
         <div>
-          <p class="eyebrow">Hardware category</p>
+          ${visibleProjects.length ? `<p class="eyebrow">Hardware category</p>` : ""}
           <h3 id="${category.id}-title">${category.label}</h3>
         </div>
-        <span>${visibleProjects.length} project${visibleProjects.length === 1 ? "" : "s"}</span>
+        ${visibleProjects.length ? `<span>${visibleProjects.length} project${visibleProjects.length === 1 ? "" : "s"}</span>` : ""}
       </div>
-      <p class="category-description">${category.description}</p>
+      ${visibleProjects.length ? `<p class="category-description">${category.description}</p>` : ""}
       <div class="category-projects">
         ${visibleProjects.map(projectCard).join("")}
       </div>
@@ -211,7 +308,8 @@ function renderProjects() {
   grid.innerHTML = categories
     .map((category) => {
       const visibleProjects = visible.filter((project) => project.category === category.id);
-      return visibleProjects.length ? categorySection(category, visibleProjects) : "";
+      const shouldShowEmptyCategory = !query && (activeFilter === "all" || activeFilter === category.id);
+      return visibleProjects.length || shouldShowEmptyCategory ? categorySection(category, visibleProjects) : "";
     })
     .join("");
 }
