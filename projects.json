@@ -69,12 +69,11 @@
         ]
       },
       "portfolioView": {
-        "builtAt": "2026-06-06T17:49:07.567Z",
+        "builtAt": "2026-06-06T17:53:32.728Z",
         "template": {
-          "group": "Visual skin",
+          "group": "Analog and Mixed Signal",
           "id": "",
-          "label": "",
-          "visual": null
+          "label": ""
         },
         "title": "Voltage controlled oscillator",
         "sections": [
@@ -167,6 +166,115 @@
               }
             ],
             "title": "Design"
+          }
+        ]
+      }
+    },
+    {
+      "id": "battery-status-monitoring-system-on-stride",
+      "title": "Battery status Monitoring system on STRIDE",
+      "templateId": "embedded-rtos-control",
+      "templateLabel": "RTOS Control Firmware",
+      "templateGroup": "Embedded",
+      "category": "embedded",
+      "status": "Integrated",
+      "summary": "For scheduling, tasks, interrupts, control loops, telemetry, and fault handling.",
+      "focus": [
+        "RTOS",
+        "Control firmware",
+        "Telemetry"
+      ],
+      "highlights": [
+        "Separated firmware into tasks and timing responsibilities.",
+        "Validated interrupts and periodic control behavior.",
+        "Captured logs or traces showing stable operation."
+      ],
+      "documents": [
+        {
+          "title": "Firmware architecture",
+          "type": "Markdown",
+          "url": "docs/battery-status-monitoring-system-on-stride/documents/firmware-architecture.md",
+          "status": "planned"
+        }
+      ],
+      "tests": [
+        {
+          "name": "Task timing test",
+          "method": "Serial logs and timing capture",
+          "status": "planned",
+          "artifact": "docs/battery-status-monitoring-system-on-stride/tests/task-timing.pdf",
+          "result": "Task timing result will be added."
+        }
+      ],
+      "pcbs": [],
+      "media": [],
+      "tools": [
+        "STM32CubeIDE",
+        "FreeRTOS",
+        "Logic analyzer"
+      ],
+      "languages": [
+        "C",
+        "C++"
+      ],
+      "links": [
+        {
+          "label": "GitHub repo",
+          "url": "https://github.com/otienomaurice/battery-status-monitoring-system-on-stride"
+        }
+      ],
+      "sections": [
+        {
+          "id": "tests",
+          "title": "Tests",
+          "description": "",
+          "items": []
+        }
+      ],
+      "portfolioView": {
+        "builtAt": "2026-06-06T17:53:32.728Z",
+        "template": {
+          "group": "Embedded",
+          "id": "embedded-rtos-control",
+          "label": "RTOS Control Firmware"
+        },
+        "title": "Battery status Monitoring system on STRIDE",
+        "sections": [
+          {
+            "description": "",
+            "id": "brief",
+            "items": [
+              {
+                "children": [],
+                "description": "For scheduling, tasks, interrupts, control loops, telemetry, and fault handling.",
+                "kind": "summary",
+                "meta": "Brief",
+                "title": "Summary",
+                "url": ""
+              }
+            ],
+            "title": "Project Brief"
+          },
+          {
+            "description": "",
+            "id": "design",
+            "items": [
+              {
+                "children": [],
+                "description": "",
+                "kind": "document",
+                "meta": "Markdown",
+                "title": "Firmware architecture",
+                "url": "docs/battery-status-monitoring-system-on-stride/documents/firmware-architecture.md"
+              }
+            ],
+            "title": "Design"
+          },
+          {
+            "description": "",
+            "id": "custom:tests",
+            "items": [],
+            "title": "Tests"
           }
         ]
       }
