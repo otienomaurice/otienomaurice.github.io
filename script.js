@@ -73,7 +73,12 @@ function resourceLink(item, label = item.label || item.title || item.name) {
 }
 
 function pillList(items, className = "") {
-  return (items || []).map((item) => `<span class="tag ${className}">${item}</span>`).join("");
+  return (items || [])
+    .map((item) => {
+      const label = typeof item === "string" ? item : item.name || item.title || item.label || "";
+      return label ? `<span class="tag ${className}">${label}</span>` : "";
+    })
+    .join("");
 }
 
 function evidenceList(items, renderItem, emptyMessage) {
@@ -324,21 +329,32 @@ filterButtons.forEach((button) => {
 
 searchInput.addEventListener("input", renderProjects);
 
-fetch("projects.json")
-  .then((response) => {
-    if (!response.ok) throw new Error("Could not load projects.json");
-    return response.json();
-  })
-  .then((data) => {
-    categories = data.categories || [];
-    projects = data.projects || [];
+function loadProjectCatalog() {
+  if (window.__PORTFOLIO_CATALOG__) {
+    categories = window.__PORTFOLIO_CATALOG__.categories || [];
+    projects = window.__PORTFOLIO_CATALOG__.projects || [];
     renderProjects();
-  })
-  .catch(() => {
-    grid.innerHTML = `
-      <div class="empty-state">
-        <h3>Project data did not load.</h3>
-        <p>The project catalog is temporarily unavailable.</p>
-      </div>
-    `;
-  });
+    return;
+  }
+
+  fetch("projects.json")
+    .then((response) => {
+      if (!response.ok) throw new Error("Could not load projects.json");
+      return response.json();
+    })
+    .then((data) => {
+      categories = data.categories || [];
+      projects = data.projects || [];
+      renderProjects();
+    })
+    .catch(() => {
+      grid.innerHTML = `
+        <div class="empty-state">
+          <h3>Project data did not load.</h3>
+          <p>The project catalog is temporarily unavailable.</p>
+        </div>
+      `;
+    });
+}
+
+loadProjectCatalog();
