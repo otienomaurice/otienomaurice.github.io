@@ -19,6 +19,19 @@ function slugLabel(value) {
   return category ? category.label : value;
 }
 
+function projectTemplateId(project) {
+  return project.portfolioView?.template?.id || project.templateId || "";
+}
+
+function projectTemplateClass(project) {
+  const templateId = projectTemplateId(project);
+  return templateId ? `project-template project-template-${templateId}` : "project-template-white";
+}
+
+function hasPublicTemplate(project) {
+  return Boolean(projectTemplateId(project));
+}
+
 function flattenProject(project) {
   const categoryLabel = slugLabel(project.category);
   const electronicsKeywords = window.electronicsSearchKeywords
@@ -166,9 +179,9 @@ function parsedResource(item) {
   `;
 }
 
-function parsedSection(section) {
+function parsedSectionContent(section) {
   const hasImages = (section.items || []).some((item) => item.kind === "image");
-  const content = `
+  return `
     ${section.description ? `<p class="evidence-empty">${section.description}</p>` : ""}
     ${(section.items || []).length ? (
       hasImages
@@ -176,31 +189,47 @@ function parsedSection(section) {
         : `<ul>${section.items.map(parsedResource).join("")}</ul>`
     ) : `<p class="evidence-empty">No content has been added yet.</p>`}
   `;
+}
 
-  return detailBlock(section.title, `evidence-block ${hasImages ? "evidence-wide" : ""}`, content);
+function parsedSection(section, index, project) {
+  const itemCount = (section.items || []).length;
+  const hasImages = (section.items || []).some((item) => item.kind === "image");
+
+  return `
+    <button
+      class="section-open-card evidence-block ${hasImages ? "evidence-wide" : ""}"
+      type="button"
+      data-section-project="${project.id}"
+      data-section-index="${index}"
+    >
+      <span>${section.title}</span>
+      <small>${itemCount} item${itemCount === 1 ? "" : "s"}</small>
+    </button>
+  `;
 }
 
 function projectCard(project) {
   if (project.portfolioView) {
     const category = categories.find((item) => item.id === project.category) || {};
     const accent = category.accent || "#117c7a";
+    const showTemplateChrome = hasPublicTemplate(project);
     const sections = project.portfolioView.sections || [];
     const briefSection = sections.find((section) => section.id === "brief");
     const otherSections = sections.filter((section) => section.id !== "brief");
 
     return `
-      <article class="project-card catalog-card" id="${project.id}" style="--accent: ${accent}">
-        <div class="project-visual" aria-hidden="true"></div>
+      <article class="project-card catalog-card ${projectTemplateClass(project)}" id="${project.id}" style="--accent: ${accent}">
+        ${showTemplateChrome ? `<div class="project-visual" aria-hidden="true"></div>` : ""}
         <div class="project-body">
-          <div class="project-meta">
+          ${showTemplateChrome ? `<div class="project-meta">
             <span class="tag category-tag">${category.label || project.category}</span>
             <span class="tag">${project.status}</span>
             ${pillList(project.focus)}
-          </div>
+          </div>` : ""}
           <h3>${project.portfolioView.title || project.title}</h3>
           ${renderParsedBriefBlock(briefSection, project.summary)}
           <div class="evidence-grid" aria-label="${project.title} parsed project sections">
-            ${otherSections.map(parsedSection).join("")}
+            ${otherSections.map((section, index) => parsedSection(section, index, project)).join("")}
           </div>
         </div>
       </article>
@@ -209,16 +238,17 @@ function projectCard(project) {
 
   const category = categories.find((item) => item.id === project.category) || {};
   const accent = category.accent || "#117c7a";
+  const showTemplateChrome = hasPublicTemplate(project);
 
   return `
-    <article class="project-card catalog-card" id="${project.id}" style="--accent: ${accent}">
-      <div class="project-visual" aria-hidden="true"></div>
+    <article class="project-card catalog-card ${projectTemplateClass(project)}" id="${project.id}" style="--accent: ${accent}">
+      ${showTemplateChrome ? `<div class="project-visual" aria-hidden="true"></div>` : ""}
       <div class="project-body">
-        <div class="project-meta">
+        ${showTemplateChrome ? `<div class="project-meta">
           <span class="tag category-tag">${category.label || project.category}</span>
           <span class="tag">${project.status}</span>
           ${pillList(project.focus)}
-        </div>
+        </div>` : ""}
         <h3>${project.title}</h3>
         <p>${project.summary}</p>
 
@@ -319,6 +349,42 @@ function renderProjects() {
     .join("");
 }
 
+function ensureSectionDialog() {
+  let dialog = document.querySelector("#section-view-dialog");
+  if (dialog) return dialog;
+
+  dialog = document.createElement("dialog");
+  dialog.id = "section-view-dialog";
+  dialog.className = "section-view-dialog";
+  dialog.innerHTML = `
+    <div class="section-view-shell">
+      <div class="section-view-heading">
+        <div>
+          <p class="eyebrow">Project section</p>
+          <h2 id="section-view-title">Section</h2>
+        </div>
+        <button class="section-view-close" type="button" aria-label="Close section">&times;</button>
+      </div>
+      <div class="section-view-content" id="section-view-content"></div>
+    </div>
+  `;
+  document.body.append(dialog);
+  dialog.querySelector(".section-view-close").addEventListener("click", () => dialog.close());
+  return dialog;
+}
+
+function openParsedSection(projectId, sectionIndex) {
+  const project = projects.find((item) => item.id === projectId);
+  const sections = (project?.portfolioView?.sections || []).filter((section) => section.id !== "brief");
+  const section = sections[Number(sectionIndex)];
+  if (!section) return;
+
+  const dialog = ensureSectionDialog();
+  dialog.querySelector("#section-view-title").textContent = section.title;
+  dialog.querySelector("#section-view-content").innerHTML = parsedSectionContent(section);
+  dialog.showModal();
+}
+
 filterButtons.forEach((button) => {
   button.addEventListener("click", () => {
     activeFilter = button.dataset.filter;
@@ -328,6 +394,12 @@ filterButtons.forEach((button) => {
 });
 
 searchInput.addEventListener("input", renderProjects);
+
+grid.addEventListener("click", (event) => {
+  const sectionButton = event.target.closest("[data-section-project]");
+  if (!sectionButton) return;
+  openParsedSection(sectionButton.dataset.sectionProject, sectionButton.dataset.sectionIndex);
+});
 
 function loadProjectCatalog() {
   if (window.__PORTFOLIO_CATALOG__) {
