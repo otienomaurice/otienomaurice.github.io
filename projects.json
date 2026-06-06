@@ -38,7 +38,21 @@
       "tools": [],
       "languages": [],
       "links": [],
-      "sections": [],
+      "sections": [
+        {
+          "id": "project-links",
+          "title": "Project links",
+          "description": "",
+          "items": [
+            {
+              "title": "Github repository",
+              "description": "https://github.com/otienomaurice/VOLTAGE_CONTROLLED_OSCILLATOR.git",
+              "type": "Text",
+              "status": "draft"
+            }
+          ]
+        }
+      ],
       "design": {
         "brief": {
           "summary": "The objectives of this laboratory are \n1. Calculate the VCO circuit component values to meet a design specification. \n2. Learn the KiCad PCB design flow including LTSpice simulation with a sequential capture \nand PCB layout plan. \n3. Use LTSpice to simulate your captured circuits and verify expected performance and capture \nschematic integrity. \n4. Use Kicad to layout the PCB, verify it meets the schematic, and export the fabrication files to \na professional outside PCB fabricator. \n5. Develop a schematic and PCB test plan at both the subcircuit and overall circuit levels. \n6. Assemble and characterize the VCO PCB prototype for subcircuit performance and output \nfrequency vs. voltage for the overall VCO. ",
@@ -69,7 +83,7 @@
         ]
       },
       "portfolioView": {
-        "builtAt": "2026-06-06T17:53:32.728Z",
+        "builtAt": "2026-06-06T18:02:18.788Z",
         "template": {
           "group": "Analog and Mixed Signal",
           "id": "",
@@ -166,6 +180,21 @@
               }
             ],
             "title": "Design"
+          },
+          {
+            "description": "",
+            "id": "custom:project-links",
+            "items": [
+              {
+                "children": [],
+                "description": "https://github.com/otienomaurice/VOLTAGE_CONTROLLED_OSCILLATOR.git",
+                "kind": "text",
+                "meta": "Text",
+                "title": "Github repository",
+                "url": ""
+              }
+            ],
+            "title": "Project links"
           }
         ]
       }
@@ -232,7 +261,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-06T17:53:32.728Z",
+        "builtAt": "2026-06-06T18:02:18.788Z",
         "template": {
           "group": "Embedded",
           "id": "embedded-rtos-control",
