@@ -69,11 +69,12 @@
         ]
       },
       "portfolioView": {
-        "builtAt": "2026-06-06T17:45:53.661Z",
+        "builtAt": "2026-06-06T17:49:07.567Z",
         "template": {
-          "group": "Analog and Mixed Signal",
+          "group": "Visual skin",
           "id": "",
-          "label": ""
+          "label": "",
+          "visual": null
         },
         "title": "Voltage controlled oscillator",
         "sections": [
