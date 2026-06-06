@@ -12,21 +12,29 @@ let activeSectionDialogResize = null;
 let sectionDialogDragEnabled = false;
 
 const legacyTemplateSkins = {
-  "analog-opamp-topology": "skin-light-blue",
-  "analog-power-charger": "skin-amber-power",
-  "analog-filter-front-end": "skin-light-blue",
-  "analog-sensor-interface": "skin-emerald-instrument",
-  "analog-mixed-signal-timing": "skin-violet-mixed",
-  "digital-fpga-pipeline": "skin-deep-navy",
-  "digital-asic-block": "skin-graphite-asic",
-  "digital-verification-suite": "skin-graphite-asic",
-  "digital-interface-controller": "skin-deep-navy",
-  "digital-signal-processing": "skin-violet-mixed",
-  "embedded-stm32-sensor": "skin-emerald-instrument",
-  "embedded-rtos-control": "skin-graphite-asic",
-  "embedded-power-monitor": "skin-amber-power",
-  "embedded-wireless-node": "skin-deep-navy",
-  "embedded-motor-control": "skin-violet-mixed"
+  "skin-light-blue": "appearance-light-blue-red-click",
+  "skin-clean-white": "appearance-white-blue-click",
+  "skin-deep-navy": "appearance-deep-navy-cyan-click",
+  "skin-red-warm": "appearance-warm-red-pale-click",
+  "skin-emerald-instrument": "appearance-emerald-mint-click",
+  "skin-amber-power": "appearance-amber-cream-click",
+  "skin-violet-mixed": "appearance-violet-lilac-click",
+  "skin-graphite-asic": "appearance-graphite-white-click",
+  "analog-opamp-topology": "appearance-light-blue-red-click",
+  "analog-power-charger": "appearance-amber-cream-click",
+  "analog-filter-front-end": "appearance-light-blue-red-click",
+  "analog-sensor-interface": "appearance-emerald-mint-click",
+  "analog-mixed-signal-timing": "appearance-violet-lilac-click",
+  "digital-fpga-pipeline": "appearance-deep-navy-cyan-click",
+  "digital-asic-block": "appearance-graphite-white-click",
+  "digital-verification-suite": "appearance-graphite-white-click",
+  "digital-interface-controller": "appearance-deep-navy-cyan-click",
+  "digital-signal-processing": "appearance-violet-lilac-click",
+  "embedded-stm32-sensor": "appearance-emerald-mint-click",
+  "embedded-rtos-control": "appearance-graphite-white-click",
+  "embedded-power-monitor": "appearance-amber-cream-click",
+  "embedded-wireless-node": "appearance-deep-navy-cyan-click",
+  "embedded-motor-control": "appearance-violet-lilac-click"
 };
 
 year.textContent = new Date().getFullYear();
@@ -321,6 +329,7 @@ function projectTemplateStyle(project, accent) {
     "--template-accent": visual.accent,
     "--template-hover": visual.hover,
     "--template-click": visual.click,
+    "--template-click-text": visual.clickText,
     "--template-line": visual.line,
     "--template-text": visual.text
   };
@@ -344,6 +353,7 @@ function applyProjectTemplateToElement(element, project, accent) {
     "--template-accent": visual.accent,
     "--template-hover": visual.hover,
     "--template-click": visual.click,
+    "--template-click-text": visual.clickText,
     "--template-line": visual.line,
     "--template-text": visual.text
   };

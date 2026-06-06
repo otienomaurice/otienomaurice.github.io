@@ -83,11 +83,12 @@
         ]
       },
       "portfolioView": {
-        "builtAt": "2026-06-06T18:07:53.536Z",
+        "builtAt": "2026-06-06T23:17:23.088Z",
         "template": {
-          "group": "Analog and Mixed Signal",
+          "group": "Appearance",
           "id": "",
-          "label": ""
+          "label": "",
+          "visual": null
         },
         "title": "Voltage controlled oscillator",
         "sections": [
@@ -200,6 +201,171 @@
       }
     },
     {
+      "id": "laser-link",
+      "title": "Laser link",
+      "templateId": "appearance-black-lab-blue-click",
+      "templateLabel": "Black lab, electric hover, white click",
+      "templateGroup": "Appearance",
+      "templateVisual": {
+        "style": "chip",
+        "palette": [
+          "#111827",
+          "#38bdf8",
+          "#ffffff"
+        ],
+        "background": "#111827",
+        "panel": "#f9fbff",
+        "accent": "#0284c7",
+        "hover": "#0284c7",
+        "click": "#ffffff",
+        "clickText": "#111827",
+        "line": "#7dd3fc",
+        "text": "#172033",
+        "interaction": "Electric-blue hover with a high-contrast white click state."
+      },
+      "category": "analog-mixed-signal",
+      "status": "Draft",
+      "summary": "",
+      "summaryRich": null,
+      "focus": [],
+      "highlights": [],
+      "documents": [],
+      "tests": [],
+      "pcbs": [],
+      "media": [],
+      "tools": [],
+      "languages": [],
+      "links": [],
+      "sections": [],
+      "design": {
+        "brief": {
+          "summary": "",
+          "summaryRich": null,
+          "files": []
+        },
+        "documentation": {
+          "summary": "",
+          "files": [],
+          "references": [],
+          "mathAnalysis": []
+        },
+        "simulation": {
+          "summary": "",
+          "summaryRich": null,
+          "files": [],
+          "results": []
+        }
+      },
+      "portfolioView": {
+        "builtAt": "2026-06-06T23:17:23.088Z",
+        "template": {
+          "group": "Appearance",
+          "id": "appearance-black-lab-blue-click",
+          "label": "Black lab, electric hover, white click",
+          "visual": {
+            "style": "chip",
+            "palette": [
+              "#111827",
+              "#38bdf8",
+              "#ffffff"
+            ],
+            "background": "#111827",
+            "panel": "#f9fbff",
+            "accent": "#0284c7",
+            "hover": "#0284c7",
+            "click": "#ffffff",
+            "clickText": "#111827",
+            "line": "#7dd3fc",
+            "text": "#172033",
+            "interaction": "Electric-blue hover with a high-contrast white click state."
+          }
+        },
+        "title": "Laser link",
+        "sections": [
+          {
+            "description": "",
+            "id": "brief",
+            "items": [
+              {
+                "children": [],
+                "description": "",
+                "kind": "summary",
+                "meta": "Brief",
+                "title": "Summary",
+                "url": ""
+              }
+            ],
+            "title": "Project Brief"
+          },
+          {
+            "description": "",
+            "id": "design",
+            "items": [
+              {
+                "children": [],
+                "description": "",
+                "kind": "subsection",
+                "meta": "Subsection",
+                "title": "Design Brief",
+                "url": ""
+              },
+              {
+                "children": [
+                  {
+                    "children": [],
+                    "description": "",
+                    "kind": "subsection",
+                    "meta": "Subsection",
+                    "title": "References",
+                    "url": ""
+                  },
+                  {
+                    "children": [],
+                    "description": "",
+                    "kind": "subsection",
+                    "meta": "Subsection",
+                    "title": "Math / Analysis",
+                    "url": ""
+                  }
+                ],
+                "description": "",
+                "kind": "subsection",
+                "meta": "Subsection",
+                "title": "Documentation",
+                "url": ""
+              },
+              {
+                "children": [
+                  {
+                    "children": [],
+                    "description": "",
+                    "kind": "subsection",
+                    "meta": "Subsection",
+                    "title": "Simulation Results",
+                    "url": ""
+                  }
+                ],
+                "description": "",
+                "kind": "subsection",
+                "meta": "Subsection",
+                "title": "Design Simulation",
+                "url": ""
+              },
+              {
+                "children": [],
+                "description": "",
+                "kind": "subsection",
+                "meta": "Subsection",
+                "title": "PCB and Visual Evidence",
+                "url": ""
+              }
+            ],
+            "title": "Design"
+          }
+        ]
+      }
+    },
+    {
       "id": "battery-status-monitoring-system-on-stride",
       "title": "Battery status Monitoring system on STRIDE",
       "templateId": "embedded-rtos-control",
@@ -261,11 +427,28 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-06T18:07:53.536Z",
+        "builtAt": "2026-06-06T23:17:23.088Z",
         "template": {
-          "group": "Embedded",
-          "id": "embedded-rtos-control",
-          "label": "RTOS Control Firmware"
+          "group": "Appearance",
+          "id": "appearance-graphite-white-click",
+          "label": "Graphite ASIC, slate hover, white click",
+          "visual": {
+            "style": "grid",
+            "palette": [
+              "#f6f8fb",
+              "#334155",
+              "#ffffff"
+            ],
+            "background": "#f6f8fb",
+            "panel": "#ffffff",
+            "accent": "#334155",
+            "hover": "#334155",
+            "click": "#ffffff",
+            "clickText": "#1f2937",
+            "line": "#b8c2d1",
+            "text": "#1f2937",
+            "interaction": "Slate hover with a crisp white click state."
+          }
         },
         "title": "Battery status Monitoring system on STRIDE",
         "sections": [
@@ -304,6 +487,95 @@
             "id": "custom:tests",
             "items": [],
             "title": "Tests"
+          }
+        ]
+      }
+    },
+    {
+      "id": "the-mips-computer",
+      "title": "The MIPS Computer",
+      "templateId": "appearance-light-blue-red-click",
+      "templateLabel": "Light blue, navy hover, red click",
+      "templateGroup": "Appearance",
+      "templateVisual": {
+        "style": "schematic",
+        "palette": [
+          "#e9f8ff",
+          "#1f6ed4",
+          "#ef4444",
+          "#ffffff"
+        ],
+        "background": "#e9f8ff",
+        "panel": "#ffffff",
+        "accent": "#1f6ed4",
+        "hover": "#1f6ed4",
+        "click": "#ef4444",
+        "clickText": "#ffffff",
+        "line": "#b8def3",
+        "text": "#172636",
+        "interaction": "Navy-blue hover with a red active click flash."
+      },
+      "category": "digital",
+      "status": "Draft",
+      "summary": "",
+      "summaryRich": null,
+      "focus": [],
+      "highlights": [],
+      "documents": [],
+      "tests": [],
+      "pcbs": [],
+      "media": [],
+      "tools": [],
+      "languages": [],
+      "links": [],
+      "sections": [],
+      "portfolioView": {
+        "builtAt": "2026-06-06T23:17:23.088Z",
+        "template": {
+          "group": "Appearance",
+          "id": "appearance-light-blue-red-click",
+          "label": "Light blue, navy hover, red click",
+          "visual": {
+            "style": "schematic",
+            "palette": [
+              "#e9f8ff",
+              "#1f6ed4",
+              "#ef4444",
+              "#ffffff"
+            ],
+            "background": "#e9f8ff",
+            "panel": "#ffffff",
+            "accent": "#1f6ed4",
+            "hover": "#1f6ed4",
+            "click": "#ef4444",
+            "clickText": "#ffffff",
+            "line": "#b8def3",
+            "text": "#172636",
+            "interaction": "Navy-blue hover with a red active click flash."
+          }
+        },
+        "title": "The MIPS Computer",
+        "sections": [
+          {
+            "description": "",
+            "id": "brief",
+            "items": [
+              {
+                "children": [],
+                "description": "",
+                "kind": "summary",
+                "meta": "Brief",
+                "title": "Summary",
+                "url": ""
+              }
+            ],
+            "title": "Project Brief"
+          },
+          {
+            "description": "",
+            "id": "design",
+            "items": [],
+            "title": "Design"
           }
         ]
       }
