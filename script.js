@@ -277,6 +277,50 @@ function renderInlineMath(text) {
   });
 }
 
+function displayTitle(value, fallback = "Untitled item") {
+  const title = String(value || fallback).trim();
+  const replacements = {
+    "Brief": "Overview",
+    "Project Brief": "Overview",
+    "Design Brief": "Design Overview",
+    "Simulation Brief": "Simulation Overview"
+  };
+  return replacements[title] || title;
+}
+
+function cleanFontFamily(value = "") {
+  return String(value)
+    .split(",")
+    .map((item) => item.replace(/[^\w\s-]/g, "").trim())
+    .filter(Boolean)
+    .slice(0, 3)
+    .join(", ");
+}
+
+function normalizeFontPx(value) {
+  const size = Number(value);
+  return Number.isFinite(size) && size >= 8 && size <= 24 ? String(size) : "";
+}
+
+function richTextStyle(block = {}) {
+  const styles = [];
+  const fontFamily = cleanFontFamily(block.fontFamily || "");
+  const fontPx = normalizeFontPx(block.fontPx);
+  if (fontFamily) styles.push(`font-family: ${fontFamily}`);
+  if (fontPx) styles.push(`font-size: ${fontPx}px`);
+  return styles.length ? ` style="${escapeHtml(styles.join("; "))}"` : "";
+}
+
+function richImageDownloadLink(block = {}) {
+  const label = escapeHtml(cleanRichImageTitle(block) || block.caption || "Image file");
+  return `<p class="rich-download-only"><a class="resource-link" href="${escapeHtml(block.url || "#")}"${linkAttributes(block.url || "")}>${label}</a></p>`;
+}
+
+function cleanRichImageTitle(block = {}) {
+  const title = String(block.title || "").trim();
+  return /^pasted image\b/i.test(title) ? "" : title;
+}
+
 function renderRichContent(rich, fallbackText = "") {
   const blocks = rich?.blocks?.length ? rich.blocks : textBlocksFromPlainText(fallbackText);
   return `
@@ -284,10 +328,12 @@ function renderRichContent(rich, fallbackText = "") {
       ${blocks.map((block) => {
         const align = ["left", "center", "right"].includes(block.align) ? block.align : "left";
         if (block.type === "image") {
+          if (block.display === "download") return richImageDownloadLink(block);
+          const title = cleanRichImageTitle(block);
           return `
             <figure class="rich-image justify-${align}">
-              <img src="${escapeHtml(block.url)}" alt="${escapeHtml(block.title || "Overview image")}">
-              ${(block.title || block.caption) ? `<figcaption>${block.title ? `<strong>${escapeHtml(block.title)}</strong>` : ""}${block.caption ? `<span>${escapeHtml(block.caption)}</span>` : ""}</figcaption>` : ""}
+              <img src="${escapeHtml(block.url)}" alt="${escapeHtml(title || "Overview image")}">
+              ${(title || block.caption) ? `<figcaption>${title ? `<strong>${escapeHtml(title)}</strong>` : ""}${block.caption ? `<span>${escapeHtml(block.caption)}</span>` : ""}</figcaption>` : ""}
             </figure>
           `;
         }
@@ -295,7 +341,7 @@ function renderRichContent(rich, fallbackText = "") {
           return `<div class="rich-formula justify-${align}">${escapeHtml(unwrapFormula(block.formula))}</div>`;
         }
         const size = ["small", "normal", "large"].includes(block.fontSize) ? block.fontSize : "normal";
-        return `<p class="rich-paragraph rich-text-${size} text-${align}">${renderInlineMath(block.text || "")}</p>`;
+        return `<p class="rich-paragraph rich-text-${size} text-${align}"${richTextStyle(block)}>${renderInlineMath(block.text || "")}</p>`;
       }).join("")}
     </div>
   `;
@@ -584,7 +630,7 @@ function renderParsedBriefBlock(section, fallbackSummary = "") {
   if (!briefItem.rich?.blocks?.length && !briefText) return "";
   return `
     <details class="project-brief-default parsed-summary" open>
-      <summary>${section?.title || "Project Brief"}</summary>
+      <summary>Overview</summary>
       ${renderRichContent(briefItem.rich, briefText)}
     </details>
   `;
@@ -631,7 +677,10 @@ function nodeHasRenderableContent(node) {
   if (node.kind === "subsection") {
     return Boolean(node.description || node.url || richHasRenderableContent(node.rich) || children.some(nodeHasRenderableContent));
   }
-  return Boolean(node.title || node.description || node.url || richHasRenderableContent(node.rich) || children.some(nodeHasRenderableContent));
+  if (["tool", "language"].includes(node.kind)) {
+    return Boolean(node.title || node.description || node.url || richHasRenderableContent(node.rich) || children.some(nodeHasRenderableContent));
+  }
+  return Boolean(node.description || node.url || richHasRenderableContent(node.rich) || children.some(nodeHasRenderableContent));
 }
 
 function sectionHasRenderableContent(section) {
@@ -650,16 +699,20 @@ function nodeSummary(title, rich, text, emptyMessage = "No summary has been adde
 
 function parsedNodeMeta(node) {
   if (node.kind === "subsection") {
-    const count = nodeChildren(node).length;
-    return `${count} item${count === 1 ? "" : "s"}`;
+    const count = nodeChildren(node).filter(nodeHasRenderableContent).length;
+    return count ? `${count} item${count === 1 ? "" : "s"}` : "";
   }
   if (node.kind === "image") return "Image";
-  if (node.url) return node.meta || "File";
-  return node.meta || node.kind || "Text";
+  const meta = (node.meta || node.kind || "").trim();
+  const cleanMeta = /^(brief|markdown|text|section item)$/i.test(meta) ? "" : meta;
+  if (node.url) return cleanMeta || "File";
+  return cleanMeta;
 }
 
 function parsedNodeCard(node, projectId, sectionIndex, path) {
   const cardClass = node.kind === "subsection" ? "subsection-open-card" : "item-open-card";
+  const meta = parsedNodeMeta(node);
+  const title = displayTitle(node.title);
   return `
     <button
       class="section-open-card evidence-block resource-open-card ${cardClass}"
@@ -668,8 +721,8 @@ function parsedNodeCard(node, projectId, sectionIndex, path) {
       data-section-index="${sectionIndex}"
       data-resource-path="${pathToString(path)}"
     >
-      <span>${node.title || "Untitled item"}</span>
-      <small>${parsedNodeMeta(node)}</small>
+      <span>${escapeHtml(title)}</span>
+      ${meta ? `<small>${meta}</small>` : ""}
     </button>
   `;
 }
@@ -685,16 +738,18 @@ function parsedChildCards(children, projectId, sectionIndex, basePath = []) {
 }
 
 function parsedLeafDetail(item) {
-  const hasImage = item.kind === "image" && item.url;
+  const hasImage = item.kind === "image" && item.url && item.display !== "download";
+  const meta = parsedNodeMeta(item);
+  const title = displayTitle(item.title);
   return `
     <article class="parsed-window-panel leaf-window-panel">
     ${nodeSummary("Overview", item.rich, item.description || "", "No overview has been added for this item.")}
     <div class="resource-detail">
-      <strong>${item.url ? resourceLink({ url: item.url, status: "uploaded" }, item.title) : item.title}</strong>
-      ${item.meta ? `<span>${item.meta}</span>` : ""}
+      <strong>${item.url ? resourceLink({ url: item.url, status: "uploaded" }, title) : escapeHtml(title)}</strong>
+      ${meta ? `<span>${meta}</span>` : ""}
       ${hasImage ? `
         <figure class="rich-image justify-center">
-          <a href="${item.url}"${linkAttributes(item.url)}><img src="${item.url}" alt="${item.title}"></a>
+          <a href="${item.url}"${linkAttributes(item.url)}><img src="${item.url}" alt="${escapeHtml(title)}"></a>
           ${item.description ? `<figcaption><span>${item.description}</span></figcaption>` : ""}
         </figure>
       ` : ""}
@@ -733,8 +788,8 @@ function parsedSection(section, index, project) {
       data-section-project="${project.id}"
       data-section-index="${index}"
     >
-      <span>${section.title}</span>
-      <small>${itemCount} item${itemCount === 1 ? "" : "s"}</small>
+      <span>${escapeHtml(displayTitle(section.title, "Section"))}</span>
+      ${itemCount ? `<small>${itemCount} item${itemCount === 1 ? "" : "s"}</small>` : ""}
     </button>
   `;
 }
@@ -877,6 +932,7 @@ function ensureSectionDialog() {
       <div class="section-view-heading">
         <div class="section-view-titlebar">
           <button class="section-view-back" type="button" title="Previous view" aria-label="Previous view" hidden>&larr;</button>
+          <button class="section-view-forward" type="button" title="Next view" aria-label="Next view" hidden>&rarr;</button>
           <h2 id="section-view-title">Section</h2>
         </div>
         <div class="section-view-actions">
@@ -900,8 +956,19 @@ function ensureSectionDialog() {
   });
   dialog.querySelector(".section-view-back").addEventListener("click", () => {
     const path = pathFromString(dialog.dataset.resourcePath || "");
+    if (!path.length) return;
+    const stack = sectionForwardStack(dialog);
+    stack.push(pathToString(path));
+    dialog.dataset.forwardStack = JSON.stringify(stack);
     path.pop();
-    openParsedSection(dialog.dataset.projectId, dialog.dataset.sectionIndex, pathToString(path));
+    openParsedSection(dialog.dataset.projectId, dialog.dataset.sectionIndex, pathToString(path), { preserveForward: true });
+  });
+  dialog.querySelector(".section-view-forward").addEventListener("click", () => {
+    const stack = sectionForwardStack(dialog);
+    const nextPath = stack.pop();
+    if (!nextPath) return;
+    dialog.dataset.forwardStack = JSON.stringify(stack);
+    openParsedSection(dialog.dataset.projectId, dialog.dataset.sectionIndex, nextPath, { preserveForward: true });
   });
   dialog.querySelector("#section-view-content").addEventListener("click", (event) => {
     const nodeButton = event.target.closest("[data-resource-path]");
@@ -911,24 +978,41 @@ function ensureSectionDialog() {
   return dialog;
 }
 
+function sectionForwardStack(dialog) {
+  try {
+    return JSON.parse(dialog.dataset.forwardStack || "[]");
+  } catch {
+    return [];
+  }
+}
+
+function updateSectionNavigation(dialog, path) {
+  dialog.querySelector(".section-view-back").hidden = !path.length;
+  dialog.querySelector(".section-view-forward").hidden = !sectionForwardStack(dialog).length;
+}
+
 function closeOrStepBackSectionDialog(dialog) {
   const path = pathFromString(dialog.dataset.resourcePath || "");
   if (path.length) {
+    const stack = sectionForwardStack(dialog);
+    stack.push(pathToString(path));
+    dialog.dataset.forwardStack = JSON.stringify(stack);
     path.pop();
-    openParsedSection(dialog.dataset.projectId, dialog.dataset.sectionIndex, pathToString(path));
+    openParsedSection(dialog.dataset.projectId, dialog.dataset.sectionIndex, pathToString(path), { preserveForward: true });
     return;
   }
   dialog.close();
 }
 
-function openParsedSection(projectId, sectionIndex, resourcePath = "") {
+function openParsedSection(projectId, sectionIndex, resourcePath = "", options = {}) {
   const project = projects.find((item) => item.id === projectId);
-  const sections = (project?.portfolioView?.sections || []).filter((section) => section.id !== "brief");
+  const sections = (project?.portfolioView?.sections || []).filter((section) => section.id !== "brief" && sectionHasRenderableContent(section));
   const section = sections[Number(sectionIndex)];
   if (!section) return;
   const path = pathFromString(resourcePath);
   const node = path.length ? nodeAtPath(section, path) : section;
   if (!node) return;
+  if (path.length ? !nodeHasRenderableContent(node) : !sectionHasRenderableContent(section)) return;
 
   const dialog = ensureSectionDialog();
   const category = categories.find((item) => item.id === project.category) || {};
@@ -936,8 +1020,9 @@ function openParsedSection(projectId, sectionIndex, resourcePath = "") {
   dialog.dataset.projectId = projectId;
   dialog.dataset.sectionIndex = String(sectionIndex);
   dialog.dataset.resourcePath = pathToString(path);
-  dialog.querySelector("#section-view-title").textContent = node.title || section.title;
-  dialog.querySelector(".section-view-back").hidden = !path.length;
+  if (!options.preserveForward) dialog.dataset.forwardStack = "[]";
+  dialog.querySelector("#section-view-title").textContent = displayTitle(node.title || section.title, "Section");
+  updateSectionNavigation(dialog, path);
   dialog.querySelector("#section-view-content").innerHTML = parsedSectionContent(section, projectId, Number(sectionIndex), path);
   document.body.classList.add("full-window-open");
   if (!dialog.open) dialog.showModal();

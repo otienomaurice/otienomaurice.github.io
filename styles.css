@@ -899,6 +899,10 @@ h3 {
   overflow-x: auto;
 }
 
+.rich-download-only {
+  margin: 0;
+}
+
 .rich-image {
   display: grid;
   gap: 8px;
@@ -1321,6 +1325,7 @@ h3 {
 }
 
 .section-view-back,
+.section-view-forward,
 .section-view-minimize,
 .section-view-close {
   display: inline-grid;
@@ -1337,7 +1342,8 @@ h3 {
   cursor: pointer;
 }
 
-.section-view-back {
+.section-view-back,
+.section-view-forward {
   width: 34px;
   min-width: 34px;
   padding: 0;
@@ -1352,24 +1358,28 @@ h3 {
 }
 
 .section-view-dialog.project-template .section-view-minimize:hover,
-.section-view-dialog.project-template .section-view-back:hover {
+.section-view-dialog.project-template .section-view-back:hover,
+.section-view-dialog.project-template .section-view-forward:hover {
   border-color: var(--template-hover);
   color: #ffffff;
   background: var(--template-hover);
 }
 
 .section-view-dialog.project-template .section-view-minimize:active,
-.section-view-dialog.project-template .section-view-back:active {
+.section-view-dialog.project-template .section-view-back:active,
+.section-view-dialog.project-template .section-view-forward:active {
   border-color: var(--template-hover);
   color: var(--template-click-text);
   background: var(--template-click);
 }
 
-.section-view-back[hidden] {
+.section-view-back[hidden],
+.section-view-forward[hidden] {
   display: none;
 }
 
-.section-view-back:hover {
+.section-view-back:hover,
+.section-view-forward:hover {
   border-color: #1f6ed4;
   color: #ffffff;
   background: #1f6ed4;
@@ -1392,6 +1402,26 @@ h3 {
 
 .section-content-grid {
   grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+}
+
+.subsection-grid.section-content-grid {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: flex-start;
+  gap: 12px;
+}
+
+.subsection-grid.section-content-grid .section-open-card {
+  flex: 0 1 auto;
+  width: fit-content;
+  min-width: min(210px, 100%);
+  max-width: min(360px, 100%);
+}
+
+.subsection-grid.section-content-grid .section-open-card span {
+  overflow-wrap: anywhere;
+  white-space: normal;
 }
 
 .parsed-window-panel {
