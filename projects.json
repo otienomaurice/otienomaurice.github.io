@@ -83,7 +83,7 @@
         ]
       },
       "portfolioView": {
-        "builtAt": "2026-06-06T23:17:23.088Z",
+        "builtAt": "2026-06-07T00:58:49.148Z",
         "template": {
           "group": "Appearance",
           "id": "",
@@ -127,56 +127,6 @@
                 "kind": "subsection",
                 "meta": "Subsection",
                 "title": "Design Brief",
-                "url": ""
-              },
-              {
-                "children": [
-                  {
-                    "children": [],
-                    "description": "",
-                    "kind": "subsection",
-                    "meta": "Subsection",
-                    "title": "References",
-                    "url": ""
-                  },
-                  {
-                    "children": [],
-                    "description": "",
-                    "kind": "subsection",
-                    "meta": "Subsection",
-                    "title": "Math / Analysis",
-                    "url": ""
-                  }
-                ],
-                "description": "",
-                "kind": "subsection",
-                "meta": "Subsection",
-                "title": "Documentation",
-                "url": ""
-              },
-              {
-                "children": [
-                  {
-                    "children": [],
-                    "description": "",
-                    "kind": "subsection",
-                    "meta": "Subsection",
-                    "title": "Simulation Results",
-                    "url": ""
-                  }
-                ],
-                "description": "",
-                "kind": "subsection",
-                "meta": "Subsection",
-                "title": "Design Simulation",
-                "url": ""
-              },
-              {
-                "children": [],
-                "description": "",
-                "kind": "subsection",
-                "meta": "Subsection",
-                "title": "PCB and Visual Evidence",
                 "url": ""
               }
             ],
@@ -257,7 +207,7 @@
         }
       },
       "portfolioView": {
-        "builtAt": "2026-06-06T23:17:23.088Z",
+        "builtAt": "2026-06-07T00:58:49.148Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-black-lab-blue-click",
@@ -276,93 +226,12 @@
             "click": "#ffffff",
             "clickText": "#111827",
             "line": "#7dd3fc",
-            "text": "#172033",
+            "text": "#f9fbff",
             "interaction": "Electric-blue hover with a high-contrast white click state."
           }
         },
         "title": "Laser link",
-        "sections": [
-          {
-            "description": "",
-            "id": "brief",
-            "items": [
-              {
-                "children": [],
-                "description": "",
-                "kind": "summary",
-                "meta": "Brief",
-                "title": "Summary",
-                "url": ""
-              }
-            ],
-            "title": "Project Brief"
-          },
-          {
-            "description": "",
-            "id": "design",
-            "items": [
-              {
-                "children": [],
-                "description": "",
-                "kind": "subsection",
-                "meta": "Subsection",
-                "title": "Design Brief",
-                "url": ""
-              },
-              {
-                "children": [
-                  {
-                    "children": [],
-                    "description": "",
-                    "kind": "subsection",
-                    "meta": "Subsection",
-                    "title": "References",
-                    "url": ""
-                  },
-                  {
-                    "children": [],
-                    "description": "",
-                    "kind": "subsection",
-                    "meta": "Subsection",
-                    "title": "Math / Analysis",
-                    "url": ""
-                  }
-                ],
-                "description": "",
-                "kind": "subsection",
-                "meta": "Subsection",
-                "title": "Documentation",
-                "url": ""
-              },
-              {
-                "children": [
-                  {
-                    "children": [],
-                    "description": "",
-                    "kind": "subsection",
-                    "meta": "Subsection",
-                    "title": "Simulation Results",
-                    "url": ""
-                  }
-                ],
-                "description": "",
-                "kind": "subsection",
-                "meta": "Subsection",
-                "title": "Design Simulation",
-                "url": ""
-              },
-              {
-                "children": [],
-                "description": "",
-                "kind": "subsection",
-                "meta": "Subsection",
-                "title": "PCB and Visual Evidence",
-                "url": ""
-              }
-            ],
-            "title": "Design"
-          }
-        ]
+        "sections": []
       }
     },
     {
@@ -427,7 +296,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-06T23:17:23.088Z",
+        "builtAt": "2026-06-07T00:58:49.148Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-graphite-white-click",
@@ -481,12 +350,6 @@
               }
             ],
             "title": "Design"
-          },
-          {
-            "description": "",
-            "id": "custom:tests",
-            "items": [],
-            "title": "Tests"
           }
         ]
       }
@@ -530,7 +393,7 @@
       "links": [],
       "sections": [],
       "portfolioView": {
-        "builtAt": "2026-06-06T23:17:23.088Z",
+        "builtAt": "2026-06-07T00:58:49.149Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-light-blue-red-click",
@@ -555,30 +418,9 @@
           }
         },
         "title": "The MIPS Computer",
-        "sections": [
-          {
-            "description": "",
-            "id": "brief",
-            "items": [
-              {
-                "children": [],
-                "description": "",
-                "kind": "summary",
-                "meta": "Brief",
-                "title": "Summary",
-                "url": ""
-              }
-            ],
-            "title": "Project Brief"
-          },
-          {
-            "description": "",
-            "id": "design",
-            "items": [],
-            "title": "Design"
-          }
-        ]
+        "sections": []
       }
     }
-  ]
+  ],
+  "siteSections": []
 }

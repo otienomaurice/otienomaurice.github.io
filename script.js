@@ -6,6 +6,7 @@ const year = document.querySelector("#year");
 
 let categories = [];
 let projects = [];
+let siteSections = [];
 let activeFilter = "all";
 let activeSectionDialogDrag = null;
 let activeSectionDialogResize = null;
@@ -267,7 +268,13 @@ function unwrapFormula(value) {
 
 function renderInlineMath(text) {
   const escaped = escapeHtml(text);
-  return escaped.replace(/\$([^$]+)\$/g, '<span class="rich-inline-formula">$1</span>');
+  const withMath = escaped.replace(/\$([^$]+)\$/g, '<span class="rich-inline-formula">$1</span>');
+  return withMath.replace(/\b(https?:\/\/[^\s<]+|www\.[^\s<]+)/g, (match) => {
+    const trailing = match.match(/[),.;:!?]+$/)?.[0] || "";
+    const clean = trailing ? match.slice(0, -trailing.length) : match;
+    const href = clean.startsWith("www.") ? `https://${clean}` : clean;
+    return `<a href="${href}" target="_blank" rel="noreferrer">${clean}</a>${trailing}`;
+  });
 }
 
 function renderRichContent(rich, fallbackText = "") {
@@ -503,6 +510,34 @@ function mediaGrid(items) {
   `;
 }
 
+function siteSectionHasContent(section) {
+  return Boolean(section?.title || section?.description || section?.backgroundImage || (section?.links || []).length || (section?.assets || []).length);
+}
+
+function renderSiteSections() {
+  const mount = document.querySelector("#dynamic-sections");
+  if (!mount) return;
+  const visibleSections = (siteSections || []).filter(siteSectionHasContent);
+  mount.innerHTML = visibleSections.map((section) => {
+    const style = section.backgroundImage ? ` style="--section-bg: url('${escapeHtml(section.backgroundImage)}')"` : "";
+    const links = [...(section.links || []), ...(section.assets || [])].filter((item) => item?.url);
+    return `
+      <section class="section dynamic-section" id="${escapeHtml(section.id || "")}"${style}>
+        <div class="dynamic-section-surface">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">${escapeHtml(section.eyebrow || "Portfolio section")}</p>
+              <h2>${escapeHtml(section.title || "Untitled section")}</h2>
+            </div>
+          </div>
+          ${section.description ? `<p class="dynamic-section-copy">${renderInlineMath(section.description)}</p>` : ""}
+          ${links.length ? `<div class="resource-list">${links.map((item) => resourceLink(item, item.label || item.title || "Open")).join("")}</div>` : ""}
+        </div>
+      </section>
+    `;
+  }).join("");
+}
+
 function customSectionBlocks(project) {
   return (project.sections || []).map((section) => detailBlock(section.title, "evidence-block evidence-wide", `
     ${section.description ? `<p class="evidence-empty">${section.description}</p>` : ""}
@@ -519,12 +554,11 @@ function customSectionBlocks(project) {
 function renderParsedBriefBlock(section, fallbackSummary = "") {
   const briefItem = section?.items?.[0] || {};
   const briefText = briefItem.description || fallbackSummary || "";
+  if (!briefItem.rich?.blocks?.length && !briefText) return "";
   return `
     <details class="project-brief-default parsed-summary" open>
       <summary>${section?.title || "Project Brief"}</summary>
-      ${briefItem.rich?.blocks?.length || briefText
-        ? renderRichContent(briefItem.rich, briefText)
-        : `<p class="evidence-empty">No project brief has been added yet.</p>`}
+      ${renderRichContent(briefItem.rich, briefText)}
     </details>
   `;
 }
@@ -553,13 +587,36 @@ function nodeChildren(node) {
   return node?.items || node?.children || [];
 }
 
+function richHasRenderableContent(rich) {
+  return Boolean(rich?.blocks?.some((block) =>
+    block.type === "image" && block.url ||
+    block.type === "formula" && block.formula ||
+    block.text ||
+    block.title ||
+    block.caption
+  ));
+}
+
+function nodeHasRenderableContent(node) {
+  if (!node) return false;
+  if (node.kind === "summary") return Boolean(node.description || richHasRenderableContent(node.rich));
+  const children = nodeChildren(node);
+  if (node.kind === "subsection") {
+    return Boolean(node.description || node.url || richHasRenderableContent(node.rich) || children.some(nodeHasRenderableContent));
+  }
+  return Boolean(node.title || node.description || node.url || richHasRenderableContent(node.rich) || children.some(nodeHasRenderableContent));
+}
+
+function sectionHasRenderableContent(section) {
+  return Boolean(section?.description || (section?.items || []).some(nodeHasRenderableContent));
+}
+
 function nodeSummary(title, rich, text, emptyMessage = "No summary has been added yet.") {
+  if (!rich?.blocks?.length && !text) return "";
   return `
     <details class="parsed-summary" open>
       <summary>${title}</summary>
-      ${rich?.blocks?.length || text
-        ? renderRichContent(rich, text || "")
-        : `<p class="evidence-empty">${emptyMessage}</p>`}
+      ${renderRichContent(rich, text || "")}
     </details>
   `;
 }
@@ -590,10 +647,11 @@ function parsedNodeCard(node, projectId, sectionIndex, path) {
 }
 
 function parsedChildCards(children, projectId, sectionIndex, basePath = []) {
-  if (!children.length) return `<p class="evidence-empty">No content has been added yet.</p>`;
+  const visibleChildren = children.filter(nodeHasRenderableContent);
+  if (!visibleChildren.length) return "";
   return `
     <div class="subsection-grid section-content-grid">
-      ${children.map((child, index) => parsedNodeCard(child, projectId, sectionIndex, [...basePath, index])).join("")}
+      ${children.map((child, index) => nodeHasRenderableContent(child) ? parsedNodeCard(child, projectId, sectionIndex, [...basePath, index]) : "").join("")}
     </div>
   `;
 }
@@ -632,8 +690,9 @@ function parsedSectionContent(section, projectId, sectionIndex, path = []) {
 }
 
 function parsedSection(section, index, project) {
-  const itemCount = (section.items || []).length;
-  const hasImages = (section.items || []).some((item) => item.kind === "image");
+  const visibleItems = (section.items || []).filter(nodeHasRenderableContent);
+  const itemCount = visibleItems.length;
+  const hasImages = visibleItems.some((item) => item.kind === "image");
 
   return `
     <button
@@ -655,11 +714,10 @@ function projectCard(project) {
     const showTemplateChrome = hasPublicTemplate(project);
     const sections = project.portfolioView.sections || [];
     const briefSection = sections.find((section) => section.id === "brief");
-    const otherSections = sections.filter((section) => section.id !== "brief");
+    const otherSections = sections.filter((section) => section.id !== "brief" && sectionHasRenderableContent(section));
 
     return `
       <article class="project-card catalog-card ${projectTemplateClass(project)}" id="${project.id}" style="${projectTemplateStyle(project, accent)}">
-        ${showTemplateChrome ? `<div class="project-visual" aria-hidden="true"></div>` : ""}
         <div class="project-body">
           ${showTemplateChrome ? `<div class="project-meta">
             <span class="tag category-tag">${category.label || project.category}</span>
@@ -682,7 +740,6 @@ function projectCard(project) {
 
   return `
     <article class="project-card catalog-card ${projectTemplateClass(project)}" id="${project.id}" style="${projectTemplateStyle(project, accent)}">
-      ${showTemplateChrome ? `<div class="project-visual" aria-hidden="true"></div>` : ""}
       <div class="project-body">
         ${showTemplateChrome ? `<div class="project-meta">
           <span class="tag category-tag">${category.label || project.category}</span>
@@ -813,9 +870,6 @@ function ensureSectionDialog() {
     </div>
   `;
   document.body.append(dialog);
-  dialog.querySelector(".section-view-heading").dataset.sectionDialogDrag = "true";
-  ensureSectionResizeHandles(dialog);
-  enableSectionDialogDrag();
   dialog.querySelector(".section-view-minimize").addEventListener("click", () => toggleSectionDialogMinimized(dialog));
   dialog.querySelector(".section-view-close").addEventListener("click", () => dialog.close());
   dialog.addEventListener("close", () => {
@@ -854,6 +908,7 @@ function openParsedSection(projectId, sectionIndex, resourcePath = "") {
   dialog.querySelector(".section-view-back").hidden = !path.length;
   dialog.querySelector("#section-view-content").innerHTML = parsedSectionContent(section, projectId, Number(sectionIndex), path);
   if (!dialog.open) dialog.showModal();
+  dialog.scrollTop = 0;
 }
 
 filterButtons.forEach((button) => {
@@ -876,6 +931,8 @@ function loadProjectCatalog() {
   if (window.__PORTFOLIO_CATALOG__) {
     categories = window.__PORTFOLIO_CATALOG__.categories || [];
     projects = window.__PORTFOLIO_CATALOG__.projects || [];
+    siteSections = window.__PORTFOLIO_CATALOG__.siteSections || [];
+    renderSiteSections();
     renderProjects();
     return;
   }
@@ -888,6 +945,8 @@ function loadProjectCatalog() {
     .then((data) => {
       categories = data.categories || [];
       projects = data.projects || [];
+      siteSections = data.siteSections || [];
+      renderSiteSections();
       renderProjects();
     })
     .catch(() => {
