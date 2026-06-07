@@ -739,7 +739,6 @@ function projectCard(project) {
   if (project.portfolioView) {
     const category = categories.find((item) => item.id === project.category) || {};
     const accent = category.accent || "#117c7a";
-    const showTemplateChrome = hasPublicTemplate(project);
     const sections = project.portfolioView.sections || [];
     const briefSection = sections.find((section) => section.id === "brief");
     const otherSections = sections.filter((section) => section.id !== "brief" && sectionHasRenderableContent(section));
@@ -747,11 +746,6 @@ function projectCard(project) {
     return `
       <article class="project-card catalog-card ${projectTemplateClass(project)}" id="${project.id}" style="${projectTemplateStyle(project, accent)}">
         <div class="project-body">
-          ${showTemplateChrome ? `<div class="project-meta">
-            <span class="tag category-tag">${category.label || project.category}</span>
-            <span class="tag">${project.status}</span>
-            ${pillList(project.focus)}
-          </div>` : ""}
           <h3>${project.portfolioView.title || project.title}</h3>
           ${renderParsedBriefBlock(briefSection, project.summary)}
           <div class="evidence-grid" aria-label="${project.title} parsed project sections">
@@ -764,16 +758,10 @@ function projectCard(project) {
 
   const category = categories.find((item) => item.id === project.category) || {};
   const accent = category.accent || "#117c7a";
-  const showTemplateChrome = hasPublicTemplate(project);
 
   return `
     <article class="project-card catalog-card ${projectTemplateClass(project)}" id="${project.id}" style="${projectTemplateStyle(project, accent)}">
       <div class="project-body">
-        ${showTemplateChrome ? `<div class="project-meta">
-          <span class="tag category-tag">${category.label || project.category}</span>
-          <span class="tag">${project.status}</span>
-          ${pillList(project.focus)}
-        </div>` : ""}
         <h3>${project.title}</h3>
         <p>${project.summary}</p>
 

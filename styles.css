@@ -541,7 +541,6 @@ h3 {
     var(--template-bg);
 }
 
-.project-template .category-tag,
 .project-template .parsed-summary summary::marker {
   color: var(--template-accent);
 }
@@ -794,11 +793,6 @@ h3 {
   background: #f8fafb;
   font-size: 0.78rem;
   font-weight: 800;
-}
-
-.category-tag {
-  border-color: color-mix(in srgb, var(--accent), #ffffff 34%);
-  color: var(--accent);
 }
 
 .project-card p {
