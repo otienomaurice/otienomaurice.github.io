@@ -3,10 +3,12 @@ const searchInput = document.querySelector("#project-search");
 const filterButtons = [...document.querySelectorAll(".filter-button")];
 const projectCount = document.querySelector("#project-count");
 const year = document.querySelector("#year");
+const funFactsCallout = document.querySelector("#fun-facts-callout");
 
 let categories = [];
 let projects = [];
 let siteSections = [];
+let funFacts = [];
 let activeFilter = "all";
 let activeSectionDialogDrag = null;
 let activeSectionDialogResize = null;
@@ -42,6 +44,28 @@ year.textContent = new Date().getFullYear();
 
 function normalize(value) {
   return String(value || "").toLowerCase();
+}
+
+function normalizeFunFacts(value) {
+  const items = Array.isArray(value) ? value : String(value || "").split(/\r?\n/);
+  return items
+    .map((item) => String(item || "").replace(/\s+/g, " ").trim())
+    .filter(Boolean)
+    .slice(0, 3);
+}
+
+function renderFunFacts() {
+  if (!funFactsCallout) return;
+  const facts = normalizeFunFacts(funFacts);
+  funFactsCallout.hidden = !facts.length;
+  funFactsCallout.innerHTML = facts.length ? `
+    <div class="fun-facts-window">
+      <span class="fun-facts-label">Fun fact:</span>
+      <div class="fun-facts-lines">
+        ${facts.map((fact) => `<p class="fun-fact-line">${renderInlineMath(fact)}</p>`).join("")}
+      </div>
+    </div>
+  ` : "";
 }
 
 function clampSectionDialogPosition(left, top, dialog) {
@@ -1050,6 +1074,8 @@ function loadProjectCatalog() {
     categories = window.__PORTFOLIO_CATALOG__.categories || [];
     projects = window.__PORTFOLIO_CATALOG__.projects || [];
     siteSections = window.__PORTFOLIO_CATALOG__.siteSections || [];
+    funFacts = normalizeFunFacts(window.__PORTFOLIO_CATALOG__.funFacts || []);
+    renderFunFacts();
     renderSiteSections();
     renderProjects();
     return;
@@ -1064,6 +1090,8 @@ function loadProjectCatalog() {
       categories = data.categories || [];
       projects = data.projects || [];
       siteSections = data.siteSections || [];
+      funFacts = normalizeFunFacts(data.funFacts || []);
+      renderFunFacts();
       renderSiteSections();
       renderProjects();
     })

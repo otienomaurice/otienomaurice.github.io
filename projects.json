@@ -19,6 +19,10 @@
       "accent": "#d18b21"
     }
   ],
+  "funFacts": [
+    "I built a builder to build this portfolio.",
+    "I love a good argument about soccer: the tactics, the culture, the refereeing, all of it."
+  ],
   "projects": [
     {
       "id": "fdztgduyjfgikglgli",
@@ -100,7 +104,7 @@
         }
       },
       "portfolioView": {
-        "builtAt": "2026-06-07T16:12:08.244Z",
+        "builtAt": "2026-06-07T16:37:54.209Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-emerald-mint-click",
@@ -278,7 +282,7 @@
         ]
       },
       "portfolioView": {
-        "builtAt": "2026-06-07T16:12:08.244Z",
+        "builtAt": "2026-06-07T16:37:54.209Z",
         "template": {
           "group": "Appearance",
           "id": "",
@@ -472,7 +476,7 @@
         ]
       },
       "portfolioView": {
-        "builtAt": "2026-06-07T16:12:08.245Z",
+        "builtAt": "2026-06-07T16:37:54.209Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-graphite-white-click",
@@ -592,7 +596,7 @@
       "links": [],
       "sections": [],
       "portfolioView": {
-        "builtAt": "2026-06-07T16:12:08.245Z",
+        "builtAt": "2026-06-07T16:37:54.209Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-light-blue-red-click",
