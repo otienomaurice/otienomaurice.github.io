@@ -543,7 +543,6 @@ function renderSiteSections() {
         <div class="dynamic-section-surface">
           <div class="section-heading">
             <div>
-              <p class="eyebrow">${escapeHtml(section.eyebrow || "Portfolio section")}</p>
               <h2>${escapeHtml(section.title || "Untitled section")}</h2>
             </div>
           </div>
@@ -748,7 +747,7 @@ function projectCard(project) {
         <div class="project-body">
           <h3>${project.portfolioView.title || project.title}</h3>
           ${renderParsedBriefBlock(briefSection, project.summary)}
-          <div class="evidence-grid" aria-label="${project.title} parsed project sections">
+          <div class="evidence-grid" aria-label="${project.title} parsed project content">
             ${otherSections.map((section, index) => parsedSection(section, index, project)).join("")}
           </div>
         </div>
