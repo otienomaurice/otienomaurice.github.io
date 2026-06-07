@@ -21,6 +21,181 @@
   ],
   "projects": [
     {
+      "id": "fdztgduyjfgikglgli",
+      "title": "fdztgduyjfgikglgli",
+      "templateId": "appearance-emerald-mint-click",
+      "templateLabel": "Emerald bench, green hover, mint click",
+      "templateGroup": "Appearance",
+      "templateVisual": {
+        "style": "instrument",
+        "palette": [
+          "#f0fdf6",
+          "#16865a",
+          "#effff6"
+        ],
+        "background": "#f0fdf6",
+        "panel": "#ffffff",
+        "accent": "#16865a",
+        "hover": "#16865a",
+        "click": "#effff6",
+        "clickText": "#182f26",
+        "line": "#9adfbd",
+        "text": "#182f26",
+        "interaction": "Emerald hover with a soft mint click state."
+      },
+      "category": "analog-mixed-signal",
+      "status": "Draft",
+      "summary": "ljkvgigj'k'\\]pkl'xhcffgvhnj'pkl\\[l['l[l.'[]",
+      "summaryRich": {
+        "blocks": [
+          {
+            "align": "left",
+            "fontSize": "normal",
+            "text": "ljkvgigj'k'\\]pkl'xhcffgvhnj'pkl\\[l['l[l.'[]",
+            "type": "paragraph"
+          }
+        ]
+      },
+      "focus": [],
+      "highlights": [],
+      "documents": [],
+      "tests": [],
+      "pcbs": [],
+      "media": [],
+      "tools": [],
+      "languages": [],
+      "links": [],
+      "sections": [],
+      "design": {
+        "brief": {
+          "summary": "ljklik;n'm\\:,:'n lv bkjuvkjuvjuk",
+          "summaryRich": null,
+          "files": []
+        },
+        "documentation": {
+          "summary": " nm ;lmn;lnlvuycdyutxdcytcduytghc ",
+          "files": [],
+          "references": [],
+          "mathAnalysis": [
+            {
+              "title": "cx jytdcukytfiyufgviugfviufcvuyfdc",
+              "description": "v ,cvudcyutdxckyutdu7t5dc7tudeygfyhythfgty",
+              "type": "Math / Analysis",
+              "status": "draft"
+            }
+          ]
+        },
+        "simulation": {
+          "summary": "",
+          "summaryRich": null,
+          "files": [],
+          "results": []
+        }
+      },
+      "portfolioView": {
+        "builtAt": "2026-06-07T01:06:08.560Z",
+        "template": {
+          "group": "Appearance",
+          "id": "appearance-emerald-mint-click",
+          "label": "Emerald bench, green hover, mint click",
+          "visual": {
+            "style": "instrument",
+            "palette": [
+              "#f0fdf6",
+              "#16865a",
+              "#effff6"
+            ],
+            "background": "#f0fdf6",
+            "panel": "#ffffff",
+            "accent": "#16865a",
+            "hover": "#16865a",
+            "click": "#effff6",
+            "clickText": "#182f26",
+            "line": "#9adfbd",
+            "text": "#182f26",
+            "interaction": "Emerald hover with a soft mint click state."
+          }
+        },
+        "title": "fdztgduyjfgikglgli",
+        "sections": [
+          {
+            "description": "",
+            "id": "brief",
+            "items": [
+              {
+                "children": [],
+                "description": "ljkvgigj'k'\\]pkl'xhcffgvhnj'pkl\\[l['l[l.'[]",
+                "kind": "summary",
+                "meta": "Brief",
+                "title": "Summary",
+                "url": "",
+                "rich": {
+                  "blocks": [
+                    {
+                      "align": "left",
+                      "fontSize": "normal",
+                      "text": "ljkvgigj'k'\\]pkl'xhcffgvhnj'pkl\\[l['l[l.'[]",
+                      "type": "paragraph"
+                    }
+                  ]
+                }
+              }
+            ],
+            "title": "Project Brief"
+          },
+          {
+            "description": "",
+            "id": "design",
+            "items": [
+              {
+                "children": [],
+                "description": "ljklik;n'm\\:,:'n lv bkjuvkjuvjuk",
+                "kind": "subsection",
+                "meta": "Subsection",
+                "title": "Design Brief",
+                "url": ""
+              },
+              {
+                "children": [
+                  {
+                    "children": [],
+                    "description": "",
+                    "kind": "subsection",
+                    "meta": "Subsection",
+                    "title": "References",
+                    "url": ""
+                  },
+                  {
+                    "children": [
+                      {
+                        "children": [],
+                        "description": "v ,cvudcyutdxckyutdu7t5dc7tudeygfyhythfgty",
+                        "kind": "analysis",
+                        "meta": "Math / Analysis",
+                        "title": "cx jytdcukytfiyufgviugfviufcvuyfdc",
+                        "url": ""
+                      }
+                    ],
+                    "description": "",
+                    "kind": "subsection",
+                    "meta": "Subsection",
+                    "title": "Math / Analysis",
+                    "url": ""
+                  }
+                ],
+                "description": " nm ;lmn;lnlvuycdyutxdcytcduytghc ",
+                "kind": "subsection",
+                "meta": "Subsection",
+                "title": "Documentation",
+                "url": ""
+              }
+            ],
+            "title": "Design"
+          }
+        ]
+      }
+    },
+    {
       "id": "voltage-controlled-oscillator",
       "title": "Voltage controlled oscillator",
       "templateId": "",
@@ -83,7 +258,7 @@
         ]
       },
       "portfolioView": {
-        "builtAt": "2026-06-07T00:58:49.148Z",
+        "builtAt": "2026-06-07T01:06:08.560Z",
         "template": {
           "group": "Appearance",
           "id": "",
@@ -151,90 +326,6 @@
       }
     },
     {
-      "id": "laser-link",
-      "title": "Laser link",
-      "templateId": "appearance-black-lab-blue-click",
-      "templateLabel": "Black lab, electric hover, white click",
-      "templateGroup": "Appearance",
-      "templateVisual": {
-        "style": "chip",
-        "palette": [
-          "#111827",
-          "#38bdf8",
-          "#ffffff"
-        ],
-        "background": "#111827",
-        "panel": "#f9fbff",
-        "accent": "#0284c7",
-        "hover": "#0284c7",
-        "click": "#ffffff",
-        "clickText": "#111827",
-        "line": "#7dd3fc",
-        "text": "#172033",
-        "interaction": "Electric-blue hover with a high-contrast white click state."
-      },
-      "category": "analog-mixed-signal",
-      "status": "Draft",
-      "summary": "",
-      "summaryRich": null,
-      "focus": [],
-      "highlights": [],
-      "documents": [],
-      "tests": [],
-      "pcbs": [],
-      "media": [],
-      "tools": [],
-      "languages": [],
-      "links": [],
-      "sections": [],
-      "design": {
-        "brief": {
-          "summary": "",
-          "summaryRich": null,
-          "files": []
-        },
-        "documentation": {
-          "summary": "",
-          "files": [],
-          "references": [],
-          "mathAnalysis": []
-        },
-        "simulation": {
-          "summary": "",
-          "summaryRich": null,
-          "files": [],
-          "results": []
-        }
-      },
-      "portfolioView": {
-        "builtAt": "2026-06-07T00:58:49.148Z",
-        "template": {
-          "group": "Appearance",
-          "id": "appearance-black-lab-blue-click",
-          "label": "Black lab, electric hover, white click",
-          "visual": {
-            "style": "chip",
-            "palette": [
-              "#111827",
-              "#38bdf8",
-              "#ffffff"
-            ],
-            "background": "#111827",
-            "panel": "#f9fbff",
-            "accent": "#0284c7",
-            "hover": "#0284c7",
-            "click": "#ffffff",
-            "clickText": "#111827",
-            "line": "#7dd3fc",
-            "text": "#f9fbff",
-            "interaction": "Electric-blue hover with a high-contrast white click state."
-          }
-        },
-        "title": "Laser link",
-        "sections": []
-      }
-    },
-    {
       "id": "battery-status-monitoring-system-on-stride",
       "title": "Battery status Monitoring system on STRIDE",
       "templateId": "embedded-rtos-control",
@@ -296,7 +387,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-07T00:58:49.148Z",
+        "builtAt": "2026-06-07T01:06:08.560Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-graphite-white-click",
@@ -393,7 +484,7 @@
       "links": [],
       "sections": [],
       "portfolioView": {
-        "builtAt": "2026-06-07T00:58:49.149Z",
+        "builtAt": "2026-06-07T01:06:08.560Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-light-blue-red-click",
@@ -422,5 +513,14 @@
       }
     }
   ],
-  "siteSections": []
+  "siteSections": [
+    {
+      "id": "personal",
+      "title": "Personal",
+      "description": "",
+      "backgroundImage": "",
+      "links": [],
+      "assets": []
+    }
+  ]
 }
