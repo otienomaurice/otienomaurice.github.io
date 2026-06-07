@@ -93,7 +93,7 @@
         }
       },
       "portfolioView": {
-        "builtAt": "2026-06-07T12:21:40.668Z",
+        "builtAt": "2026-06-07T12:22:21.315Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-emerald-mint-click",
@@ -265,7 +265,7 @@
         ]
       },
       "portfolioView": {
-        "builtAt": "2026-06-07T12:21:40.668Z",
+        "builtAt": "2026-06-07T12:22:21.315Z",
         "template": {
           "group": "Appearance",
           "id": "",
@@ -459,7 +459,7 @@
         ]
       },
       "portfolioView": {
-        "builtAt": "2026-06-07T12:21:40.668Z",
+        "builtAt": "2026-06-07T12:22:21.315Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-graphite-white-click",
@@ -579,7 +579,7 @@
       "links": [],
       "sections": [],
       "portfolioView": {
-        "builtAt": "2026-06-07T12:21:40.668Z",
+        "builtAt": "2026-06-07T12:22:21.315Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-light-blue-red-click",
@@ -608,23 +608,5 @@
       }
     }
   ],
-  "siteSections": [
-    {
-      "id": "personal",
-      "title": "Personal",
-      "description": "",
-      "backgroundImage": "docs/_site-sections/personal/133845505641991914.jpg",
-      "links": [],
-      "assets": [],
-      "visible": true,
-      "subsections": [
-        {
-          "description": "The differential amplifiers we have studied thus far have been of the differential output variety; that is, the\noutput is taken between the two drains (or two collectors) rather than between one of the drains (collectors)\nand ground. Taking the output differentially has three major advantages:\n1.\n2.\n3.\nIt decreases the common-mode gain and thus increases the common-mode rejection ratio (CMRR).\nRecall that while the drain (collector) voltages change somewhat in response to a common-mode input\nsignal, the difference between the drain (collector) voltages remains essentially zero except for a small\nchange due to the mismatches inevitably present in the circuit.\nIt decreases the input offset voltage.\nIt increases the differential gain by a factor of 2 (6 dB) because the output is the difference between\ntwo voltages of equal magnitude and opposite sign.\nThese advantages are sufficiently compelling that at least the first stage in an IC amplifier such as an op amp\nis differential-in, differential-out. The differential transmission of the signal on the chip also minimizes its\nsusceptibility to corruption with noise and interference, which usually occur in a common-mode fashion.\nNevertheless, it is usually required at some point to convert the signal from differential to single-ended; for\ninstance, to connect it to an off-chip load. Figure 9.29 shows a block diagram of a three-stage amplifier in\nwhich the first two stages are of the differential-in, differential-out type, and the third has a single-ended\noutput, that is, an output that is referenced to ground. We now address the question of conversion from",
-          "id": "dhdtgdjuydfkfg-lcxyh",
-          "links": [],
-          "title": "dhdtgdjuydfkfg lcxyh"
-        }
-      ]
-    }
-  ]
+  "siteSections": []
 }
