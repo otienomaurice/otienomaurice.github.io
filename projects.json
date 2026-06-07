@@ -93,7 +93,7 @@
         }
       },
       "portfolioView": {
-        "builtAt": "2026-06-07T12:15:04.882Z",
+        "builtAt": "2026-06-07T12:18:58.947Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-emerald-mint-click",
@@ -265,7 +265,7 @@
         ]
       },
       "portfolioView": {
-        "builtAt": "2026-06-07T12:15:04.882Z",
+        "builtAt": "2026-06-07T12:18:58.947Z",
         "template": {
           "group": "Appearance",
           "id": "",
@@ -459,7 +459,7 @@
         ]
       },
       "portfolioView": {
-        "builtAt": "2026-06-07T12:15:04.882Z",
+        "builtAt": "2026-06-07T12:18:58.947Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-graphite-white-click",
@@ -579,7 +579,7 @@
       "links": [],
       "sections": [],
       "portfolioView": {
-        "builtAt": "2026-06-07T12:15:04.882Z",
+        "builtAt": "2026-06-07T12:18:58.947Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-light-blue-red-click",
@@ -613,7 +613,7 @@
       "id": "personal",
       "title": "Personal",
       "description": "",
-      "backgroundImage": "",
+      "backgroundImage": "docs/_site-sections/personal/133845505641991914.jpg",
       "links": [],
       "assets": [],
       "visible": true,
