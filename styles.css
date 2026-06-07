@@ -30,6 +30,10 @@ body {
   line-height: 1.5;
 }
 
+body.full-window-open {
+  overflow: hidden;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -297,18 +301,19 @@ h3 {
 }
 
 .dynamic-section {
-  padding-block: clamp(34px, 6vw, 76px);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid rgba(201, 222, 234, 0.55);
   background:
-    linear-gradient(90deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.82)),
-    var(--section-bg, linear-gradient(135deg, #eef9ff, #ffffff));
+    linear-gradient(180deg, rgba(238, 248, 252, 0.94), rgba(255, 255, 255, 0.9)),
+    var(--section-bg, var(--paper));
   background-position: center;
   background-size: cover;
 }
 
 .dynamic-section-surface {
   display: grid;
-  gap: 16px;
-  width: min(1100px, calc(100% - 28px));
+  gap: 18px;
+  width: min(1180px, 100%);
   margin: 0 auto;
 }
 
@@ -332,7 +337,8 @@ h3 {
   padding: 18px;
   border: 1px solid color-mix(in srgb, var(--line), #ffffff 18%);
   border-radius: 8px;
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: 0 12px 28px rgba(23, 32, 42, 0.06);
 }
 
 .dynamic-section-card h3,
@@ -1099,17 +1105,20 @@ h3 {
 }
 
 .section-view-dialog {
+  inset: 0;
+  margin: 0;
   width: 100vw;
-  height: 100vh;
+  height: 100dvh;
   max-width: none;
   max-height: none;
   padding: 0;
   border: 0;
   border-radius: 0;
-  background: #ffffff;
+  background: var(--paper);
   box-shadow: 0 24px 70px rgba(23, 32, 42, 0.24);
-  position: relative;
+  position: fixed;
   overflow: auto;
+  overscroll-behavior: contain;
 }
 
 .section-view-dialog.is-draggable-dialog {
@@ -1210,7 +1219,7 @@ h3 {
 }
 
 .section-view-dialog::backdrop {
-  background: rgba(20, 34, 49, 0.46);
+  background: var(--paper);
 }
 
 .section-view-dialog.project-template {
@@ -1223,10 +1232,12 @@ h3 {
 
 .section-view-shell {
   display: grid;
-  gap: 16px;
-  width: min(1180px, calc(100vw - 28px));
-  margin: 0 auto;
-  padding: 0 clamp(14px, 3vw, 28px) clamp(28px, 5vw, 48px);
+  grid-template-rows: auto minmax(0, 1fr);
+  gap: 0;
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 .section-view-dialog.is-minimized-dialog .section-view-shell {
@@ -1246,9 +1257,11 @@ h3 {
   align-items: center;
   justify-content: space-between;
   gap: 14px;
-  padding: 12px 14px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
+  width: 100%;
+  padding: 12px clamp(14px, 3vw, 28px);
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
   background: #f7fcff;
   cursor: default;
   touch-action: none;
@@ -1270,6 +1283,14 @@ h3 {
   margin: 0;
 }
 
+.section-view-titlebar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  flex: 1;
+}
+
 .section-view-heading > div {
   min-width: 0;
 }
@@ -1280,7 +1301,7 @@ h3 {
 }
 
 .section-view-heading h2 {
-  max-width: min(720px, 62vw);
+  max-width: none;
   color: var(--ink);
   font-size: clamp(1rem, 1.45vw, 1.42rem);
   line-height: 1.22;
@@ -1363,10 +1384,40 @@ h3 {
 .section-view-content {
   display: grid;
   gap: 14px;
+  align-content: start;
+  width: min(1180px, calc(100% - 28px));
+  margin: 0 auto;
+  padding: clamp(18px, 4vw, 38px) 0 clamp(28px, 5vw, 54px);
 }
 
 .section-content-grid {
   grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+}
+
+.parsed-window-panel {
+  display: grid;
+  gap: 14px;
+  padding: clamp(16px, 3vw, 24px);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.86);
+  box-shadow: 0 14px 34px rgba(23, 32, 42, 0.07);
+}
+
+.nested-window-panel,
+.leaf-window-panel {
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.subsection-open-card {
+  min-height: 68px;
+  background: rgba(255, 255, 255, 0.74);
+}
+
+.subsection-open-card span,
+.item-open-card span {
+  font-size: 0.82rem;
+  text-transform: none;
 }
 
 .resource-detail {
@@ -1648,11 +1699,11 @@ h3 {
 @media (max-width: 560px) {
   .section-view-shell {
     width: 100%;
-    padding: 0 10px 24px;
+    padding: 0;
   }
 
   .section-view-heading {
-    align-items: flex-start;
+    align-items: center;
     gap: 10px;
     padding: 10px;
   }

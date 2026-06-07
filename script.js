@@ -286,7 +286,7 @@ function renderRichContent(rich, fallbackText = "") {
         if (block.type === "image") {
           return `
             <figure class="rich-image justify-${align}">
-              <img src="${escapeHtml(block.url)}" alt="${escapeHtml(block.title || "Summary image")}">
+              <img src="${escapeHtml(block.url)}" alt="${escapeHtml(block.title || "Overview image")}">
               ${(block.title || block.caption) ? `<figcaption>${block.title ? `<strong>${escapeHtml(block.title)}</strong>` : ""}${block.caption ? `<span>${escapeHtml(block.caption)}</span>` : ""}</figcaption>` : ""}
             </figure>
           `;
@@ -659,9 +659,10 @@ function parsedNodeMeta(node) {
 }
 
 function parsedNodeCard(node, projectId, sectionIndex, path) {
+  const cardClass = node.kind === "subsection" ? "subsection-open-card" : "item-open-card";
   return `
     <button
-      class="section-open-card evidence-block resource-open-card"
+      class="section-open-card evidence-block resource-open-card ${cardClass}"
       type="button"
       data-section-project="${projectId}"
       data-section-index="${sectionIndex}"
@@ -686,8 +687,9 @@ function parsedChildCards(children, projectId, sectionIndex, basePath = []) {
 function parsedLeafDetail(item) {
   const hasImage = item.kind === "image" && item.url;
   return `
-    ${nodeSummary("Summary", item.rich, item.description || "", "No summary has been added for this item.")}
-    <article class="resource-detail">
+    <article class="parsed-window-panel leaf-window-panel">
+    ${nodeSummary("Overview", item.rich, item.description || "", "No overview has been added for this item.")}
+    <div class="resource-detail">
       <strong>${item.url ? resourceLink({ url: item.url, status: "uploaded" }, item.title) : item.title}</strong>
       ${item.meta ? `<span>${item.meta}</span>` : ""}
       ${hasImage ? `
@@ -696,6 +698,7 @@ function parsedLeafDetail(item) {
           ${item.description ? `<figcaption><span>${item.description}</span></figcaption>` : ""}
         </figure>
       ` : ""}
+    </div>
     </article>
   `;
 }
@@ -705,8 +708,10 @@ function parsedNodeContent(node, projectId, sectionIndex, path = []) {
   if (!isContainer) return parsedLeafDetail(node);
   const children = nodeChildren(node);
   return `
-    ${nodeSummary("Summary", node.rich, node.description || "", "No section summary has been added yet.")}
+    <article class="parsed-window-panel ${path.length ? "nested-window-panel" : "root-window-panel"}">
+    ${nodeSummary("Overview", node.rich, node.description || "", "No section overview has been added yet.")}
     ${parsedChildCards(children, projectId, sectionIndex, path)}
+    </article>
   `;
 }
 
@@ -870,12 +875,11 @@ function ensureSectionDialog() {
   dialog.innerHTML = `
     <div class="section-view-shell">
       <div class="section-view-heading">
-        <div>
+        <div class="section-view-titlebar">
+          <button class="section-view-back" type="button" title="Previous view" aria-label="Previous view" hidden>&larr;</button>
           <h2 id="section-view-title">Section</h2>
         </div>
         <div class="section-view-actions">
-          <button class="section-view-back" type="button" title="Previous view" aria-label="Previous view" hidden>&larr;</button>
-          <button class="section-view-minimize" type="button" title="Minimize window" aria-label="Minimize window">-</button>
           <button class="section-view-close" type="button" aria-label="Close section">&times;</button>
         </div>
       </div>
@@ -883,9 +887,10 @@ function ensureSectionDialog() {
     </div>
   `;
   document.body.append(dialog);
-  dialog.querySelector(".section-view-minimize").addEventListener("click", () => toggleSectionDialogMinimized(dialog));
+  dialog.querySelector(".section-view-minimize")?.addEventListener("click", () => toggleSectionDialogMinimized(dialog));
   dialog.querySelector(".section-view-close").addEventListener("click", () => closeOrStepBackSectionDialog(dialog));
   dialog.addEventListener("close", () => {
+    document.body.classList.remove("full-window-open");
     dialog.classList.remove("is-minimized-dialog");
     updateSectionDialogMinimize(dialog);
     const returnTarget = document.querySelector(
@@ -934,6 +939,7 @@ function openParsedSection(projectId, sectionIndex, resourcePath = "") {
   dialog.querySelector("#section-view-title").textContent = node.title || section.title;
   dialog.querySelector(".section-view-back").hidden = !path.length;
   dialog.querySelector("#section-view-content").innerHTML = parsedSectionContent(section, projectId, Number(sectionIndex), path);
+  document.body.classList.add("full-window-open");
   if (!dialog.open) dialog.showModal();
   dialog.scrollTop = 0;
 }

@@ -65,7 +65,14 @@
       "tools": [],
       "languages": [],
       "links": [],
-      "sections": [],
+      "sections": [
+        {
+          "id": "me",
+          "title": "me",
+          "description": "you",
+          "items": []
+        }
+      ],
       "design": {
         "brief": {
           "summary": "ljklik;n'm\\:,:'n lv bkjuvkjuvjuk",
@@ -93,7 +100,7 @@
         }
       },
       "portfolioView": {
-        "builtAt": "2026-06-07T12:22:21.315Z",
+        "builtAt": "2026-06-07T13:08:26.620Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-emerald-mint-click",
@@ -127,7 +134,7 @@
                 "description": "ljkvgigj'k'\\]pkl'xhcffgvhnj'pkl\\[l['l[l.'[]",
                 "kind": "summary",
                 "meta": "Brief",
-                "title": "Summary",
+                "title": "Overview",
                 "url": "",
                 "rich": {
                   "blocks": [
@@ -191,6 +198,12 @@
               }
             ],
             "title": "Design"
+          },
+          {
+            "description": "you",
+            "id": "custom:me",
+            "items": [],
+            "title": "me"
           }
         ]
       }
@@ -265,7 +278,7 @@
         ]
       },
       "portfolioView": {
-        "builtAt": "2026-06-07T12:22:21.315Z",
+        "builtAt": "2026-06-07T13:08:26.621Z",
         "template": {
           "group": "Appearance",
           "id": "",
@@ -283,7 +296,7 @@
                 "description": "In many systems, timing circuits are needed not only for synchronous digital design but also to control \r\nmixed-signal circuits and interface functions.   A few examples of clocked analog circuits include analog\r\nto-digital converters, digital-to-analog converters, switched-capacitor filters, and chopper-stabilized \r\nopamps.  A single IC may require several different clock frequencies for the analog and digital cells.  Since \r\nthese clocks may not be related by simple integer ratios and created with dividers, voltage-controlled \r\noscillators (VCO) are popular circuits to generate the required frequencies on chip.  In this lab, we will \r\nanalyze, design, and characterize one example of a VCO topology.",
                 "kind": "summary",
                 "meta": "Brief",
-                "title": "Summary",
+                "title": "Overview",
                 "url": "",
                 "rich": {
                   "blocks": [
@@ -459,7 +472,7 @@
         ]
       },
       "portfolioView": {
-        "builtAt": "2026-06-07T12:22:21.315Z",
+        "builtAt": "2026-06-07T13:08:26.621Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-graphite-white-click",
@@ -493,7 +506,7 @@
                 "description": "For scheduling, tasks, interrupts, control loops, telemetry, and fault handling.\n\nThe differential amplifiers we have studied thus far have been of the differential output variety; that is, the\r\noutput is taken between the two drains (or two collectors) rather than between one of the drains (collectors)\r\nand ground. Taking the output differentially has three major advantages:\r\n1.\r\n2.\r\n3.\r\nIt decreases the common-mode gain and thus increases the common-mode rejection ratio (CMRR).\r\nRecall that while the drain (collector) voltages change somewhat in response to a common-mode input\r\nsignal, the difference between the drain (collector) voltages remains essentially zero except for a small\r\nchange due to the mismatches inevitably present in the circuit.\r\nIt decreases the input offset voltage.\r\nIt increases the differential gain by a factor of 2 (6 dB) because the output is the difference between\r\ntwo voltages of equal magnitude and opposite sign.\r\nThese advantages are sufficiently compelling that at least the first stage in an IC amplifier such as an op amp\r\nis differential-in, differential-out. The differential transmission of the signal on the chip also minimizes its\r\nsusceptibility to corruption with noise and interference, which usually occur in a common-mode fashion.\r\nNevertheless, it is usually required at some point to convert the signal from differential to single-ended; for\r\ninstance, to connect it to an off-chip load. Figure 9.29 shows a block diagram of a three-stage amplifier in\r\nwhich the first two stages are of the differential-in, differential-out type, and the third has a single-ended\r\noutput, that is, an output that is referenced to ground. We now address the question of conversion from\n\nPasted image edyfrc i4dyhuop;fgtuyop;vhu;g",
                 "kind": "summary",
                 "meta": "Brief",
-                "title": "Summary",
+                "title": "Overview",
                 "url": "",
                 "rich": {
                   "blocks": [
@@ -579,7 +592,7 @@
       "links": [],
       "sections": [],
       "portfolioView": {
-        "builtAt": "2026-06-07T12:22:21.315Z",
+        "builtAt": "2026-06-07T13:08:26.621Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-light-blue-red-click",
@@ -608,5 +621,39 @@
       }
     }
   ],
-  "siteSections": []
+  "siteSections": [
+    {
+      "id": "personal",
+      "title": "Personal",
+      "description": "",
+      "backgroundImage": "docs/_site-sections/personal/image1.png",
+      "links": [
+        {
+          "label": "Instagram",
+          "url": "mauriceotieno.com"
+        }
+      ],
+      "assets": [],
+      "visible": true,
+      "subsections": [
+        {
+          "description": "The differential amplifiers we have studied thus far have been of the differential output variety; that is, the\noutput is taken between the two drains (or two collectors) rather than between one of the drains (collectors)\nand ground. Taking the output differentially has three major advantages:\n1.\n2.\n3.\nIt decreases the common-mode gain and thus increases the common-mode rejection ratio (CMRR).\nRecall that while the drain (collector) voltages change somewhat in response to a common-mode input\nsignal, the difference between the drain (collector) voltages remains essentially zero except for a small\nchange due to the mismatches inevitably present in the circuit.\nIt decreases the input offset voltage.\nIt increases the differential gain by a factor of 2 (6 dB) because the output is the difference between\ntwo voltages of equal magnitude and opposite sign.\nThese advantages are sufficiently compelling that at least the first stage in an IC amplifier such as an op amp\nis differential-in, differential-out. The differential transmission of the signal on the chip also minimizes its\nsusceptibility to corruption with noise and interference, which usually occur in a common-mode fashion.\nNevertheless, it is usually required at some point to convert the signal from differential to single-ended; for\ninstance, to connect it to an off-chip load. Figure 9.29 shows a block diagram of a three-stage amplifier in\nwhich the first two stages are of the differential-in, differential-out type, and the third has a single-ended\noutput, that is, an output that is referenced to ground. We now address the question of conversion from",
+          "id": "dhdtgdjuydfkfg-lcxyh",
+          "links": [],
+          "title": "dhdtgdjuydfkfg lcxyh"
+        }
+      ]
+    },
+    {
+      "id": "hobbies",
+      "title": "hobbies",
+      "description": "",
+      "eyebrow": "Portfolio section",
+      "visible": true,
+      "backgroundImage": "docs/_site-sections/hobbies/image_2.jpg",
+      "links": [],
+      "assets": [],
+      "subsections": []
+    }
+  ]
 }
