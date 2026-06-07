@@ -824,7 +824,6 @@ function categorySection(category, visibleProjects) {
     <section class="category-section ${visibleProjects.length ? "" : "empty-category-section"}" aria-labelledby="${category.id}-title">
       <div class="category-heading">
         <div>
-          ${visibleProjects.length ? `<p class="eyebrow">Hardware category</p>` : ""}
           <h3 id="${category.id}-title">${category.label}</h3>
         </div>
         ${visibleProjects.length ? `<span>${visibleProjects.length} project${visibleProjects.length === 1 ? "" : "s"}</span>` : ""}
@@ -873,11 +872,10 @@ function ensureSectionDialog() {
     <div class="section-view-shell">
       <div class="section-view-heading">
         <div>
-          <p class="eyebrow">Project section</p>
           <h2 id="section-view-title">Section</h2>
         </div>
         <div class="section-view-actions">
-          <button class="section-view-back" type="button" hidden>Back</button>
+          <button class="section-view-back" type="button" title="Previous view" aria-label="Previous view" hidden>&larr;</button>
           <button class="section-view-minimize" type="button" title="Minimize window" aria-label="Minimize window">-</button>
           <button class="section-view-close" type="button" aria-label="Close section">&times;</button>
         </div>
