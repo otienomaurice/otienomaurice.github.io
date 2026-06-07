@@ -511,16 +511,33 @@ function mediaGrid(items) {
 }
 
 function siteSectionHasContent(section) {
-  return Boolean(section?.title || section?.description || section?.backgroundImage || (section?.links || []).length || (section?.assets || []).length);
+  return Boolean(
+    section?.description ||
+    section?.backgroundImage ||
+    (section?.links || []).some((link) => link.label || link.url) ||
+    (section?.assets || []).some((asset) => asset.title || asset.url) ||
+    (section?.subsections || []).some((item) => item.title || item.description || (item.links || []).length)
+  );
+}
+
+function siteSectionRenderable(section) {
+  return section?.visible !== false && siteSectionHasContent(section);
+}
+
+function renderDynamicLinks(items = []) {
+  const links = items.filter((item) => item?.url && (item.label || item.title));
+  if (!links.length) return "";
+  return `<div class="resource-list dynamic-link-list">${links.map((item) => resourceLink(item, item.label || item.title || "Open")).join("")}</div>`;
 }
 
 function renderSiteSections() {
   const mount = document.querySelector("#dynamic-sections");
   if (!mount) return;
-  const visibleSections = (siteSections || []).filter(siteSectionHasContent);
+  const visibleSections = (siteSections || []).filter(siteSectionRenderable);
   mount.innerHTML = visibleSections.map((section) => {
     const style = section.backgroundImage ? ` style="--section-bg: url('${escapeHtml(section.backgroundImage)}')"` : "";
-    const links = [...(section.links || []), ...(section.assets || [])].filter((item) => item?.url);
+    const links = [...(section.links || []), ...(section.assets || [])];
+    const subsections = (section.subsections || []).filter((item) => item.title || item.description || (item.links || []).length);
     return `
       <section class="section dynamic-section" id="${escapeHtml(section.id || "")}"${style}>
         <div class="dynamic-section-surface">
@@ -531,7 +548,18 @@ function renderSiteSections() {
             </div>
           </div>
           ${section.description ? `<p class="dynamic-section-copy">${renderInlineMath(section.description)}</p>` : ""}
-          ${links.length ? `<div class="resource-list">${links.map((item) => resourceLink(item, item.label || item.title || "Open")).join("")}</div>` : ""}
+          ${subsections.length ? `
+            <div class="dynamic-section-grid">
+              ${subsections.map((item) => `
+                <article class="dynamic-section-card">
+                  <h3>${escapeHtml(item.title || "Untitled")}</h3>
+                  ${item.description ? `<p>${renderInlineMath(item.description)}</p>` : ""}
+                  ${renderDynamicLinks(item.links || [])}
+                </article>
+              `).join("")}
+            </div>
+          ` : ""}
+          ${renderDynamicLinks(links)}
         </div>
       </section>
     `;
@@ -871,10 +899,14 @@ function ensureSectionDialog() {
   `;
   document.body.append(dialog);
   dialog.querySelector(".section-view-minimize").addEventListener("click", () => toggleSectionDialogMinimized(dialog));
-  dialog.querySelector(".section-view-close").addEventListener("click", () => dialog.close());
+  dialog.querySelector(".section-view-close").addEventListener("click", () => closeOrStepBackSectionDialog(dialog));
   dialog.addEventListener("close", () => {
     dialog.classList.remove("is-minimized-dialog");
     updateSectionDialogMinimize(dialog);
+    const returnTarget = document.querySelector(
+      `[data-section-project="${dialog.dataset.projectId}"][data-section-index="${dialog.dataset.sectionIndex}"]`
+    );
+    returnTarget?.focus({ preventScroll: true });
   });
   dialog.querySelector(".section-view-back").addEventListener("click", () => {
     const path = pathFromString(dialog.dataset.resourcePath || "");
@@ -887,6 +919,16 @@ function ensureSectionDialog() {
     openParsedSection(nodeButton.dataset.sectionProject, nodeButton.dataset.sectionIndex, nodeButton.dataset.resourcePath);
   });
   return dialog;
+}
+
+function closeOrStepBackSectionDialog(dialog) {
+  const path = pathFromString(dialog.dataset.resourcePath || "");
+  if (path.length) {
+    path.pop();
+    openParsedSection(dialog.dataset.projectId, dialog.dataset.sectionIndex, pathToString(path));
+    return;
+  }
+  dialog.close();
 }
 
 function openParsedSection(projectId, sectionIndex, resourcePath = "") {
