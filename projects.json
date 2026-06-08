@@ -20,35 +20,35 @@
     }
   ],
   "funFacts": [
-    "I created the builder to develop this portfolio. I enjoy playing soccer, especially as a defensive midfielder.",
-    "I also enjoy a good debate about the game, whether it’s tactics, positional awareness, or the way players carry themselves on the field.",
-    "I love semiconductors, especially silicon, and I’ve recently started reading about gallium nitride."
+    "I built the builder to create this portfolio, letting me add text and files while parsing the provided input.",
+    "I enjoy playing soccer, especially as a defensive midfielder.",
+    "I also enjoy a good debate about the game, whether it’s tactics, positional awareness, or the way players carry themselves on the field."
   ],
   "projects": [
     {
-      "id": "none",
-      "title": "None",
-      "templateId": "appearance-violet-lilac-click",
-      "templateLabel": "Violet timing, purple hover, lilac click",
+      "id": "pwm-generating-voltage-controlled-oscillator",
+      "title": "PWM Generating Voltage Controlled oscillator",
+      "templateId": "appearance-white-blue-click",
+      "templateLabel": "Clean white, blue hover, white click",
       "templateGroup": "Appearance",
       "templateVisual": {
-        "style": "timing",
+        "style": "device",
         "palette": [
-          "#f7f4ff",
-          "#6d55c6",
-          "#f5f1ff"
+          "#ffffff",
+          "#2563eb",
+          "#f8fbff"
         ],
-        "background": "#f7f4ff",
+        "background": "#ffffff",
         "panel": "#ffffff",
-        "accent": "#6d55c6",
-        "hover": "#6d55c6",
-        "click": "#f5f1ff",
-        "clickText": "#26223a",
-        "line": "#c8b9f2",
-        "text": "#26223a",
-        "interaction": "Purple hover with a pale lilac click state."
+        "accent": "#2563eb",
+        "hover": "#2563eb",
+        "click": "#ffffff",
+        "clickText": "#172636",
+        "line": "#d8e2ef",
+        "text": "#172636",
+        "interaction": "Blue hover with a clean white click state."
       },
-      "category": "digital",
+      "category": "analog-mixed-signal",
       "status": "Draft",
       "summary": "",
       "summaryRich": null,
@@ -62,31 +62,50 @@
       "languages": [],
       "links": [],
       "sections": [],
+      "design": {
+        "brief": {
+          "summary": "",
+          "summaryRich": null,
+          "files": []
+        },
+        "documentation": {
+          "summary": "",
+          "files": [],
+          "references": [],
+          "mathAnalysis": []
+        },
+        "simulation": {
+          "summary": "",
+          "summaryRich": null,
+          "files": [],
+          "results": []
+        }
+      },
       "portfolioView": {
-        "builtAt": "2026-06-08T16:49:46.342Z",
+        "builtAt": "2026-06-08T17:14:17.651Z",
         "template": {
           "group": "Appearance",
-          "id": "appearance-violet-lilac-click",
-          "label": "Violet timing, purple hover, lilac click",
+          "id": "appearance-white-blue-click",
+          "label": "Clean white, blue hover, white click",
           "visual": {
-            "style": "timing",
+            "style": "device",
             "palette": [
-              "#f7f4ff",
-              "#6d55c6",
-              "#f5f1ff"
+              "#ffffff",
+              "#2563eb",
+              "#f8fbff"
             ],
-            "background": "#f7f4ff",
+            "background": "#ffffff",
             "panel": "#ffffff",
-            "accent": "#6d55c6",
-            "hover": "#6d55c6",
-            "click": "#f5f1ff",
-            "clickText": "#26223a",
-            "line": "#c8b9f2",
-            "text": "#26223a",
-            "interaction": "Purple hover with a pale lilac click state."
+            "accent": "#2563eb",
+            "hover": "#2563eb",
+            "click": "#ffffff",
+            "clickText": "#172636",
+            "line": "#d8e2ef",
+            "text": "#172636",
+            "interaction": "Blue hover with a clean white click state."
           }
         },
-        "title": "None",
+        "title": "PWM Generating Voltage Controlled oscillator",
         "sections": []
       }
     }
@@ -96,7 +115,7 @@
       "id": "professional-profile",
       "title": "Professional Profile",
       "eyebrow": "Professional profile",
-      "description": "A focused profile section for resume links, technical identity, career direction, websites, and proof of work.",
+      "description": "",
       "visible": true,
       "backgroundImage": "docs/_site-sections/professional-profile/techback.png",
       "links": [
@@ -136,7 +155,7 @@
       "id": "personal-background",
       "title": "Personal Background",
       "eyebrow": "Personal story",
-      "description": "A short human section for where you come from, what shaped you, and the values that show up in your work.",
+      "description": "",
       "visible": true,
       "backgroundImage": "",
       "links": [],
@@ -166,7 +185,7 @@
       "id": "life-outside-engineering",
       "title": "Life Outside Engineering",
       "eyebrow": "Beyond the bench",
-      "description": "A lighter section for sports, hobbies, creative interests, community, and what you enjoy outside technical work.",
+      "description": "",
       "visible": true,
       "backgroundImage": "",
       "links": [],
@@ -188,6 +207,45 @@
           "id": "what-i-love",
           "title": "What I Love To Do",
           "description": "Write the things that make you feel energized and alive outside the formal resume."
+        }
+      ]
+    },
+    {
+      "id": "social-and-contact",
+      "title": "Social and Contact",
+      "eyebrow": "Connect",
+      "description": "A compact connection section for social media, email, phone, GitHub, LinkedIn, and other public profiles.",
+      "visible": true,
+      "backgroundImage": "",
+      "links": [
+        {
+          "label": "Email",
+          "url": "https://mail.google.com/mail/?view=cm&fs=1&to=otienomaurice12340@gmail.com",
+          "kind": "email"
+        },
+        {
+          "label": "Call",
+          "url": "tel:+14845451567",
+          "kind": "phone"
+        },
+        {
+          "label": "GitHub",
+          "url": "https://github.com/otienomaurice",
+          "kind": "github"
+        }
+      ],
+      "assets": [],
+      "subsections": [
+        {
+          "description": "4845451567",
+          "id": "primary-contact",
+          "links": [],
+          "title": "Primary Contact"
+        },
+        {
+          "id": "social-media",
+          "title": "Social Media",
+          "description": "Add LinkedIn, GitHub, YouTube, personal websites, or other professional social links."
         }
       ]
     }
