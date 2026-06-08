@@ -19,567 +19,30 @@
       "accent": "#d18b21"
     }
   ],
-  "funFacts": [
-    "I built a builder to build this portfolio.",
-    "I love a good argument about soccer: the tactics, the culture, the refereeing, all of it."
-  ],
+  "funFacts": [],
   "projects": [
     {
-      "id": "fdztgduyjfgikglgli",
-      "title": "fdztgduyjfgikglgli",
-      "templateId": "appearance-emerald-mint-click",
-      "templateLabel": "Emerald bench, green hover, mint click",
+      "id": "none",
+      "title": "None",
+      "templateId": "appearance-violet-lilac-click",
+      "templateLabel": "Violet timing, purple hover, lilac click",
       "templateGroup": "Appearance",
       "templateVisual": {
-        "style": "instrument",
+        "style": "timing",
         "palette": [
-          "#f0fdf6",
-          "#16865a",
-          "#effff6"
+          "#f7f4ff",
+          "#6d55c6",
+          "#f5f1ff"
         ],
-        "background": "#f0fdf6",
+        "background": "#f7f4ff",
         "panel": "#ffffff",
-        "accent": "#16865a",
-        "hover": "#16865a",
-        "click": "#effff6",
-        "clickText": "#182f26",
-        "line": "#9adfbd",
-        "text": "#182f26",
-        "interaction": "Emerald hover with a soft mint click state."
-      },
-      "category": "analog-mixed-signal",
-      "status": "Draft",
-      "summary": "ljkvgigj'k'\\]pkl'xhcffgvhnj'pkl\\[l['l[l.'[]",
-      "summaryRich": {
-        "blocks": [
-          {
-            "align": "left",
-            "fontSize": "normal",
-            "text": "ljkvgigj'k'\\]pkl'xhcffgvhnj'pkl\\[l['l[l.'[]",
-            "type": "paragraph"
-          }
-        ]
-      },
-      "focus": [],
-      "highlights": [],
-      "documents": [],
-      "tests": [],
-      "pcbs": [],
-      "media": [],
-      "tools": [],
-      "languages": [],
-      "links": [],
-      "sections": [
-        {
-          "id": "me",
-          "title": "me",
-          "description": "you",
-          "items": []
-        }
-      ],
-      "design": {
-        "brief": {
-          "summary": "ljklik;n'm\\:,:'n lv bkjuvkjuvjuk",
-          "summaryRich": null,
-          "files": []
-        },
-        "documentation": {
-          "summary": " nm ;lmn;lnlvuycdyutxdcytcduytghc ",
-          "files": [],
-          "references": [],
-          "mathAnalysis": [
-            {
-              "title": "cx jytdcukytfiyufgviugfviufcvuyfdc",
-              "description": "v ,cvudcyutdxckyutdu7t5dc7tudeygfyhythfgty",
-              "type": "Math / Analysis",
-              "status": "draft"
-            }
-          ]
-        },
-        "simulation": {
-          "summary": "",
-          "summaryRich": null,
-          "files": [],
-          "results": []
-        }
-      },
-      "portfolioView": {
-        "builtAt": "2026-06-07T16:43:41.708Z",
-        "template": {
-          "group": "Appearance",
-          "id": "appearance-emerald-mint-click",
-          "label": "Emerald bench, green hover, mint click",
-          "visual": {
-            "style": "instrument",
-            "palette": [
-              "#f0fdf6",
-              "#16865a",
-              "#effff6"
-            ],
-            "background": "#f0fdf6",
-            "panel": "#ffffff",
-            "accent": "#16865a",
-            "hover": "#16865a",
-            "click": "#effff6",
-            "clickText": "#182f26",
-            "line": "#9adfbd",
-            "text": "#182f26",
-            "interaction": "Emerald hover with a soft mint click state."
-          }
-        },
-        "title": "fdztgduyjfgikglgli",
-        "sections": [
-          {
-            "description": "",
-            "id": "brief",
-            "items": [
-              {
-                "children": [],
-                "description": "ljkvgigj'k'\\]pkl'xhcffgvhnj'pkl\\[l['l[l.'[]",
-                "kind": "summary",
-                "meta": "Overview",
-                "title": "Overview",
-                "url": "",
-                "rich": {
-                  "blocks": [
-                    {
-                      "align": "left",
-                      "fontSize": "normal",
-                      "text": "ljkvgigj'k'\\]pkl'xhcffgvhnj'pkl\\[l['l[l.'[]",
-                      "type": "paragraph"
-                    }
-                  ]
-                }
-              }
-            ],
-            "title": "Overview"
-          },
-          {
-            "description": "",
-            "id": "design",
-            "items": [
-              {
-                "children": [],
-                "description": "ljklik;n'm\\:,:'n lv bkjuvkjuvjuk",
-                "kind": "subsection",
-                "meta": "Subsection",
-                "title": "Design Overview",
-                "url": ""
-              },
-              {
-                "children": [
-                  {
-                    "children": [],
-                    "description": "",
-                    "kind": "subsection",
-                    "meta": "Subsection",
-                    "title": "References",
-                    "url": ""
-                  },
-                  {
-                    "children": [
-                      {
-                        "children": [],
-                        "description": "v ,cvudcyutdxckyutdu7t5dc7tudeygfyhythfgty",
-                        "kind": "analysis",
-                        "meta": "Math / Analysis",
-                        "title": "cx jytdcukytfiyufgviugfviufcvuyfdc",
-                        "url": ""
-                      }
-                    ],
-                    "description": "",
-                    "kind": "subsection",
-                    "meta": "Subsection",
-                    "title": "Math / Analysis",
-                    "url": ""
-                  }
-                ],
-                "description": " nm ;lmn;lnlvuycdyutxdcytcduytghc ",
-                "kind": "subsection",
-                "meta": "Subsection",
-                "title": "Documentation",
-                "url": ""
-              }
-            ],
-            "title": "Design"
-          },
-          {
-            "description": "you",
-            "id": "custom:me",
-            "items": [],
-            "title": "me"
-          }
-        ]
-      }
-    },
-    {
-      "id": "voltage-controlled-oscillator",
-      "title": "Voltage controlled oscillator",
-      "templateId": "",
-      "templateLabel": "",
-      "templateGroup": "",
-      "category": "analog-mixed-signal",
-      "status": "Draft",
-      "summary": "In many systems, timing circuits are needed not only for synchronous digital design but also to control \r\nmixed-signal circuits and interface functions.   A few examples of clocked analog circuits include analog\r\nto-digital converters, digital-to-analog converters, switched-capacitor filters, and chopper-stabilized \r\nopamps.  A single IC may require several different clock frequencies for the analog and digital cells.  Since \r\nthese clocks may not be related by simple integer ratios and created with dividers, voltage-controlled \r\noscillators (VCO) are popular circuits to generate the required frequencies on chip.  In this lab, we will \r\nanalyze, design, and characterize one example of a VCO topology.",
-      "focus": [],
-      "highlights": [],
-      "documents": [],
-      "tests": [],
-      "pcbs": [
-        {
-          "name": "ddhgvrjhrfjbgtk",
-          "revision": "Rev A",
-          "status": "draft",
-          "artifact": ""
-        }
-      ],
-      "media": [],
-      "tools": [],
-      "languages": [],
-      "links": [],
-      "sections": [
-        {
-          "id": "project-links",
-          "title": "Project links",
-          "description": "",
-          "items": [
-            {
-              "title": "Github repository",
-              "description": "https://github.com/otienomaurice/VOLTAGE_CONTROLLED_OSCILLATOR.git",
-              "type": "Text",
-              "status": "draft"
-            }
-          ]
-        }
-      ],
-      "design": {
-        "brief": {
-          "summary": "The objectives of this laboratory are \n1. Calculate the VCO circuit component values to meet a design specification. \n2. Learn the KiCad PCB design flow including LTSpice simulation with a sequential capture \nand PCB layout plan. \n3. Use LTSpice to simulate your captured circuits and verify expected performance and capture \nschematic integrity. \n4. Use Kicad to layout the PCB, verify it meets the schematic, and export the fabrication files to \na professional outside PCB fabricator. \n5. Develop a schematic and PCB test plan at both the subcircuit and overall circuit levels. \n6. Assemble and characterize the VCO PCB prototype for subcircuit performance and output \nfrequency vs. voltage for the overall VCO. ",
-          "summaryRich": null,
-          "files": []
-        },
-        "documentation": {
-          "summary": "The differential amplifiers we have studied thus far have been of the differential output variety; that is, the\noutput is taken between the two drains (or two collectors) rather than between one of the drains (collectors)\nand ground. Taking the output differentially has three major advantages:\n1.\n2.\n3.\nIt decreases the common-mode gain and thus increases the common-mode rejection ratio (CMRR).\nRecall that while the drain (collector) voltages change somewhat in response to a common-mode input\nsignal, the difference between the drain (collector) voltages remains essentially zero except for a small\nchange due to the mismatches inevitably present in the circuit.\nIt decreases the input offset voltage.\nIt increases the differential gain by a factor of 2 (6 dB) because the output is the difference between\ntwo voltages of equal magnitude and opposite sign.\nThese advantages are sufficiently compelling that at least the first stage in an IC amplifier such as an op amp\nis differential-in, differential-out. The differential transmission of the signal on the chip also minimizes its\nsusceptibility to corruption with noise and interference, which usually occur in a common-mode fashion.\nNevertheless, it is usually required at some point to convert the signal from differential to single-ended; for\ninstance, to connect it to an off-chip load. Figure 9.29 shows a block diagram of a three-stage amplifier in\nwhich the first two stages are of the differential-in, differential-out type, and the third has a single-ended\noutput, that is, an output that is referenced to ground. We now address the question of conversion from",
-          "files": [],
-          "references": [],
-          "mathAnalysis": []
-        },
-        "simulation": {
-          "summary": "",
-          "summaryRich": null,
-          "files": [],
-          "results": []
-        }
-      },
-      "summaryRich": {
-        "blocks": [
-          {
-            "align": "left",
-            "fontSize": "small",
-            "text": "In many systems, timing circuits are needed not only for synchronous digital design but also to control \r\nmixed-signal circuits and interface functions.   A few examples of clocked analog circuits include analog\r\nto-digital converters, digital-to-analog converters, switched-capacitor filters, and chopper-stabilized \r\nopamps.  A single IC may require several different clock frequencies for the analog and digital cells.  Since \r\nthese clocks may not be related by simple integer ratios and created with dividers, voltage-controlled \r\noscillators (VCO) are popular circuits to generate the required frequencies on chip.  In this lab, we will \r\nanalyze, design, and characterize one example of a VCO topology.",
-            "type": "paragraph"
-          }
-        ]
-      },
-      "portfolioView": {
-        "builtAt": "2026-06-07T16:43:41.708Z",
-        "template": {
-          "group": "Appearance",
-          "id": "",
-          "label": "",
-          "visual": null
-        },
-        "title": "Voltage controlled oscillator",
-        "sections": [
-          {
-            "description": "",
-            "id": "brief",
-            "items": [
-              {
-                "children": [],
-                "description": "In many systems, timing circuits are needed not only for synchronous digital design but also to control \r\nmixed-signal circuits and interface functions.   A few examples of clocked analog circuits include analog\r\nto-digital converters, digital-to-analog converters, switched-capacitor filters, and chopper-stabilized \r\nopamps.  A single IC may require several different clock frequencies for the analog and digital cells.  Since \r\nthese clocks may not be related by simple integer ratios and created with dividers, voltage-controlled \r\noscillators (VCO) are popular circuits to generate the required frequencies on chip.  In this lab, we will \r\nanalyze, design, and characterize one example of a VCO topology.",
-                "kind": "summary",
-                "meta": "Overview",
-                "title": "Overview",
-                "url": "",
-                "rich": {
-                  "blocks": [
-                    {
-                      "align": "left",
-                      "fontSize": "small",
-                      "text": "In many systems, timing circuits are needed not only for synchronous digital design but also to control \r\nmixed-signal circuits and interface functions.   A few examples of clocked analog circuits include analog\r\nto-digital converters, digital-to-analog converters, switched-capacitor filters, and chopper-stabilized \r\nopamps.  A single IC may require several different clock frequencies for the analog and digital cells.  Since \r\nthese clocks may not be related by simple integer ratios and created with dividers, voltage-controlled \r\noscillators (VCO) are popular circuits to generate the required frequencies on chip.  In this lab, we will \r\nanalyze, design, and characterize one example of a VCO topology.",
-                      "type": "paragraph"
-                    }
-                  ]
-                }
-              }
-            ],
-            "title": "Overview"
-          },
-          {
-            "description": "",
-            "id": "design",
-            "items": [
-              {
-                "children": [],
-                "description": "The objectives of this laboratory are \n1. Calculate the VCO circuit component values to meet a design specification. \n2. Learn the KiCad PCB design flow including LTSpice simulation with a sequential capture \nand PCB layout plan. \n3. Use LTSpice to simulate your captured circuits and verify expected performance and capture \nschematic integrity. \n4. Use Kicad to layout the PCB, verify it meets the schematic, and export the fabrication files to \na professional outside PCB fabricator. \n5. Develop a schematic and PCB test plan at both the subcircuit and overall circuit levels. \n6. Assemble and characterize the VCO PCB prototype for subcircuit performance and output \nfrequency vs. voltage for the overall VCO. ",
-                "kind": "subsection",
-                "meta": "Subsection",
-                "title": "Design Overview",
-                "url": ""
-              },
-              {
-                "children": [
-                  {
-                    "children": [],
-                    "description": "",
-                    "kind": "subsection",
-                    "meta": "Subsection",
-                    "title": "References",
-                    "url": ""
-                  },
-                  {
-                    "children": [],
-                    "description": "",
-                    "kind": "subsection",
-                    "meta": "Subsection",
-                    "title": "Math / Analysis",
-                    "url": ""
-                  }
-                ],
-                "description": "The differential amplifiers we have studied thus far have been of the differential output variety; that is, the\noutput is taken between the two drains (or two collectors) rather than between one of the drains (collectors)\nand ground. Taking the output differentially has three major advantages:\n1.\n2.\n3.\nIt decreases the common-mode gain and thus increases the common-mode rejection ratio (CMRR).\nRecall that while the drain (collector) voltages change somewhat in response to a common-mode input\nsignal, the difference between the drain (collector) voltages remains essentially zero except for a small\nchange due to the mismatches inevitably present in the circuit.\nIt decreases the input offset voltage.\nIt increases the differential gain by a factor of 2 (6 dB) because the output is the difference between\ntwo voltages of equal magnitude and opposite sign.\nThese advantages are sufficiently compelling that at least the first stage in an IC amplifier such as an op amp\nis differential-in, differential-out. The differential transmission of the signal on the chip also minimizes its\nsusceptibility to corruption with noise and interference, which usually occur in a common-mode fashion.\nNevertheless, it is usually required at some point to convert the signal from differential to single-ended; for\ninstance, to connect it to an off-chip load. Figure 9.29 shows a block diagram of a three-stage amplifier in\nwhich the first two stages are of the differential-in, differential-out type, and the third has a single-ended\noutput, that is, an output that is referenced to ground. We now address the question of conversion from",
-                "kind": "subsection",
-                "meta": "Subsection",
-                "title": "Documentation",
-                "url": ""
-              },
-              {
-                "children": [
-                  {
-                    "children": [],
-                    "description": "Rev A",
-                    "kind": "pcb",
-                    "meta": "draft",
-                    "title": "ddhgvrjhrfjbgtk",
-                    "url": ""
-                  }
-                ],
-                "description": "",
-                "kind": "subsection",
-                "meta": "Subsection",
-                "title": "PCB and Visual Evidence",
-                "url": ""
-              }
-            ],
-            "title": "Design"
-          },
-          {
-            "description": "",
-            "id": "custom:project-links",
-            "items": [
-              {
-                "children": [],
-                "description": "https://github.com/otienomaurice/VOLTAGE_CONTROLLED_OSCILLATOR.git",
-                "kind": "text",
-                "meta": "Text",
-                "title": "Github repository",
-                "url": ""
-              }
-            ],
-            "title": "Project links"
-          }
-        ]
-      }
-    },
-    {
-      "id": "battery-status-monitoring-system-on-stride",
-      "title": "Battery status Monitoring system on STRIDE",
-      "templateId": "embedded-rtos-control",
-      "templateLabel": "RTOS Control Firmware",
-      "templateGroup": "Embedded",
-      "category": "embedded",
-      "status": "Integrated",
-      "summary": "For scheduling, tasks, interrupts, control loops, telemetry, and fault handling.\n\nThe differential amplifiers we have studied thus far have been of the differential output variety; that is, the\r\noutput is taken between the two drains (or two collectors) rather than between one of the drains (collectors)\r\nand ground. Taking the output differentially has three major advantages:\r\n1.\r\n2.\r\n3.\r\nIt decreases the common-mode gain and thus increases the common-mode rejection ratio (CMRR).\r\nRecall that while the drain (collector) voltages change somewhat in response to a common-mode input\r\nsignal, the difference between the drain (collector) voltages remains essentially zero except for a small\r\nchange due to the mismatches inevitably present in the circuit.\r\nIt decreases the input offset voltage.\r\nIt increases the differential gain by a factor of 2 (6 dB) because the output is the difference between\r\ntwo voltages of equal magnitude and opposite sign.\r\nThese advantages are sufficiently compelling that at least the first stage in an IC amplifier such as an op amp\r\nis differential-in, differential-out. The differential transmission of the signal on the chip also minimizes its\r\nsusceptibility to corruption with noise and interference, which usually occur in a common-mode fashion.\r\nNevertheless, it is usually required at some point to convert the signal from differential to single-ended; for\r\ninstance, to connect it to an off-chip load. Figure 9.29 shows a block diagram of a three-stage amplifier in\r\nwhich the first two stages are of the differential-in, differential-out type, and the third has a single-ended\r\noutput, that is, an output that is referenced to ground. We now address the question of conversion from\n\nPasted image edyfrc i4dyhuop;fgtuyop;vhu;g",
-      "focus": [
-        "RTOS",
-        "Control firmware",
-        "Telemetry"
-      ],
-      "highlights": [
-        "Separated firmware into tasks and timing responsibilities.",
-        "Validated interrupts and periodic control behavior.",
-        "Captured logs or traces showing stable operation."
-      ],
-      "documents": [
-        {
-          "title": "Firmware architecture",
-          "type": "Markdown",
-          "url": "docs/battery-status-monitoring-system-on-stride/documents/firmware-architecture.md",
-          "status": "planned"
-        }
-      ],
-      "tests": [
-        {
-          "name": "Task timing test",
-          "method": "Serial logs and timing capture",
-          "status": "planned",
-          "artifact": "docs/battery-status-monitoring-system-on-stride/tests/task-timing.pdf",
-          "result": "Task timing result will be added."
-        }
-      ],
-      "pcbs": [],
-      "media": [],
-      "tools": [
-        "STM32CubeIDE",
-        "FreeRTOS",
-        "Logic analyzer"
-      ],
-      "languages": [
-        "C",
-        "C++"
-      ],
-      "links": [
-        {
-          "label": "GitHub repo",
-          "url": "https://github.com/otienomaurice/battery-status-monitoring-system-on-stride"
-        }
-      ],
-      "sections": [
-        {
-          "id": "tests",
-          "title": "Tests",
-          "description": "",
-          "items": []
-        }
-      ],
-      "summaryRich": {
-        "blocks": [
-          {
-            "align": "left",
-            "fontSize": "normal",
-            "text": "For scheduling, tasks, interrupts, control loops, telemetry, and fault handling.",
-            "type": "paragraph"
-          },
-          {
-            "align": "left",
-            "fontSize": "normal",
-            "text": "The differential amplifiers we have studied thus far have been of the differential output variety; that is, the\r\noutput is taken between the two drains (or two collectors) rather than between one of the drains (collectors)\r\nand ground. Taking the output differentially has three major advantages:\r\n1.\r\n2.\r\n3.\r\nIt decreases the common-mode gain and thus increases the common-mode rejection ratio (CMRR).\r\nRecall that while the drain (collector) voltages change somewhat in response to a common-mode input\r\nsignal, the difference between the drain (collector) voltages remains essentially zero except for a small\r\nchange due to the mismatches inevitably present in the circuit.\r\nIt decreases the input offset voltage.\r\nIt increases the differential gain by a factor of 2 (6 dB) because the output is the difference between\r\ntwo voltages of equal magnitude and opposite sign.\r\nThese advantages are sufficiently compelling that at least the first stage in an IC amplifier such as an op amp\r\nis differential-in, differential-out. The differential transmission of the signal on the chip also minimizes its\r\nsusceptibility to corruption with noise and interference, which usually occur in a common-mode fashion.\r\nNevertheless, it is usually required at some point to convert the signal from differential to single-ended; for\r\ninstance, to connect it to an off-chip load. Figure 9.29 shows a block diagram of a three-stage amplifier in\r\nwhich the first two stages are of the differential-in, differential-out type, and the third has a single-ended\r\noutput, that is, an output that is referenced to ground. We now address the question of conversion from",
-            "type": "paragraph"
-          },
-          {
-            "align": "left",
-            "caption": "edyfrc i4dyhuop;fgtuyop;vhu;g",
-            "title": "Pasted image",
-            "type": "image",
-            "url": "docs/battery-status-monitoring-system-on-stride/summary/pasted-image.png"
-          }
-        ]
-      },
-      "portfolioView": {
-        "builtAt": "2026-06-07T16:43:41.708Z",
-        "template": {
-          "group": "Appearance",
-          "id": "appearance-graphite-white-click",
-          "label": "Graphite ASIC, slate hover, white click",
-          "visual": {
-            "style": "grid",
-            "palette": [
-              "#f6f8fb",
-              "#334155",
-              "#ffffff"
-            ],
-            "background": "#f6f8fb",
-            "panel": "#ffffff",
-            "accent": "#334155",
-            "hover": "#334155",
-            "click": "#ffffff",
-            "clickText": "#1f2937",
-            "line": "#b8c2d1",
-            "text": "#1f2937",
-            "interaction": "Slate hover with a crisp white click state."
-          }
-        },
-        "title": "Battery status Monitoring system on STRIDE",
-        "sections": [
-          {
-            "description": "",
-            "id": "brief",
-            "items": [
-              {
-                "children": [],
-                "description": "For scheduling, tasks, interrupts, control loops, telemetry, and fault handling.\n\nThe differential amplifiers we have studied thus far have been of the differential output variety; that is, the\r\noutput is taken between the two drains (or two collectors) rather than between one of the drains (collectors)\r\nand ground. Taking the output differentially has three major advantages:\r\n1.\r\n2.\r\n3.\r\nIt decreases the common-mode gain and thus increases the common-mode rejection ratio (CMRR).\r\nRecall that while the drain (collector) voltages change somewhat in response to a common-mode input\r\nsignal, the difference between the drain (collector) voltages remains essentially zero except for a small\r\nchange due to the mismatches inevitably present in the circuit.\r\nIt decreases the input offset voltage.\r\nIt increases the differential gain by a factor of 2 (6 dB) because the output is the difference between\r\ntwo voltages of equal magnitude and opposite sign.\r\nThese advantages are sufficiently compelling that at least the first stage in an IC amplifier such as an op amp\r\nis differential-in, differential-out. The differential transmission of the signal on the chip also minimizes its\r\nsusceptibility to corruption with noise and interference, which usually occur in a common-mode fashion.\r\nNevertheless, it is usually required at some point to convert the signal from differential to single-ended; for\r\ninstance, to connect it to an off-chip load. Figure 9.29 shows a block diagram of a three-stage amplifier in\r\nwhich the first two stages are of the differential-in, differential-out type, and the third has a single-ended\r\noutput, that is, an output that is referenced to ground. We now address the question of conversion from\n\nPasted image edyfrc i4dyhuop;fgtuyop;vhu;g",
-                "kind": "summary",
-                "meta": "Overview",
-                "title": "Overview",
-                "url": "",
-                "rich": {
-                  "blocks": [
-                    {
-                      "align": "left",
-                      "fontSize": "normal",
-                      "text": "For scheduling, tasks, interrupts, control loops, telemetry, and fault handling.",
-                      "type": "paragraph"
-                    },
-                    {
-                      "align": "left",
-                      "fontSize": "normal",
-                      "text": "The differential amplifiers we have studied thus far have been of the differential output variety; that is, the\r\noutput is taken between the two drains (or two collectors) rather than between one of the drains (collectors)\r\nand ground. Taking the output differentially has three major advantages:\r\n1.\r\n2.\r\n3.\r\nIt decreases the common-mode gain and thus increases the common-mode rejection ratio (CMRR).\r\nRecall that while the drain (collector) voltages change somewhat in response to a common-mode input\r\nsignal, the difference between the drain (collector) voltages remains essentially zero except for a small\r\nchange due to the mismatches inevitably present in the circuit.\r\nIt decreases the input offset voltage.\r\nIt increases the differential gain by a factor of 2 (6 dB) because the output is the difference between\r\ntwo voltages of equal magnitude and opposite sign.\r\nThese advantages are sufficiently compelling that at least the first stage in an IC amplifier such as an op amp\r\nis differential-in, differential-out. The differential transmission of the signal on the chip also minimizes its\r\nsusceptibility to corruption with noise and interference, which usually occur in a common-mode fashion.\r\nNevertheless, it is usually required at some point to convert the signal from differential to single-ended; for\r\ninstance, to connect it to an off-chip load. Figure 9.29 shows a block diagram of a three-stage amplifier in\r\nwhich the first two stages are of the differential-in, differential-out type, and the third has a single-ended\r\noutput, that is, an output that is referenced to ground. We now address the question of conversion from",
-                      "type": "paragraph"
-                    },
-                    {
-                      "align": "left",
-                      "caption": "edyfrc i4dyhuop;fgtuyop;vhu;g",
-                      "title": "Pasted image",
-                      "type": "image",
-                      "url": "docs/battery-status-monitoring-system-on-stride/summary/pasted-image.png"
-                    }
-                  ]
-                }
-              }
-            ],
-            "title": "Overview"
-          },
-          {
-            "description": "",
-            "id": "design",
-            "items": [
-              {
-                "children": [],
-                "description": "",
-                "kind": "document",
-                "meta": "Markdown",
-                "title": "Firmware architecture",
-                "url": "docs/battery-status-monitoring-system-on-stride/documents/firmware-architecture.md"
-              }
-            ],
-            "title": "Design"
-          }
-        ]
-      }
-    },
-    {
-      "id": "the-mips-computer",
-      "title": "The MIPS Computer",
-      "templateId": "appearance-light-blue-red-click",
-      "templateLabel": "Light blue, navy hover, red click",
-      "templateGroup": "Appearance",
-      "templateVisual": {
-        "style": "schematic",
-        "palette": [
-          "#e9f8ff",
-          "#1f6ed4",
-          "#ef4444",
-          "#ffffff"
-        ],
-        "background": "#e9f8ff",
-        "panel": "#ffffff",
-        "accent": "#1f6ed4",
-        "hover": "#1f6ed4",
-        "click": "#ef4444",
-        "clickText": "#ffffff",
-        "line": "#b8def3",
-        "text": "#172636",
-        "interaction": "Navy-blue hover with a red active click flash."
+        "accent": "#6d55c6",
+        "hover": "#6d55c6",
+        "click": "#f5f1ff",
+        "clickText": "#26223a",
+        "line": "#c8b9f2",
+        "text": "#26223a",
+        "interaction": "Purple hover with a pale lilac click state."
       },
       "category": "digital",
       "status": "Draft",
@@ -596,31 +59,30 @@
       "links": [],
       "sections": [],
       "portfolioView": {
-        "builtAt": "2026-06-07T16:43:41.708Z",
+        "builtAt": "2026-06-08T14:18:03.067Z",
         "template": {
           "group": "Appearance",
-          "id": "appearance-light-blue-red-click",
-          "label": "Light blue, navy hover, red click",
+          "id": "appearance-violet-lilac-click",
+          "label": "Violet timing, purple hover, lilac click",
           "visual": {
-            "style": "schematic",
+            "style": "timing",
             "palette": [
-              "#e9f8ff",
-              "#1f6ed4",
-              "#ef4444",
-              "#ffffff"
+              "#f7f4ff",
+              "#6d55c6",
+              "#f5f1ff"
             ],
-            "background": "#e9f8ff",
+            "background": "#f7f4ff",
             "panel": "#ffffff",
-            "accent": "#1f6ed4",
-            "hover": "#1f6ed4",
-            "click": "#ef4444",
-            "clickText": "#ffffff",
-            "line": "#b8def3",
-            "text": "#172636",
-            "interaction": "Navy-blue hover with a red active click flash."
+            "accent": "#6d55c6",
+            "hover": "#6d55c6",
+            "click": "#f5f1ff",
+            "clickText": "#26223a",
+            "line": "#c8b9f2",
+            "text": "#26223a",
+            "interaction": "Purple hover with a pale lilac click state."
           }
         },
-        "title": "The MIPS Computer",
+        "title": "None",
         "sections": []
       }
     }
@@ -630,7 +92,7 @@
       "id": "personal",
       "title": "Personal",
       "description": "",
-      "backgroundImage": "docs/_site-sections/personal/image1.png",
+      "backgroundImage": "",
       "links": [
         {
           "label": "Instagram",
@@ -639,24 +101,6 @@
       ],
       "assets": [],
       "visible": true,
-      "subsections": [
-        {
-          "description": "The differential amplifiers we have studied thus far have been of the differential output variety; that is, the\noutput is taken between the two drains (or two collectors) rather than between one of the drains (collectors)\nand ground. Taking the output differentially has three major advantages:\n1.\n2.\n3.\nIt decreases the common-mode gain and thus increases the common-mode rejection ratio (CMRR).\nRecall that while the drain (collector) voltages change somewhat in response to a common-mode input\nsignal, the difference between the drain (collector) voltages remains essentially zero except for a small\nchange due to the mismatches inevitably present in the circuit.\nIt decreases the input offset voltage.\nIt increases the differential gain by a factor of 2 (6 dB) because the output is the difference between\ntwo voltages of equal magnitude and opposite sign.\nThese advantages are sufficiently compelling that at least the first stage in an IC amplifier such as an op amp\nis differential-in, differential-out. The differential transmission of the signal on the chip also minimizes its\nsusceptibility to corruption with noise and interference, which usually occur in a common-mode fashion.\nNevertheless, it is usually required at some point to convert the signal from differential to single-ended; for\ninstance, to connect it to an off-chip load. Figure 9.29 shows a block diagram of a three-stage amplifier in\nwhich the first two stages are of the differential-in, differential-out type, and the third has a single-ended\noutput, that is, an output that is referenced to ground. We now address the question of conversion from",
-          "id": "dhdtgdjuydfkfg-lcxyh",
-          "links": [],
-          "title": "dhdtgdjuydfkfg lcxyh"
-        }
-      ]
-    },
-    {
-      "id": "hobbies",
-      "title": "hobbies",
-      "description": "",
-      "eyebrow": "Portfolio section",
-      "visible": true,
-      "backgroundImage": "docs/_site-sections/hobbies/image_2.jpg",
-      "links": [],
-      "assets": [],
       "subsections": []
     }
   ]
