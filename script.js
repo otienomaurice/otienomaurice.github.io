@@ -51,7 +51,7 @@ function normalizeFunFacts(value) {
   return items
     .map((item) => String(item || "").replace(/\s+/g, " ").trim())
     .filter(Boolean)
-    .slice(0, 3);
+    .slice(0, 10);
 }
 
 function renderFunFacts() {

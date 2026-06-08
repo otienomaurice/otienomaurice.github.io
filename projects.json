@@ -19,7 +19,11 @@
       "accent": "#d18b21"
     }
   ],
-  "funFacts": [],
+  "funFacts": [
+    "I created the builder to develop this portfolio. I enjoy playing soccer, especially as a defensive midfielder.",
+    "I also enjoy a good debate about the game, whether it’s tactics, positional awareness, or the way players carry themselves on the field.",
+    "I love semiconductors, especially silicon, and I’ve recently started reading about gallium nitride."
+  ],
   "projects": [
     {
       "id": "none",
@@ -59,7 +63,7 @@
       "links": [],
       "sections": [],
       "portfolioView": {
-        "builtAt": "2026-06-08T14:19:06.640Z",
+        "builtAt": "2026-06-08T16:49:46.342Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-violet-lilac-click",
@@ -89,19 +93,103 @@
   ],
   "siteSections": [
     {
-      "id": "personal",
-      "title": "Personal",
-      "description": "",
-      "backgroundImage": "",
+      "id": "professional-profile",
+      "title": "Professional Profile",
+      "eyebrow": "Professional profile",
+      "description": "A focused profile section for resume links, technical identity, career direction, websites, and proof of work.",
+      "visible": true,
+      "backgroundImage": "docs/_site-sections/professional-profile/techback.png",
       "links": [
         {
-          "label": "Instagram",
-          "url": "mauriceotieno.com"
+          "label": "Resume",
+          "url": "assets/resume.pdf",
+          "kind": "resume"
+        },
+        {
+          "label": "GitHub",
+          "url": "https://github.com/otienomaurice",
+          "kind": "github"
         }
       ],
       "assets": [],
+      "subsections": [
+        {
+          "description": "I enjoy creating projects from the ground up as well as reverse engineering existing ones, taking them from the initial idea to full realization. This often involves working on everything from project constraints and budget to design, implementation, testing, and validation.",
+          "id": "engineering-identity",
+          "links": [],
+          "title": "Engineering Identity"
+        },
+        {
+          "id": "resume-and-websites",
+          "title": "Resume and Websites",
+          "description": "Keep resumes, GitHub profiles, personal websites, publications, or other professional links in one recruiter-friendly location."
+        },
+        {
+          "description": "Hardware Engineering -  FPGA, ASICs and Electronics( Consumer Electronics , Power electronics and Avionics)\nSoftware Engineering - Embedded Software design, Backend development",
+          "id": "career-direction",
+          "links": [],
+          "title": "Career Direction and Interests"
+        }
+      ]
+    },
+    {
+      "id": "personal-background",
+      "title": "Personal Background",
+      "eyebrow": "Personal story",
+      "description": "A short human section for where you come from, what shaped you, and the values that show up in your work.",
       "visible": true,
-      "subsections": []
+      "backgroundImage": "",
+      "links": [],
+      "assets": [],
+      "subsections": [
+        {
+          "description": "Hometown; Migori, Kenya \nWhere you will find me;  nairobi Kenya",
+          "id": "origin-and-home",
+          "links": [],
+          "title": "Origin and Home"
+        },
+        {
+          "description": "University; Lafayette College        \nHigh school; Kapsabe Boys High School.",
+          "id": "education-path",
+          "links": [],
+          "title": "Education Path"
+        },
+        {
+          "description": "My personal values include creating a comfortable environment for everyone around me while also fostering a space where people can have fun, make jokes, and enjoy themselves.rts of stuff and also so fun",
+          "id": "values",
+          "links": [],
+          "title": "Values"
+        }
+      ]
+    },
+    {
+      "id": "life-outside-engineering",
+      "title": "Life Outside Engineering",
+      "eyebrow": "Beyond the bench",
+      "description": "A lighter section for sports, hobbies, creative interests, community, and what you enjoy outside technical work.",
+      "visible": true,
+      "backgroundImage": "",
+      "links": [],
+      "assets": [],
+      "subsections": [
+        {
+          "description": "Soccer - Defending Midfield / leftback\nSoccer Icon - Luka Modric\nThe Only Goat - Christiano Ronaldo",
+          "id": "sports",
+          "links": [],
+          "title": "Sports"
+        },
+        {
+          "description": "Cycling, Swimming , Hiking and  watching Documentaries and soccer Mtaches.",
+          "id": "hobbies",
+          "links": [],
+          "title": "Hobbies"
+        },
+        {
+          "id": "what-i-love",
+          "title": "What I Love To Do",
+          "description": "Write the things that make you feel energized and alive outside the formal resume."
+        }
+      ]
     }
   ]
 }
