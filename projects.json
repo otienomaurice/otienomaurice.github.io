@@ -50,7 +50,7 @@
       },
       "category": "analog-mixed-signal",
       "status": "Draft",
-      "summary": "In many systems, timing circuits are needed not only for synchronous digital design but also to control mixed-signal circuits and interface functions.   A few examples of clocked analog circuits include analog-to-digital converters, digital-to-analog converters, switched-capacitor filters, and chopper-stabilized op-amps.  A single IC may require multiple clock frequencies for its analog and digital cells.  Since \r\nthese clocks may not be related by simple integer ratios and created with dividers, voltage-controlled oscillators (VCO) are popular circuits to generate the required frequencies on chip.  In this lab, we will analyze, design, and characterize one example of a VCO topology.",
+      "summary": "In many systems, timing circuits are needed not only for synchronous digital design but also to control mixed-signal circuits and interface functions.   A few examples of clocked analog circuits include analog-to-digital converters, digital-to-analog converters, switched-capacitor filters, and chopper-stabilized op-amps.  A single IC may require multiple clock frequencies for its analog and digital cells.  Since \r\nthese clocks may not be related by simple integer ratios and created with dividers, voltage-controlled oscillators (VCO) are popular circuits to generate the required frequencies on chip.  In this project, I analyze, design, and characterize one example of a VCO topology and use it to drive an LED via a PWM output.",
       "summaryRich": {
         "blocks": [
           {
@@ -58,13 +58,13 @@
             "fontFamily": "",
             "fontPx": "",
             "fontSize": "normal",
-            "text": "In many systems, timing circuits are needed not only for synchronous digital design but also to control mixed-signal circuits and interface functions.   A few examples of clocked analog circuits include analog-to-digital converters, digital-to-analog converters, switched-capacitor filters, and chopper-stabilized op-amps.  A single IC may require multiple clock frequencies for its analog and digital cells.  Since \r\nthese clocks may not be related by simple integer ratios and created with dividers, voltage-controlled oscillators (VCO) are popular circuits to generate the required frequencies on chip.  In this lab, we will analyze, design, and characterize one example of a VCO topology.",
+            "text": "In many systems, timing circuits are needed not only for synchronous digital design but also to control mixed-signal circuits and interface functions.   A few examples of clocked analog circuits include analog-to-digital converters, digital-to-analog converters, switched-capacitor filters, and chopper-stabilized op-amps.  A single IC may require multiple clock frequencies for its analog and digital cells.  Since \r\nthese clocks may not be related by simple integer ratios and created with dividers, voltage-controlled oscillators (VCO) are popular circuits to generate the required frequencies on chip.  In this project, I analyze, design, and characterize one example of a VCO topology and use it to drive an LED via a PWM output.",
             "type": "paragraph"
           },
           {
-            "align": "center",
+            "align": "left",
             "caption": "",
-            "display": "show",
+            "display": "download",
             "title": "",
             "type": "image",
             "url": "docs/pwm-generating-voltage-controlled-oscillator/summary/image.png"
@@ -101,7 +101,7 @@
         }
       },
       "portfolioView": {
-        "builtAt": "2026-06-09T23:45:36.562Z",
+        "builtAt": "2026-06-09T23:51:24.351Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -132,7 +132,7 @@
             "items": [
               {
                 "children": [],
-                "description": "In many systems, timing circuits are needed not only for synchronous digital design but also to control mixed-signal circuits and interface functions.   A few examples of clocked analog circuits include analog-to-digital converters, digital-to-analog converters, switched-capacitor filters, and chopper-stabilized op-amps.  A single IC may require multiple clock frequencies for its analog and digital cells.  Since \r\nthese clocks may not be related by simple integer ratios and created with dividers, voltage-controlled oscillators (VCO) are popular circuits to generate the required frequencies on chip.  In this lab, we will analyze, design, and characterize one example of a VCO topology.",
+                "description": "In many systems, timing circuits are needed not only for synchronous digital design but also to control mixed-signal circuits and interface functions.   A few examples of clocked analog circuits include analog-to-digital converters, digital-to-analog converters, switched-capacitor filters, and chopper-stabilized op-amps.  A single IC may require multiple clock frequencies for its analog and digital cells.  Since \r\nthese clocks may not be related by simple integer ratios and created with dividers, voltage-controlled oscillators (VCO) are popular circuits to generate the required frequencies on chip.  In this project, I analyze, design, and characterize one example of a VCO topology and use it to drive an LED via a PWM output.",
                 "kind": "summary",
                 "meta": "Overview",
                 "title": "Overview",
@@ -144,13 +144,13 @@
                       "fontFamily": "",
                       "fontPx": "",
                       "fontSize": "normal",
-                      "text": "In many systems, timing circuits are needed not only for synchronous digital design but also to control mixed-signal circuits and interface functions.   A few examples of clocked analog circuits include analog-to-digital converters, digital-to-analog converters, switched-capacitor filters, and chopper-stabilized op-amps.  A single IC may require multiple clock frequencies for its analog and digital cells.  Since \r\nthese clocks may not be related by simple integer ratios and created with dividers, voltage-controlled oscillators (VCO) are popular circuits to generate the required frequencies on chip.  In this lab, we will analyze, design, and characterize one example of a VCO topology.",
+                      "text": "In many systems, timing circuits are needed not only for synchronous digital design but also to control mixed-signal circuits and interface functions.   A few examples of clocked analog circuits include analog-to-digital converters, digital-to-analog converters, switched-capacitor filters, and chopper-stabilized op-amps.  A single IC may require multiple clock frequencies for its analog and digital cells.  Since \r\nthese clocks may not be related by simple integer ratios and created with dividers, voltage-controlled oscillators (VCO) are popular circuits to generate the required frequencies on chip.  In this project, I analyze, design, and characterize one example of a VCO topology and use it to drive an LED via a PWM output.",
                       "type": "paragraph"
                     },
                     {
-                      "align": "center",
+                      "align": "left",
                       "caption": "",
-                      "display": "show",
+                      "display": "download",
                       "title": "",
                       "type": "image",
                       "url": "docs/pwm-generating-voltage-controlled-oscillator/summary/image.png"
