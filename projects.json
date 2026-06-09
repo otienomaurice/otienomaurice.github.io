@@ -50,8 +50,27 @@
       },
       "category": "analog-mixed-signal",
       "status": "Draft",
-      "summary": "",
-      "summaryRich": null,
+      "summary": "In many systems, timing circuits are needed not only for synchronous digital design but also to control mixed-signal circuits and interface functions.   A few examples of clocked analog circuits include analog-to-digital converters, digital-to-analog converters, switched-capacitor filters, and chopper-stabilized op-amps.  A single IC may require multiple clock frequencies for its analog and digital cells.  Since \r\nthese clocks may not be related by simple integer ratios and created with dividers, voltage-controlled oscillators (VCO) are popular circuits to generate the required frequencies on chip.  In this lab, we will analyze, design, and characterize one example of a VCO topology.",
+      "summaryRich": {
+        "blocks": [
+          {
+            "align": "left",
+            "fontFamily": "",
+            "fontPx": "",
+            "fontSize": "normal",
+            "text": "In many systems, timing circuits are needed not only for synchronous digital design but also to control mixed-signal circuits and interface functions.   A few examples of clocked analog circuits include analog-to-digital converters, digital-to-analog converters, switched-capacitor filters, and chopper-stabilized op-amps.  A single IC may require multiple clock frequencies for its analog and digital cells.  Since \r\nthese clocks may not be related by simple integer ratios and created with dividers, voltage-controlled oscillators (VCO) are popular circuits to generate the required frequencies on chip.  In this lab, we will analyze, design, and characterize one example of a VCO topology.",
+            "type": "paragraph"
+          },
+          {
+            "align": "center",
+            "caption": "",
+            "display": "show",
+            "title": "",
+            "type": "image",
+            "url": "docs/pwm-generating-voltage-controlled-oscillator/summary/image.png"
+          }
+        ]
+      },
       "focus": [],
       "highlights": [],
       "documents": [],
@@ -64,7 +83,7 @@
       "sections": [],
       "design": {
         "brief": {
-          "summary": "",
+          "summary": "sx",
           "summaryRich": null,
           "files": []
         },
@@ -75,14 +94,14 @@
           "mathAnalysis": []
         },
         "simulation": {
-          "summary": "",
+          "summary": "This section describes the simulations used to validate the board.",
           "summaryRich": null,
           "files": [],
           "results": []
         }
       },
       "portfolioView": {
-        "builtAt": "2026-06-08T17:14:17.651Z",
+        "builtAt": "2026-06-09T23:39:26.276Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -106,7 +125,73 @@
           }
         },
         "title": "PWM Generating Voltage Controlled oscillator",
-        "sections": []
+        "sections": [
+          {
+            "description": "",
+            "id": "brief",
+            "items": [
+              {
+                "children": [],
+                "description": "In many systems, timing circuits are needed not only for synchronous digital design but also to control mixed-signal circuits and interface functions.   A few examples of clocked analog circuits include analog-to-digital converters, digital-to-analog converters, switched-capacitor filters, and chopper-stabilized op-amps.  A single IC may require multiple clock frequencies for its analog and digital cells.  Since \r\nthese clocks may not be related by simple integer ratios and created with dividers, voltage-controlled oscillators (VCO) are popular circuits to generate the required frequencies on chip.  In this lab, we will analyze, design, and characterize one example of a VCO topology.",
+                "kind": "summary",
+                "meta": "Overview",
+                "title": "Overview",
+                "url": "",
+                "rich": {
+                  "blocks": [
+                    {
+                      "align": "left",
+                      "fontFamily": "",
+                      "fontPx": "",
+                      "fontSize": "normal",
+                      "text": "In many systems, timing circuits are needed not only for synchronous digital design but also to control mixed-signal circuits and interface functions.   A few examples of clocked analog circuits include analog-to-digital converters, digital-to-analog converters, switched-capacitor filters, and chopper-stabilized op-amps.  A single IC may require multiple clock frequencies for its analog and digital cells.  Since \r\nthese clocks may not be related by simple integer ratios and created with dividers, voltage-controlled oscillators (VCO) are popular circuits to generate the required frequencies on chip.  In this lab, we will analyze, design, and characterize one example of a VCO topology.",
+                      "type": "paragraph"
+                    },
+                    {
+                      "align": "center",
+                      "caption": "",
+                      "display": "show",
+                      "title": "",
+                      "type": "image",
+                      "url": "docs/pwm-generating-voltage-controlled-oscillator/summary/image.png"
+                    }
+                  ]
+                }
+              }
+            ],
+            "title": "Overview"
+          },
+          {
+            "description": "",
+            "id": "design",
+            "items": [
+              {
+                "children": [],
+                "description": "sx",
+                "kind": "subsection",
+                "meta": "Subsection",
+                "title": "Design Overview",
+                "url": ""
+              }
+            ],
+            "title": "Design"
+          },
+          {
+            "description": "",
+            "id": "simulation",
+            "items": [
+              {
+                "children": [],
+                "description": "This section describes the simulations used to validate the board.",
+                "kind": "subsection",
+                "meta": "Subsection",
+                "title": "Simulation Overview",
+                "url": ""
+              }
+            ],
+            "title": "Simulation"
+          }
+        ]
       }
     }
   ],
