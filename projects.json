@@ -94,14 +94,22 @@
           "mathAnalysis": []
         },
         "simulation": {
-          "summary": "This section describes the simulations used to validate the board.",
+          "summary": "The simulations used are given at",
           "summaryRich": null,
-          "files": [],
+          "files": [
+            {
+              "title": "VCO_MauriceO.txt",
+              "description": "",
+              "url": "docs/pwm-generating-voltage-controlled-oscillator/simulations/vco_mauriceo.txt",
+              "type": "text/plain",
+              "status": "uploaded"
+            }
+          ],
           "results": []
         }
       },
       "portfolioView": {
-        "builtAt": "2026-06-09T23:51:24.351Z",
+        "builtAt": "2026-06-10T19:46:07.563Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -182,10 +190,27 @@
             "items": [
               {
                 "children": [],
-                "description": "This section describes the simulations used to validate the board.",
+                "description": "The simulations used are given at",
                 "kind": "subsection",
                 "meta": "Subsection",
                 "title": "Simulation Overview",
+                "url": ""
+              },
+              {
+                "children": [
+                  {
+                    "children": [],
+                    "description": "",
+                    "kind": "simulation-file",
+                    "meta": "text/plain",
+                    "title": "VCO_MauriceO.txt",
+                    "url": "docs/pwm-generating-voltage-controlled-oscillator/simulations/vco_mauriceo.txt"
+                  }
+                ],
+                "description": "",
+                "kind": "subsection",
+                "meta": "Subsection",
+                "title": "Simulation Files",
                 "url": ""
               }
             ],

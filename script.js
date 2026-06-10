@@ -336,8 +336,21 @@ function richTextStyle(block = {}) {
 }
 
 function richImageDownloadLink(block = {}) {
-  const label = escapeHtml(cleanRichImageTitle(block) || block.caption || "Image file");
-  return `<p class="rich-download-only"><a class="resource-link" href="${escapeHtml(block.url || "#")}"${linkAttributes(block.url || "")}>${label}</a></p>`;
+    const label = escapeHtml(cleanRichImageTitle(block) || block.caption || "Image file");
+    const url = block.url || "#";
+
+    return `
+    <p class="rich-download-only">
+      <a
+        class="resource-link"
+        href="${escapeHtml(url)}"
+        ${linkAttributes(url)}
+        ${downloadAttribute(url)}
+      >
+        ${label}
+      </a>
+    </p>
+  `;
 }
 
 function cleanRichImageTitle(block = {}) {
@@ -523,13 +536,41 @@ function linkAttributes(url) {
   return /^https?:\/\//.test(url || "") ? ' target="_blank" rel="noreferrer"' : "";
 }
 
-function resourceLink(item, label = item.label || item.title || item.name) {
-  if ((!item.url && !item.artifact) || item.status === "planned") {
-    return `<span class="resource-link muted">${label}</span>`;
-  }
+function isLocalDownloadTarget(target = "") {
+    const value = String(target || "").trim();
+    return Boolean(value) && !/^(https?:)?\/\//i.test(value) && !/^(mailto:|tel:|#)/i.test(value);
+}
 
-  const target = item.url || item.artifact;
-  return `<a class="resource-link" href="${target}"${linkAttributes(target)}>${label}</a>`;
+function downloadAttribute(target = "") {
+    return isLocalDownloadTarget(target) ? " download" : "";
+}
+
+function fileNameFromUrl(url = "") {
+    const clean = String(url || "").split(/[?#]/)[0].split("/").pop() || "Download file";
+    try {
+        return decodeURIComponent(clean);
+    } catch {
+        return clean;
+    }
+}
+
+function resourceLink(item = {}, label = item.label || item.title || item.name || fileNameFromUrl(item.url || item.artifact)) {
+    const target = item.url || item.artifact || item.href || item.file || item.path || item.src || "";
+
+    if (!target || item.status === "planned") {
+        return `<span class="resource-link muted">${escapeHtml(label || "Planned file")}</span>`;
+    }
+
+    return `
+    <a
+      class="resource-link"
+      href="${escapeHtml(target)}"
+      ${linkAttributes(target)}
+      ${downloadAttribute(target)}
+    >
+      ${escapeHtml(label || fileNameFromUrl(target))}
+    </a>
+  `;
 }
 
 function pillList(items, className = "") {
@@ -647,7 +688,144 @@ function customSectionBlocks(project) {
     `, "No content has been added yet.")}
   `)).join("");
 }
+function itemUrl(item = {}) {
+    return item.url || item.artifact || item.href || item.file || item.path || item.src || "";
+}
 
+function itemLabel(item = {}, fallback = "Download file") {
+    const url = itemUrl(item);
+    return item.title || item.label || item.name || item.caption || fileNameFromUrl(url) || fallback;
+}
+
+function normalizeDownloadAsset(item = {}, fallbackType = "File") {
+    const url = itemUrl(item);
+    if (!url || item.status === "planned") return null;
+
+    return {
+        title: itemLabel(item),
+        url,
+        status: item.status || "uploaded",
+        type: item.type || item.kind || item.meta || fallbackType,
+        description: item.description || item.caption || item.summary || ""
+    };
+}
+
+function collectRichDownloads(rich, fallbackType = "File", output = []) {
+    (rich?.blocks || []).forEach((block) => {
+        if (!block?.url) return;
+
+        output.push({
+            title: cleanRichImageTitle(block) || block.title || block.caption || fileNameFromUrl(block.url),
+            url: block.url,
+            status: "uploaded",
+            type: block.type === "image" ? "Image" : fallbackType,
+            description: block.caption || ""
+        });
+    });
+
+    return output;
+}
+
+function collectDownloadsFromValue(value, fallbackType = "File", output = []) {
+    if (!value) return output;
+
+    if (Array.isArray(value)) {
+        value.forEach((item) => collectDownloadsFromValue(item, fallbackType, output));
+        return output;
+    }
+
+    if (typeof value !== "object") return output;
+
+    const asset = normalizeDownloadAsset(value, fallbackType);
+    if (asset) output.push(asset);
+
+    collectRichDownloads(value.rich, fallbackType, output);
+    collectRichDownloads(value.summaryRich, fallbackType, output);
+
+    [
+        "files",
+        "assets",
+        "items",
+        "children",
+        "links",
+        "results",
+        "references",
+        "mathAnalysis"
+    ].forEach((key) => collectDownloadsFromValue(value[key], fallbackType, output));
+
+    return output;
+}
+
+function uniqueDownloads(items = []) {
+    const seen = new Set();
+
+    return items.filter((item) => {
+        const key = `${item.url}::${item.title}`;
+        if (!item.url || seen.has(key)) return false;
+        seen.add(key);
+        return true;
+    });
+}
+
+function renderDownloadBlock(title, items = []) {
+    const downloads = uniqueDownloads(items);
+    if (!downloads.length) return "";
+
+    return detailBlock(escapeHtml(title), "evidence-block evidence-wide download-evidence-block", `
+    <ul class="download-list">
+      ${downloads.map((item) => `
+        <li>
+          ${resourceLink(item, item.title)}
+          <span>${escapeHtml(item.type || "File")} &middot; ${escapeHtml(item.status || "uploaded")}</span>
+          ${item.description ? `<p>${renderInlineMath(item.description)}</p>` : ""}
+        </li>
+      `).join("")}
+    </ul>
+  `);
+}
+
+function renderCollectedDownloadSections(project) {
+    const blocks = [];
+
+    const addBlock = (title, source, fallbackType = "File") => {
+        const downloads = uniqueDownloads(collectDownloadsFromValue(source, fallbackType, []));
+        if (downloads.length) blocks.push(renderDownloadBlock(title, downloads));
+    };
+
+    addBlock("Overview downloads", [
+        { summaryRich: project.summaryRich },
+        project.design?.brief?.files,
+        project.design?.brief?.summaryRich
+    ], "Overview file");
+
+    addBlock("Design downloads", [
+        project.design?.documentation?.files,
+        project.design?.documentation?.references,
+        project.design?.documentation?.mathAnalysis
+    ], "Design file");
+
+    addBlock("Simulation downloads", [
+        project.design?.simulation?.files,
+        project.design?.simulation?.results
+    ], "Simulation file");
+
+    addBlock("Project documents", project.documents, "Document");
+    addBlock("Test artifacts", project.tests, "Test artifact");
+    addBlock("PCB artifacts", project.pcbs, "PCB artifact");
+    addBlock("Images and media", project.media, "Image");
+
+    (project.sections || []).forEach((section) => {
+        addBlock(`${displayTitle(section.title, "Custom section")} downloads`, section.items || section.files || [], section.title || "Section file");
+    });
+
+    (project.portfolioView?.sections || [])
+        .filter((section) => section.id !== "brief")
+        .forEach((section) => {
+            addBlock(`${displayTitle(section.title, "Section")} downloads`, section.items || [], section.title || "Section file");
+        });
+
+    return blocks.join("");
+}
 function renderParsedBriefBlock(section, fallbackSummary = "") {
   const briefItem = section?.items?.[0] || {};
   const briefText = briefItem.description || fallbackSummary || "";
@@ -783,13 +961,20 @@ function parsedLeafDetail(item) {
 }
 
 function parsedNodeContent(node, projectId, sectionIndex, path = []) {
-  const isContainer = !node.kind || node.kind === "subsection";
-  if (!isContainer) return parsedLeafDetail(node);
-  const children = nodeChildren(node);
-  return `
+    const isContainer = !node.kind || node.kind === "subsection";
+
+    if (!isContainer) return parsedLeafDetail(node);
+
+    const children = nodeChildren(node);
+    const downloads = uniqueDownloads(
+        collectDownloadsFromValue(node, parsedNodeMeta(node) || "Section file", [])
+    );
+
+    return `
     <article class="parsed-window-panel ${path.length ? "nested-window-panel" : "root-window-panel"}">
-    ${nodeSummary("Overview", node.rich, node.description || "", "No section overview has been added yet.")}
-    ${parsedChildCards(children, projectId, sectionIndex, path)}
+      ${nodeSummary("Overview", node.rich, node.description || "", "No section overview has been added yet.")}
+      ${renderInlineSectionFiles(downloads)}
+      ${parsedChildCards(children, projectId, sectionIndex, path)}
     </article>
   `;
 }
@@ -832,8 +1017,8 @@ function projectCard(project) {
           <h3>${project.portfolioView.title || project.title}</h3>
           ${renderParsedBriefBlock(briefSection, project.summary)}
           <div class="evidence-grid" aria-label="${project.title} parsed project content">
-            ${otherSections.map((section, index) => parsedSection(section, index, project)).join("")}
-          </div>
+  ${otherSections.map((section, index) => parsedSection(section, index, project)).join("")}
+</div>
         </div>
       </article>
     `;
@@ -878,7 +1063,7 @@ function projectCard(project) {
           `, "No PCB build has been added yet."))}
 
           ${detailBlock("Images", "evidence-block evidence-wide", mediaGrid(project.media))}
-          ${customSectionBlocks(project)}
+     ${customSectionBlocks(project)}
         </div>
 
         ${detailBlock("Tools and implementation files", "project-drawer", `
@@ -1068,7 +1253,25 @@ grid.addEventListener("click", (event) => {
   if (!sectionButton) return;
   openParsedSection(sectionButton.dataset.sectionProject, sectionButton.dataset.sectionIndex);
 });
+function renderInlineSectionFiles(items = []) {
+    const downloads = uniqueDownloads(items);
+    if (!downloads.length) return "";
 
+    return `
+    <div class="section-file-list">
+      ${downloads.map((item) => `
+        <a
+          class="section-file-link"
+          href="${escapeHtml(item.url)}"
+          ${linkAttributes(item.url)}
+          ${downloadAttribute(item.url)}
+        >
+          ${escapeHtml(item.title || fileNameFromUrl(item.url))}
+        </a>
+      `).join("")}
+    </div>
+  `;
+}
 function loadProjectCatalog() {
   if (window.__PORTFOLIO_CATALOG__) {
     categories = window.__PORTFOLIO_CATALOG__.categories || [];

@@ -1863,3 +1863,69 @@ h3 {
     flex-direction: column;
   }
 }
+.download-evidence-block {
+    background: rgba(255, 255, 255, 0.74);
+}
+
+.download-list {
+    display: grid;
+    gap: 10px;
+    margin: 0;
+    padding-left: 18px;
+}
+
+    .download-list li {
+        display: grid;
+        gap: 4px;
+    }
+
+    .download-list span {
+        color: var(--muted);
+        font-size: 0.82rem;
+        font-weight: 800;
+    }
+
+    .download-list p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.86rem;
+    }
+.section-file-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 100%;
+}
+
+.section-file-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 38px;
+    padding: 0 12px;
+    border: 1px solid rgba(17, 124, 122, 0.22);
+    border-radius: 8px;
+    color: var(--teal);
+    background: rgba(17, 124, 122, 0.06);
+    font-size: 0.84rem;
+    font-weight: 800;
+}
+
+    .section-file-link:hover {
+        border-color: var(--teal);
+        color: #ffffff;
+        background: var(--teal);
+    }
+
+.section-view-content {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: clamp(18px, 4vw, 38px);
+}
+
+.parsed-window-panel {
+    width: 100%;
+    max-width: none;
+    justify-self: stretch;
+}
