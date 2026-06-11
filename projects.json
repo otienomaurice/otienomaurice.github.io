@@ -50,7 +50,7 @@
       },
       "category": "analog-mixed-signal",
       "status": "Draft",
-      "summary": "In many systems, timing circuits are needed not only for synchronous digital design but also to control mixed-signal circuits and interface functions.   A few examples of clocked analog circuits include analog-to-digital converters, digital-to-analog converters, switched-capacitor filters, and chopper-stabilized op-amps.  A single IC may require multiple clock frequencies for its analog and digital cells.  Since \r\nthese clocks may not be related by simple integer ratios and created with dividers, voltage-controlled oscillators (VCO) are popular circuits to generate the required frequencies on chip.  In this project, I analyze, design, and characterize a VCO topology and use it to drive an LED via a PWM output.",
+      "summary": "In many systems, timing circuits are needed not only for synchronous digital design but also to control mixed-signal circuits and interface functions.   A few examples of clocked analog circuits include analog-to-digital converters, digital-to-analog converters, switched-capacitor filters, and chopper-stabilized op-amps.  A single IC may require multiple clock frequencies for its analog and digital cells.  Since \r\nthese clocks may not be related by simple integer ratios and created with dividers, voltage-controlled oscillators (VCO) are popular circuits to generate the required frequencies on chip.  In this project, I analyze, design, and characterize a VCO topology and use it to drive an LED via a PWM output.\n\nThe VCO was designed to produce an output frequency of approximately 1 kHz when driven by a 1 V control input. The system used a 10 V external power input, regulated down to 5 V using an LM317 voltage regulator to supply the full board.\n\nThe oscillator architecture was built around a voltage-to-current converter, current mirrors, MOS switching devices, an integrating capacitor, analog comparators, and an RS latch made from NAND gates. The control voltage sets the reference current, which charges and discharges the capacitor. As the capacitor voltage crosses the upper and lower comparator thresholds, the latch changes state and reverses the current direction, creating a continuous oscillation.\n\nI completed the project through a full hardware design flow. This included theoretical calculations, component selection, KiCad schematic capture, LTSpice simulation, PCB layout, design-rule checking, Gerber generation, board fabrication, assembly, and bench testing. The final prototype allowed comparison between simulated and measured waveforms, subcircuit behavior, and output frequency versus control voltage. Overall, this project strengthened my understanding of analog timing circuits, current mirrors, comparator-based feedback, sequential logic, PCB design, and practical mixed-signal hardware debugging.\n\nIn a later project I am beginning to work on, a different topology of an active oscillator satisfying the Barkhausen criterion is used as the VCO in a phase-locked loop circuit.",
       "summaryRich": {
         "blocks": [
           {
@@ -60,6 +60,42 @@
             "fontPx": "",
             "fontSize": "normal",
             "text": "In many systems, timing circuits are needed not only for synchronous digital design but also to control mixed-signal circuits and interface functions.   A few examples of clocked analog circuits include analog-to-digital converters, digital-to-analog converters, switched-capacitor filters, and chopper-stabilized op-amps.  A single IC may require multiple clock frequencies for its analog and digital cells.  Since \r\nthese clocks may not be related by simple integer ratios and created with dividers, voltage-controlled oscillators (VCO) are popular circuits to generate the required frequencies on chip.  In this project, I analyze, design, and characterize a VCO topology and use it to drive an LED via a PWM output.",
+            "type": "paragraph"
+          },
+          {
+            "align": "left",
+            "color": "",
+            "fontFamily": "",
+            "fontPx": "",
+            "fontSize": "normal",
+            "text": "The VCO was designed to produce an output frequency of approximately 1 kHz when driven by a 1 V control input. The system used a 10 V external power input, regulated down to 5 V using an LM317 voltage regulator to supply the full board.",
+            "type": "paragraph"
+          },
+          {
+            "align": "left",
+            "color": "",
+            "fontFamily": "",
+            "fontPx": "",
+            "fontSize": "normal",
+            "text": "The oscillator architecture was built around a voltage-to-current converter, current mirrors, MOS switching devices, an integrating capacitor, analog comparators, and an RS latch made from NAND gates. The control voltage sets the reference current, which charges and discharges the capacitor. As the capacitor voltage crosses the upper and lower comparator thresholds, the latch changes state and reverses the current direction, creating a continuous oscillation.",
+            "type": "paragraph"
+          },
+          {
+            "align": "left",
+            "color": "",
+            "fontFamily": "",
+            "fontPx": "",
+            "fontSize": "normal",
+            "text": "I completed the project through a full hardware design flow. This included theoretical calculations, component selection, KiCad schematic capture, LTSpice simulation, PCB layout, design-rule checking, Gerber generation, board fabrication, assembly, and bench testing. The final prototype allowed comparison between simulated and measured waveforms, subcircuit behavior, and output frequency versus control voltage. Overall, this project strengthened my understanding of analog timing circuits, current mirrors, comparator-based feedback, sequential logic, PCB design, and practical mixed-signal hardware debugging.",
+            "type": "paragraph"
+          },
+          {
+            "align": "left",
+            "color": "",
+            "fontFamily": "",
+            "fontPx": "",
+            "fontSize": "normal",
+            "text": "In a later project I am beginning to work on, a different topology of an active oscillator satisfying the Barkhausen criterion is used as the VCO in a phase-locked loop circuit.",
             "type": "paragraph"
           },
           {
@@ -84,7 +120,7 @@
       "sections": [
         {
           "id": "tests",
-          "title": "Tests",
+          "title": "Bench Tests and Validation",
           "description": "",
           "items": [
             {
@@ -105,7 +141,10 @@
               "type": "Text",
               "status": "draft"
             }
-          ]
+          ],
+          "richDescription": {
+            "blocks": []
+          }
         }
       ],
       "design": {
@@ -180,7 +219,7 @@
         }
       },
       "portfolioView": {
-        "builtAt": "2026-06-11T14:45:21.043Z",
+        "builtAt": "2026-06-11T14:58:16.600Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -211,7 +250,7 @@
             "items": [
               {
                 "children": [],
-                "description": "In many systems, timing circuits are needed not only for synchronous digital design but also to control mixed-signal circuits and interface functions.   A few examples of clocked analog circuits include analog-to-digital converters, digital-to-analog converters, switched-capacitor filters, and chopper-stabilized op-amps.  A single IC may require multiple clock frequencies for its analog and digital cells.  Since \r\nthese clocks may not be related by simple integer ratios and created with dividers, voltage-controlled oscillators (VCO) are popular circuits to generate the required frequencies on chip.  In this project, I analyze, design, and characterize a VCO topology and use it to drive an LED via a PWM output.",
+                "description": "In many systems, timing circuits are needed not only for synchronous digital design but also to control mixed-signal circuits and interface functions.   A few examples of clocked analog circuits include analog-to-digital converters, digital-to-analog converters, switched-capacitor filters, and chopper-stabilized op-amps.  A single IC may require multiple clock frequencies for its analog and digital cells.  Since \r\nthese clocks may not be related by simple integer ratios and created with dividers, voltage-controlled oscillators (VCO) are popular circuits to generate the required frequencies on chip.  In this project, I analyze, design, and characterize a VCO topology and use it to drive an LED via a PWM output.\n\nThe VCO was designed to produce an output frequency of approximately 1 kHz when driven by a 1 V control input. The system used a 10 V external power input, regulated down to 5 V using an LM317 voltage regulator to supply the full board.\n\nThe oscillator architecture was built around a voltage-to-current converter, current mirrors, MOS switching devices, an integrating capacitor, analog comparators, and an RS latch made from NAND gates. The control voltage sets the reference current, which charges and discharges the capacitor. As the capacitor voltage crosses the upper and lower comparator thresholds, the latch changes state and reverses the current direction, creating a continuous oscillation.\n\nI completed the project through a full hardware design flow. This included theoretical calculations, component selection, KiCad schematic capture, LTSpice simulation, PCB layout, design-rule checking, Gerber generation, board fabrication, assembly, and bench testing. The final prototype allowed comparison between simulated and measured waveforms, subcircuit behavior, and output frequency versus control voltage. Overall, this project strengthened my understanding of analog timing circuits, current mirrors, comparator-based feedback, sequential logic, PCB design, and practical mixed-signal hardware debugging.\n\nIn a later project I am beginning to work on, a different topology of an active oscillator satisfying the Barkhausen criterion is used as the VCO in a phase-locked loop circuit.",
                 "kind": "summary",
                 "meta": "Overview",
                 "title": "Overview",
@@ -225,6 +264,42 @@
                       "fontPx": "",
                       "fontSize": "normal",
                       "text": "In many systems, timing circuits are needed not only for synchronous digital design but also to control mixed-signal circuits and interface functions.   A few examples of clocked analog circuits include analog-to-digital converters, digital-to-analog converters, switched-capacitor filters, and chopper-stabilized op-amps.  A single IC may require multiple clock frequencies for its analog and digital cells.  Since \r\nthese clocks may not be related by simple integer ratios and created with dividers, voltage-controlled oscillators (VCO) are popular circuits to generate the required frequencies on chip.  In this project, I analyze, design, and characterize a VCO topology and use it to drive an LED via a PWM output.",
+                      "type": "paragraph"
+                    },
+                    {
+                      "align": "left",
+                      "color": "",
+                      "fontFamily": "",
+                      "fontPx": "",
+                      "fontSize": "normal",
+                      "text": "The VCO was designed to produce an output frequency of approximately 1 kHz when driven by a 1 V control input. The system used a 10 V external power input, regulated down to 5 V using an LM317 voltage regulator to supply the full board.",
+                      "type": "paragraph"
+                    },
+                    {
+                      "align": "left",
+                      "color": "",
+                      "fontFamily": "",
+                      "fontPx": "",
+                      "fontSize": "normal",
+                      "text": "The oscillator architecture was built around a voltage-to-current converter, current mirrors, MOS switching devices, an integrating capacitor, analog comparators, and an RS latch made from NAND gates. The control voltage sets the reference current, which charges and discharges the capacitor. As the capacitor voltage crosses the upper and lower comparator thresholds, the latch changes state and reverses the current direction, creating a continuous oscillation.",
+                      "type": "paragraph"
+                    },
+                    {
+                      "align": "left",
+                      "color": "",
+                      "fontFamily": "",
+                      "fontPx": "",
+                      "fontSize": "normal",
+                      "text": "I completed the project through a full hardware design flow. This included theoretical calculations, component selection, KiCad schematic capture, LTSpice simulation, PCB layout, design-rule checking, Gerber generation, board fabrication, assembly, and bench testing. The final prototype allowed comparison between simulated and measured waveforms, subcircuit behavior, and output frequency versus control voltage. Overall, this project strengthened my understanding of analog timing circuits, current mirrors, comparator-based feedback, sequential logic, PCB design, and practical mixed-signal hardware debugging.",
+                      "type": "paragraph"
+                    },
+                    {
+                      "align": "left",
+                      "color": "",
+                      "fontFamily": "",
+                      "fontPx": "",
+                      "fontSize": "normal",
+                      "text": "In a later project I am beginning to work on, a different topology of an active oscillator satisfying the Barkhausen criterion is used as the VCO in a phase-locked loop circuit.",
                       "type": "paragraph"
                     },
                     {
@@ -502,7 +577,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-11T14:45:21.043Z",
+        "builtAt": "2026-06-11T14:58:16.600Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -794,7 +869,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-11T14:45:21.043Z",
+        "builtAt": "2026-06-11T14:58:16.600Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-steel-teal-click",
@@ -1022,7 +1097,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-11T14:45:21.043Z",
+        "builtAt": "2026-06-11T14:58:16.600Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-graphite-white-click",
@@ -1151,7 +1226,7 @@
       "links": [],
       "sections": [],
       "portfolioView": {
-        "builtAt": "2026-06-11T14:45:21.043Z",
+        "builtAt": "2026-06-11T14:58:16.600Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-deep-navy-cyan-click",
