@@ -154,7 +154,7 @@
         }
       },
       "portfolioView": {
-        "builtAt": "2026-06-11T04:58:43.666Z",
+        "builtAt": "2026-06-11T05:10:35.313Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -361,7 +361,7 @@
       },
       "category": "embedded",
       "status": "Draft",
-      "summary": "Abstract\n\nThe Lafayette College Department of Electrical and Computer Engineering requested that the class of 2026 design a STRIDE system. Mobility devices are designed to meet\r\nthe needs of their users, and there is a recognized difficulty in navigating stairs with most\r\nmobility devices; additionally, there is a recognized potential advantage in incorporating\r\nobstacle detection systems to aid in navigation tasks. Thus, the senior design team developed\r\na device that encompasses three systems: a rollator, a stair-climbing mechanism, and a sensor\r\ndetection system.\n\nThe completed system is a motor-driven rollator with the ability to navigate both flat\r\nground and stairs. This system is comprised of: an aluminum tubing frame with aluminum\r\nand acrylic paneling; four tri-wheel assemblies, two of which are powered and interconnected\r\nby gear-chain systems, the other two composed of omnidirectional wheels; two DC brushless\r\nmotors, powering the aforementioned tri-wheels; a 24 V DC battery and a custom power routing system; an obstacle-detection system; a physical interface; a remote control interface;\r\nand an MCU hub. The rollator can operate under direct user control through a set of physical\r\nbuttons and braking mechanisms, as well as autonomously through a remote control terminalon a password-protected website. It supports continuous operation on flat ground for up\r\nto 8 hours before recharge. The system is to be used indoors only on ADA-compliant\r\nstaircases and surfaces. This document provides an introductory problem statement; the\r\ndesign requirements and considerations; the evolution of the design; the final details of the\r\ndesign; an overview of the testing and evaluation process; conclusions and future work; and\r\nan overview of team management.\n\nIntroduction\n\nEnhancing an individual’s mobility is crucial for supporting independence and empowerment among seniors and individuals who have lost mobility due to injury or illness. In\r\nrecent years, designers and companies have recognized the need expressed by these people for\r\nmobility support devices that are specifically tailored to an individual’s level of mobility; canes\r\nand wheelchairs are both useful, potentially life-changing devices, but are only appropriate\r\nfor certain users. The emphasis on designing devices aligned with users’ variable needs has\r\nresulted in the popularization of the rollator, which provides a level of support between a\r\ncane and a wheelchair.\n\nA typical rollator is a four-wheeled device with handles, used to support a user’s balance\r\nwhen navigating flat or moderately sloped terrain. It is more mobile on flat ground than\r\na walker, but can become more burdensome on sloped terrain, where it either resists the\r\nmotion of the user when going uphill or threatens to run away from the user when going\r\ndownhill. It is bulky and hard to carry up or down stairs, especially for target users. Sloped\r\nsurfaces and elevation changes, especially with an added load, are some of the first obstacles\r\nthat people begin to have trouble with as they age or lose mobility. Additionally, typical\r\nrollators do not provide any assistance with navigation for users, who might have impaired\r\nvision or be experiencing cognitive decline.\n\nThus, a niche can be identified within the existing scope of mobility devices for a rollator\r\nthat can better support users on sloped terrain; that can traverse stairs, removing the need\r\nto lift it up and down; that can carry light loads, such as groceries, up and down slopes and\r\nstairs; and has an obstacle-detection system to assist users in navigation. The goal of the\r\nSTRIDE system is to provide a finished prototype that addresses all of these needs. The\r\nthree main components of STRIDE are the rollator, the stair climbing mechanism, and the\r\nsafety sensors. The development of these components is outlined in Section 3, the final design\r\ndetails of the finished device are listed in Section 4, and the testing and evaluation of these\r\ncomponents is summarized in Section 5.",
+      "summary": "STRIDE, the Smart Technology Rollator for Independence, Detection, and Empowerment, is a senior design project developed to improve mobility, safety, and independence for users who need more support than a cane but do not require a wheelchair. Traditional rollators are useful on flat ground, but they become difficult to control on ramps and nearly impossible for many users to move safely up or down stairs. STRIDE addresses this problem by combining a powered rollator, stair-climbing mechanism, obstacle detection, embedded control, custom electronics, and an accessible user interface into one integrated prototype.\n\nThe system is built around four tri-wheel assemblies. The front tri-wheels are powered by ElectroCraft brushless DC motors through a gear-chain transmission, while the rear tri-wheels use omnidirectional wheels to preserve steering and support passive stair traversal. This allows STRIDE to move like a standard rollator on flat ground and transition into stair-climbing operation when needed. The frame was fabricated from aluminum tubing to balance strength, weight, and manufacturability, with custom motor plates, protective panels, battery mounting, and internal electronics support.\n\nMy work involved major electrical and embedded-system contributions, including motor control, battery monitoring, power distribution, firmware architecture, and system integration. STRIDE uses a centralized 24 V LiFePO₄ battery, custom power distribution board, LTC2944-based battery monitor, STM32 microcontrollers, an ESP32 wireless interface, and a Jetson Orin Nano for high-level decision-making. The STM32 handles real-time low-level control such as motor commands, brake inputs, battery readings, sensor communication, and feedback to the Jetson.\n\nFor safety, STRIDE combines a ZED 2i depth camera with ultrasonic sensors to detect obstacles, classify ground and walls, and provide redundant sensing for transparent or low-light conditions. The project demonstrates practical experience in PCB design, embedded C/C++, motor control, sensor integration, power electronics, hardware debugging, and full-system testing. STRIDE reflects my ability to turn a real user problem into a working electromechanical system.",
       "summaryRich": {
         "blocks": [
           {
@@ -370,7 +370,7 @@
             "fontFamily": "",
             "fontPx": "",
             "fontSize": "normal",
-            "text": "Abstract",
+            "text": "STRIDE, the Smart Technology Rollator for Independence, Detection, and Empowerment, is a senior design project developed to improve mobility, safety, and independence for users who need more support than a cane but do not require a wheelchair. Traditional rollators are useful on flat ground, but they become difficult to control on ramps and nearly impossible for many users to move safely up or down stairs. STRIDE addresses this problem by combining a powered rollator, stair-climbing mechanism, obstacle detection, embedded control, custom electronics, and an accessible user interface into one integrated prototype.",
             "type": "paragraph"
           },
           {
@@ -379,7 +379,7 @@
             "fontFamily": "",
             "fontPx": "",
             "fontSize": "normal",
-            "text": "The Lafayette College Department of Electrical and Computer Engineering requested that the class of 2026 design a STRIDE system. Mobility devices are designed to meet\r\nthe needs of their users, and there is a recognized difficulty in navigating stairs with most\r\nmobility devices; additionally, there is a recognized potential advantage in incorporating\r\nobstacle detection systems to aid in navigation tasks. Thus, the senior design team developed\r\na device that encompasses three systems: a rollator, a stair-climbing mechanism, and a sensor\r\ndetection system.",
+            "text": "The system is built around four tri-wheel assemblies. The front tri-wheels are powered by ElectroCraft brushless DC motors through a gear-chain transmission, while the rear tri-wheels use omnidirectional wheels to preserve steering and support passive stair traversal. This allows STRIDE to move like a standard rollator on flat ground and transition into stair-climbing operation when needed. The frame was fabricated from aluminum tubing to balance strength, weight, and manufacturability, with custom motor plates, protective panels, battery mounting, and internal electronics support.",
             "type": "paragraph"
           },
           {
@@ -388,7 +388,7 @@
             "fontFamily": "",
             "fontPx": "",
             "fontSize": "normal",
-            "text": "The completed system is a motor-driven rollator with the ability to navigate both flat\r\nground and stairs. This system is comprised of: an aluminum tubing frame with aluminum\r\nand acrylic paneling; four tri-wheel assemblies, two of which are powered and interconnected\r\nby gear-chain systems, the other two composed of omnidirectional wheels; two DC brushless\r\nmotors, powering the aforementioned tri-wheels; a 24 V DC battery and a custom power routing system; an obstacle-detection system; a physical interface; a remote control interface;\r\nand an MCU hub. The rollator can operate under direct user control through a set of physical\r\nbuttons and braking mechanisms, as well as autonomously through a remote control terminalon a password-protected website. It supports continuous operation on flat ground for up\r\nto 8 hours before recharge. The system is to be used indoors only on ADA-compliant\r\nstaircases and surfaces. This document provides an introductory problem statement; the\r\ndesign requirements and considerations; the evolution of the design; the final details of the\r\ndesign; an overview of the testing and evaluation process; conclusions and future work; and\r\nan overview of team management.",
+            "text": "My work involved major electrical and embedded-system contributions, including motor control, battery monitoring, power distribution, firmware architecture, and system integration. STRIDE uses a centralized 24 V LiFePO₄ battery, custom power distribution board, LTC2944-based battery monitor, STM32 microcontrollers, an ESP32 wireless interface, and a Jetson Orin Nano for high-level decision-making. The STM32 handles real-time low-level control such as motor commands, brake inputs, battery readings, sensor communication, and feedback to the Jetson.",
             "type": "paragraph"
           },
           {
@@ -397,34 +397,7 @@
             "fontFamily": "",
             "fontPx": "",
             "fontSize": "normal",
-            "text": "Introduction",
-            "type": "paragraph"
-          },
-          {
-            "align": "left",
-            "color": "",
-            "fontFamily": "",
-            "fontPx": "",
-            "fontSize": "normal",
-            "text": "Enhancing an individual’s mobility is crucial for supporting independence and empowerment among seniors and individuals who have lost mobility due to injury or illness. In\r\nrecent years, designers and companies have recognized the need expressed by these people for\r\nmobility support devices that are specifically tailored to an individual’s level of mobility; canes\r\nand wheelchairs are both useful, potentially life-changing devices, but are only appropriate\r\nfor certain users. The emphasis on designing devices aligned with users’ variable needs has\r\nresulted in the popularization of the rollator, which provides a level of support between a\r\ncane and a wheelchair.",
-            "type": "paragraph"
-          },
-          {
-            "align": "left",
-            "color": "",
-            "fontFamily": "",
-            "fontPx": "",
-            "fontSize": "normal",
-            "text": "A typical rollator is a four-wheeled device with handles, used to support a user’s balance\r\nwhen navigating flat or moderately sloped terrain. It is more mobile on flat ground than\r\na walker, but can become more burdensome on sloped terrain, where it either resists the\r\nmotion of the user when going uphill or threatens to run away from the user when going\r\ndownhill. It is bulky and hard to carry up or down stairs, especially for target users. Sloped\r\nsurfaces and elevation changes, especially with an added load, are some of the first obstacles\r\nthat people begin to have trouble with as they age or lose mobility. Additionally, typical\r\nrollators do not provide any assistance with navigation for users, who might have impaired\r\nvision or be experiencing cognitive decline.",
-            "type": "paragraph"
-          },
-          {
-            "align": "left",
-            "color": "",
-            "fontFamily": "",
-            "fontPx": "",
-            "fontSize": "normal",
-            "text": "Thus, a niche can be identified within the existing scope of mobility devices for a rollator\r\nthat can better support users on sloped terrain; that can traverse stairs, removing the need\r\nto lift it up and down; that can carry light loads, such as groceries, up and down slopes and\r\nstairs; and has an obstacle-detection system to assist users in navigation. The goal of the\r\nSTRIDE system is to provide a finished prototype that addresses all of these needs. The\r\nthree main components of STRIDE are the rollator, the stair climbing mechanism, and the\r\nsafety sensors. The development of these components is outlined in Section 3, the final design\r\ndetails of the finished device are listed in Section 4, and the testing and evaluation of these\r\ncomponents is summarized in Section 5.",
+            "text": "For safety, STRIDE combines a ZED 2i depth camera with ultrasonic sensors to detect obstacles, classify ground and walls, and provide redundant sensing for transparent or low-light conditions. The project demonstrates practical experience in PCB design, embedded C/C++, motor control, sensor integration, power electronics, hardware debugging, and full-system testing. STRIDE reflects my ability to turn a real user problem into a working electromechanical system.",
             "type": "paragraph"
           }
         ]
@@ -447,7 +420,7 @@
       "links": [],
       "sections": [],
       "portfolioView": {
-        "builtAt": "2026-06-11T04:58:43.666Z",
+        "builtAt": "2026-06-11T05:10:35.313Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -478,7 +451,7 @@
             "items": [
               {
                 "children": [],
-                "description": "Abstract\n\nThe Lafayette College Department of Electrical and Computer Engineering requested that the class of 2026 design a STRIDE system. Mobility devices are designed to meet\r\nthe needs of their users, and there is a recognized difficulty in navigating stairs with most\r\nmobility devices; additionally, there is a recognized potential advantage in incorporating\r\nobstacle detection systems to aid in navigation tasks. Thus, the senior design team developed\r\na device that encompasses three systems: a rollator, a stair-climbing mechanism, and a sensor\r\ndetection system.\n\nThe completed system is a motor-driven rollator with the ability to navigate both flat\r\nground and stairs. This system is comprised of: an aluminum tubing frame with aluminum\r\nand acrylic paneling; four tri-wheel assemblies, two of which are powered and interconnected\r\nby gear-chain systems, the other two composed of omnidirectional wheels; two DC brushless\r\nmotors, powering the aforementioned tri-wheels; a 24 V DC battery and a custom power routing system; an obstacle-detection system; a physical interface; a remote control interface;\r\nand an MCU hub. The rollator can operate under direct user control through a set of physical\r\nbuttons and braking mechanisms, as well as autonomously through a remote control terminalon a password-protected website. It supports continuous operation on flat ground for up\r\nto 8 hours before recharge. The system is to be used indoors only on ADA-compliant\r\nstaircases and surfaces. This document provides an introductory problem statement; the\r\ndesign requirements and considerations; the evolution of the design; the final details of the\r\ndesign; an overview of the testing and evaluation process; conclusions and future work; and\r\nan overview of team management.\n\nIntroduction\n\nEnhancing an individual’s mobility is crucial for supporting independence and empowerment among seniors and individuals who have lost mobility due to injury or illness. In\r\nrecent years, designers and companies have recognized the need expressed by these people for\r\nmobility support devices that are specifically tailored to an individual’s level of mobility; canes\r\nand wheelchairs are both useful, potentially life-changing devices, but are only appropriate\r\nfor certain users. The emphasis on designing devices aligned with users’ variable needs has\r\nresulted in the popularization of the rollator, which provides a level of support between a\r\ncane and a wheelchair.\n\nA typical rollator is a four-wheeled device with handles, used to support a user’s balance\r\nwhen navigating flat or moderately sloped terrain. It is more mobile on flat ground than\r\na walker, but can become more burdensome on sloped terrain, where it either resists the\r\nmotion of the user when going uphill or threatens to run away from the user when going\r\ndownhill. It is bulky and hard to carry up or down stairs, especially for target users. Sloped\r\nsurfaces and elevation changes, especially with an added load, are some of the first obstacles\r\nthat people begin to have trouble with as they age or lose mobility. Additionally, typical\r\nrollators do not provide any assistance with navigation for users, who might have impaired\r\nvision or be experiencing cognitive decline.\n\nThus, a niche can be identified within the existing scope of mobility devices for a rollator\r\nthat can better support users on sloped terrain; that can traverse stairs, removing the need\r\nto lift it up and down; that can carry light loads, such as groceries, up and down slopes and\r\nstairs; and has an obstacle-detection system to assist users in navigation. The goal of the\r\nSTRIDE system is to provide a finished prototype that addresses all of these needs. The\r\nthree main components of STRIDE are the rollator, the stair climbing mechanism, and the\r\nsafety sensors. The development of these components is outlined in Section 3, the final design\r\ndetails of the finished device are listed in Section 4, and the testing and evaluation of these\r\ncomponents is summarized in Section 5.",
+                "description": "STRIDE, the Smart Technology Rollator for Independence, Detection, and Empowerment, is a senior design project developed to improve mobility, safety, and independence for users who need more support than a cane but do not require a wheelchair. Traditional rollators are useful on flat ground, but they become difficult to control on ramps and nearly impossible for many users to move safely up or down stairs. STRIDE addresses this problem by combining a powered rollator, stair-climbing mechanism, obstacle detection, embedded control, custom electronics, and an accessible user interface into one integrated prototype.\n\nThe system is built around four tri-wheel assemblies. The front tri-wheels are powered by ElectroCraft brushless DC motors through a gear-chain transmission, while the rear tri-wheels use omnidirectional wheels to preserve steering and support passive stair traversal. This allows STRIDE to move like a standard rollator on flat ground and transition into stair-climbing operation when needed. The frame was fabricated from aluminum tubing to balance strength, weight, and manufacturability, with custom motor plates, protective panels, battery mounting, and internal electronics support.\n\nMy work involved major electrical and embedded-system contributions, including motor control, battery monitoring, power distribution, firmware architecture, and system integration. STRIDE uses a centralized 24 V LiFePO₄ battery, custom power distribution board, LTC2944-based battery monitor, STM32 microcontrollers, an ESP32 wireless interface, and a Jetson Orin Nano for high-level decision-making. The STM32 handles real-time low-level control such as motor commands, brake inputs, battery readings, sensor communication, and feedback to the Jetson.\n\nFor safety, STRIDE combines a ZED 2i depth camera with ultrasonic sensors to detect obstacles, classify ground and walls, and provide redundant sensing for transparent or low-light conditions. The project demonstrates practical experience in PCB design, embedded C/C++, motor control, sensor integration, power electronics, hardware debugging, and full-system testing. STRIDE reflects my ability to turn a real user problem into a working electromechanical system.",
                 "kind": "summary",
                 "meta": "Overview",
                 "title": "Overview",
@@ -491,7 +464,7 @@
                       "fontFamily": "",
                       "fontPx": "",
                       "fontSize": "normal",
-                      "text": "Abstract",
+                      "text": "STRIDE, the Smart Technology Rollator for Independence, Detection, and Empowerment, is a senior design project developed to improve mobility, safety, and independence for users who need more support than a cane but do not require a wheelchair. Traditional rollators are useful on flat ground, but they become difficult to control on ramps and nearly impossible for many users to move safely up or down stairs. STRIDE addresses this problem by combining a powered rollator, stair-climbing mechanism, obstacle detection, embedded control, custom electronics, and an accessible user interface into one integrated prototype.",
                       "type": "paragraph"
                     },
                     {
@@ -500,7 +473,7 @@
                       "fontFamily": "",
                       "fontPx": "",
                       "fontSize": "normal",
-                      "text": "The Lafayette College Department of Electrical and Computer Engineering requested that the class of 2026 design a STRIDE system. Mobility devices are designed to meet\r\nthe needs of their users, and there is a recognized difficulty in navigating stairs with most\r\nmobility devices; additionally, there is a recognized potential advantage in incorporating\r\nobstacle detection systems to aid in navigation tasks. Thus, the senior design team developed\r\na device that encompasses three systems: a rollator, a stair-climbing mechanism, and a sensor\r\ndetection system.",
+                      "text": "The system is built around four tri-wheel assemblies. The front tri-wheels are powered by ElectroCraft brushless DC motors through a gear-chain transmission, while the rear tri-wheels use omnidirectional wheels to preserve steering and support passive stair traversal. This allows STRIDE to move like a standard rollator on flat ground and transition into stair-climbing operation when needed. The frame was fabricated from aluminum tubing to balance strength, weight, and manufacturability, with custom motor plates, protective panels, battery mounting, and internal electronics support.",
                       "type": "paragraph"
                     },
                     {
@@ -509,7 +482,7 @@
                       "fontFamily": "",
                       "fontPx": "",
                       "fontSize": "normal",
-                      "text": "The completed system is a motor-driven rollator with the ability to navigate both flat\r\nground and stairs. This system is comprised of: an aluminum tubing frame with aluminum\r\nand acrylic paneling; four tri-wheel assemblies, two of which are powered and interconnected\r\nby gear-chain systems, the other two composed of omnidirectional wheels; two DC brushless\r\nmotors, powering the aforementioned tri-wheels; a 24 V DC battery and a custom power routing system; an obstacle-detection system; a physical interface; a remote control interface;\r\nand an MCU hub. The rollator can operate under direct user control through a set of physical\r\nbuttons and braking mechanisms, as well as autonomously through a remote control terminalon a password-protected website. It supports continuous operation on flat ground for up\r\nto 8 hours before recharge. The system is to be used indoors only on ADA-compliant\r\nstaircases and surfaces. This document provides an introductory problem statement; the\r\ndesign requirements and considerations; the evolution of the design; the final details of the\r\ndesign; an overview of the testing and evaluation process; conclusions and future work; and\r\nan overview of team management.",
+                      "text": "My work involved major electrical and embedded-system contributions, including motor control, battery monitoring, power distribution, firmware architecture, and system integration. STRIDE uses a centralized 24 V LiFePO₄ battery, custom power distribution board, LTC2944-based battery monitor, STM32 microcontrollers, an ESP32 wireless interface, and a Jetson Orin Nano for high-level decision-making. The STM32 handles real-time low-level control such as motor commands, brake inputs, battery readings, sensor communication, and feedback to the Jetson.",
                       "type": "paragraph"
                     },
                     {
@@ -518,34 +491,7 @@
                       "fontFamily": "",
                       "fontPx": "",
                       "fontSize": "normal",
-                      "text": "Introduction",
-                      "type": "paragraph"
-                    },
-                    {
-                      "align": "left",
-                      "color": "",
-                      "fontFamily": "",
-                      "fontPx": "",
-                      "fontSize": "normal",
-                      "text": "Enhancing an individual’s mobility is crucial for supporting independence and empowerment among seniors and individuals who have lost mobility due to injury or illness. In\r\nrecent years, designers and companies have recognized the need expressed by these people for\r\nmobility support devices that are specifically tailored to an individual’s level of mobility; canes\r\nand wheelchairs are both useful, potentially life-changing devices, but are only appropriate\r\nfor certain users. The emphasis on designing devices aligned with users’ variable needs has\r\nresulted in the popularization of the rollator, which provides a level of support between a\r\ncane and a wheelchair.",
-                      "type": "paragraph"
-                    },
-                    {
-                      "align": "left",
-                      "color": "",
-                      "fontFamily": "",
-                      "fontPx": "",
-                      "fontSize": "normal",
-                      "text": "A typical rollator is a four-wheeled device with handles, used to support a user’s balance\r\nwhen navigating flat or moderately sloped terrain. It is more mobile on flat ground than\r\na walker, but can become more burdensome on sloped terrain, where it either resists the\r\nmotion of the user when going uphill or threatens to run away from the user when going\r\ndownhill. It is bulky and hard to carry up or down stairs, especially for target users. Sloped\r\nsurfaces and elevation changes, especially with an added load, are some of the first obstacles\r\nthat people begin to have trouble with as they age or lose mobility. Additionally, typical\r\nrollators do not provide any assistance with navigation for users, who might have impaired\r\nvision or be experiencing cognitive decline.",
-                      "type": "paragraph"
-                    },
-                    {
-                      "align": "left",
-                      "color": "",
-                      "fontFamily": "",
-                      "fontPx": "",
-                      "fontSize": "normal",
-                      "text": "Thus, a niche can be identified within the existing scope of mobility devices for a rollator\r\nthat can better support users on sloped terrain; that can traverse stairs, removing the need\r\nto lift it up and down; that can carry light loads, such as groceries, up and down slopes and\r\nstairs; and has an obstacle-detection system to assist users in navigation. The goal of the\r\nSTRIDE system is to provide a finished prototype that addresses all of these needs. The\r\nthree main components of STRIDE are the rollator, the stair climbing mechanism, and the\r\nsafety sensors. The development of these components is outlined in Section 3, the final design\r\ndetails of the finished device are listed in Section 4, and the testing and evaluation of these\r\ncomponents is summarized in Section 5.",
+                      "text": "For safety, STRIDE combines a ZED 2i depth camera with ultrasonic sensors to detect obstacles, classify ground and walls, and provide redundant sensing for transparent or low-light conditions. The project demonstrates practical experience in PCB design, embedded C/C++, motor control, sensor integration, power electronics, hardware debugging, and full-system testing. STRIDE reflects my ability to turn a real user problem into a working electromechanical system.",
                       "type": "paragraph"
                     }
                   ]
@@ -622,7 +568,7 @@
       "links": [],
       "sections": [],
       "portfolioView": {
-        "builtAt": "2026-06-11T04:58:43.666Z",
+        "builtAt": "2026-06-11T05:10:35.313Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-steel-teal-click",
