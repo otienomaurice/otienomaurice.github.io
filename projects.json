@@ -154,7 +154,7 @@
         }
       },
       "portfolioView": {
-        "builtAt": "2026-06-11T06:39:17.343Z",
+        "builtAt": "2026-06-11T06:42:01.844Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -436,7 +436,7 @@
       "links": [],
       "sections": [],
       "portfolioView": {
-        "builtAt": "2026-06-11T06:39:17.344Z",
+        "builtAt": "2026-06-11T06:42:01.845Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -661,10 +661,33 @@
               "status": "uploaded"
             }
           ]
+        },
+        {
+          "id": "tests",
+          "title": "Tests",
+          "description": "",
+          "items": [
+            {
+              "title": "Test Plans",
+              "description": "",
+              "richDescription": {
+                "blocks": []
+              },
+              "type": "Text",
+              "status": "draft"
+            },
+            {
+              "title": "STRIDE_Battery_Status_Monitoring_Board_Test_Plan.docx (1).pdf",
+              "description": "",
+              "type": "application/pdf",
+              "url": "docs/stride-battery-status-monitor/tests/stride_battery_status_monitoring_board_test_plan.docx-1.pdf",
+              "status": "uploaded"
+            }
+          ]
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-11T06:39:17.344Z",
+        "builtAt": "2026-06-11T06:42:01.845Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-steel-teal-click",
@@ -781,6 +804,21 @@
               }
             ],
             "title": "User Manual"
+          },
+          {
+            "description": "",
+            "id": "custom:tests",
+            "items": [
+              {
+                "children": [],
+                "description": "",
+                "kind": "file",
+                "meta": "application/pdf",
+                "title": "STRIDE_Battery_Status_Monitoring_Board_Test_Plan.docx (1).pdf",
+                "url": "docs/stride-battery-status-monitor/tests/stride_battery_status_monitoring_board_test_plan.docx-1.pdf"
+              }
+            ],
+            "title": "Tests"
           }
         ]
       }
@@ -877,7 +915,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-11T06:39:17.344Z",
+        "builtAt": "2026-06-11T06:42:01.845Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-graphite-white-click",
@@ -1006,7 +1044,7 @@
       "links": [],
       "sections": [],
       "portfolioView": {
-        "builtAt": "2026-06-11T06:39:17.344Z",
+        "builtAt": "2026-06-11T06:42:01.845Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-deep-navy-cyan-click",
