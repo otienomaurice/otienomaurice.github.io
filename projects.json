@@ -154,7 +154,7 @@
         }
       },
       "portfolioView": {
-        "builtAt": "2026-06-11T06:42:01.844Z",
+        "builtAt": "2026-06-11T06:48:01.387Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -434,9 +434,29 @@
       "tools": [],
       "languages": [],
       "links": [],
-      "sections": [],
+      "sections": [
+        {
+          "id": "system-software",
+          "title": "System Software",
+          "description": "The software driving the STRIDE system at the MCU and MPU level is still under a lot of development. ,The project started as a custom bare-metal C/C++ software environment but was migrated to a FreeRTOS model.",
+          "items": [],
+          "richDescription": {
+            "blocks": [
+              {
+                "align": "left",
+                "color": "",
+                "fontFamily": "",
+                "fontPx": "",
+                "fontSize": "normal",
+                "text": "The software driving the STRIDE system at the MCU and MPU level is still under a lot of development. ,The project started as a custom bare-metal C/C++ software environment but was migrated to a FreeRTOS model.",
+                "type": "paragraph"
+              }
+            ]
+          }
+        }
+      ],
       "portfolioView": {
-        "builtAt": "2026-06-11T06:42:01.845Z",
+        "builtAt": "2026-06-11T06:48:01.387Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -546,6 +566,25 @@
               }
             ],
             "title": "Design"
+          },
+          {
+            "description": "The software driving the STRIDE system at the MCU and MPU level is still under a lot of development. ,The project started as a custom bare-metal C/C++ software environment but was migrated to a FreeRTOS model.",
+            "id": "custom:system-software",
+            "items": [],
+            "title": "System Software",
+            "rich": {
+              "blocks": [
+                {
+                  "align": "left",
+                  "color": "",
+                  "fontFamily": "",
+                  "fontPx": "",
+                  "fontSize": "normal",
+                  "text": "The software driving the STRIDE system at the MCU and MPU level is still under a lot of development. ,The project started as a custom bare-metal C/C++ software environment but was migrated to a FreeRTOS model.",
+                  "type": "paragraph"
+                }
+              ]
+            }
           }
         ]
       }
@@ -687,7 +726,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-11T06:42:01.845Z",
+        "builtAt": "2026-06-11T06:48:01.387Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-steel-teal-click",
@@ -915,7 +954,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-11T06:42:01.845Z",
+        "builtAt": "2026-06-11T06:48:01.387Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-graphite-white-click",
@@ -1044,7 +1083,7 @@
       "links": [],
       "sections": [],
       "portfolioView": {
-        "builtAt": "2026-06-11T06:42:01.845Z",
+        "builtAt": "2026-06-11T06:48:01.387Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-deep-navy-cyan-click",
