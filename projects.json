@@ -81,7 +81,33 @@
       "tools": [],
       "languages": [],
       "links": [],
-      "sections": [],
+      "sections": [
+        {
+          "id": "tests",
+          "title": "Tests",
+          "description": "",
+          "items": [
+            {
+              "title": "Test procedure",
+              "description": "",
+              "richDescription": {
+                "blocks": []
+              },
+              "type": "Text",
+              "status": "draft"
+            },
+            {
+              "title": "Test Results",
+              "description": "",
+              "richDescription": {
+                "blocks": []
+              },
+              "type": "Text",
+              "status": "draft"
+            }
+          ]
+        }
+      ],
       "design": {
         "brief": {
           "summary": "sx",
@@ -154,7 +180,7 @@
         }
       },
       "portfolioView": {
-        "builtAt": "2026-06-11T14:26:22.947Z",
+        "builtAt": "2026-06-11T14:45:21.043Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -439,7 +465,27 @@
           "id": "system-software",
           "title": "System Software",
           "description": "The software driving the STRIDE system at the MCU and MPU level is still under a lot of development. ,The project started as a custom bare-metal C/C++ software environment but was migrated to a FreeRTOS model.",
-          "items": [],
+          "items": [
+            {
+              "title": "Repository",
+              "description": "https://github.com/otienomaurice/STRIDE.git",
+              "richDescription": {
+                "blocks": [
+                  {
+                    "align": "left",
+                    "color": "",
+                    "fontFamily": "",
+                    "fontPx": "",
+                    "fontSize": "normal",
+                    "text": "https://github.com/otienomaurice/STRIDE.git",
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "type": "Text",
+              "status": "draft"
+            }
+          ],
           "richDescription": {
             "blocks": [
               {
@@ -456,7 +502,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-11T14:26:22.947Z",
+        "builtAt": "2026-06-11T14:45:21.043Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -570,7 +616,29 @@
           {
             "description": "The software driving the STRIDE system at the MCU and MPU level is still under a lot of development. ,The project started as a custom bare-metal C/C++ software environment but was migrated to a FreeRTOS model.",
             "id": "custom:system-software",
-            "items": [],
+            "items": [
+              {
+                "children": [],
+                "description": "https://github.com/otienomaurice/STRIDE.git",
+                "kind": "text",
+                "meta": "Text",
+                "title": "Repository",
+                "url": "",
+                "rich": {
+                  "blocks": [
+                    {
+                      "align": "left",
+                      "color": "",
+                      "fontFamily": "",
+                      "fontPx": "",
+                      "fontSize": "normal",
+                      "text": "https://github.com/otienomaurice/STRIDE.git",
+                      "type": "paragraph"
+                    }
+                  ]
+                }
+              }
+            ],
             "title": "System Software",
             "rich": {
               "blocks": [
@@ -726,7 +794,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-11T14:26:22.948Z",
+        "builtAt": "2026-06-11T14:45:21.043Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-steel-teal-click",
@@ -954,7 +1022,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-11T14:26:22.948Z",
+        "builtAt": "2026-06-11T14:45:21.043Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-graphite-white-click",
@@ -1083,7 +1151,7 @@
       "links": [],
       "sections": [],
       "portfolioView": {
-        "builtAt": "2026-06-11T14:26:22.948Z",
+        "builtAt": "2026-06-11T14:45:21.043Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-deep-navy-cyan-click",
