@@ -154,7 +154,7 @@
         }
       },
       "portfolioView": {
-        "builtAt": "2026-06-11T05:21:19.886Z",
+        "builtAt": "2026-06-11T05:31:14.544Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -361,7 +361,7 @@
       },
       "category": "embedded",
       "status": "Draft",
-      "summary": "STRIDE, the Smart Technology Rollator for Independence, Detection, and Empowerment, is a senior design project developed to improve mobility, safety, and independence for users who need more support than a cane but do not require a wheelchair. Traditional rollators are useful on flat ground, but they become difficult to control on ramps and nearly impossible for many users to move safely up or down stairs. STRIDE addresses this problem by combining a powered rollator, stair-climbing mechanism, obstacle detection, embedded control, custom electronics, and an accessible user interface into one integrated prototype.\n\nThe system is built around four tri-wheel assemblies. The front tri-wheels are powered by ElectroCraft brushless DC motors through a gear-chain transmission, while the rear tri-wheels use omnidirectional wheels to preserve steering and support passive stair traversal. This allows STRIDE to move like a standard rollator on flat ground and transition into stair-climbing operation when needed. The frame was fabricated from aluminum tubing to balance strength, weight, and manufacturability, with custom motor plates, protective panels, battery mounting, and internal electronics support.\n\nMy work involved major electrical and embedded-system contributions, including motor control, battery monitoring, power distribution, firmware architecture, and system integration. STRIDE uses a centralized 24 V LiFePO₄ battery, custom power distribution board, LTC2944-based battery monitor, STM32 microcontrollers, an ESP32 wireless interface, and a Jetson Orin Nano for high-level decision-making. The STM32 handles real-time low-level control such as motor commands, brake inputs, battery readings, sensor communication, and feedback to the Jetson.\n\nFor safety, STRIDE combines a ZED 2i depth camera with ultrasonic sensors to detect obstacles, classify ground and walls, and provide redundant sensing for transparent or low-light conditions. The project demonstrates practical experience in PCB design, embedded C/C++, motor control, sensor integration, power electronics, hardware debugging, and full-system testing. STRIDE reflects my ability to turn a real user problem into a working electromechanical system.",
+      "summary": "STRIDE, the Smart Technology Rollator for Independence, Detection, and Empowerment, is a senior design project developed to improve mobility, safety, and independence for users who need more support than a cane but do not require a wheelchair. Traditional rollators are useful on flat ground, but they become difficult to control on ramps and nearly impossible for many users to move safely up or down stairs. STRIDE addresses this problem by combining a powered rollator, stair-climbing mechanism, obstacle detection, embedded control, custom electronics, and an accessible user interface into one integrated prototype.\n\nFigure: The STRIDE SYSTEM\n\nThe system is built around four tri-wheel assemblies. The front tri-wheels are powered by ElectroCraft brushless DC motors through a gear-chain transmission, while the rear tri-wheels use omnidirectional wheels to preserve steering and support passive stair traversal. This allows STRIDE to move like a standard rollator on flat ground and transition into stair-climbing operation when needed. The frame was fabricated from aluminum tubing to balance strength, weight, and manufacturability, with custom motor plates, protective panels, battery mounting, and internal electronics support.\n\nMy work involved major electrical and embedded-system contributions, including motor control, battery monitoring, power distribution, firmware architecture, and system integration. STRIDE uses a centralized 24 V LiFePO₄ battery, custom power distribution board, LTC2944-based battery monitor, STM32 microcontrollers, an ESP32 wireless interface, and a Jetson Orin Nano for high-level decision-making. The STM32 handles real-time low-level control such as motor commands, brake inputs, battery readings, sensor communication, and feedback to the Jetson.\n\nFor safety, STRIDE combines a ZED 2i depth camera with ultrasonic sensors to detect obstacles, classify ground and walls, and provide redundant sensing for transparent or low-light conditions. The project demonstrates practical experience in PCB design, embedded C/C++, motor control, sensor integration, power electronics, hardware debugging, and full-system testing. STRIDE reflects my ability to turn a real user problem into a working electromechanical system.",
       "summaryRich": {
         "blocks": [
           {
@@ -372,6 +372,14 @@
             "fontSize": "normal",
             "text": "STRIDE, the Smart Technology Rollator for Independence, Detection, and Empowerment, is a senior design project developed to improve mobility, safety, and independence for users who need more support than a cane but do not require a wheelchair. Traditional rollators are useful on flat ground, but they become difficult to control on ramps and nearly impossible for many users to move safely up or down stairs. STRIDE addresses this problem by combining a powered rollator, stair-climbing mechanism, obstacle detection, embedded control, custom electronics, and an accessible user interface into one integrated prototype.",
             "type": "paragraph"
+          },
+          {
+            "align": "left",
+            "caption": "Figure: The STRIDE SYSTEM",
+            "display": "show",
+            "title": "",
+            "type": "image",
+            "url": "docs/smart-technology-rollator-for-independence-detection-and-empowerment-stride/summary/image.png"
           },
           {
             "align": "left",
@@ -420,7 +428,7 @@
       "links": [],
       "sections": [],
       "portfolioView": {
-        "builtAt": "2026-06-11T05:21:19.886Z",
+        "builtAt": "2026-06-11T05:31:14.544Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -451,7 +459,7 @@
             "items": [
               {
                 "children": [],
-                "description": "STRIDE, the Smart Technology Rollator for Independence, Detection, and Empowerment, is a senior design project developed to improve mobility, safety, and independence for users who need more support than a cane but do not require a wheelchair. Traditional rollators are useful on flat ground, but they become difficult to control on ramps and nearly impossible for many users to move safely up or down stairs. STRIDE addresses this problem by combining a powered rollator, stair-climbing mechanism, obstacle detection, embedded control, custom electronics, and an accessible user interface into one integrated prototype.\n\nThe system is built around four tri-wheel assemblies. The front tri-wheels are powered by ElectroCraft brushless DC motors through a gear-chain transmission, while the rear tri-wheels use omnidirectional wheels to preserve steering and support passive stair traversal. This allows STRIDE to move like a standard rollator on flat ground and transition into stair-climbing operation when needed. The frame was fabricated from aluminum tubing to balance strength, weight, and manufacturability, with custom motor plates, protective panels, battery mounting, and internal electronics support.\n\nMy work involved major electrical and embedded-system contributions, including motor control, battery monitoring, power distribution, firmware architecture, and system integration. STRIDE uses a centralized 24 V LiFePO₄ battery, custom power distribution board, LTC2944-based battery monitor, STM32 microcontrollers, an ESP32 wireless interface, and a Jetson Orin Nano for high-level decision-making. The STM32 handles real-time low-level control such as motor commands, brake inputs, battery readings, sensor communication, and feedback to the Jetson.\n\nFor safety, STRIDE combines a ZED 2i depth camera with ultrasonic sensors to detect obstacles, classify ground and walls, and provide redundant sensing for transparent or low-light conditions. The project demonstrates practical experience in PCB design, embedded C/C++, motor control, sensor integration, power electronics, hardware debugging, and full-system testing. STRIDE reflects my ability to turn a real user problem into a working electromechanical system.",
+                "description": "STRIDE, the Smart Technology Rollator for Independence, Detection, and Empowerment, is a senior design project developed to improve mobility, safety, and independence for users who need more support than a cane but do not require a wheelchair. Traditional rollators are useful on flat ground, but they become difficult to control on ramps and nearly impossible for many users to move safely up or down stairs. STRIDE addresses this problem by combining a powered rollator, stair-climbing mechanism, obstacle detection, embedded control, custom electronics, and an accessible user interface into one integrated prototype.\n\nFigure: The STRIDE SYSTEM\n\nThe system is built around four tri-wheel assemblies. The front tri-wheels are powered by ElectroCraft brushless DC motors through a gear-chain transmission, while the rear tri-wheels use omnidirectional wheels to preserve steering and support passive stair traversal. This allows STRIDE to move like a standard rollator on flat ground and transition into stair-climbing operation when needed. The frame was fabricated from aluminum tubing to balance strength, weight, and manufacturability, with custom motor plates, protective panels, battery mounting, and internal electronics support.\n\nMy work involved major electrical and embedded-system contributions, including motor control, battery monitoring, power distribution, firmware architecture, and system integration. STRIDE uses a centralized 24 V LiFePO₄ battery, custom power distribution board, LTC2944-based battery monitor, STM32 microcontrollers, an ESP32 wireless interface, and a Jetson Orin Nano for high-level decision-making. The STM32 handles real-time low-level control such as motor commands, brake inputs, battery readings, sensor communication, and feedback to the Jetson.\n\nFor safety, STRIDE combines a ZED 2i depth camera with ultrasonic sensors to detect obstacles, classify ground and walls, and provide redundant sensing for transparent or low-light conditions. The project demonstrates practical experience in PCB design, embedded C/C++, motor control, sensor integration, power electronics, hardware debugging, and full-system testing. STRIDE reflects my ability to turn a real user problem into a working electromechanical system.",
                 "kind": "summary",
                 "meta": "Overview",
                 "title": "Overview",
@@ -466,6 +474,14 @@
                       "fontSize": "normal",
                       "text": "STRIDE, the Smart Technology Rollator for Independence, Detection, and Empowerment, is a senior design project developed to improve mobility, safety, and independence for users who need more support than a cane but do not require a wheelchair. Traditional rollators are useful on flat ground, but they become difficult to control on ramps and nearly impossible for many users to move safely up or down stairs. STRIDE addresses this problem by combining a powered rollator, stair-climbing mechanism, obstacle detection, embedded control, custom electronics, and an accessible user interface into one integrated prototype.",
                       "type": "paragraph"
+                    },
+                    {
+                      "align": "left",
+                      "caption": "Figure: The STRIDE SYSTEM",
+                      "display": "show",
+                      "title": "",
+                      "type": "image",
+                      "url": "docs/smart-technology-rollator-for-independence-detection-and-empowerment-stride/summary/image.png"
                     },
                     {
                       "align": "left",
@@ -568,7 +584,7 @@
       "links": [],
       "sections": [],
       "portfolioView": {
-        "builtAt": "2026-06-11T05:21:19.886Z",
+        "builtAt": "2026-06-11T05:31:14.544Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-steel-teal-click",
@@ -613,6 +629,173 @@
                       "fontPx": "",
                       "fontSize": "normal",
                       "text": "In many powered electric devices, batteries supply power to drive the motors and the electronics. As the devices consume the energy, the battery gets depleted over time, requiring recharging after certain thresholds are crossed. As a result, the available charge at any given moment must be tracked to alert the users to charge the batteries. The system may also shut down some functionality when the available capacity goes beyond a specified minimum. The STRIDE  (S",
+                      "type": "paragraph"
+                    }
+                  ]
+                }
+              }
+            ],
+            "title": "Overview"
+          }
+        ]
+      }
+    },
+    {
+      "id": "stride-the-motor-control-system",
+      "title": "STRIDE - The Motor Control System",
+      "templateId": "appearance-graphite-white-click",
+      "templateLabel": "Graphite ASIC, slate hover, white click",
+      "templateGroup": "Appearance",
+      "templateVisual": {
+        "style": "grid",
+        "palette": [
+          "#f6f8fb",
+          "#334155",
+          "#ffffff"
+        ],
+        "background": "#f6f8fb",
+        "panel": "#ffffff",
+        "accent": "#334155",
+        "hover": "#334155",
+        "click": "#ffffff",
+        "clickText": "#1f2937",
+        "line": "#b8c2d1",
+        "text": "#1f2937",
+        "interaction": "Slate hover with a crisp white click state."
+      },
+      "category": "embedded",
+      "status": "Draft",
+      "summary": "The STRIDE motor system was designed to provide reliable powered mobility on flat ground while also delivering enough torque for stair traversal. The architecture uses two ElectroCraft MP24 brushless DC motors, one on each side of the rollator, to drive the front tri-wheel assemblies. Each motor includes an integrated right-angle gearbox with a 21:1 reduction ratio, providing high torque at the low speeds needed for a mobility device. The motors are powered from the 24 V LiFePO₄ battery through the tractive power path, while the ElectroCraft EZ Drive controllers handle the high-power three-phase commutation required by the BLDC motors.\n\nThe motor control system is organized as a layered architecture. The Jetson Orin Nano acts as the high-level decision-making unit, interpreting user commands, obstacle detection results, mode selection, and system safety states. It sends motion commands to the STM32 system microcontroller, which performs the low-level real-time control. This separation keeps safety-critical motor signaling on the STM32 while allowing the Jetson to focus on higher-level system behavior.\n\nThe STM32 does not directly drive the motor phases. Instead, it sends command signals to the EZ Drive motor controllers. Motor speed is controlled using the STM32’s DAC output, which produces a 0–3.3 V analog signal. Since the EZ Drive requires a 0–10 V speed command, I developed a custom motor control interface board using a non-inverting op-amp amplifier with a gain of approximately 3. This scales the MCU output to the full command range needed for the motor controller.\n\nIn addition to analog speed control, the STM32 manages digital signals for enable, braking, and direction. It also reads feedback such as fault status and speed-related signals from the motor controller. Testing confirmed that the amplifier output was highly linear, with a measured gain of about 3.02, allowing predictable mapping between MCU command voltage and motor speed. Overall, this architecture combines high-power BLDC actuation, safe low-level embedded control, and modular system-level decision-making.",
+      "summaryRich": {
+        "blocks": [
+          {
+            "align": "left",
+            "color": "",
+            "fontFamily": "",
+            "fontPx": "",
+            "fontSize": "normal",
+            "text": "The STRIDE motor system was designed to provide reliable powered mobility on flat ground while also delivering enough torque for stair traversal. The architecture uses two ElectroCraft MP24 brushless DC motors, one on each side of the rollator, to drive the front tri-wheel assemblies. Each motor includes an integrated right-angle gearbox with a 21:1 reduction ratio, providing high torque at the low speeds needed for a mobility device. The motors are powered from the 24 V LiFePO₄ battery through the tractive power path, while the ElectroCraft EZ Drive controllers handle the high-power three-phase commutation required by the BLDC motors.",
+            "type": "paragraph"
+          },
+          {
+            "align": "left",
+            "color": "",
+            "fontFamily": "",
+            "fontPx": "",
+            "fontSize": "normal",
+            "text": "The motor control system is organized as a layered architecture. The Jetson Orin Nano acts as the high-level decision-making unit, interpreting user commands, obstacle detection results, mode selection, and system safety states. It sends motion commands to the STM32 system microcontroller, which performs the low-level real-time control. This separation keeps safety-critical motor signaling on the STM32 while allowing the Jetson to focus on higher-level system behavior.",
+            "type": "paragraph"
+          },
+          {
+            "align": "left",
+            "color": "",
+            "fontFamily": "",
+            "fontPx": "",
+            "fontSize": "normal",
+            "text": "The STM32 does not directly drive the motor phases. Instead, it sends command signals to the EZ Drive motor controllers. Motor speed is controlled using the STM32’s DAC output, which produces a 0–3.3 V analog signal. Since the EZ Drive requires a 0–10 V speed command, I developed a custom motor control interface board using a non-inverting op-amp amplifier with a gain of approximately 3. This scales the MCU output to the full command range needed for the motor controller.",
+            "type": "paragraph"
+          },
+          {
+            "align": "left",
+            "color": "",
+            "fontFamily": "",
+            "fontPx": "",
+            "fontSize": "normal",
+            "text": "In addition to analog speed control, the STM32 manages digital signals for enable, braking, and direction. It also reads feedback such as fault status and speed-related signals from the motor controller. Testing confirmed that the amplifier output was highly linear, with a measured gain of about 3.02, allowing predictable mapping between MCU command voltage and motor speed. Overall, this architecture combines high-power BLDC actuation, safe low-level embedded control, and modular system-level decision-making.",
+            "type": "paragraph"
+          }
+        ]
+      },
+      "focus": [],
+      "highlights": [],
+      "documents": [],
+      "tests": [],
+      "pcbs": [],
+      "media": [],
+      "tools": [],
+      "languages": [],
+      "links": [],
+      "sections": [
+        {
+          "id": "software",
+          "title": "Software",
+          "description": "",
+          "items": []
+        }
+      ],
+      "portfolioView": {
+        "builtAt": "2026-06-11T05:31:14.544Z",
+        "template": {
+          "group": "Appearance",
+          "id": "appearance-graphite-white-click",
+          "label": "Graphite ASIC, slate hover, white click",
+          "visual": {
+            "style": "grid",
+            "palette": [
+              "#f6f8fb",
+              "#334155",
+              "#ffffff"
+            ],
+            "background": "#f6f8fb",
+            "panel": "#ffffff",
+            "accent": "#334155",
+            "hover": "#334155",
+            "click": "#ffffff",
+            "clickText": "#1f2937",
+            "line": "#b8c2d1",
+            "text": "#1f2937",
+            "interaction": "Slate hover with a crisp white click state."
+          }
+        },
+        "title": "STRIDE - The Motor Control System",
+        "sections": [
+          {
+            "description": "",
+            "id": "brief",
+            "items": [
+              {
+                "children": [],
+                "description": "The STRIDE motor system was designed to provide reliable powered mobility on flat ground while also delivering enough torque for stair traversal. The architecture uses two ElectroCraft MP24 brushless DC motors, one on each side of the rollator, to drive the front tri-wheel assemblies. Each motor includes an integrated right-angle gearbox with a 21:1 reduction ratio, providing high torque at the low speeds needed for a mobility device. The motors are powered from the 24 V LiFePO₄ battery through the tractive power path, while the ElectroCraft EZ Drive controllers handle the high-power three-phase commutation required by the BLDC motors.\n\nThe motor control system is organized as a layered architecture. The Jetson Orin Nano acts as the high-level decision-making unit, interpreting user commands, obstacle detection results, mode selection, and system safety states. It sends motion commands to the STM32 system microcontroller, which performs the low-level real-time control. This separation keeps safety-critical motor signaling on the STM32 while allowing the Jetson to focus on higher-level system behavior.\n\nThe STM32 does not directly drive the motor phases. Instead, it sends command signals to the EZ Drive motor controllers. Motor speed is controlled using the STM32’s DAC output, which produces a 0–3.3 V analog signal. Since the EZ Drive requires a 0–10 V speed command, I developed a custom motor control interface board using a non-inverting op-amp amplifier with a gain of approximately 3. This scales the MCU output to the full command range needed for the motor controller.\n\nIn addition to analog speed control, the STM32 manages digital signals for enable, braking, and direction. It also reads feedback such as fault status and speed-related signals from the motor controller. Testing confirmed that the amplifier output was highly linear, with a measured gain of about 3.02, allowing predictable mapping between MCU command voltage and motor speed. Overall, this architecture combines high-power BLDC actuation, safe low-level embedded control, and modular system-level decision-making.",
+                "kind": "summary",
+                "meta": "Overview",
+                "title": "Overview",
+                "url": "",
+                "rich": {
+                  "blocks": [
+                    {
+                      "align": "left",
+                      "color": "",
+                      "fontFamily": "",
+                      "fontPx": "",
+                      "fontSize": "normal",
+                      "text": "The STRIDE motor system was designed to provide reliable powered mobility on flat ground while also delivering enough torque for stair traversal. The architecture uses two ElectroCraft MP24 brushless DC motors, one on each side of the rollator, to drive the front tri-wheel assemblies. Each motor includes an integrated right-angle gearbox with a 21:1 reduction ratio, providing high torque at the low speeds needed for a mobility device. The motors are powered from the 24 V LiFePO₄ battery through the tractive power path, while the ElectroCraft EZ Drive controllers handle the high-power three-phase commutation required by the BLDC motors.",
+                      "type": "paragraph"
+                    },
+                    {
+                      "align": "left",
+                      "color": "",
+                      "fontFamily": "",
+                      "fontPx": "",
+                      "fontSize": "normal",
+                      "text": "The motor control system is organized as a layered architecture. The Jetson Orin Nano acts as the high-level decision-making unit, interpreting user commands, obstacle detection results, mode selection, and system safety states. It sends motion commands to the STM32 system microcontroller, which performs the low-level real-time control. This separation keeps safety-critical motor signaling on the STM32 while allowing the Jetson to focus on higher-level system behavior.",
+                      "type": "paragraph"
+                    },
+                    {
+                      "align": "left",
+                      "color": "",
+                      "fontFamily": "",
+                      "fontPx": "",
+                      "fontSize": "normal",
+                      "text": "The STM32 does not directly drive the motor phases. Instead, it sends command signals to the EZ Drive motor controllers. Motor speed is controlled using the STM32’s DAC output, which produces a 0–3.3 V analog signal. Since the EZ Drive requires a 0–10 V speed command, I developed a custom motor control interface board using a non-inverting op-amp amplifier with a gain of approximately 3. This scales the MCU output to the full command range needed for the motor controller.",
+                      "type": "paragraph"
+                    },
+                    {
+                      "align": "left",
+                      "color": "",
+                      "fontFamily": "",
+                      "fontPx": "",
+                      "fontSize": "normal",
+                      "text": "In addition to analog speed control, the STM32 manages digital signals for enable, braking, and direction. It also reads feedback such as fault status and speed-related signals from the motor controller. Testing confirmed that the amplifier output was highly linear, with a measured gain of about 3.02, allowing predictable mapping between MCU command voltage and motor speed. Overall, this architecture combines high-power BLDC actuation, safe low-level embedded control, and modular system-level decision-making.",
                       "type": "paragraph"
                     }
                   ]
