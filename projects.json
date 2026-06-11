@@ -158,6 +158,70 @@
           "richDescription": {
             "blocks": []
           }
+        },
+        {
+          "id": "tools-used",
+          "title": "Tools Used",
+          "description": "Kicad -  Schematic Capture and PCB design\n\nLTSPICE - circuit simulation\n\nBench Supplies - for power Supply\n\nOscilloscope - Frequency measurements during validation\n\nDigital Multimeters - voltage, continuity, and component measurements\n\nSoldering lab and supplies - Soldering components",
+          "items": [],
+          "richDescription": {
+            "blocks": [
+              {
+                "align": "left",
+                "color": "",
+                "fontFamily": "",
+                "fontPx": "",
+                "fontSize": "normal",
+                "text": "Kicad -  Schematic Capture and PCB design",
+                "type": "paragraph"
+              },
+              {
+                "align": "left",
+                "color": "",
+                "fontFamily": "",
+                "fontPx": "",
+                "fontSize": "normal",
+                "text": "LTSPICE - circuit simulation",
+                "type": "paragraph"
+              },
+              {
+                "align": "left",
+                "color": "",
+                "fontFamily": "",
+                "fontPx": "",
+                "fontSize": "normal",
+                "text": "Bench Supplies - for power Supply",
+                "type": "paragraph"
+              },
+              {
+                "align": "left",
+                "color": "",
+                "fontFamily": "",
+                "fontPx": "",
+                "fontSize": "normal",
+                "text": "Oscilloscope - Frequency measurements during validation",
+                "type": "paragraph"
+              },
+              {
+                "align": "left",
+                "color": "",
+                "fontFamily": "",
+                "fontPx": "",
+                "fontSize": "normal",
+                "text": "Digital Multimeters - voltage, continuity, and component measurements",
+                "type": "paragraph"
+              },
+              {
+                "align": "left",
+                "color": "",
+                "fontFamily": "",
+                "fontPx": "",
+                "fontSize": "normal",
+                "text": "Soldering lab and supplies - Soldering components",
+                "type": "paragraph"
+              }
+            ]
+          }
         }
       ],
       "design": {
@@ -232,7 +296,7 @@
         }
       },
       "portfolioView": {
-        "builtAt": "2026-06-11T15:18:58.983Z",
+        "builtAt": "2026-06-11T16:52:53.558Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -471,6 +535,70 @@
               }
             ],
             "title": "Simulation"
+          },
+          {
+            "description": "Kicad -  Schematic Capture and PCB design\n\nLTSPICE - circuit simulation\n\nBench Supplies - for power Supply\n\nOscilloscope - Frequency measurements during validation\n\nDigital Multimeters - voltage, continuity, and component measurements\n\nSoldering lab and supplies - Soldering components",
+            "id": "custom:tools-used",
+            "items": [],
+            "title": "Tools Used",
+            "rich": {
+              "blocks": [
+                {
+                  "align": "left",
+                  "color": "",
+                  "fontFamily": "",
+                  "fontPx": "",
+                  "fontSize": "normal",
+                  "text": "Kicad -  Schematic Capture and PCB design",
+                  "type": "paragraph"
+                },
+                {
+                  "align": "left",
+                  "color": "",
+                  "fontFamily": "",
+                  "fontPx": "",
+                  "fontSize": "normal",
+                  "text": "LTSPICE - circuit simulation",
+                  "type": "paragraph"
+                },
+                {
+                  "align": "left",
+                  "color": "",
+                  "fontFamily": "",
+                  "fontPx": "",
+                  "fontSize": "normal",
+                  "text": "Bench Supplies - for power Supply",
+                  "type": "paragraph"
+                },
+                {
+                  "align": "left",
+                  "color": "",
+                  "fontFamily": "",
+                  "fontPx": "",
+                  "fontSize": "normal",
+                  "text": "Oscilloscope - Frequency measurements during validation",
+                  "type": "paragraph"
+                },
+                {
+                  "align": "left",
+                  "color": "",
+                  "fontFamily": "",
+                  "fontPx": "",
+                  "fontSize": "normal",
+                  "text": "Digital Multimeters - voltage, continuity, and component measurements",
+                  "type": "paragraph"
+                },
+                {
+                  "align": "left",
+                  "color": "",
+                  "fontFamily": "",
+                  "fontPx": "",
+                  "fontSize": "normal",
+                  "text": "Soldering lab and supplies - Soldering components",
+                  "type": "paragraph"
+                }
+              ]
+            }
           }
         ]
       }
@@ -615,7 +743,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-11T15:18:58.983Z",
+        "builtAt": "2026-06-11T16:52:53.558Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -907,7 +1035,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-11T15:18:58.983Z",
+        "builtAt": "2026-06-11T16:52:53.558Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-steel-teal-click",
@@ -1135,7 +1263,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-11T15:18:58.983Z",
+        "builtAt": "2026-06-11T16:52:53.559Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-graphite-white-click",
@@ -1227,28 +1355,12 @@
       }
     },
     {
-      "id": "fpga-based-led-matrix-controller",
-      "title": "FPGA BASED LED-MATRIX CONTROLLER",
-      "templateId": "appearance-deep-navy-cyan-click",
-      "templateLabel": "Deep navy, cyan hover, white click",
+      "id": "fpga-based-led-matrix-panel-controller-for-ultra-fast-display",
+      "title": "FPGA -based LED Matrix Panel Controller for ultra-fast Display",
+      "templateId": "",
+      "templateLabel": "",
       "templateGroup": "Appearance",
-      "templateVisual": {
-        "style": "chip",
-        "palette": [
-          "#10263c",
-          "#0f6f96",
-          "#ffffff"
-        ],
-        "background": "#10263c",
-        "panel": "#f8fbff",
-        "accent": "#0f6f96",
-        "hover": "#0f6f96",
-        "click": "#ffffff",
-        "clickText": "#142536",
-        "line": "#8ccfe8",
-        "text": "#f8fbff",
-        "interaction": "Cyan hover with a white active click state."
-      },
+      "templateVisual": null,
       "category": "digital",
       "status": "Draft",
       "summary": "",
@@ -1262,33 +1374,31 @@
       "tools": [],
       "languages": [],
       "links": [],
-      "sections": [],
+      "sections": [
+        {
+          "id": "software-hdl",
+          "title": "Software HDL",
+          "description": "https://github.com/otienomaurice/32X16_LED_Matrix_Controller.git",
+          "items": []
+        }
+      ],
       "portfolioView": {
-        "builtAt": "2026-06-11T15:18:58.983Z",
+        "builtAt": "2026-06-11T16:52:53.559Z",
         "template": {
           "group": "Appearance",
-          "id": "appearance-deep-navy-cyan-click",
-          "label": "Deep navy, cyan hover, white click",
-          "visual": {
-            "style": "chip",
-            "palette": [
-              "#10263c",
-              "#0f6f96",
-              "#ffffff"
-            ],
-            "background": "#10263c",
-            "panel": "#f8fbff",
-            "accent": "#0f6f96",
-            "hover": "#0f6f96",
-            "click": "#ffffff",
-            "clickText": "#142536",
-            "line": "#8ccfe8",
-            "text": "#f8fbff",
-            "interaction": "Cyan hover with a white active click state."
-          }
+          "id": "",
+          "label": "",
+          "visual": null
         },
-        "title": "FPGA BASED LED-MATRIX CONTROLLER",
-        "sections": []
+        "title": "FPGA -based LED Matrix Panel Controller for ultra-fast Display",
+        "sections": [
+          {
+            "description": "https://github.com/otienomaurice/32X16_LED_Matrix_Controller.git",
+            "id": "custom:software-hdl",
+            "items": [],
+            "title": "Software HDL"
+          }
+        ]
       }
     }
   ],
