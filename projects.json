@@ -154,7 +154,7 @@
         }
       },
       "portfolioView": {
-        "builtAt": "2026-06-11T06:48:01.387Z",
+        "builtAt": "2026-06-11T14:26:22.947Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -456,7 +456,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-11T06:48:01.387Z",
+        "builtAt": "2026-06-11T14:26:22.947Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -726,7 +726,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-11T06:48:01.387Z",
+        "builtAt": "2026-06-11T14:26:22.948Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-steel-teal-click",
@@ -954,7 +954,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-11T06:48:01.387Z",
+        "builtAt": "2026-06-11T14:26:22.948Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-graphite-white-click",
@@ -1083,7 +1083,7 @@
       "links": [],
       "sections": [],
       "portfolioView": {
-        "builtAt": "2026-06-11T06:48:01.387Z",
+        "builtAt": "2026-06-11T14:26:22.948Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-deep-navy-cyan-click",
@@ -1203,50 +1203,6 @@
           "id": "hobbies",
           "links": [],
           "title": "Hobbies"
-        },
-        {
-          "id": "what-i-love",
-          "title": "What I Love To Do",
-          "description": "Write the things that make you feel energized and alive outside the formal resume."
-        }
-      ]
-    },
-    {
-      "id": "social-and-contact",
-      "title": "Social and Contact",
-      "eyebrow": "Connect",
-      "description": "A compact connection section for social media, email, phone, GitHub, LinkedIn, and other public profiles.",
-      "visible": true,
-      "backgroundImage": "",
-      "links": [
-        {
-          "label": "Email",
-          "url": "https://mail.google.com/mail/?view=cm&fs=1&to=otienomaurice12340@gmail.com",
-          "kind": "email"
-        },
-        {
-          "label": "Call",
-          "url": "tel:+14845451567",
-          "kind": "phone"
-        },
-        {
-          "label": "GitHub",
-          "url": "https://github.com/otienomaurice",
-          "kind": "github"
-        }
-      ],
-      "assets": [],
-      "subsections": [
-        {
-          "description": "4845451567",
-          "id": "primary-contact",
-          "links": [],
-          "title": "Primary Contact"
-        },
-        {
-          "id": "social-media",
-          "title": "Social Media",
-          "description": "Add LinkedIn, GitHub, YouTube, personal websites, or other professional social links."
         }
       ]
     }
