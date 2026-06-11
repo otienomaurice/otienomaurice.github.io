@@ -137,22 +137,11 @@
           "description": "",
           "items": [
             {
-              "title": "Test procedure",
+              "title": "final_build and characterization.xlsx",
               "description": "",
-              "richDescription": {
-                "blocks": []
-              },
-              "type": "Text",
-              "status": "draft"
-            },
-            {
-              "title": "Test Results",
-              "description": "",
-              "richDescription": {
-                "blocks": []
-              },
-              "type": "Text",
-              "status": "draft"
+              "type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+              "url": "docs/pwm-generating-voltage-controlled-oscillator/tests/final_build-and-characterization.xlsx",
+              "status": "uploaded"
             }
           ],
           "richDescription": {
@@ -296,7 +285,7 @@
         }
       },
       "portfolioView": {
-        "builtAt": "2026-06-11T17:20:05.993Z",
+        "builtAt": "2026-06-11T17:26:22.234Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -537,6 +526,21 @@
             "title": "Simulation"
           },
           {
+            "description": "",
+            "id": "custom:tests",
+            "items": [
+              {
+                "children": [],
+                "description": "",
+                "kind": "file",
+                "meta": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                "title": "final_build and characterization.xlsx",
+                "url": "docs/pwm-generating-voltage-controlled-oscillator/tests/final_build-and-characterization.xlsx"
+              }
+            ],
+            "title": "Bench Tests and Validation"
+          },
+          {
             "description": "Kicad -  Schematic Capture and PCB design\n\nLTSPICE - circuit simulation\n\nBench Supplies - for power Supply\n\nOscilloscope - Frequency measurements during validation\n\nDigital Multimeters - voltage, continuity, and component measurements\n\nSoldering lab and supplies - Soldering components",
             "id": "custom:tools-used",
             "items": [],
@@ -645,7 +649,7 @@
         }
       },
       "portfolioView": {
-        "builtAt": "2026-06-11T17:20:05.993Z",
+        "builtAt": "2026-06-11T17:26:22.234Z",
         "template": {
           "group": "Appearance",
           "id": "",
@@ -796,7 +800,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-11T17:20:05.993Z",
+        "builtAt": "2026-06-11T17:26:22.234Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -1088,7 +1092,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-11T17:20:05.993Z",
+        "builtAt": "2026-06-11T17:26:22.234Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-steel-teal-click",
@@ -1316,7 +1320,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-11T17:20:05.993Z",
+        "builtAt": "2026-06-11T17:26:22.234Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-graphite-white-click",
@@ -1436,7 +1440,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-11T17:20:05.993Z",
+        "builtAt": "2026-06-11T17:26:22.234Z",
         "template": {
           "group": "Appearance",
           "id": "",
@@ -1492,7 +1496,7 @@
       "links": [],
       "sections": [],
       "portfolioView": {
-        "builtAt": "2026-06-11T17:20:05.993Z",
+        "builtAt": "2026-06-11T17:26:22.234Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
