@@ -296,7 +296,7 @@
         }
       },
       "portfolioView": {
-        "builtAt": "2026-06-11T17:16:03.941Z",
+        "builtAt": "2026-06-11T17:20:05.993Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -604,6 +604,59 @@
       }
     },
     {
+      "id": "phase-locked-loop-status-ongoing",
+      "title": "Phase locked Loop (status - ongoing)",
+      "templateId": "",
+      "templateLabel": "",
+      "templateGroup": "Appearance",
+      "templateVisual": null,
+      "category": "analog-mixed-signal",
+      "status": "Draft",
+      "summary": "",
+      "summaryRich": null,
+      "focus": [],
+      "highlights": [],
+      "documents": [],
+      "tests": [],
+      "pcbs": [],
+      "media": [],
+      "tools": [],
+      "languages": [],
+      "links": [],
+      "sections": [],
+      "design": {
+        "brief": {
+          "summary": "",
+          "summaryRich": null,
+          "files": []
+        },
+        "documentation": {
+          "summary": "",
+          "summaryRich": null,
+          "files": [],
+          "references": [],
+          "mathAnalysis": []
+        },
+        "simulation": {
+          "summary": "",
+          "summaryRich": null,
+          "files": [],
+          "results": []
+        }
+      },
+      "portfolioView": {
+        "builtAt": "2026-06-11T17:20:05.993Z",
+        "template": {
+          "group": "Appearance",
+          "id": "",
+          "label": "",
+          "visual": null
+        },
+        "title": "Phase locked Loop (status - ongoing)",
+        "sections": []
+      }
+    },
+    {
       "id": "smart-technology-rollator-for-independence-detection-and-empowerment-stride",
       "title": "Smart Technology Rollator for Independence, Detection, and Empowerment (STRIDE)",
       "templateId": "appearance-white-blue-click",
@@ -743,7 +796,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-11T17:16:03.941Z",
+        "builtAt": "2026-06-11T17:20:05.993Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -1035,7 +1088,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-11T17:16:03.941Z",
+        "builtAt": "2026-06-11T17:20:05.993Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-steel-teal-click",
@@ -1263,7 +1316,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-11T17:16:03.941Z",
+        "builtAt": "2026-06-11T17:20:05.993Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-graphite-white-click",
@@ -1383,7 +1436,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-11T17:16:03.941Z",
+        "builtAt": "2026-06-11T17:20:05.993Z",
         "template": {
           "group": "Appearance",
           "id": "",
@@ -1439,7 +1492,7 @@
       "links": [],
       "sections": [],
       "portfolioView": {
-        "builtAt": "2026-06-11T17:16:03.941Z",
+        "builtAt": "2026-06-11T17:20:05.993Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
