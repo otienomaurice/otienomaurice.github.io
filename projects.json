@@ -154,7 +154,7 @@
         }
       },
       "portfolioView": {
-        "builtAt": "2026-06-11T05:31:14.544Z",
+        "builtAt": "2026-06-11T05:35:43.157Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -428,7 +428,7 @@
       "links": [],
       "sections": [],
       "portfolioView": {
-        "builtAt": "2026-06-11T05:31:14.544Z",
+        "builtAt": "2026-06-11T05:35:43.157Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -584,7 +584,7 @@
       "links": [],
       "sections": [],
       "portfolioView": {
-        "builtAt": "2026-06-11T05:31:14.544Z",
+        "builtAt": "2026-06-11T05:35:43.157Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-steel-teal-click",
@@ -724,7 +724,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-11T05:31:14.544Z",
+        "builtAt": "2026-06-11T05:35:43.158Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-graphite-white-click",
@@ -805,6 +805,71 @@
             "title": "Overview"
           }
         ]
+      }
+    },
+    {
+      "id": "fpga-based-led-matrix-controller",
+      "title": "FPGA BASED LED-MATRIX CONTROLLER",
+      "templateId": "appearance-deep-navy-cyan-click",
+      "templateLabel": "Deep navy, cyan hover, white click",
+      "templateGroup": "Appearance",
+      "templateVisual": {
+        "style": "chip",
+        "palette": [
+          "#10263c",
+          "#0f6f96",
+          "#ffffff"
+        ],
+        "background": "#10263c",
+        "panel": "#f8fbff",
+        "accent": "#0f6f96",
+        "hover": "#0f6f96",
+        "click": "#ffffff",
+        "clickText": "#142536",
+        "line": "#8ccfe8",
+        "text": "#f8fbff",
+        "interaction": "Cyan hover with a white active click state."
+      },
+      "category": "digital",
+      "status": "Draft",
+      "summary": "",
+      "summaryRich": null,
+      "focus": [],
+      "highlights": [],
+      "documents": [],
+      "tests": [],
+      "pcbs": [],
+      "media": [],
+      "tools": [],
+      "languages": [],
+      "links": [],
+      "sections": [],
+      "portfolioView": {
+        "builtAt": "2026-06-11T05:35:43.158Z",
+        "template": {
+          "group": "Appearance",
+          "id": "appearance-deep-navy-cyan-click",
+          "label": "Deep navy, cyan hover, white click",
+          "visual": {
+            "style": "chip",
+            "palette": [
+              "#10263c",
+              "#0f6f96",
+              "#ffffff"
+            ],
+            "background": "#10263c",
+            "panel": "#f8fbff",
+            "accent": "#0f6f96",
+            "hover": "#0f6f96",
+            "click": "#ffffff",
+            "clickText": "#142536",
+            "line": "#8ccfe8",
+            "text": "#f8fbff",
+            "interaction": "Cyan hover with a white active click state."
+          }
+        },
+        "title": "FPGA BASED LED-MATRIX CONTROLLER",
+        "sections": []
       }
     }
   ],
