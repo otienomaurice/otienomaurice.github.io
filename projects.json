@@ -154,7 +154,7 @@
         }
       },
       "portfolioView": {
-        "builtAt": "2026-06-11T06:29:23.851Z",
+        "builtAt": "2026-06-11T06:39:17.343Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -436,7 +436,7 @@
       "links": [],
       "sections": [],
       "portfolioView": {
-        "builtAt": "2026-06-11T06:29:23.851Z",
+        "builtAt": "2026-06-11T06:39:17.344Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -647,10 +647,24 @@
               "status": "uploaded"
             }
           ]
+        },
+        {
+          "id": "user-manual",
+          "title": "User Manual",
+          "description": "",
+          "items": [
+            {
+              "title": "STRIDE Battery Status Monitor Board User Manual.pdf",
+              "description": "",
+              "type": "application/pdf",
+              "url": "docs/stride-battery-status-monitor/user-manual/stride-battery-status-monitor-board-user-manual.pdf",
+              "status": "uploaded"
+            }
+          ]
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-11T06:29:23.851Z",
+        "builtAt": "2026-06-11T06:39:17.344Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-steel-teal-click",
@@ -752,6 +766,21 @@
               }
             ],
             "title": "Battery Status monitor PCB"
+          },
+          {
+            "description": "",
+            "id": "custom:user-manual",
+            "items": [
+              {
+                "children": [],
+                "description": "",
+                "kind": "file",
+                "meta": "application/pdf",
+                "title": "STRIDE Battery Status Monitor Board User Manual.pdf",
+                "url": "docs/stride-battery-status-monitor/user-manual/stride-battery-status-monitor-board-user-manual.pdf"
+              }
+            ],
+            "title": "User Manual"
           }
         ]
       }
@@ -848,7 +877,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-11T06:29:23.851Z",
+        "builtAt": "2026-06-11T06:39:17.344Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-graphite-white-click",
@@ -977,7 +1006,7 @@
       "links": [],
       "sections": [],
       "portfolioView": {
-        "builtAt": "2026-06-11T06:29:23.851Z",
+        "builtAt": "2026-06-11T06:39:17.344Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-deep-navy-cyan-click",
