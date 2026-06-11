@@ -112,20 +112,7 @@
       "highlights": [],
       "documents": [],
       "tests": [],
-      "pcbs": [
-        {
-          "name": "PCB_Gerber_Files.zip",
-          "revision": "Rev A",
-          "status": "uploaded",
-          "artifact": "docs/pwm-generating-voltage-controlled-oscillator/pcbs/pcb_gerber_files.zip"
-        },
-        {
-          "name": "VOLTAGE_CONTROLLED_OSCILLATOR.zip",
-          "revision": "Rev A",
-          "status": "uploaded",
-          "artifact": "docs/pwm-generating-voltage-controlled-oscillator/pcbs/voltage_controlled_oscillator.zip"
-        }
-      ],
+      "pcbs": [],
       "media": [],
       "tools": [],
       "languages": [],
@@ -211,6 +198,27 @@
               }
             ]
           }
+        },
+        {
+          "id": "printed-circuit-board",
+          "title": "Printed Circuit Board",
+          "description": "",
+          "items": [
+            {
+              "title": "VOLTAGE_CONTROLLED_OSCILLATOR.zip",
+              "description": "",
+              "type": "application/x-zip-compressed",
+              "url": "docs/pwm-generating-voltage-controlled-oscillator/printed-circuit-board/voltage_controlled_oscillator.zip",
+              "status": "uploaded"
+            },
+            {
+              "title": "VCO_Gerber.zip",
+              "description": "Gerber files",
+              "type": "application/x-zip-compressed",
+              "url": "docs/pwm-generating-voltage-controlled-oscillator/printed-circuit-board/vco_gerber.zip",
+              "status": "uploaded"
+            }
+          ]
         }
       ],
       "design": {
@@ -285,7 +293,7 @@
         }
       },
       "portfolioView": {
-        "builtAt": "2026-06-11T17:26:22.234Z",
+        "builtAt": "2026-06-11T18:04:24.058Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -451,31 +459,6 @@
                     }
                   ]
                 }
-              },
-              {
-                "children": [
-                  {
-                    "children": [],
-                    "description": "Rev A",
-                    "kind": "pcb",
-                    "meta": "uploaded",
-                    "title": "PCB_Gerber_Files.zip",
-                    "url": "docs/pwm-generating-voltage-controlled-oscillator/pcbs/pcb_gerber_files.zip"
-                  },
-                  {
-                    "children": [],
-                    "description": "Rev A",
-                    "kind": "pcb",
-                    "meta": "uploaded",
-                    "title": "VOLTAGE_CONTROLLED_OSCILLATOR.zip",
-                    "url": "docs/pwm-generating-voltage-controlled-oscillator/pcbs/voltage_controlled_oscillator.zip"
-                  }
-                ],
-                "description": "",
-                "kind": "subsection",
-                "meta": "Subsection",
-                "title": "PCB and Visual Evidence",
-                "url": ""
               }
             ],
             "title": "Design"
@@ -603,6 +586,29 @@
                 }
               ]
             }
+          },
+          {
+            "description": "",
+            "id": "custom:printed-circuit-board",
+            "items": [
+              {
+                "children": [],
+                "description": "",
+                "kind": "file",
+                "meta": "application/x-zip-compressed",
+                "title": "VOLTAGE_CONTROLLED_OSCILLATOR.zip",
+                "url": "docs/pwm-generating-voltage-controlled-oscillator/printed-circuit-board/voltage_controlled_oscillator.zip"
+              },
+              {
+                "children": [],
+                "description": "Gerber files",
+                "kind": "file",
+                "meta": "application/x-zip-compressed",
+                "title": "VCO_Gerber.zip",
+                "url": "docs/pwm-generating-voltage-controlled-oscillator/printed-circuit-board/vco_gerber.zip"
+              }
+            ],
+            "title": "Printed Circuit Board"
           }
         ]
       }
@@ -649,7 +655,7 @@
         }
       },
       "portfolioView": {
-        "builtAt": "2026-06-11T17:26:22.234Z",
+        "builtAt": "2026-06-11T18:04:24.058Z",
         "template": {
           "group": "Appearance",
           "id": "",
@@ -800,7 +806,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-11T17:26:22.234Z",
+        "builtAt": "2026-06-11T18:04:24.058Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -1092,7 +1098,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-11T17:26:22.234Z",
+        "builtAt": "2026-06-11T18:04:24.058Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-steel-teal-click",
@@ -1320,7 +1326,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-11T17:26:22.234Z",
+        "builtAt": "2026-06-11T18:04:24.058Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-graphite-white-click",
@@ -1440,7 +1446,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-11T17:26:22.234Z",
+        "builtAt": "2026-06-11T18:04:24.058Z",
         "template": {
           "group": "Appearance",
           "id": "",
@@ -1496,7 +1502,7 @@
       "links": [],
       "sections": [],
       "portfolioView": {
-        "builtAt": "2026-06-11T17:26:22.234Z",
+        "builtAt": "2026-06-11T18:04:24.058Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
