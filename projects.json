@@ -154,7 +154,7 @@
         }
       },
       "portfolioView": {
-        "builtAt": "2026-06-11T05:53:35.527Z",
+        "builtAt": "2026-06-11T06:20:56.303Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -436,7 +436,7 @@
       "links": [],
       "sections": [],
       "portfolioView": {
-        "builtAt": "2026-06-11T05:53:35.527Z",
+        "builtAt": "2026-06-11T06:20:56.303Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -575,7 +575,7 @@
       },
       "category": "embedded",
       "status": "Draft",
-      "summary": "In many powered electric devices, batteries supply power to drive the motors and the electronics. As the devices consume the energy, the battery gets depleted over time, requiring recharging after certain thresholds are crossed. As a result, the available charge at any given moment must be tracked to alert the users to charge the batteries. The system may also shut down some functionality when the available capacity goes beyond a specified minimum. The STRIDE  (S",
+      "summary": "In many powered electric devices, batteries supply power to drive the motors and the electronics. As the devices consume the energy, the battery gets depleted over time, requiring recharging after certain thresholds are crossed. As a result, the available charge at any given moment must be tracked to alert the users to charge the batteries. The system may also shut down some functionality when the available capacity goes beyond a specified minimum. The STRIDE  (SIn many powered electric devices, batteries supply energy to both the motors and the onboard electronics. As the system operates, the battery gradually depletes and must be recharged once it reaches defined thresholds. For this reason, the available charge must be tracked continuously so users can be warned before the system reaches a low-energy state. In safety-critical powered mobility devices, battery information is even more important because low charge can reduce motor performance, interrupt control electronics, or prevent the device from completing demanding actions such as ramp movement or stair traversal. A well-designed battery status management system allows the device to alert the user, limit nonessential functions, or safely shut down before the battery reaches an unsafe operating condition.\n\nThe STRIDE system uses a 24 V LiFePO₄ battery with an internal Battery Management System. However, because this BMS is built into the commercial battery pack and does not provide a communication interface to the main controller, STRIDE required a separate battery status monitor. This custom monitor gives the system direct access to voltage, current, temperature, and accumulated charge data instead of relying only on battery terminal voltage, which is not a reliable indicator of remaining capacity for LiFePO₄ batteries.\n\nThe battery monitor PCB was designed around the LTC2944 battery gas gauge and a 1 mΩ high-current shunt resistor placed in series with the battery path. As current flows through the shunt, the LTC2944 measures the small voltage drop, calculates current, monitors battery voltage, and performs coulomb counting to estimate charge usage over time. The board also includes 3.3 V logic support for STM32-compatible I²C communication, status LEDs, fault indication, and thermal support for the shunt resistor.\n\nOn the software side, a custom STM32 driver was developed to communicate with the LTC2944 over I²C. The firmware reads measurement registers, converts the raw data into usable battery values, and updates the STRIDE system state. This allows the Jetson Nano and STM32 control architecture to use battery data for user warnings, caregiver feedback, safety decisions, and shutdown logic. By combining custom PCB hardware with embedded software, the battery monitor turns a closed commercial battery pack into an observable and system-aware energy source.",
       "summaryRich": {
         "blocks": [
           {
@@ -584,7 +584,42 @@
             "fontFamily": "",
             "fontPx": "",
             "fontSize": "normal",
-            "text": "In many powered electric devices, batteries supply power to drive the motors and the electronics. As the devices consume the energy, the battery gets depleted over time, requiring recharging after certain thresholds are crossed. As a result, the available charge at any given moment must be tracked to alert the users to charge the batteries. The system may also shut down some functionality when the available capacity goes beyond a specified minimum. The STRIDE  (S",
+            "text": "In many powered electric devices, batteries supply power to drive the motors and the electronics. As the devices consume the energy, the battery gets depleted over time, requiring recharging after certain thresholds are crossed. As a result, the available charge at any given moment must be tracked to alert the users to charge the batteries. The system may also shut down some functionality when the available capacity goes beyond a specified minimum. The STRIDE  (SIn many powered electric devices, batteries supply energy to both the motors and the onboard electronics. As the system operates, the battery gradually depletes and must be recharged once it reaches defined thresholds. For this reason, the available charge must be tracked continuously so users can be warned before the system reaches a low-energy state. In safety-critical powered mobility devices, battery information is even more important because low charge can reduce motor performance, interrupt control electronics, or prevent the device from completing demanding actions such as ramp movement or stair traversal. A well-designed battery status management system allows the device to alert the user, limit nonessential functions, or safely shut down before the battery reaches an unsafe operating condition.",
+            "type": "paragraph"
+          },
+          {
+            "align": "left",
+            "color": "",
+            "fontFamily": "",
+            "fontPx": "",
+            "fontSize": "normal",
+            "text": "The STRIDE system uses a 24 V LiFePO₄ battery with an internal Battery Management System. However, because this BMS is built into the commercial battery pack and does not provide a communication interface to the main controller, STRIDE required a separate battery status monitor. This custom monitor gives the system direct access to voltage, current, temperature, and accumulated charge data instead of relying only on battery terminal voltage, which is not a reliable indicator of remaining capacity for LiFePO₄ batteries.",
+            "type": "paragraph"
+          },
+          {
+            "align": "left",
+            "caption": "",
+            "display": "show",
+            "title": "",
+            "type": "image",
+            "url": "docs/stride-battery-status-monitor/summary/image.png"
+          },
+          {
+            "align": "left",
+            "color": "",
+            "fontFamily": "",
+            "fontPx": "",
+            "fontSize": "normal",
+            "text": "The battery monitor PCB was designed around the LTC2944 battery gas gauge and a 1 mΩ high-current shunt resistor placed in series with the battery path. As current flows through the shunt, the LTC2944 measures the small voltage drop, calculates current, monitors battery voltage, and performs coulomb counting to estimate charge usage over time. The board also includes 3.3 V logic support for STM32-compatible I²C communication, status LEDs, fault indication, and thermal support for the shunt resistor.",
+            "type": "paragraph"
+          },
+          {
+            "align": "left",
+            "color": "",
+            "fontFamily": "",
+            "fontPx": "",
+            "fontSize": "normal",
+            "text": "On the software side, a custom STM32 driver was developed to communicate with the LTC2944 over I²C. The firmware reads measurement registers, converts the raw data into usable battery values, and updates the STRIDE system state. This allows the Jetson Nano and STM32 control architecture to use battery data for user warnings, caregiver feedback, safety decisions, and shutdown logic. By combining custom PCB hardware with embedded software, the battery monitor turns a closed commercial battery pack into an observable and system-aware energy source.",
             "type": "paragraph"
           }
         ]
@@ -598,9 +633,24 @@
       "tools": [],
       "languages": [],
       "links": [],
-      "sections": [],
+      "sections": [
+        {
+          "id": "battery-status-monitor-pcb",
+          "title": "Battery Status monitor PCB",
+          "description": "",
+          "items": [
+            {
+              "title": "Battery_Monitor_Gerber_Files_Version2.zip",
+              "description": "",
+              "type": "application/x-zip-compressed",
+              "url": "docs/stride-battery-status-monitor/battery-status-monitor-pcb/battery_monitor_gerber_files_version2.zip",
+              "status": "uploaded"
+            }
+          ]
+        }
+      ],
       "portfolioView": {
-        "builtAt": "2026-06-11T05:53:35.527Z",
+        "builtAt": "2026-06-11T06:20:56.304Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-steel-teal-click",
@@ -631,7 +681,7 @@
             "items": [
               {
                 "children": [],
-                "description": "In many powered electric devices, batteries supply power to drive the motors and the electronics. As the devices consume the energy, the battery gets depleted over time, requiring recharging after certain thresholds are crossed. As a result, the available charge at any given moment must be tracked to alert the users to charge the batteries. The system may also shut down some functionality when the available capacity goes beyond a specified minimum. The STRIDE  (S",
+                "description": "In many powered electric devices, batteries supply power to drive the motors and the electronics. As the devices consume the energy, the battery gets depleted over time, requiring recharging after certain thresholds are crossed. As a result, the available charge at any given moment must be tracked to alert the users to charge the batteries. The system may also shut down some functionality when the available capacity goes beyond a specified minimum. The STRIDE  (SIn many powered electric devices, batteries supply energy to both the motors and the onboard electronics. As the system operates, the battery gradually depletes and must be recharged once it reaches defined thresholds. For this reason, the available charge must be tracked continuously so users can be warned before the system reaches a low-energy state. In safety-critical powered mobility devices, battery information is even more important because low charge can reduce motor performance, interrupt control electronics, or prevent the device from completing demanding actions such as ramp movement or stair traversal. A well-designed battery status management system allows the device to alert the user, limit nonessential functions, or safely shut down before the battery reaches an unsafe operating condition.\n\nThe STRIDE system uses a 24 V LiFePO₄ battery with an internal Battery Management System. However, because this BMS is built into the commercial battery pack and does not provide a communication interface to the main controller, STRIDE required a separate battery status monitor. This custom monitor gives the system direct access to voltage, current, temperature, and accumulated charge data instead of relying only on battery terminal voltage, which is not a reliable indicator of remaining capacity for LiFePO₄ batteries.\n\nThe battery monitor PCB was designed around the LTC2944 battery gas gauge and a 1 mΩ high-current shunt resistor placed in series with the battery path. As current flows through the shunt, the LTC2944 measures the small voltage drop, calculates current, monitors battery voltage, and performs coulomb counting to estimate charge usage over time. The board also includes 3.3 V logic support for STM32-compatible I²C communication, status LEDs, fault indication, and thermal support for the shunt resistor.\n\nOn the software side, a custom STM32 driver was developed to communicate with the LTC2944 over I²C. The firmware reads measurement registers, converts the raw data into usable battery values, and updates the STRIDE system state. This allows the Jetson Nano and STM32 control architecture to use battery data for user warnings, caregiver feedback, safety decisions, and shutdown logic. By combining custom PCB hardware with embedded software, the battery monitor turns a closed commercial battery pack into an observable and system-aware energy source.",
                 "kind": "summary",
                 "meta": "Overview",
                 "title": "Overview",
@@ -644,7 +694,42 @@
                       "fontFamily": "",
                       "fontPx": "",
                       "fontSize": "normal",
-                      "text": "In many powered electric devices, batteries supply power to drive the motors and the electronics. As the devices consume the energy, the battery gets depleted over time, requiring recharging after certain thresholds are crossed. As a result, the available charge at any given moment must be tracked to alert the users to charge the batteries. The system may also shut down some functionality when the available capacity goes beyond a specified minimum. The STRIDE  (S",
+                      "text": "In many powered electric devices, batteries supply power to drive the motors and the electronics. As the devices consume the energy, the battery gets depleted over time, requiring recharging after certain thresholds are crossed. As a result, the available charge at any given moment must be tracked to alert the users to charge the batteries. The system may also shut down some functionality when the available capacity goes beyond a specified minimum. The STRIDE  (SIn many powered electric devices, batteries supply energy to both the motors and the onboard electronics. As the system operates, the battery gradually depletes and must be recharged once it reaches defined thresholds. For this reason, the available charge must be tracked continuously so users can be warned before the system reaches a low-energy state. In safety-critical powered mobility devices, battery information is even more important because low charge can reduce motor performance, interrupt control electronics, or prevent the device from completing demanding actions such as ramp movement or stair traversal. A well-designed battery status management system allows the device to alert the user, limit nonessential functions, or safely shut down before the battery reaches an unsafe operating condition.",
+                      "type": "paragraph"
+                    },
+                    {
+                      "align": "left",
+                      "color": "",
+                      "fontFamily": "",
+                      "fontPx": "",
+                      "fontSize": "normal",
+                      "text": "The STRIDE system uses a 24 V LiFePO₄ battery with an internal Battery Management System. However, because this BMS is built into the commercial battery pack and does not provide a communication interface to the main controller, STRIDE required a separate battery status monitor. This custom monitor gives the system direct access to voltage, current, temperature, and accumulated charge data instead of relying only on battery terminal voltage, which is not a reliable indicator of remaining capacity for LiFePO₄ batteries.",
+                      "type": "paragraph"
+                    },
+                    {
+                      "align": "left",
+                      "caption": "",
+                      "display": "show",
+                      "title": "",
+                      "type": "image",
+                      "url": "docs/stride-battery-status-monitor/summary/image.png"
+                    },
+                    {
+                      "align": "left",
+                      "color": "",
+                      "fontFamily": "",
+                      "fontPx": "",
+                      "fontSize": "normal",
+                      "text": "The battery monitor PCB was designed around the LTC2944 battery gas gauge and a 1 mΩ high-current shunt resistor placed in series with the battery path. As current flows through the shunt, the LTC2944 measures the small voltage drop, calculates current, monitors battery voltage, and performs coulomb counting to estimate charge usage over time. The board also includes 3.3 V logic support for STM32-compatible I²C communication, status LEDs, fault indication, and thermal support for the shunt resistor.",
+                      "type": "paragraph"
+                    },
+                    {
+                      "align": "left",
+                      "color": "",
+                      "fontFamily": "",
+                      "fontPx": "",
+                      "fontSize": "normal",
+                      "text": "On the software side, a custom STM32 driver was developed to communicate with the LTC2944 over I²C. The firmware reads measurement registers, converts the raw data into usable battery values, and updates the STRIDE system state. This allows the Jetson Nano and STM32 control architecture to use battery data for user warnings, caregiver feedback, safety decisions, and shutdown logic. By combining custom PCB hardware with embedded software, the battery monitor turns a closed commercial battery pack into an observable and system-aware energy source.",
                       "type": "paragraph"
                     }
                   ]
@@ -652,6 +737,21 @@
               }
             ],
             "title": "Overview"
+          },
+          {
+            "description": "",
+            "id": "custom:battery-status-monitor-pcb",
+            "items": [
+              {
+                "children": [],
+                "description": "",
+                "kind": "file",
+                "meta": "application/x-zip-compressed",
+                "title": "Battery_Monitor_Gerber_Files_Version2.zip",
+                "url": "docs/stride-battery-status-monitor/battery-status-monitor-pcb/battery_monitor_gerber_files_version2.zip"
+              }
+            ],
+            "title": "Battery Status monitor PCB"
           }
         ]
       }
@@ -740,7 +840,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-11T05:53:35.527Z",
+        "builtAt": "2026-06-11T06:20:56.304Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-graphite-white-click",
@@ -861,7 +961,7 @@
       "links": [],
       "sections": [],
       "portfolioView": {
-        "builtAt": "2026-06-11T05:53:35.527Z",
+        "builtAt": "2026-06-11T06:20:56.304Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-deep-navy-cyan-click",
