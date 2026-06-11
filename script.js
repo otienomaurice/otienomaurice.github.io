@@ -325,14 +325,26 @@ function normalizeFontPx(value) {
   const size = Number(value);
   return Number.isFinite(size) && size >= 8 && size <= 24 ? String(size) : "";
 }
+function normalizeTextColor(value = "") {
+    const color = String(value || "").trim();
+    return /^#([0-9a-f]{3}|[0-9a-f]{6})$/i.test(color) ||
+        /^rgba?\(/i.test(color) ||
+        /^hsla?\(/i.test(color)
+        ? color
+        : "";
+}
 
 function richTextStyle(block = {}) {
-  const styles = [];
-  const fontFamily = cleanFontFamily(block.fontFamily || "");
-  const fontPx = normalizeFontPx(block.fontPx);
-  if (fontFamily) styles.push(`font-family: ${fontFamily}`);
-  if (fontPx) styles.push(`font-size: ${fontPx}px`);
-  return styles.length ? ` style="${escapeHtml(styles.join("; "))}"` : "";
+    const styles = [];
+    const fontFamily = cleanFontFamily(block.fontFamily || "");
+    const fontPx = normalizeFontPx(block.fontPx);
+    const color = normalizeTextColor(block.color || "");
+
+    if (fontFamily) styles.push(`font-family: ${fontFamily}`);
+    if (fontPx) styles.push(`font-size: ${fontPx}px`);
+    if (color) styles.push(`color: ${color}`);
+
+    return styles.length ? ` style="${escapeHtml(styles.join("; "))}"` : "";
 }
 
 function richImageDownloadLink(block = {}) {
@@ -1271,6 +1283,14 @@ function renderInlineSectionFiles(items = []) {
       `).join("")}
     </div>
   `;
+}
+function normalizeTextColor(value = "") {
+    const color = String(value || "").trim();
+    return /^#([0-9a-f]{3}|[0-9a-f]{6})$/i.test(color) ||
+        /^rgba?\(/i.test(color) ||
+        /^hsla?\(/i.test(color)
+        ? color
+        : "";
 }
 function loadProjectCatalog() {
   if (window.__PORTFOLIO_CATALOG__) {

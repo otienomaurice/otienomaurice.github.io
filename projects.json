@@ -50,21 +50,22 @@
       },
       "category": "analog-mixed-signal",
       "status": "Draft",
-      "summary": "In many systems, timing circuits are needed not only for synchronous digital design but also to control mixed-signal circuits and interface functions.   A few examples of clocked analog circuits include analog-to-digital converters, digital-to-analog converters, switched-capacitor filters, and chopper-stabilized op-amps.  A single IC may require multiple clock frequencies for its analog and digital cells.  Since \r\nthese clocks may not be related by simple integer ratios and created with dividers, voltage-controlled oscillators (VCO) are popular circuits to generate the required frequencies on chip.  In this project, I analyze, design, and characterize one example of a VCO topology and use it to drive an LED via a PWM output.",
+      "summary": "In many systems, timing circuits are needed not only for synchronous digital design but also to control mixed-signal circuits and interface functions.   A few examples of clocked analog circuits include analog-to-digital converters, digital-to-analog converters, switched-capacitor filters, and chopper-stabilized op-amps.  A single IC may require multiple clock frequencies for its analog and digital cells.  Since \r\nthese clocks may not be related by simple integer ratios and created with dividers, voltage-controlled oscillators (VCO) are popular circuits to generate the required frequencies on chip.  In this project, I analyze, design, and characterize a VCO topology and use it to drive an LED via a PWM output.",
       "summaryRich": {
         "blocks": [
           {
             "align": "left",
+            "color": "",
             "fontFamily": "",
             "fontPx": "",
             "fontSize": "normal",
-            "text": "In many systems, timing circuits are needed not only for synchronous digital design but also to control mixed-signal circuits and interface functions.   A few examples of clocked analog circuits include analog-to-digital converters, digital-to-analog converters, switched-capacitor filters, and chopper-stabilized op-amps.  A single IC may require multiple clock frequencies for its analog and digital cells.  Since \r\nthese clocks may not be related by simple integer ratios and created with dividers, voltage-controlled oscillators (VCO) are popular circuits to generate the required frequencies on chip.  In this project, I analyze, design, and characterize one example of a VCO topology and use it to drive an LED via a PWM output.",
+            "text": "In many systems, timing circuits are needed not only for synchronous digital design but also to control mixed-signal circuits and interface functions.   A few examples of clocked analog circuits include analog-to-digital converters, digital-to-analog converters, switched-capacitor filters, and chopper-stabilized op-amps.  A single IC may require multiple clock frequencies for its analog and digital cells.  Since \r\nthese clocks may not be related by simple integer ratios and created with dividers, voltage-controlled oscillators (VCO) are popular circuits to generate the required frequencies on chip.  In this project, I analyze, design, and characterize a VCO topology and use it to drive an LED via a PWM output.",
             "type": "paragraph"
           },
           {
             "align": "left",
             "caption": "",
-            "display": "download",
+            "display": "show",
             "title": "",
             "type": "image",
             "url": "docs/pwm-generating-voltage-controlled-oscillator/summary/image.png"
@@ -84,18 +85,62 @@
       "design": {
         "brief": {
           "summary": "sx",
-          "summaryRich": null,
+          "summaryRich": {
+            "blocks": [
+              {
+                "align": "left",
+                "color": "",
+                "fontFamily": "",
+                "fontPx": "",
+                "fontSize": "large",
+                "text": "sx",
+                "type": "paragraph"
+              },
+              {
+                "align": "left",
+                "caption": "",
+                "display": "show",
+                "title": "",
+                "type": "image",
+                "url": "docs/pwm-generating-voltage-controlled-oscillator/design-overview/image.png"
+              }
+            ]
+          },
           "files": []
         },
         "documentation": {
           "summary": "",
+          "summaryRich": {
+            "blocks": [
+              {
+                "align": "left",
+                "caption": "",
+                "display": "show",
+                "title": "",
+                "type": "image",
+                "url": "docs/pwm-generating-voltage-controlled-oscillator/documentation-overview/image.png"
+              }
+            ]
+          },
           "files": [],
           "references": [],
           "mathAnalysis": []
         },
         "simulation": {
-          "summary": "The simulations used are given at",
-          "summaryRich": null,
+          "summary": "",
+          "summaryRich": {
+            "blocks": [
+              {
+                "align": "left",
+                "color": "",
+                "fontFamily": "",
+                "fontPx": "",
+                "fontSize": "normal",
+                "text": "The simulations used are given at",
+                "type": "paragraph"
+              }
+            ]
+          },
           "files": [
             {
               "title": "VCO_MauriceO.txt",
@@ -109,7 +154,7 @@
         }
       },
       "portfolioView": {
-        "builtAt": "2026-06-10T19:46:07.563Z",
+        "builtAt": "2026-06-11T04:58:43.666Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -140,7 +185,7 @@
             "items": [
               {
                 "children": [],
-                "description": "In many systems, timing circuits are needed not only for synchronous digital design but also to control mixed-signal circuits and interface functions.   A few examples of clocked analog circuits include analog-to-digital converters, digital-to-analog converters, switched-capacitor filters, and chopper-stabilized op-amps.  A single IC may require multiple clock frequencies for its analog and digital cells.  Since \r\nthese clocks may not be related by simple integer ratios and created with dividers, voltage-controlled oscillators (VCO) are popular circuits to generate the required frequencies on chip.  In this project, I analyze, design, and characterize one example of a VCO topology and use it to drive an LED via a PWM output.",
+                "description": "In many systems, timing circuits are needed not only for synchronous digital design but also to control mixed-signal circuits and interface functions.   A few examples of clocked analog circuits include analog-to-digital converters, digital-to-analog converters, switched-capacitor filters, and chopper-stabilized op-amps.  A single IC may require multiple clock frequencies for its analog and digital cells.  Since \r\nthese clocks may not be related by simple integer ratios and created with dividers, voltage-controlled oscillators (VCO) are popular circuits to generate the required frequencies on chip.  In this project, I analyze, design, and characterize a VCO topology and use it to drive an LED via a PWM output.",
                 "kind": "summary",
                 "meta": "Overview",
                 "title": "Overview",
@@ -149,16 +194,17 @@
                   "blocks": [
                     {
                       "align": "left",
+                      "color": "",
                       "fontFamily": "",
                       "fontPx": "",
                       "fontSize": "normal",
-                      "text": "In many systems, timing circuits are needed not only for synchronous digital design but also to control mixed-signal circuits and interface functions.   A few examples of clocked analog circuits include analog-to-digital converters, digital-to-analog converters, switched-capacitor filters, and chopper-stabilized op-amps.  A single IC may require multiple clock frequencies for its analog and digital cells.  Since \r\nthese clocks may not be related by simple integer ratios and created with dividers, voltage-controlled oscillators (VCO) are popular circuits to generate the required frequencies on chip.  In this project, I analyze, design, and characterize one example of a VCO topology and use it to drive an LED via a PWM output.",
+                      "text": "In many systems, timing circuits are needed not only for synchronous digital design but also to control mixed-signal circuits and interface functions.   A few examples of clocked analog circuits include analog-to-digital converters, digital-to-analog converters, switched-capacitor filters, and chopper-stabilized op-amps.  A single IC may require multiple clock frequencies for its analog and digital cells.  Since \r\nthese clocks may not be related by simple integer ratios and created with dividers, voltage-controlled oscillators (VCO) are popular circuits to generate the required frequencies on chip.  In this project, I analyze, design, and characterize a VCO topology and use it to drive an LED via a PWM output.",
                       "type": "paragraph"
                     },
                     {
                       "align": "left",
                       "caption": "",
-                      "display": "download",
+                      "display": "show",
                       "title": "",
                       "type": "image",
                       "url": "docs/pwm-generating-voltage-controlled-oscillator/summary/image.png"
@@ -179,7 +225,65 @@
                 "kind": "subsection",
                 "meta": "Subsection",
                 "title": "Design Overview",
-                "url": ""
+                "url": "",
+                "rich": {
+                  "blocks": [
+                    {
+                      "align": "left",
+                      "color": "",
+                      "fontFamily": "",
+                      "fontPx": "",
+                      "fontSize": "large",
+                      "text": "sx",
+                      "type": "paragraph"
+                    },
+                    {
+                      "align": "left",
+                      "caption": "",
+                      "display": "show",
+                      "title": "",
+                      "type": "image",
+                      "url": "docs/pwm-generating-voltage-controlled-oscillator/design-overview/image.png"
+                    }
+                  ]
+                }
+              },
+              {
+                "children": [
+                  {
+                    "children": [],
+                    "description": "",
+                    "kind": "subsection",
+                    "meta": "Subsection",
+                    "title": "References",
+                    "url": ""
+                  },
+                  {
+                    "children": [],
+                    "description": "",
+                    "kind": "subsection",
+                    "meta": "Subsection",
+                    "title": "Math / Analysis",
+                    "url": ""
+                  }
+                ],
+                "description": "",
+                "kind": "subsection",
+                "meta": "Subsection",
+                "title": "Documentation",
+                "url": "",
+                "rich": {
+                  "blocks": [
+                    {
+                      "align": "left",
+                      "caption": "",
+                      "display": "show",
+                      "title": "",
+                      "type": "image",
+                      "url": "docs/pwm-generating-voltage-controlled-oscillator/documentation-overview/image.png"
+                    }
+                  ]
+                }
               }
             ],
             "title": "Design"
@@ -190,11 +294,24 @@
             "items": [
               {
                 "children": [],
-                "description": "The simulations used are given at",
+                "description": "",
                 "kind": "subsection",
                 "meta": "Subsection",
                 "title": "Simulation Overview",
-                "url": ""
+                "url": "",
+                "rich": {
+                  "blocks": [
+                    {
+                      "align": "left",
+                      "color": "",
+                      "fontFamily": "",
+                      "fontPx": "",
+                      "fontSize": "normal",
+                      "text": "The simulations used are given at",
+                      "type": "paragraph"
+                    }
+                  ]
+                }
               },
               {
                 "children": [
@@ -215,6 +332,348 @@
               }
             ],
             "title": "Simulation"
+          }
+        ]
+      }
+    },
+    {
+      "id": "smart-technology-rollator-for-independence-detection-and-empowerment-stride",
+      "title": "Smart Technology Rollator for Independence, Detection, and Empowerment (STRIDE)",
+      "templateId": "appearance-white-blue-click",
+      "templateLabel": "Clean white, blue hover, white click",
+      "templateGroup": "Appearance",
+      "templateVisual": {
+        "style": "device",
+        "palette": [
+          "#ffffff",
+          "#2563eb",
+          "#f8fbff"
+        ],
+        "background": "#ffffff",
+        "panel": "#ffffff",
+        "accent": "#2563eb",
+        "hover": "#2563eb",
+        "click": "#ffffff",
+        "clickText": "#172636",
+        "line": "#d8e2ef",
+        "text": "#172636",
+        "interaction": "Blue hover with a clean white click state."
+      },
+      "category": "embedded",
+      "status": "Draft",
+      "summary": "Abstract\n\nThe Lafayette College Department of Electrical and Computer Engineering requested that the class of 2026 design a STRIDE system. Mobility devices are designed to meet\r\nthe needs of their users, and there is a recognized difficulty in navigating stairs with most\r\nmobility devices; additionally, there is a recognized potential advantage in incorporating\r\nobstacle detection systems to aid in navigation tasks. Thus, the senior design team developed\r\na device that encompasses three systems: a rollator, a stair-climbing mechanism, and a sensor\r\ndetection system.\n\nThe completed system is a motor-driven rollator with the ability to navigate both flat\r\nground and stairs. This system is comprised of: an aluminum tubing frame with aluminum\r\nand acrylic paneling; four tri-wheel assemblies, two of which are powered and interconnected\r\nby gear-chain systems, the other two composed of omnidirectional wheels; two DC brushless\r\nmotors, powering the aforementioned tri-wheels; a 24 V DC battery and a custom power routing system; an obstacle-detection system; a physical interface; a remote control interface;\r\nand an MCU hub. The rollator can operate under direct user control through a set of physical\r\nbuttons and braking mechanisms, as well as autonomously through a remote control terminalon a password-protected website. It supports continuous operation on flat ground for up\r\nto 8 hours before recharge. The system is to be used indoors only on ADA-compliant\r\nstaircases and surfaces. This document provides an introductory problem statement; the\r\ndesign requirements and considerations; the evolution of the design; the final details of the\r\ndesign; an overview of the testing and evaluation process; conclusions and future work; and\r\nan overview of team management.\n\nIntroduction\n\nEnhancing an individual’s mobility is crucial for supporting independence and empowerment among seniors and individuals who have lost mobility due to injury or illness. In\r\nrecent years, designers and companies have recognized the need expressed by these people for\r\nmobility support devices that are specifically tailored to an individual’s level of mobility; canes\r\nand wheelchairs are both useful, potentially life-changing devices, but are only appropriate\r\nfor certain users. The emphasis on designing devices aligned with users’ variable needs has\r\nresulted in the popularization of the rollator, which provides a level of support between a\r\ncane and a wheelchair.\n\nA typical rollator is a four-wheeled device with handles, used to support a user’s balance\r\nwhen navigating flat or moderately sloped terrain. It is more mobile on flat ground than\r\na walker, but can become more burdensome on sloped terrain, where it either resists the\r\nmotion of the user when going uphill or threatens to run away from the user when going\r\ndownhill. It is bulky and hard to carry up or down stairs, especially for target users. Sloped\r\nsurfaces and elevation changes, especially with an added load, are some of the first obstacles\r\nthat people begin to have trouble with as they age or lose mobility. Additionally, typical\r\nrollators do not provide any assistance with navigation for users, who might have impaired\r\nvision or be experiencing cognitive decline.\n\nThus, a niche can be identified within the existing scope of mobility devices for a rollator\r\nthat can better support users on sloped terrain; that can traverse stairs, removing the need\r\nto lift it up and down; that can carry light loads, such as groceries, up and down slopes and\r\nstairs; and has an obstacle-detection system to assist users in navigation. The goal of the\r\nSTRIDE system is to provide a finished prototype that addresses all of these needs. The\r\nthree main components of STRIDE are the rollator, the stair climbing mechanism, and the\r\nsafety sensors. The development of these components is outlined in Section 3, the final design\r\ndetails of the finished device are listed in Section 4, and the testing and evaluation of these\r\ncomponents is summarized in Section 5.",
+      "summaryRich": {
+        "blocks": [
+          {
+            "align": "left",
+            "color": "",
+            "fontFamily": "",
+            "fontPx": "",
+            "fontSize": "normal",
+            "text": "Abstract",
+            "type": "paragraph"
+          },
+          {
+            "align": "left",
+            "color": "",
+            "fontFamily": "",
+            "fontPx": "",
+            "fontSize": "normal",
+            "text": "The Lafayette College Department of Electrical and Computer Engineering requested that the class of 2026 design a STRIDE system. Mobility devices are designed to meet\r\nthe needs of their users, and there is a recognized difficulty in navigating stairs with most\r\nmobility devices; additionally, there is a recognized potential advantage in incorporating\r\nobstacle detection systems to aid in navigation tasks. Thus, the senior design team developed\r\na device that encompasses three systems: a rollator, a stair-climbing mechanism, and a sensor\r\ndetection system.",
+            "type": "paragraph"
+          },
+          {
+            "align": "left",
+            "color": "",
+            "fontFamily": "",
+            "fontPx": "",
+            "fontSize": "normal",
+            "text": "The completed system is a motor-driven rollator with the ability to navigate both flat\r\nground and stairs. This system is comprised of: an aluminum tubing frame with aluminum\r\nand acrylic paneling; four tri-wheel assemblies, two of which are powered and interconnected\r\nby gear-chain systems, the other two composed of omnidirectional wheels; two DC brushless\r\nmotors, powering the aforementioned tri-wheels; a 24 V DC battery and a custom power routing system; an obstacle-detection system; a physical interface; a remote control interface;\r\nand an MCU hub. The rollator can operate under direct user control through a set of physical\r\nbuttons and braking mechanisms, as well as autonomously through a remote control terminalon a password-protected website. It supports continuous operation on flat ground for up\r\nto 8 hours before recharge. The system is to be used indoors only on ADA-compliant\r\nstaircases and surfaces. This document provides an introductory problem statement; the\r\ndesign requirements and considerations; the evolution of the design; the final details of the\r\ndesign; an overview of the testing and evaluation process; conclusions and future work; and\r\nan overview of team management.",
+            "type": "paragraph"
+          },
+          {
+            "align": "left",
+            "color": "",
+            "fontFamily": "",
+            "fontPx": "",
+            "fontSize": "normal",
+            "text": "Introduction",
+            "type": "paragraph"
+          },
+          {
+            "align": "left",
+            "color": "",
+            "fontFamily": "",
+            "fontPx": "",
+            "fontSize": "normal",
+            "text": "Enhancing an individual’s mobility is crucial for supporting independence and empowerment among seniors and individuals who have lost mobility due to injury or illness. In\r\nrecent years, designers and companies have recognized the need expressed by these people for\r\nmobility support devices that are specifically tailored to an individual’s level of mobility; canes\r\nand wheelchairs are both useful, potentially life-changing devices, but are only appropriate\r\nfor certain users. The emphasis on designing devices aligned with users’ variable needs has\r\nresulted in the popularization of the rollator, which provides a level of support between a\r\ncane and a wheelchair.",
+            "type": "paragraph"
+          },
+          {
+            "align": "left",
+            "color": "",
+            "fontFamily": "",
+            "fontPx": "",
+            "fontSize": "normal",
+            "text": "A typical rollator is a four-wheeled device with handles, used to support a user’s balance\r\nwhen navigating flat or moderately sloped terrain. It is more mobile on flat ground than\r\na walker, but can become more burdensome on sloped terrain, where it either resists the\r\nmotion of the user when going uphill or threatens to run away from the user when going\r\ndownhill. It is bulky and hard to carry up or down stairs, especially for target users. Sloped\r\nsurfaces and elevation changes, especially with an added load, are some of the first obstacles\r\nthat people begin to have trouble with as they age or lose mobility. Additionally, typical\r\nrollators do not provide any assistance with navigation for users, who might have impaired\r\nvision or be experiencing cognitive decline.",
+            "type": "paragraph"
+          },
+          {
+            "align": "left",
+            "color": "",
+            "fontFamily": "",
+            "fontPx": "",
+            "fontSize": "normal",
+            "text": "Thus, a niche can be identified within the existing scope of mobility devices for a rollator\r\nthat can better support users on sloped terrain; that can traverse stairs, removing the need\r\nto lift it up and down; that can carry light loads, such as groceries, up and down slopes and\r\nstairs; and has an obstacle-detection system to assist users in navigation. The goal of the\r\nSTRIDE system is to provide a finished prototype that addresses all of these needs. The\r\nthree main components of STRIDE are the rollator, the stair climbing mechanism, and the\r\nsafety sensors. The development of these components is outlined in Section 3, the final design\r\ndetails of the finished device are listed in Section 4, and the testing and evaluation of these\r\ncomponents is summarized in Section 5.",
+            "type": "paragraph"
+          }
+        ]
+      },
+      "focus": [],
+      "highlights": [],
+      "documents": [
+        {
+          "title": "STRIDE.pdf",
+          "type": "Document",
+          "url": "docs/smart-technology-rollator-for-independence-detection-and-empowerment-stride/documents/stride.pdf",
+          "status": "uploaded"
+        }
+      ],
+      "tests": [],
+      "pcbs": [],
+      "media": [],
+      "tools": [],
+      "languages": [],
+      "links": [],
+      "sections": [],
+      "portfolioView": {
+        "builtAt": "2026-06-11T04:58:43.666Z",
+        "template": {
+          "group": "Appearance",
+          "id": "appearance-white-blue-click",
+          "label": "Clean white, blue hover, white click",
+          "visual": {
+            "style": "device",
+            "palette": [
+              "#ffffff",
+              "#2563eb",
+              "#f8fbff"
+            ],
+            "background": "#ffffff",
+            "panel": "#ffffff",
+            "accent": "#2563eb",
+            "hover": "#2563eb",
+            "click": "#ffffff",
+            "clickText": "#172636",
+            "line": "#d8e2ef",
+            "text": "#172636",
+            "interaction": "Blue hover with a clean white click state."
+          }
+        },
+        "title": "Smart Technology Rollator for Independence, Detection, and Empowerment (STRIDE)",
+        "sections": [
+          {
+            "description": "",
+            "id": "brief",
+            "items": [
+              {
+                "children": [],
+                "description": "Abstract\n\nThe Lafayette College Department of Electrical and Computer Engineering requested that the class of 2026 design a STRIDE system. Mobility devices are designed to meet\r\nthe needs of their users, and there is a recognized difficulty in navigating stairs with most\r\nmobility devices; additionally, there is a recognized potential advantage in incorporating\r\nobstacle detection systems to aid in navigation tasks. Thus, the senior design team developed\r\na device that encompasses three systems: a rollator, a stair-climbing mechanism, and a sensor\r\ndetection system.\n\nThe completed system is a motor-driven rollator with the ability to navigate both flat\r\nground and stairs. This system is comprised of: an aluminum tubing frame with aluminum\r\nand acrylic paneling; four tri-wheel assemblies, two of which are powered and interconnected\r\nby gear-chain systems, the other two composed of omnidirectional wheels; two DC brushless\r\nmotors, powering the aforementioned tri-wheels; a 24 V DC battery and a custom power routing system; an obstacle-detection system; a physical interface; a remote control interface;\r\nand an MCU hub. The rollator can operate under direct user control through a set of physical\r\nbuttons and braking mechanisms, as well as autonomously through a remote control terminalon a password-protected website. It supports continuous operation on flat ground for up\r\nto 8 hours before recharge. The system is to be used indoors only on ADA-compliant\r\nstaircases and surfaces. This document provides an introductory problem statement; the\r\ndesign requirements and considerations; the evolution of the design; the final details of the\r\ndesign; an overview of the testing and evaluation process; conclusions and future work; and\r\nan overview of team management.\n\nIntroduction\n\nEnhancing an individual’s mobility is crucial for supporting independence and empowerment among seniors and individuals who have lost mobility due to injury or illness. In\r\nrecent years, designers and companies have recognized the need expressed by these people for\r\nmobility support devices that are specifically tailored to an individual’s level of mobility; canes\r\nand wheelchairs are both useful, potentially life-changing devices, but are only appropriate\r\nfor certain users. The emphasis on designing devices aligned with users’ variable needs has\r\nresulted in the popularization of the rollator, which provides a level of support between a\r\ncane and a wheelchair.\n\nA typical rollator is a four-wheeled device with handles, used to support a user’s balance\r\nwhen navigating flat or moderately sloped terrain. It is more mobile on flat ground than\r\na walker, but can become more burdensome on sloped terrain, where it either resists the\r\nmotion of the user when going uphill or threatens to run away from the user when going\r\ndownhill. It is bulky and hard to carry up or down stairs, especially for target users. Sloped\r\nsurfaces and elevation changes, especially with an added load, are some of the first obstacles\r\nthat people begin to have trouble with as they age or lose mobility. Additionally, typical\r\nrollators do not provide any assistance with navigation for users, who might have impaired\r\nvision or be experiencing cognitive decline.\n\nThus, a niche can be identified within the existing scope of mobility devices for a rollator\r\nthat can better support users on sloped terrain; that can traverse stairs, removing the need\r\nto lift it up and down; that can carry light loads, such as groceries, up and down slopes and\r\nstairs; and has an obstacle-detection system to assist users in navigation. The goal of the\r\nSTRIDE system is to provide a finished prototype that addresses all of these needs. The\r\nthree main components of STRIDE are the rollator, the stair climbing mechanism, and the\r\nsafety sensors. The development of these components is outlined in Section 3, the final design\r\ndetails of the finished device are listed in Section 4, and the testing and evaluation of these\r\ncomponents is summarized in Section 5.",
+                "kind": "summary",
+                "meta": "Overview",
+                "title": "Overview",
+                "url": "",
+                "rich": {
+                  "blocks": [
+                    {
+                      "align": "left",
+                      "color": "",
+                      "fontFamily": "",
+                      "fontPx": "",
+                      "fontSize": "normal",
+                      "text": "Abstract",
+                      "type": "paragraph"
+                    },
+                    {
+                      "align": "left",
+                      "color": "",
+                      "fontFamily": "",
+                      "fontPx": "",
+                      "fontSize": "normal",
+                      "text": "The Lafayette College Department of Electrical and Computer Engineering requested that the class of 2026 design a STRIDE system. Mobility devices are designed to meet\r\nthe needs of their users, and there is a recognized difficulty in navigating stairs with most\r\nmobility devices; additionally, there is a recognized potential advantage in incorporating\r\nobstacle detection systems to aid in navigation tasks. Thus, the senior design team developed\r\na device that encompasses three systems: a rollator, a stair-climbing mechanism, and a sensor\r\ndetection system.",
+                      "type": "paragraph"
+                    },
+                    {
+                      "align": "left",
+                      "color": "",
+                      "fontFamily": "",
+                      "fontPx": "",
+                      "fontSize": "normal",
+                      "text": "The completed system is a motor-driven rollator with the ability to navigate both flat\r\nground and stairs. This system is comprised of: an aluminum tubing frame with aluminum\r\nand acrylic paneling; four tri-wheel assemblies, two of which are powered and interconnected\r\nby gear-chain systems, the other two composed of omnidirectional wheels; two DC brushless\r\nmotors, powering the aforementioned tri-wheels; a 24 V DC battery and a custom power routing system; an obstacle-detection system; a physical interface; a remote control interface;\r\nand an MCU hub. The rollator can operate under direct user control through a set of physical\r\nbuttons and braking mechanisms, as well as autonomously through a remote control terminalon a password-protected website. It supports continuous operation on flat ground for up\r\nto 8 hours before recharge. The system is to be used indoors only on ADA-compliant\r\nstaircases and surfaces. This document provides an introductory problem statement; the\r\ndesign requirements and considerations; the evolution of the design; the final details of the\r\ndesign; an overview of the testing and evaluation process; conclusions and future work; and\r\nan overview of team management.",
+                      "type": "paragraph"
+                    },
+                    {
+                      "align": "left",
+                      "color": "",
+                      "fontFamily": "",
+                      "fontPx": "",
+                      "fontSize": "normal",
+                      "text": "Introduction",
+                      "type": "paragraph"
+                    },
+                    {
+                      "align": "left",
+                      "color": "",
+                      "fontFamily": "",
+                      "fontPx": "",
+                      "fontSize": "normal",
+                      "text": "Enhancing an individual’s mobility is crucial for supporting independence and empowerment among seniors and individuals who have lost mobility due to injury or illness. In\r\nrecent years, designers and companies have recognized the need expressed by these people for\r\nmobility support devices that are specifically tailored to an individual’s level of mobility; canes\r\nand wheelchairs are both useful, potentially life-changing devices, but are only appropriate\r\nfor certain users. The emphasis on designing devices aligned with users’ variable needs has\r\nresulted in the popularization of the rollator, which provides a level of support between a\r\ncane and a wheelchair.",
+                      "type": "paragraph"
+                    },
+                    {
+                      "align": "left",
+                      "color": "",
+                      "fontFamily": "",
+                      "fontPx": "",
+                      "fontSize": "normal",
+                      "text": "A typical rollator is a four-wheeled device with handles, used to support a user’s balance\r\nwhen navigating flat or moderately sloped terrain. It is more mobile on flat ground than\r\na walker, but can become more burdensome on sloped terrain, where it either resists the\r\nmotion of the user when going uphill or threatens to run away from the user when going\r\ndownhill. It is bulky and hard to carry up or down stairs, especially for target users. Sloped\r\nsurfaces and elevation changes, especially with an added load, are some of the first obstacles\r\nthat people begin to have trouble with as they age or lose mobility. Additionally, typical\r\nrollators do not provide any assistance with navigation for users, who might have impaired\r\nvision or be experiencing cognitive decline.",
+                      "type": "paragraph"
+                    },
+                    {
+                      "align": "left",
+                      "color": "",
+                      "fontFamily": "",
+                      "fontPx": "",
+                      "fontSize": "normal",
+                      "text": "Thus, a niche can be identified within the existing scope of mobility devices for a rollator\r\nthat can better support users on sloped terrain; that can traverse stairs, removing the need\r\nto lift it up and down; that can carry light loads, such as groceries, up and down slopes and\r\nstairs; and has an obstacle-detection system to assist users in navigation. The goal of the\r\nSTRIDE system is to provide a finished prototype that addresses all of these needs. The\r\nthree main components of STRIDE are the rollator, the stair climbing mechanism, and the\r\nsafety sensors. The development of these components is outlined in Section 3, the final design\r\ndetails of the finished device are listed in Section 4, and the testing and evaluation of these\r\ncomponents is summarized in Section 5.",
+                      "type": "paragraph"
+                    }
+                  ]
+                }
+              }
+            ],
+            "title": "Overview"
+          },
+          {
+            "description": "",
+            "id": "design",
+            "items": [
+              {
+                "children": [],
+                "description": "",
+                "kind": "document",
+                "meta": "Document",
+                "title": "STRIDE.pdf",
+                "url": "docs/smart-technology-rollator-for-independence-detection-and-empowerment-stride/documents/stride.pdf"
+              }
+            ],
+            "title": "Design"
+          }
+        ]
+      }
+    },
+    {
+      "id": "stride-battery-status-monitor",
+      "title": "STRIDE- Battery Status Monitor",
+      "templateId": "appearance-steel-teal-click",
+      "templateLabel": "Steel teal, teal hover, ice click",
+      "templateGroup": "Appearance",
+      "templateVisual": {
+        "style": "instrument",
+        "palette": [
+          "#eef7fa",
+          "#0f766e",
+          "#e6fffb"
+        ],
+        "background": "#eef7fa",
+        "panel": "#ffffff",
+        "accent": "#0f766e",
+        "hover": "#0f766e",
+        "click": "#e6fffb",
+        "clickText": "#14333a",
+        "line": "#9bd7d3",
+        "text": "#14333a",
+        "interaction": "Teal hover with a bright ice-blue click state."
+      },
+      "category": "embedded",
+      "status": "Draft",
+      "summary": "In many powered electric devices, batteries supply power to drive the motors and the electronics. As the devices consume the energy, the battery gets depleted over time, requiring recharging after certain thresholds are crossed. As a result, the available charge at any given moment must be tracked to alert the users to charge the batteries. The system may also shut down some functionality when the available capacity goes beyond a specified minimum. The STRIDE  (S",
+      "summaryRich": {
+        "blocks": [
+          {
+            "align": "left",
+            "color": "",
+            "fontFamily": "",
+            "fontPx": "",
+            "fontSize": "normal",
+            "text": "In many powered electric devices, batteries supply power to drive the motors and the electronics. As the devices consume the energy, the battery gets depleted over time, requiring recharging after certain thresholds are crossed. As a result, the available charge at any given moment must be tracked to alert the users to charge the batteries. The system may also shut down some functionality when the available capacity goes beyond a specified minimum. The STRIDE  (S",
+            "type": "paragraph"
+          }
+        ]
+      },
+      "focus": [],
+      "highlights": [],
+      "documents": [],
+      "tests": [],
+      "pcbs": [],
+      "media": [],
+      "tools": [],
+      "languages": [],
+      "links": [],
+      "sections": [],
+      "portfolioView": {
+        "builtAt": "2026-06-11T04:58:43.666Z",
+        "template": {
+          "group": "Appearance",
+          "id": "appearance-steel-teal-click",
+          "label": "Steel teal, teal hover, ice click",
+          "visual": {
+            "style": "instrument",
+            "palette": [
+              "#eef7fa",
+              "#0f766e",
+              "#e6fffb"
+            ],
+            "background": "#eef7fa",
+            "panel": "#ffffff",
+            "accent": "#0f766e",
+            "hover": "#0f766e",
+            "click": "#e6fffb",
+            "clickText": "#14333a",
+            "line": "#9bd7d3",
+            "text": "#14333a",
+            "interaction": "Teal hover with a bright ice-blue click state."
+          }
+        },
+        "title": "STRIDE- Battery Status Monitor",
+        "sections": [
+          {
+            "description": "",
+            "id": "brief",
+            "items": [
+              {
+                "children": [],
+                "description": "In many powered electric devices, batteries supply power to drive the motors and the electronics. As the devices consume the energy, the battery gets depleted over time, requiring recharging after certain thresholds are crossed. As a result, the available charge at any given moment must be tracked to alert the users to charge the batteries. The system may also shut down some functionality when the available capacity goes beyond a specified minimum. The STRIDE  (S",
+                "kind": "summary",
+                "meta": "Overview",
+                "title": "Overview",
+                "url": "",
+                "rich": {
+                  "blocks": [
+                    {
+                      "align": "left",
+                      "color": "",
+                      "fontFamily": "",
+                      "fontPx": "",
+                      "fontSize": "normal",
+                      "text": "In many powered electric devices, batteries supply power to drive the motors and the electronics. As the devices consume the energy, the battery gets depleted over time, requiring recharging after certain thresholds are crossed. As a result, the available charge at any given moment must be tracked to alert the users to charge the batteries. The system may also shut down some functionality when the available capacity goes beyond a specified minimum. The STRIDE  (S",
+                      "type": "paragraph"
+                    }
+                  ]
+                }
+              }
+            ],
+            "title": "Overview"
           }
         ]
       }
