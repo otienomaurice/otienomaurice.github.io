@@ -112,7 +112,20 @@
       "highlights": [],
       "documents": [],
       "tests": [],
-      "pcbs": [],
+      "pcbs": [
+        {
+          "name": "PCB_Gerber_Files.zip",
+          "revision": "Rev A",
+          "status": "uploaded",
+          "artifact": "docs/pwm-generating-voltage-controlled-oscillator/pcbs/pcb_gerber_files.zip"
+        },
+        {
+          "name": "VOLTAGE_CONTROLLED_OSCILLATOR.zip",
+          "revision": "Rev A",
+          "status": "uploaded",
+          "artifact": "docs/pwm-generating-voltage-controlled-oscillator/pcbs/voltage_controlled_oscillator.zip"
+        }
+      ],
       "media": [],
       "tools": [],
       "languages": [],
@@ -219,7 +232,7 @@
         }
       },
       "portfolioView": {
-        "builtAt": "2026-06-11T14:58:16.600Z",
+        "builtAt": "2026-06-11T15:18:58.983Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -385,6 +398,31 @@
                     }
                   ]
                 }
+              },
+              {
+                "children": [
+                  {
+                    "children": [],
+                    "description": "Rev A",
+                    "kind": "pcb",
+                    "meta": "uploaded",
+                    "title": "PCB_Gerber_Files.zip",
+                    "url": "docs/pwm-generating-voltage-controlled-oscillator/pcbs/pcb_gerber_files.zip"
+                  },
+                  {
+                    "children": [],
+                    "description": "Rev A",
+                    "kind": "pcb",
+                    "meta": "uploaded",
+                    "title": "VOLTAGE_CONTROLLED_OSCILLATOR.zip",
+                    "url": "docs/pwm-generating-voltage-controlled-oscillator/pcbs/voltage_controlled_oscillator.zip"
+                  }
+                ],
+                "description": "",
+                "kind": "subsection",
+                "meta": "Subsection",
+                "title": "PCB and Visual Evidence",
+                "url": ""
               }
             ],
             "title": "Design"
@@ -577,7 +615,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-11T14:58:16.600Z",
+        "builtAt": "2026-06-11T15:18:58.983Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -869,7 +907,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-11T14:58:16.600Z",
+        "builtAt": "2026-06-11T15:18:58.983Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-steel-teal-click",
@@ -1097,7 +1135,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-11T14:58:16.600Z",
+        "builtAt": "2026-06-11T15:18:58.983Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-graphite-white-click",
@@ -1226,7 +1264,7 @@
       "links": [],
       "sections": [],
       "portfolioView": {
-        "builtAt": "2026-06-11T14:58:16.600Z",
+        "builtAt": "2026-06-11T15:18:58.983Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-deep-navy-cyan-click",
