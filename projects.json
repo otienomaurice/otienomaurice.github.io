@@ -296,7 +296,7 @@
         }
       },
       "portfolioView": {
-        "builtAt": "2026-06-11T16:52:53.558Z",
+        "builtAt": "2026-06-11T17:16:03.941Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -743,7 +743,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-11T16:52:53.558Z",
+        "builtAt": "2026-06-11T17:16:03.941Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -1035,7 +1035,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-11T16:52:53.558Z",
+        "builtAt": "2026-06-11T17:16:03.941Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-steel-teal-click",
@@ -1263,7 +1263,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-11T16:52:53.559Z",
+        "builtAt": "2026-06-11T17:16:03.941Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-graphite-white-click",
@@ -1383,7 +1383,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-11T16:52:53.559Z",
+        "builtAt": "2026-06-11T17:16:03.941Z",
         "template": {
           "group": "Appearance",
           "id": "",
@@ -1399,6 +1399,71 @@
             "title": "Software HDL"
           }
         ]
+      }
+    },
+    {
+      "id": "fpga-base-health-monitor-pulse-sensor-and-reaction-timer-controllers",
+      "title": "FPGA base Health Monitor (Pulse Sensor and Reaction Timer controllers)",
+      "templateId": "appearance-white-blue-click",
+      "templateLabel": "Clean white, blue hover, white click",
+      "templateGroup": "Appearance",
+      "templateVisual": {
+        "style": "device",
+        "palette": [
+          "#ffffff",
+          "#2563eb",
+          "#f8fbff"
+        ],
+        "background": "#ffffff",
+        "panel": "#ffffff",
+        "accent": "#2563eb",
+        "hover": "#2563eb",
+        "click": "#ffffff",
+        "clickText": "#172636",
+        "line": "#d8e2ef",
+        "text": "#172636",
+        "interaction": "Blue hover with a clean white click state."
+      },
+      "category": "digital",
+      "status": "Draft",
+      "summary": "",
+      "summaryRich": null,
+      "focus": [],
+      "highlights": [],
+      "documents": [],
+      "tests": [],
+      "pcbs": [],
+      "media": [],
+      "tools": [],
+      "languages": [],
+      "links": [],
+      "sections": [],
+      "portfolioView": {
+        "builtAt": "2026-06-11T17:16:03.941Z",
+        "template": {
+          "group": "Appearance",
+          "id": "appearance-white-blue-click",
+          "label": "Clean white, blue hover, white click",
+          "visual": {
+            "style": "device",
+            "palette": [
+              "#ffffff",
+              "#2563eb",
+              "#f8fbff"
+            ],
+            "background": "#ffffff",
+            "panel": "#ffffff",
+            "accent": "#2563eb",
+            "hover": "#2563eb",
+            "click": "#ffffff",
+            "clickText": "#172636",
+            "line": "#d8e2ef",
+            "text": "#172636",
+            "interaction": "Blue hover with a clean white click state."
+          }
+        },
+        "title": "FPGA base Health Monitor (Pulse Sensor and Reaction Timer controllers)",
+        "sections": []
       }
     }
   ],
