@@ -154,7 +154,7 @@
         }
       },
       "portfolioView": {
-        "builtAt": "2026-06-11T05:48:16.731Z",
+        "builtAt": "2026-06-11T05:53:35.527Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -375,6 +375,14 @@
           },
           {
             "align": "left",
+            "caption": "",
+            "display": "show",
+            "title": "",
+            "type": "image",
+            "url": "docs/smart-technology-rollator-for-independence-detection-and-empowerment-stride/summary/image.png"
+          },
+          {
+            "align": "left",
             "color": "",
             "fontFamily": "",
             "fontPx": "",
@@ -428,7 +436,7 @@
       "links": [],
       "sections": [],
       "portfolioView": {
-        "builtAt": "2026-06-11T05:48:16.731Z",
+        "builtAt": "2026-06-11T05:53:35.527Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -474,6 +482,14 @@
                       "fontSize": "normal",
                       "text": "STRIDE, the Smart Technology Rollator for Independence, Detection, and Empowerment, is a senior design project developed to improve mobility, safety, and independence for users who need more support than a cane but do not require a wheelchair. Traditional rollators are useful on flat ground, but they become difficult to control on ramps and nearly impossible for many users to move safely up or down stairs. STRIDE addresses this problem by combining a powered rollator, stair-climbing mechanism, obstacle detection, embedded control, custom electronics, and an accessible user interface into one integrated prototype.",
                       "type": "paragraph"
+                    },
+                    {
+                      "align": "left",
+                      "caption": "",
+                      "display": "show",
+                      "title": "",
+                      "type": "image",
+                      "url": "docs/smart-technology-rollator-for-independence-detection-and-empowerment-stride/summary/image.png"
                     },
                     {
                       "align": "left",
@@ -584,7 +600,7 @@
       "links": [],
       "sections": [],
       "portfolioView": {
-        "builtAt": "2026-06-11T05:48:16.731Z",
+        "builtAt": "2026-06-11T05:53:35.527Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-steel-teal-click",
@@ -724,7 +740,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-11T05:48:16.731Z",
+        "builtAt": "2026-06-11T05:53:35.527Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-graphite-white-click",
@@ -845,7 +861,7 @@
       "links": [],
       "sections": [],
       "portfolioView": {
-        "builtAt": "2026-06-11T05:48:16.731Z",
+        "builtAt": "2026-06-11T05:53:35.527Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-deep-navy-cyan-click",
