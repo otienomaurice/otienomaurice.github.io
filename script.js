@@ -9,6 +9,7 @@ let categories = [];
 let projects = [];
 let siteSections = [];
 let funFacts = [];
+let funFactsRich = null;
 let activeFilter = "all";
 let activeSectionDialogDrag = null;
 let activeSectionDialogResize = null;
@@ -57,12 +58,15 @@ function normalizeFunFacts(value) {
 function renderFunFacts() {
   if (!funFactsCallout) return;
   const facts = normalizeFunFacts(funFacts);
-  funFactsCallout.hidden = !facts.length;
-  funFactsCallout.innerHTML = facts.length ? `
+  const hasRichFacts = Boolean(funFactsRich?.blocks?.length);
+  funFactsCallout.hidden = !facts.length && !hasRichFacts;
+  funFactsCallout.innerHTML = facts.length || hasRichFacts ? `
     <div class="fun-facts-window">
       <span class="fun-facts-label">Fun fact:</span>
       <div class="fun-facts-lines">
-        ${facts.map((fact) => `<p class="fun-fact-line">${renderInlineMath(fact)}</p>`).join("")}
+        ${hasRichFacts
+          ? renderRichContent({ blocks: funFactsRich.blocks.slice(0, 3) }, facts.join("\n"))
+          : facts.map((fact) => `<p class="fun-fact-line">${renderInlineMath(fact)}</p>`).join("")}
       </div>
     </div>
   ` : "";
@@ -266,13 +270,13 @@ function escapeHtml(value) {
 }
 
 function textBlocksFromPlainText(text) {
-  const lines = String(text || "").split(/\n{2,}/).map((item) => item.trim()).filter(Boolean);
-  return (lines.length ? lines : [""]).map((item) => ({
+  return [{
     align: "left",
+    fontFamily: "Arial",
     fontSize: "normal",
-    text: item,
+    text: String(text || ""),
     type: "paragraph"
-  }));
+  }];
 }
 
 function unwrapFormula(value) {
@@ -299,6 +303,49 @@ function renderInlineMath(text) {
     const href = clean.startsWith("www.") ? `https://${clean}` : clean;
     return `<a href="${href}" target="_blank" rel="noreferrer">${clean}</a>${trailing}`;
   });
+}
+
+function sanitizeRichInlineHtml(value = "") {
+  const template = document.createElement("template");
+  template.innerHTML = String(value || "");
+  const allowedTags = new Set(["A", "B", "BR", "EM", "I", "SPAN", "STRONG", "U"]);
+
+  [...template.content.querySelectorAll("*")].forEach((node) => {
+    if (!allowedTags.has(node.tagName)) {
+      node.replaceWith(...node.childNodes);
+      return;
+    }
+
+    const href = node.tagName === "A" ? String(node.getAttribute("href") || "").trim() : "";
+    const safeHref = /^(https?:|mailto:|tel:|#|\/)/i.test(href) ? href : "";
+    const fontFamily = cleanFontFamily(node.style.fontFamily || "");
+    const fontPx = normalizeFontPx(parseFloat(node.style.fontSize || ""));
+    const color = normalizeTextColor(node.style.color || "");
+    const rawFontWeight = node.style.fontWeight || "";
+    const fontWeight = /^(bold|[6-9]00)$/i.test(rawFontWeight)
+      ? "700"
+      : /^(normal|[1-5]00)$/i.test(rawFontWeight)
+        ? "400"
+        : "";
+    const fontStyle = node.style.fontStyle === "italic" ? "italic" : "";
+    const textDecoration = node.style.textDecoration.includes("underline") ? "underline" : "";
+
+    [...node.attributes].forEach((attribute) => node.removeAttribute(attribute.name));
+
+    if (node.tagName === "A" && safeHref) {
+      node.setAttribute("href", safeHref);
+      node.setAttribute("target", "_blank");
+      node.setAttribute("rel", "noreferrer");
+    }
+    if (fontFamily) node.style.fontFamily = fontFamily;
+    if (fontPx) node.style.fontSize = `${fontPx}px`;
+    if (color) node.style.color = color;
+    if (fontWeight) node.style.fontWeight = fontWeight;
+    if (fontStyle) node.style.fontStyle = fontStyle;
+    if (textDecoration) node.style.textDecoration = textDecoration;
+  });
+
+  return template.innerHTML;
 }
 
 function displayTitle(value, fallback = "Untitled item") {
@@ -336,15 +383,41 @@ function normalizeTextColor(value = "") {
 
 function richTextStyle(block = {}) {
     const styles = [];
-    const fontFamily = cleanFontFamily(block.fontFamily || "");
+    const fontFamily = cleanFontFamily(block.fontFamily || "Arial") || "Arial";
     const fontPx = normalizeFontPx(block.fontPx);
     const color = normalizeTextColor(block.color || "");
 
     if (fontFamily) styles.push(`font-family: ${fontFamily}`);
     if (fontPx) styles.push(`font-size: ${fontPx}px`);
     if (color) styles.push(`color: ${color}`);
+    if (block.bold) styles.push("font-weight: 700");
 
     return styles.length ? ` style="${escapeHtml(styles.join("; "))}"` : "";
+}
+
+function normalizeCropAspect(value = "") {
+    return ["1 / 1", "4 / 3", "16 / 9", "3 / 4"].includes(value) ? value : "original";
+}
+
+function normalizeCropZoom(value = 1) {
+    const zoom = Number(value);
+    return Number.isFinite(zoom) ? Math.min(3, Math.max(1, zoom)) : 1;
+}
+
+function normalizeCropPosition(value = 50) {
+    const position = Number(value);
+    return Number.isFinite(position) ? Math.min(100, Math.max(0, position)) : 50;
+}
+
+function richImageCropStyle(block = {}) {
+    const aspect = normalizeCropAspect(block.cropAspect);
+    const styles = [
+        `--crop-zoom: ${normalizeCropZoom(block.cropZoom)}`,
+        `--crop-x: ${normalizeCropPosition(block.cropX)}%`,
+        `--crop-y: ${normalizeCropPosition(block.cropY)}%`
+    ];
+    if (aspect !== "original") styles.push(`--crop-aspect: ${aspect}`);
+    return ` style="${escapeHtml(styles.join("; "))}"`;
 }
 
 function richImageDownloadLink(block = {}) {
@@ -379,10 +452,12 @@ function renderRichContent(rich, fallbackText = "") {
         if (block.type === "image") {
           if (block.display === "download") return richImageDownloadLink(block);
           const title = cleanRichImageTitle(block);
-          return `
-            <figure class="rich-image justify-${align}">
-              <img src="${escapeHtml(block.url)}" alt="${escapeHtml(title || "Overview image")}">
-              ${(title || block.caption) ? `<figcaption>${title ? `<strong>${escapeHtml(title)}</strong>` : ""}${block.caption ? `<span>${escapeHtml(block.caption)}</span>` : ""}</figcaption>` : ""}
+            return `
+              <figure class="rich-image justify-${align}">
+                <span class="rich-image-viewport crop-${normalizeCropAspect(block.cropAspect) === "original" ? "original" : "active"}"${richImageCropStyle(block)}>
+                  <img src="${escapeHtml(block.url)}" alt="${escapeHtml(title || "Overview image")}">
+                </span>
+                ${(title || block.caption) ? `<figcaption>${title ? `<strong>${escapeHtml(title)}</strong>` : ""}${block.caption ? `<span>${escapeHtml(block.caption)}</span>` : ""}</figcaption>` : ""}
             </figure>
           `;
         }
@@ -390,7 +465,10 @@ function renderRichContent(rich, fallbackText = "") {
           return `<div class="rich-formula justify-${align}">${escapeHtml(unwrapFormula(block.formula))}</div>`;
         }
         const size = ["small", "normal", "large"].includes(block.fontSize) ? block.fontSize : "normal";
-        return `<p class="rich-paragraph rich-text-${size} text-${align}"${richTextStyle(block)}>${renderInlineMath(block.text || "")}</p>`;
+        const content = block.html
+          ? sanitizeRichInlineHtml(block.html)
+          : renderInlineMath(block.text || "");
+        return `<p class="rich-paragraph rich-text-${size} text-${align}"${richTextStyle(block)}>${content}</p>`;
       }).join("")}
     </div>
   `;
@@ -636,10 +714,11 @@ function mediaGrid(items) {
 function siteSectionHasContent(section) {
   return Boolean(
     section?.description ||
+    section?.richDescription?.blocks?.length ||
     section?.backgroundImage ||
     (section?.links || []).some((link) => link.label || link.url) ||
     (section?.assets || []).some((asset) => asset.title || asset.url) ||
-    (section?.subsections || []).some((item) => item.title || item.description || (item.links || []).length)
+    (section?.subsections || []).some((item) => item.title || item.description || item.richDescription?.blocks?.length || (item.links || []).length)
   );
 }
 
@@ -660,7 +739,7 @@ function renderSiteSections() {
   mount.innerHTML = visibleSections.map((section) => {
     const style = section.backgroundImage ? ` style="--section-bg: url('${escapeHtml(section.backgroundImage)}')"` : "";
     const links = [...(section.links || []), ...(section.assets || [])];
-    const subsections = (section.subsections || []).filter((item) => item.title || item.description || (item.links || []).length);
+    const subsections = (section.subsections || []).filter((item) => item.title || item.description || item.richDescription?.blocks?.length || (item.links || []).length);
     return `
       <section class="section dynamic-section" id="${escapeHtml(section.id || "")}"${style}>
         <div class="dynamic-section-surface">
@@ -669,13 +748,17 @@ function renderSiteSections() {
               <h2>${escapeHtml(section.title || "Untitled section")}</h2>
             </div>
           </div>
-          ${section.description ? `<p class="dynamic-section-copy">${renderInlineMath(section.description)}</p>` : ""}
+          ${section.description || section.richDescription?.blocks?.length
+            ? `<div class="dynamic-section-copy">${renderRichContent(section.richDescription, section.description || "")}</div>`
+            : ""}
           ${subsections.length ? `
             <div class="dynamic-section-grid">
               ${subsections.map((item) => `
                 <article class="dynamic-section-card">
                   <h3>${escapeHtml(item.title || "Untitled")}</h3>
-                  ${item.description ? `<p>${renderInlineMath(item.description)}</p>` : ""}
+                  ${item.description || item.richDescription?.blocks?.length
+                    ? renderRichContent(item.richDescription, item.description || "")
+                    : ""}
                   ${renderDynamicLinks(item.links || [])}
                 </article>
               `).join("")}
@@ -898,7 +981,7 @@ function nodeHasRenderableContent(node) {
 }
 
 function sectionHasRenderableContent(section) {
-  return Boolean(section?.description || (section?.items || []).some(nodeHasRenderableContent));
+  return Boolean(section?.description || richHasRenderableContent(section?.rich) || (section?.items || []).some(nodeHasRenderableContent));
 }
 
 function nodeSummary(title, rich, text, emptyMessage = "No summary has been added yet.") {
@@ -911,82 +994,42 @@ function nodeSummary(title, rich, text, emptyMessage = "No summary has been adde
   `;
 }
 
-function parsedNodeMeta(node) {
-  if (node.kind === "subsection") {
-    const count = nodeChildren(node).filter(nodeHasRenderableContent).length;
-    return count ? `${count} item${count === 1 ? "" : "s"}` : "";
-  }
-  if (node.kind === "image") return "Image";
-  const meta = (node.meta || node.kind || "").trim();
-  const cleanMeta = /^(brief|markdown|text|section item)$/i.test(meta) ? "" : meta;
-  if (node.url) return cleanMeta || "File";
-  return cleanMeta;
-}
-
 function parsedNodeCard(node, projectId, sectionIndex, path) {
-  const cardClass = node.kind === "subsection" ? "subsection-open-card" : "item-open-card";
-  const meta = parsedNodeMeta(node);
   const title = displayTitle(node.title);
   return `
     <button
-      class="section-open-card evidence-block resource-open-card ${cardClass}"
+      class="section-open-card subsection-open-card"
       type="button"
       data-section-project="${projectId}"
       data-section-index="${sectionIndex}"
       data-resource-path="${pathToString(path)}"
     >
       <span>${escapeHtml(title)}</span>
-      ${meta ? `<small>${meta}</small>` : ""}
     </button>
   `;
 }
 
 function parsedChildCards(children, projectId, sectionIndex, basePath = []) {
-  const visibleChildren = children.filter(nodeHasRenderableContent);
+  const visibleChildren = children.filter((child) => nodeHasRenderableContent(child) && !child.url);
   if (!visibleChildren.length) return "";
   return `
     <div class="subsection-grid section-content-grid">
-      ${children.map((child, index) => nodeHasRenderableContent(child) ? parsedNodeCard(child, projectId, sectionIndex, [...basePath, index]) : "").join("")}
+      ${children.map((child, index) => nodeHasRenderableContent(child) && !child.url ? parsedNodeCard(child, projectId, sectionIndex, [...basePath, index]) : "").join("")}
     </div>
-  `;
-}
-
-function parsedLeafDetail(item) {
-  const hasImage = item.kind === "image" && item.url && item.display !== "download";
-  const meta = parsedNodeMeta(item);
-  const title = displayTitle(item.title);
-  return `
-    <article class="parsed-window-panel leaf-window-panel">
-    ${nodeSummary("Overview", item.rich, item.description || "", "No overview has been added for this item.")}
-    <div class="resource-detail">
-      <strong>${item.url ? resourceLink({ url: item.url, status: "uploaded" }, title) : escapeHtml(title)}</strong>
-      ${meta ? `<span>${meta}</span>` : ""}
-      ${hasImage ? `
-        <figure class="rich-image justify-center">
-          <a href="${item.url}"${linkAttributes(item.url)}><img src="${item.url}" alt="${escapeHtml(title)}"></a>
-          ${item.description ? `<figcaption><span>${item.description}</span></figcaption>` : ""}
-        </figure>
-      ` : ""}
-    </div>
-    </article>
   `;
 }
 
 function parsedNodeContent(node, projectId, sectionIndex, path = []) {
     const isContainer = !node.kind || node.kind === "subsection";
-
-    if (!isContainer) return parsedLeafDetail(node);
+    if (!isContainer && node.url) return renderInlineSectionFiles([node]);
 
     const children = nodeChildren(node);
-    const downloads = uniqueDownloads(
-        collectDownloadsFromValue(node, parsedNodeMeta(node) || "Section file", [])
-    );
 
     return `
-    <article class="parsed-window-panel ${path.length ? "nested-window-panel" : "root-window-panel"}">
-      ${nodeSummary("Overview", node.rich, node.description || "", "No section overview has been added yet.")}
-      ${renderInlineSectionFiles(downloads)}
+    <article class="parsed-window-panel section-directory">
+      ${node.rich?.blocks?.length || node.description ? renderRichContent(node.rich, node.description || "") : ""}
       ${parsedChildCards(children, projectId, sectionIndex, path)}
+      ${renderInlineSectionFiles(children)}
     </article>
   `;
 }
@@ -999,7 +1042,6 @@ function parsedSectionContent(section, projectId, sectionIndex, path = []) {
 
 function parsedSection(section, index, project) {
   const visibleItems = (section.items || []).filter(nodeHasRenderableContent);
-  const itemCount = visibleItems.length;
   const hasImages = visibleItems.some((item) => item.kind === "image");
 
   return `
@@ -1010,7 +1052,6 @@ function parsedSection(section, index, project) {
       data-section-index="${index}"
     >
       <span>${escapeHtml(displayTitle(section.title, "Section"))}</span>
-      ${itemCount ? `<small>${itemCount} item${itemCount === 1 ? "" : "s"}</small>` : ""}
     </button>
   `;
 }
@@ -1266,7 +1307,7 @@ grid.addEventListener("click", (event) => {
   openParsedSection(sectionButton.dataset.sectionProject, sectionButton.dataset.sectionIndex);
 });
 function renderInlineSectionFiles(items = []) {
-    const downloads = uniqueDownloads(items);
+    const downloads = uniqueDownloads(items.map((item) => normalizeDownloadAsset(item, "File")).filter(Boolean));
     if (!downloads.length) return "";
 
     return `
@@ -1275,8 +1316,7 @@ function renderInlineSectionFiles(items = []) {
         <a
           class="section-file-link"
           href="${escapeHtml(item.url)}"
-          ${linkAttributes(item.url)}
-          ${downloadAttribute(item.url)}
+          download
         >
           ${escapeHtml(item.title || fileNameFromUrl(item.url))}
         </a>
@@ -1298,6 +1338,7 @@ function loadProjectCatalog() {
     projects = window.__PORTFOLIO_CATALOG__.projects || [];
     siteSections = window.__PORTFOLIO_CATALOG__.siteSections || [];
     funFacts = normalizeFunFacts(window.__PORTFOLIO_CATALOG__.funFacts || []);
+    funFactsRich = window.__PORTFOLIO_CATALOG__.funFactsRich || null;
     renderFunFacts();
     renderSiteSections();
     renderProjects();
@@ -1314,6 +1355,7 @@ function loadProjectCatalog() {
       projects = data.projects || [];
       siteSections = data.siteSections || [];
       funFacts = normalizeFunFacts(data.funFacts || []);
+      funFactsRich = data.funFactsRich || null;
       renderFunFacts();
       renderSiteSections();
       renderProjects();

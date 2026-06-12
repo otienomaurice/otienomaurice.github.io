@@ -322,6 +322,7 @@ h3 {
   color: var(--ink);
   font-size: clamp(0.98rem, 1.4vw, 1.12rem);
   line-height: 1.75;
+  white-space: pre-wrap;
 }
 
 .dynamic-section-grid {
@@ -355,6 +356,7 @@ h3 {
   color: var(--muted);
   font-size: 0.92rem;
   line-height: 1.65;
+  white-space: pre-wrap;
 }
 
 .dynamic-link-list {
@@ -905,7 +907,9 @@ h3 {
 .rich-paragraph {
   margin: 0;
   color: var(--ink);
+  font-family: Arial, sans-serif;
   line-height: 1.6;
+  white-space: pre-wrap;
 }
 
 .rich-text-small {
@@ -965,10 +969,33 @@ h3 {
 }
 
 .rich-image img {
-  max-width: 100%;
+  display: block;
+  width: 100%;
+  max-width: none;
   border: 1px solid var(--line);
   border-radius: 8px;
   background: #ffffff;
+}
+
+.rich-image-viewport {
+  position: relative;
+  display: block;
+  width: min(100%, 720px);
+  overflow: hidden;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.rich-image-viewport.crop-active {
+  aspect-ratio: var(--crop-aspect);
+}
+
+.rich-image-viewport.crop-active img {
+  height: 100%;
+  object-fit: cover;
+  object-position: var(--crop-x) var(--crop-y);
+  transform: scale(var(--crop-zoom));
+  transform-origin: var(--crop-x) var(--crop-y);
 }
 
 .rich-image figcaption {
@@ -1160,6 +1187,13 @@ h3 {
 
 .evidence-empty {
   margin: 0;
+  white-space: pre-wrap;
+}
+
+.project-body p,
+.portfolio-resource p,
+.section-view-content p {
+  white-space: pre-wrap;
 }
 
 .section-view-dialog {
@@ -1891,30 +1925,27 @@ h3 {
         font-size: 0.86rem;
     }
 .section-file-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
+    display: grid;
+    justify-items: start;
+    gap: 8px;
     width: 100%;
 }
 
 .section-file-link {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 38px;
-    padding: 0 12px;
-    border: 1px solid rgba(17, 124, 122, 0.22);
-    border-radius: 8px;
+    display: inline;
+    padding: 0;
+    border: 0;
     color: var(--teal);
-    background: rgba(17, 124, 122, 0.06);
+    background: transparent;
     font-size: 0.84rem;
     font-weight: 800;
+    text-decoration: underline;
+    text-underline-offset: 3px;
 }
 
     .section-file-link:hover {
-        border-color: var(--teal);
-        color: #ffffff;
-        background: var(--teal);
+        color: var(--focus);
+        background: transparent;
     }
 
 .section-view-content {
@@ -1928,4 +1959,11 @@ h3 {
     width: 100%;
     max-width: none;
     justify-self: stretch;
+}
+
+.parsed-window-panel.section-directory {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
 }
