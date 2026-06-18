@@ -7,6 +7,7 @@ const funFactsCallout = document.querySelector("#fun-facts-callout");
 const heroEyebrow = document.querySelector(".hero-content .eyebrow");
 const heroTitle = document.querySelector("#hero-title");
 const heroCopy = document.querySelector(".hero-copy");
+const searchWrap = searchInput?.closest(".search-wrap");
 
 let categories = [];
 let projects = [];
@@ -19,6 +20,14 @@ let activeSectionDialogDrag = null;
 let activeSectionDialogResize = null;
 let sectionDialogDragEnabled = false;
 let isApplyingSectionRoute = false;
+let searchPanel = null;
+let searchStatus = null;
+let searchLimitSelect = null;
+let currentSearchResults = [];
+let searchableEntries = [];
+let searchResultLimit = 10;
+let searchHighlightTimer = 0;
+const searchHighlightName = "portfolio-search-highlight";
 
 const sectionRouteKey = "portfolio-section";
 const sectionRouteParams = {
@@ -663,6 +672,233 @@ function projectVisible(project, query) {
   return categoryMatch && projectMatches(project, query);
 }
 
+function flattenSearchText(values = []) {
+  return values
+    .flat(Infinity)
+    .filter((value) => value !== null && value !== undefined)
+    .map((value) => typeof value === "object" ? JSON.stringify(value) : String(value))
+    .join(" ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function richTextTerms(rich) {
+  return (rich?.blocks || []).flatMap((block) => [
+    block.text,
+    block.html,
+    block.formula,
+    block.title,
+    block.caption,
+    block.url
+  ]);
+}
+
+function addSearchEntry(entries, entry) {
+  const text = flattenSearchText([entry.title, entry.type, entry.context, entry.text, entry.url]);
+  if (!entry.title && !text) return null;
+  const storedEntry = {
+    ...entry,
+    normalizedText: normalize(text),
+    text
+  };
+  entries.push(storedEntry);
+  return storedEntry;
+}
+
+function searchSnippet(text = "", query = "") {
+  const clean = String(text || "").replace(/\s+/g, " ").trim();
+  if (!clean) return "";
+  const index = normalize(clean).indexOf(normalize(query));
+  if (index < 0) return clean.slice(0, 150);
+  const start = Math.max(0, index - 54);
+  const end = Math.min(clean.length, index + query.length + 80);
+  return `${start ? "..." : ""}${clean.slice(start, end)}${end < clean.length ? "..." : ""}`;
+}
+
+function entryScore(entry, query) {
+  const normalizedQuery = normalize(query).trim();
+  if (!normalizedQuery) return 0;
+  const title = normalize(entry.title);
+  const type = normalize(entry.type);
+  const context = normalize(entry.context);
+  const text = entry.normalizedText || "";
+  const words = normalizedQuery.split(/\s+/).filter(Boolean);
+  let score = 0;
+
+  if (title === normalizedQuery) score += 160;
+  if (title.startsWith(normalizedQuery)) score += 120;
+  if (title.includes(normalizedQuery)) score += 90;
+  if (context.includes(normalizedQuery)) score += 55;
+  if (type.includes(normalizedQuery)) score += 35;
+  if (text.includes(normalizedQuery)) score += 45;
+  words.forEach((word) => {
+    if (title.includes(word)) score += 16;
+    if (context.includes(word)) score += 10;
+    if (text.includes(word)) score += 6;
+  });
+
+  if (score > 0 && entry.kind === "file") score += 18;
+  if (score > 0 && entry.kind === "section") score += 14;
+  if (score > 0 && entry.kind === "project") score += 12;
+  return score;
+}
+
+function entryMatches(entry, query) {
+  return entryScore(entry, query) > 0;
+}
+
+function fileIsBrowserSearchable(url = "") {
+  const clean = String(url || "").split(/[?#]/)[0].toLowerCase();
+  return /\.(txt|md|markdown|csv|json|xml|log|c|h|cpp|hpp|py|js|mjs|ts|v|sv|vhdl?|spice|cir|net|asc|sch|kicad_sch|kicad_pcb)$/i.test(clean);
+}
+
+async function indexSearchableFileText(entry) {
+  if (!entry.url || !fileIsBrowserSearchable(entry.url)) return;
+  if (/^(https?:)?\/\//i.test(entry.url) && !entry.url.startsWith(window.location.origin)) return;
+  try {
+    const response = await fetch(entry.url);
+    if (!response.ok) return;
+    const text = await response.text();
+    entry.text = flattenSearchText([entry.text, text.slice(0, 60000)]);
+    entry.normalizedText = normalize(entry.text);
+    updateSearchDropdown();
+  } catch {
+    // Files remain searchable by title, path, caption, and catalog text if direct text fetch is unavailable.
+  }
+}
+
+function addProjectSearchEntries(entries, project) {
+  const categoryLabel = slugLabel(project.category);
+  const baseContext = `${categoryLabel} / ${project.title}`;
+  const projectTerms = [
+    project.id,
+    project.summary,
+    richTextTerms(project.summaryRich),
+    project.focus,
+    project.highlights,
+    project.tools,
+    project.languages,
+    project.links,
+    window.electronicsSearchKeywords ? window.electronicsSearchKeywords(project, categoryLabel) : []
+  ];
+
+  addSearchEntry(entries, {
+    context: categoryLabel,
+    kind: "project",
+    projectId: project.id,
+    title: project.title,
+    type: "Project",
+    text: projectTerms
+  });
+
+  const sections = (project.portfolioView?.sections || []).filter((section) => section.id !== "brief" && sectionHasRenderableContent(section));
+  sections.forEach((section, sectionIndex) => {
+    addSearchEntry(entries, {
+      context: baseContext,
+      kind: "section",
+      projectId: project.id,
+      sectionIndex: String(sectionIndex),
+      title: displayTitle(section.title, "Section"),
+      type: "Project section",
+      text: [section.description, richTextTerms(section.rich), parsedItemTerms(section)]
+    });
+
+    const walkItems = (items = [], path = [], parentTitles = []) => {
+      items.forEach((item, index) => {
+        const nextPath = [...path, index];
+        const title = displayTitle(item.title || item.name || item.label || fileNameFromUrl(item.url || ""), "Project item");
+        const url = itemUrl(item);
+        const context = [baseContext, displayTitle(section.title, "Section"), ...parentTitles].filter(Boolean).join(" / ");
+        const entry = {
+          context,
+          kind: url ? "file" : "subsection",
+          projectId: project.id,
+          resourcePath: pathToString(nextPath),
+          sectionIndex: String(sectionIndex),
+          title,
+          type: url ? "File or uploaded asset" : "Subsection",
+          url,
+          text: [item.description, item.meta, item.kind, item.type, url, richTextTerms(item.rich), parsedItemTerms(item)]
+        };
+        const storedEntry = addSearchEntry(entries, entry);
+        if (url && storedEntry) indexSearchableFileText(storedEntry);
+        walkItems(nodeChildren(item), nextPath, [...parentTitles, title]);
+      });
+    };
+    walkItems(section.items || []);
+  });
+
+  uniqueDownloads(collectDownloadsFromValue(project, "Project file", [])).forEach((download) => {
+    const entry = {
+      context: baseContext,
+      kind: "file",
+      projectId: project.id,
+      title: download.title || fileNameFromUrl(download.url),
+      type: download.type || "Uploaded file",
+      url: download.url,
+      text: [download.description, download.status, download.url]
+    };
+    const storedEntry = addSearchEntry(entries, entry);
+    if (storedEntry) indexSearchableFileText(storedEntry);
+  });
+}
+
+function addSiteSectionSearchEntries(entries) {
+  [
+    { id: "top", title: heroTitle?.textContent || "Front page", type: "Page section", text: [heroEyebrow?.textContent, heroCopy?.textContent] },
+    { id: "projects", title: "Engineering Projects", type: "Directory", text: "project directory categories files sections" },
+    { id: "resume", title: "Resume", type: "Page section", text: "resume professional profile document" },
+    { id: "process", title: "Process", type: "Page section", text: "engineering process design testing documentation" },
+    { id: "contact", title: "Contact", type: "Page section", text: "email phone github contact" }
+  ].forEach((section) => addSearchEntry(entries, {
+    domTarget: section.id,
+    kind: "page",
+    title: section.title,
+    type: section.type,
+    text: section.text
+  }));
+
+  (siteSections || []).filter(siteSectionRenderable).forEach((section) => {
+    addSearchEntry(entries, {
+      domTarget: section.id,
+      kind: "page",
+      title: section.title || "Portfolio section",
+      type: "Portfolio section",
+      text: [section.description, richTextTerms(section.richDescription), section.links, section.assets]
+    });
+    (section.subsections || []).forEach((item) => addSearchEntry(entries, {
+      domTarget: section.id,
+      kind: "page",
+      title: item.title || "Portfolio subsection",
+      type: "Portfolio subsection",
+      text: [item.description, richTextTerms(item.richDescription), item.links]
+    }));
+  });
+}
+
+function rebuildSearchIndex() {
+  const entries = [];
+  addSiteSectionSearchEntries(entries);
+  projects.forEach((project) => addProjectSearchEntries(entries, project));
+  searchableEntries = entries;
+}
+
+function searchResultsFor(query) {
+  const normalizedQuery = normalize(query).trim();
+  if (!normalizedQuery) return [];
+  const seen = new Set();
+  return searchableEntries
+    .map((entry) => ({ ...entry, score: entryScore(entry, normalizedQuery) }))
+    .filter((entry) => entry.score > 0)
+    .sort((a, b) => b.score - a.score || a.title.localeCompare(b.title))
+    .filter((entry) => {
+      const key = [entry.kind, entry.projectId, entry.sectionIndex, entry.resourcePath, entry.domTarget, entry.url, entry.title].join("|");
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    });
+}
+
 function linkAttributes(url) {
   return /^https?:\/\//.test(url || "") ? ' target="_blank" rel="noreferrer"' : "";
 }
@@ -1289,6 +1525,208 @@ function categorySection(category, visibleProjects) {
   `;
 }
 
+function escapeRegExp(value = "") {
+  return String(value).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function highlightQueryHtml(value = "", query = "") {
+  const escaped = escapeHtml(value);
+  const cleanQuery = String(query || "").trim();
+  if (!cleanQuery) return escaped;
+  const pattern = new RegExp(`(${escapeRegExp(escapeHtml(cleanQuery))})`, "ig");
+  return escaped.replace(pattern, '<mark class="search-result-mark">$1</mark>');
+}
+
+function clearSearchHighlights() {
+  window.CSS?.highlights?.delete?.(searchHighlightName);
+}
+
+function textNodeSearchTargets() {
+  return [
+    document.querySelector("main"),
+    document.querySelector("#section-view-dialog[open] .section-view-content")
+  ].filter(Boolean);
+}
+
+function applySearchHighlights(query) {
+  clearSearchHighlights();
+  const cleanQuery = String(query || "").trim();
+  if (!cleanQuery || !window.CSS?.highlights || typeof window.Highlight !== "function") return 0;
+  const ranges = [];
+  const needle = normalize(cleanQuery);
+
+  textNodeSearchTargets().forEach((root) => {
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+      acceptNode(node) {
+        if (!node.textContent || !normalize(node.textContent).includes(needle)) return NodeFilter.FILTER_REJECT;
+        if (node.parentElement?.closest("script, style, input, textarea, select, button, .search-engine, .site-header")) return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    let node = walker.nextNode();
+    while (node) {
+      const haystack = normalize(node.textContent);
+      let index = haystack.indexOf(needle);
+      while (index >= 0) {
+        const range = document.createRange();
+        range.setStart(node, index);
+        range.setEnd(node, index + cleanQuery.length);
+        ranges.push(range);
+        index = haystack.indexOf(needle, index + Math.max(1, cleanQuery.length));
+      }
+      node = walker.nextNode();
+    }
+  });
+
+  if (ranges.length) window.CSS.highlights.set(searchHighlightName, new window.Highlight(...ranges));
+  return ranges.length;
+}
+
+function queueSearchHighlights() {
+  clearTimeout(searchHighlightTimer);
+  searchHighlightTimer = setTimeout(() => applySearchHighlights(searchInput?.value || ""), 30);
+}
+
+function ensureSearchPanel() {
+  if (!searchInput || !searchWrap || searchPanel) return;
+  const shell = document.createElement("div");
+  shell.className = "search-engine";
+  searchWrap.replaceWith(shell);
+  shell.append(searchWrap);
+  searchPanel = document.createElement("div");
+  searchPanel.className = "search-results-panel";
+  searchPanel.hidden = true;
+  searchPanel.innerHTML = `
+    <div class="search-results-tools">
+      <span id="search-status">Type to search projects, files, sections, and phrases.</span>
+      <label>
+        <span>Show</span>
+        <select id="search-result-limit" aria-label="Number of search results">
+          <option value="5">5</option>
+          <option value="10" selected>10</option>
+          <option value="15">15</option>
+          <option value="20">20</option>
+        </select>
+      </label>
+    </div>
+    <div class="search-results-list" role="listbox" aria-label="Search results"></div>
+  `;
+  shell.append(searchPanel);
+  searchStatus = searchPanel.querySelector("#search-status");
+  searchLimitSelect = searchPanel.querySelector("#search-result-limit");
+  searchLimitSelect.addEventListener("change", () => {
+    searchResultLimit = Number(searchLimitSelect.value) || 10;
+    updateSearchDropdown();
+  });
+  searchPanel.addEventListener("mousedown", (event) => event.preventDefault());
+  searchPanel.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-search-result-index]");
+    if (!button) return;
+    const result = currentSearchResults[Number(button.dataset.searchResultIndex)];
+    if (result) goToSearchResult(result);
+  });
+}
+
+function setSearchMessage(message, state = "neutral") {
+  if (!searchStatus) return;
+  searchStatus.textContent = message;
+  searchStatus.dataset.state = state;
+}
+
+function renderSearchResults(query, visibleCount) {
+  ensureSearchPanel();
+  if (!searchPanel) return;
+  const list = searchPanel.querySelector(".search-results-list");
+  const cleanQuery = String(query || "").trim();
+  currentSearchResults = searchResultsFor(cleanQuery);
+  const limitedResults = currentSearchResults.slice(0, searchResultLimit);
+  searchPanel.hidden = !cleanQuery;
+  searchInput.setAttribute("aria-expanded", String(Boolean(cleanQuery)));
+
+  if (!cleanQuery) {
+    list.innerHTML = "";
+    setSearchMessage("Type to search projects, files, sections, and phrases.");
+    searchInput.removeAttribute("aria-invalid");
+    return;
+  }
+
+  if (!currentSearchResults.length) {
+    list.innerHTML = "";
+    setSearchMessage(`"${cleanQuery}" was not found on this portfolio.`, "not-found");
+    searchInput.setAttribute("aria-invalid", "true");
+    return;
+  }
+
+  searchInput.removeAttribute("aria-invalid");
+  const visibleText = visibleCount
+    ? `${visibleCount} visible match${visibleCount === 1 ? "" : "es"} highlighted.`
+    : "Matches found elsewhere. Choose a result below.";
+  setSearchMessage(`${visibleText} Showing ${limitedResults.length} of ${currentSearchResults.length}.`, "found");
+  list.innerHTML = limitedResults.map((result, index) => `
+    <button class="search-result-item" type="button" role="option" data-search-result-index="${index}">
+      <span class="search-result-title">${highlightQueryHtml(result.title || "Untitled result", cleanQuery)}</span>
+      <span class="search-result-meta">${escapeHtml([result.type, result.context].filter(Boolean).join(" / "))}</span>
+      ${searchSnippet(result.text, cleanQuery) ? `<span class="search-result-snippet">${highlightQueryHtml(searchSnippet(result.text, cleanQuery), cleanQuery)}</span>` : ""}
+    </button>
+  `).join("");
+}
+
+function updateSearchDropdown() {
+  const query = searchInput?.value || "";
+  const visibleCount = applySearchHighlights(query);
+  renderSearchResults(query, visibleCount);
+}
+
+function showSearchPanelIfNeeded() {
+  if (!searchInput?.value?.trim()) return;
+  updateSearchDropdown();
+}
+
+function scrollToDomTarget(id) {
+  const target = id ? document.getElementById(id) : null;
+  if (!target) return false;
+  closeSectionDialogForRoute();
+  target.scrollIntoView({ behavior: "smooth", block: "start" });
+  try {
+    history.replaceState(history.state || { appWindow: "portfolio-base" }, "", `#${id}`);
+  } catch {
+    // Scrolling is still the important behavior.
+  }
+  queueSearchHighlights();
+  return true;
+}
+
+function goToSearchResult(result) {
+  if (!result) return;
+  searchPanel.hidden = true;
+  if (result.domTarget && scrollToDomTarget(result.domTarget)) return;
+
+  if (result.projectId && result.sectionIndex !== undefined) {
+    openParsedSection(result.projectId, result.sectionIndex, result.resourcePath || "");
+    queueSearchHighlights();
+    return;
+  }
+
+  if (result.projectId) {
+    if (!document.getElementById(result.projectId)) {
+      activeFilter = "all";
+      filterButtons.forEach((item) => item.classList.toggle("active", item.dataset.filter === "all"));
+      renderProjects();
+    }
+    const target = document.getElementById(result.projectId);
+    target?.scrollIntoView({ behavior: "smooth", block: "center" });
+    queueSearchHighlights();
+    return;
+  }
+
+  if (result.url) window.open(result.url, "_blank", "noopener");
+}
+
+function handleSearchInput() {
+  renderProjects();
+  updateSearchDropdown();
+}
+
 function renderProjects() {
   const query = normalize(searchInput.value).trim();
   const visible = projects.filter((project) => projectVisible(project, query));
@@ -1302,6 +1740,7 @@ function renderProjects() {
         <p>Search covers categories, project names, documents, tests, PCB builds, tools, languages, and links.</p>
       </div>
     `;
+    queueSearchHighlights();
     return;
   }
 
@@ -1312,6 +1751,7 @@ function renderProjects() {
       return visibleProjects.length || shouldShowEmptyCategory ? categorySection(category, visibleProjects) : "";
     })
     .join("");
+  queueSearchHighlights();
 }
 
 function ensureSectionDialog() {
@@ -1424,6 +1864,7 @@ function openParsedSection(projectId, sectionIndex, resourcePath = "", options =
   document.body.classList.add("full-window-open");
   if (!dialog.open) dialog.showModal();
   dialog.scrollTop = 0;
+  queueSearchHighlights();
   return true;
 }
 
@@ -1464,10 +1905,29 @@ filterButtons.forEach((button) => {
     activeFilter = button.dataset.filter;
     filterButtons.forEach((item) => item.classList.toggle("active", item === button));
     renderProjects();
+    updateSearchDropdown();
   });
 });
 
-searchInput.addEventListener("input", renderProjects);
+ensureSearchPanel();
+searchInput.addEventListener("input", handleSearchInput);
+searchInput.addEventListener("focus", showSearchPanelIfNeeded);
+searchInput.addEventListener("keydown", (event) => {
+  if (event.key === "Enter" && currentSearchResults.length) {
+    event.preventDefault();
+    goToSearchResult(currentSearchResults[0]);
+  }
+  if (event.key === "Escape") {
+    clearSearchHighlights();
+    if (searchPanel) searchPanel.hidden = true;
+  }
+});
+
+document.addEventListener("click", (event) => {
+  if (!searchPanel || searchPanel.hidden) return;
+  if (event.target.closest(".search-engine")) return;
+  searchPanel.hidden = true;
+});
 
 grid.addEventListener("click", (event) => {
   const sectionButton = event.target.closest("[data-section-project]");
@@ -1512,6 +1972,8 @@ function loadProjectCatalog() {
     renderFunFacts();
     renderSiteSections();
     renderProjects();
+    rebuildSearchIndex();
+    updateSearchDropdown();
     restoreSectionRouteAfterCatalogLoad();
     return;
   }
@@ -1532,6 +1994,8 @@ function loadProjectCatalog() {
       renderFunFacts();
       renderSiteSections();
       renderProjects();
+      rebuildSearchIndex();
+      updateSearchDropdown();
       restoreSectionRouteAfterCatalogLoad();
     })
     .catch(() => {
