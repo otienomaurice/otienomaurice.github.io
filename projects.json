@@ -39,6 +39,11 @@
       }
     ]
   },
+  "siteContent": {
+    "heroCopy": "I design and document systems across analog circuits, embedded firmware, digital hardware, and software.\nThis portfolio presents selected work, technical artifacts, and the engineering decisions behind each build.",
+    "heroEyebrow": "Engineering portfolio",
+    "heroTitle": "Analog, embedded, and digital systems built with purpose."
+  },
   "projects": [
     {
       "id": "pwm-generating-voltage-controlled-oscillator",
@@ -332,7 +337,7 @@
         }
       },
       "portfolioView": {
-        "builtAt": "2026-06-12T18:59:53.417Z",
+        "builtAt": "2026-06-18T14:03:17.623Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -718,7 +723,7 @@
         }
       },
       "portfolioView": {
-        "builtAt": "2026-06-12T18:59:53.417Z",
+        "builtAt": "2026-06-18T14:03:17.623Z",
         "template": {
           "group": "Appearance",
           "id": "",
@@ -869,7 +874,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-12T18:59:53.418Z",
+        "builtAt": "2026-06-18T14:03:17.623Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -1161,7 +1166,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-12T18:59:53.418Z",
+        "builtAt": "2026-06-18T14:03:17.623Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-steel-teal-click",
@@ -1389,7 +1394,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-12T18:59:53.418Z",
+        "builtAt": "2026-06-18T14:03:17.624Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-graphite-white-click",
@@ -1509,7 +1514,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-12T18:59:53.418Z",
+        "builtAt": "2026-06-18T14:03:17.624Z",
         "template": {
           "group": "Appearance",
           "id": "",
@@ -1565,7 +1570,7 @@
       "links": [],
       "sections": [],
       "portfolioView": {
-        "builtAt": "2026-06-12T18:59:53.418Z",
+        "builtAt": "2026-06-18T14:03:17.624Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -1670,7 +1675,7 @@
       "assets": [],
       "subsections": [
         {
-          "description": "Hometown: Migori, Kenya \nWhere you will find me: Nairobi, Kenya",
+          "description": "Hometown: Migori, Kenya. Where you will find me: Nairobi, Kenya plpl",
           "id": "origin-and-home",
           "links": [],
           "richDescription": {
@@ -1682,8 +1687,8 @@
                 "fontFamily": "Arial",
                 "fontPx": "",
                 "fontSize": "normal",
-                "html": "<span style=\"color: rgb(31, 110, 212);\">Hometown</span>: Migori, Kenya \n<span style=\"color: rgb(31, 110, 212);\">Where you will find me</span>: Nairobi, Kenya",
-                "text": "Hometown: Migori, Kenya \nWhere you will find me: Nairobi, Kenya",
+                "html": "<span style=\"font-weight: 400;\"><span style=\"color: rgb(31, 110, 212);\">Hometown</span>: Migori, Kenya.</span><span style=\"font-weight: 400;\"> </span><span style=\"color: rgb(31, 110, 212); font-weight: 400;\">Where you will find me</span><span style=\"font-weight: 400;\">: Nairobi, Kenya plpl</span>",
+                "text": "Hometown: Migori, Kenya. Where you will find me: Nairobi, Kenya plpl",
                 "type": "paragraph"
               }
             ]
@@ -1691,7 +1696,7 @@
           "title": "Origin and Home"
         },
         {
-          "description": "University: Lafayette College\n\nHigh school: Kapsabet Boys High School.",
+          "description": "University: Lafayette College. High school: Kapsabet Boys High School.",
           "id": "education-path",
           "links": [],
           "richDescription": {
@@ -1703,19 +1708,8 @@
                 "fontFamily": "Arial",
                 "fontPx": "",
                 "fontSize": "normal",
-                "html": "<span style=\"color: rgb(31, 110, 212);\">University: </span>Lafayette College   ",
-                "text": "University: Lafayette College",
-                "type": "paragraph"
-              },
-              {
-                "align": "left",
-                "bold": false,
-                "color": "",
-                "fontFamily": "Arial",
-                "fontPx": "",
-                "fontSize": "normal",
-                "html": "<span style=\"color: rgb(109, 40, 217);\"><span style=\"color: rgb(31, 110, 212);\">High school</span></span>: Kapsabet Boys High School.",
-                "text": "High school: Kapsabet Boys High School.",
+                "html": "<span style=\"font-weight: 400;\"><span style=\"color: rgb(31, 110, 212);\">University: </span>Lafayette College.<span style=\"color: rgb(31, 110, 212);\"> </span></span><span style=\"color: rgb(109, 40, 217); font-weight: 400;\"><span style=\"color: rgb(31, 110, 212);\"><span style=\"color: rgb(31, 110, 212);\">High school:</span></span></span><span style=\"font-weight: 400;\"> Kapsabet Boys High School.</span>",
+                "text": "University: Lafayette College. High school: Kapsabet Boys High School.",
                 "type": "paragraph"
               }
             ]

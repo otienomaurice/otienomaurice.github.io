@@ -4,12 +4,16 @@ const filterButtons = [...document.querySelectorAll(".filter-button")];
 const projectCount = document.querySelector("#project-count");
 const year = document.querySelector("#year");
 const funFactsCallout = document.querySelector("#fun-facts-callout");
+const heroEyebrow = document.querySelector(".hero-content .eyebrow");
+const heroTitle = document.querySelector("#hero-title");
+const heroCopy = document.querySelector(".hero-copy");
 
 let categories = [];
 let projects = [];
 let siteSections = [];
 let funFacts = [];
 let funFactsRich = null;
+let siteContent = null;
 let activeFilter = "all";
 let activeSectionDialogDrag = null;
 let activeSectionDialogResize = null;
@@ -39,6 +43,12 @@ const legacyTemplateSkins = {
   "embedded-power-monitor": "appearance-amber-cream-click",
   "embedded-wireless-node": "appearance-deep-navy-cyan-click",
   "embedded-motor-control": "appearance-violet-lilac-click"
+};
+
+const defaultSiteContent = {
+  heroCopy: "I design and document systems across analog circuits, embedded firmware, digital hardware, and software.\nThis portfolio presents selected work, technical artifacts, and the engineering decisions behind each build.",
+  heroEyebrow: "Engineering portfolio",
+  heroTitle: "Analog, embedded, and digital systems built with purpose."
 };
 
 year.textContent = new Date().getFullYear();
@@ -269,6 +279,25 @@ function escapeHtml(value) {
     .replaceAll("'", "&#039;");
 }
 
+function renderPlainMultiline(value = "") {
+  return escapeHtml(value).replace(/\r\n?|\n/g, "<br>");
+}
+
+function normalizeSiteContent(content = {}) {
+  return {
+    heroCopy: String(content.heroCopy || "").trim() || defaultSiteContent.heroCopy,
+    heroEyebrow: String(content.heroEyebrow || "").trim() || defaultSiteContent.heroEyebrow,
+    heroTitle: String(content.heroTitle || "").trim() || defaultSiteContent.heroTitle
+  };
+}
+
+function renderSiteContent() {
+  const content = normalizeSiteContent(siteContent || {});
+  if (heroEyebrow) heroEyebrow.textContent = content.heroEyebrow;
+  if (heroTitle) heroTitle.innerHTML = renderPlainMultiline(content.heroTitle);
+  if (heroCopy) heroCopy.innerHTML = renderPlainMultiline(content.heroCopy);
+}
+
 function textBlocksFromPlainText(text) {
   return [{
     align: "left",
@@ -303,6 +332,10 @@ function renderInlineMath(text) {
     const href = clean.startsWith("www.") ? `https://${clean}` : clean;
     return `<a href="${href}" target="_blank" rel="noreferrer">${clean}</a>${trailing}`;
   });
+}
+
+function renderMultilineInlineText(text = "") {
+  return renderInlineMath(text).replace(/\r\n?|\n/g, "<br>");
 }
 
 function sanitizeRichInlineHtml(value = "") {
@@ -872,7 +905,7 @@ function renderDownloadBlock(title, items = []) {
         <li>
           ${resourceLink(item, item.title)}
           <span>${escapeHtml(item.type || "File")} &middot; ${escapeHtml(item.status || "uploaded")}</span>
-          ${item.description ? `<p>${renderInlineMath(item.description)}</p>` : ""}
+          ${item.description ? `<p>${renderMultilineInlineText(item.description)}</p>` : ""}
         </li>
       `).join("")}
     </ul>
@@ -1081,12 +1114,12 @@ function projectCard(project) {
   const accent = category.accent || "#117c7a";
 
   return `
-    <article class="project-card catalog-card ${projectTemplateClass(project)}" id="${project.id}" style="${projectTemplateStyle(project, accent)}">
-      <div class="project-body">
-        <h3>${project.title}</h3>
-        <p>${project.summary}</p>
+      <article class="project-card catalog-card ${projectTemplateClass(project)}" id="${project.id}" style="${projectTemplateStyle(project, accent)}">
+        <div class="project-body">
+          <h3>${project.title}</h3>
+          <p class="rich-paragraph">${renderMultilineInlineText(project.summary)}</p>
 
-        ${project.highlights && project.highlights.length ? detailBlock("Project highlights", "project-drawer", `
+          ${project.highlights && project.highlights.length ? detailBlock("Project highlights", "project-drawer", `
           <ul class="highlight-list">
             ${project.highlights.map((item) => `<li>${item}</li>`).join("")}
           </ul>
@@ -1337,8 +1370,10 @@ function loadProjectCatalog() {
     categories = window.__PORTFOLIO_CATALOG__.categories || [];
     projects = window.__PORTFOLIO_CATALOG__.projects || [];
     siteSections = window.__PORTFOLIO_CATALOG__.siteSections || [];
+    siteContent = normalizeSiteContent(window.__PORTFOLIO_CATALOG__.siteContent || {});
     funFacts = normalizeFunFacts(window.__PORTFOLIO_CATALOG__.funFacts || []);
     funFactsRich = window.__PORTFOLIO_CATALOG__.funFactsRich || null;
+    renderSiteContent();
     renderFunFacts();
     renderSiteSections();
     renderProjects();
@@ -1354,8 +1389,10 @@ function loadProjectCatalog() {
       categories = data.categories || [];
       projects = data.projects || [];
       siteSections = data.siteSections || [];
+      siteContent = normalizeSiteContent(data.siteContent || {});
       funFacts = normalizeFunFacts(data.funFacts || []);
       funFactsRich = data.funFactsRich || null;
+      renderSiteContent();
       renderFunFacts();
       renderSiteSections();
       renderProjects();
