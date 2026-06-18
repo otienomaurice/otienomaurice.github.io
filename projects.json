@@ -337,7 +337,7 @@
         }
       },
       "portfolioView": {
-        "builtAt": "2026-06-18T14:03:17.623Z",
+        "builtAt": "2026-06-18T14:19:47.885Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -723,7 +723,7 @@
         }
       },
       "portfolioView": {
-        "builtAt": "2026-06-18T14:03:17.623Z",
+        "builtAt": "2026-06-18T14:19:47.885Z",
         "template": {
           "group": "Appearance",
           "id": "",
@@ -874,7 +874,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-18T14:03:17.623Z",
+        "builtAt": "2026-06-18T14:19:47.885Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -1166,7 +1166,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-18T14:03:17.623Z",
+        "builtAt": "2026-06-18T14:19:47.886Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-steel-teal-click",
@@ -1394,7 +1394,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-18T14:03:17.624Z",
+        "builtAt": "2026-06-18T14:19:47.886Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-graphite-white-click",
@@ -1514,7 +1514,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-18T14:03:17.624Z",
+        "builtAt": "2026-06-18T14:19:47.886Z",
         "template": {
           "group": "Appearance",
           "id": "",
@@ -1570,7 +1570,7 @@
       "links": [],
       "sections": [],
       "portfolioView": {
-        "builtAt": "2026-06-18T14:03:17.624Z",
+        "builtAt": "2026-06-18T14:19:47.886Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -1675,7 +1675,7 @@
       "assets": [],
       "subsections": [
         {
-          "description": "Hometown: Migori, Kenya. Where you will find me: Nairobi, Kenya plpl",
+          "description": "Hometown: Migori, Kenya.\nWhere you will find me: Nairobi, Kenya",
           "id": "origin-and-home",
           "links": [],
           "richDescription": {
@@ -1687,8 +1687,19 @@
                 "fontFamily": "Arial",
                 "fontPx": "",
                 "fontSize": "normal",
-                "html": "<span style=\"font-weight: 400;\"><span style=\"color: rgb(31, 110, 212);\">Hometown</span>: Migori, Kenya.</span><span style=\"font-weight: 400;\"> </span><span style=\"color: rgb(31, 110, 212); font-weight: 400;\">Where you will find me</span><span style=\"font-weight: 400;\">: Nairobi, Kenya plpl</span>",
-                "text": "Hometown: Migori, Kenya. Where you will find me: Nairobi, Kenya plpl",
+                "html": "<span style=\"font-weight: 400;\"><span style=\"color: rgb(31, 110, 212);\">Hometown</span>: Migori, Kenya.</span><span style=\"font-weight: 400;\"> </span>",
+                "text": "Hometown: Migori, Kenya.",
+                "type": "paragraph"
+              },
+              {
+                "align": "left",
+                "bold": false,
+                "color": "",
+                "fontFamily": "Arial",
+                "fontPx": "",
+                "fontSize": "normal",
+                "html": "<span style=\"color: rgb(31, 110, 212); font-weight: 400;\">Where you will find me</span><span style=\"font-weight: 400;\">: Nairobi, Kenya </span>",
+                "text": "Where you will find me: Nairobi, Kenya",
                 "type": "paragraph"
               }
             ]
@@ -1696,7 +1707,7 @@
           "title": "Origin and Home"
         },
         {
-          "description": "University: Lafayette College. High school: Kapsabet Boys High School.",
+          "description": "University: Lafayette College.\nHigh school: Kapsabet Boys High School. uohgoiohj ohuogoh hji9o",
           "id": "education-path",
           "links": [],
           "richDescription": {
@@ -1708,8 +1719,19 @@
                 "fontFamily": "Arial",
                 "fontPx": "",
                 "fontSize": "normal",
-                "html": "<span style=\"font-weight: 400;\"><span style=\"color: rgb(31, 110, 212);\">University: </span>Lafayette College.<span style=\"color: rgb(31, 110, 212);\"> </span></span><span style=\"color: rgb(109, 40, 217); font-weight: 400;\"><span style=\"color: rgb(31, 110, 212);\"><span style=\"color: rgb(31, 110, 212);\">High school:</span></span></span><span style=\"font-weight: 400;\"> Kapsabet Boys High School.</span>",
-                "text": "University: Lafayette College. High school: Kapsabet Boys High School.",
+                "html": "<span style=\"font-weight: 400;\"><span style=\"color: rgb(31, 110, 212);\">University: </span>Lafayette College.<span style=\"color: rgb(31, 110, 212);\"> </span></span>",
+                "text": "University: Lafayette College.",
+                "type": "paragraph"
+              },
+              {
+                "align": "left",
+                "bold": false,
+                "color": "",
+                "fontFamily": "Arial",
+                "fontPx": "",
+                "fontSize": "normal",
+                "html": "<span style=\"color: rgb(109, 40, 217); font-weight: 400;\"><span style=\"color: rgb(31, 110, 212);\"><span style=\"color: rgb(31, 110, 212);\">High school:</span></span></span><span style=\"font-weight: 400;\"> Kapsabet Boys High School. <span style=\"color: rgb(220, 38, 38);\">uohgoiohj ohuogoh <span style=\"color: rgb(109, 40, 217);\">hji9o</span></span></span>",
+                "text": "High school: Kapsabet Boys High School. uohgoiohj ohuogoh hji9o",
                 "type": "paragraph"
               }
             ]
@@ -1756,9 +1778,24 @@
           "title": "Sports"
         },
         {
-          "description": "Cycling, Swimming , Hiking and  watching Documentaries and soccer Mtaches.",
+          "description": "Cycling, Swimming, Hiking, and watching Documentaries and Soccer Matches.",
           "id": "hobbies",
           "links": [],
+          "richDescription": {
+            "blocks": [
+              {
+                "align": "left",
+                "bold": false,
+                "color": "",
+                "fontFamily": "Arial",
+                "fontPx": "",
+                "fontSize": "normal",
+                "html": "<span style=\"color: rgb(0, 0, 0);\"><span style=\"font-size: 15px;\"><span style=\"font-size: 16px;\"><span style=\"font-size: 17px;\"><span style=\"font-size: 18px;\"><span style=\"font-size: 17px;\"><span style=\"font-size: 16px;\"><span style=\"font-size: 15px;\"><span style=\"font-size: 14px;\"><span style=\"font-size: 13px; font-weight: 400;\">Cycling, Swimming, Hiking, and watching Documentaries and Soccer Matches.</span></span></span></span></span></span></span></span></span></span>",
+                "text": "Cycling, Swimming, Hiking, and watching Documentaries and Soccer Matches.",
+                "type": "paragraph"
+              }
+            ]
+          },
           "title": "Hobbies"
         }
       ]

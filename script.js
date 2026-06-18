@@ -18,6 +18,14 @@ let activeFilter = "all";
 let activeSectionDialogDrag = null;
 let activeSectionDialogResize = null;
 let sectionDialogDragEnabled = false;
+let isApplyingSectionRoute = false;
+
+const sectionRouteKey = "portfolio-section";
+const sectionRouteParams = {
+  path: "portfolioPath",
+  project: "portfolioProject",
+  section: "portfolioSection"
+};
 
 const legacyTemplateSkins = {
   "skin-light-blue": "appearance-light-blue-red-click",
@@ -975,6 +983,97 @@ function pathFromString(value = "") {
   return value.split(".").map((item) => Number(item)).filter((item) => Number.isInteger(item));
 }
 
+function sectionRouteState(projectId, sectionIndex, resourcePath = "") {
+  return {
+    appWindow: sectionRouteKey,
+    projectId: String(projectId || ""),
+    resourcePath: String(resourcePath || ""),
+    sectionIndex: String(sectionIndex ?? "")
+  };
+}
+
+function canUseSectionHistory() {
+  return Boolean(window.history && typeof window.history.pushState === "function" && typeof window.history.replaceState === "function");
+}
+
+function sectionBaseUrl() {
+  const url = new URL(window.location.href);
+  Object.values(sectionRouteParams).forEach((param) => url.searchParams.delete(param));
+  return url;
+}
+
+function sectionRouteUrl(projectId, sectionIndex, resourcePath = "") {
+  const url = sectionBaseUrl();
+  url.searchParams.set(sectionRouteParams.project, String(projectId || ""));
+  url.searchParams.set(sectionRouteParams.section, String(sectionIndex ?? ""));
+  if (resourcePath) url.searchParams.set(sectionRouteParams.path, String(resourcePath));
+  else url.searchParams.delete(sectionRouteParams.path);
+  url.hash = "projects";
+  return url;
+}
+
+function sectionRouteFromState(state) {
+  if (!state || state.appWindow !== sectionRouteKey) return null;
+  if (!state.projectId || state.sectionIndex === "") return null;
+  return {
+    projectId: String(state.projectId),
+    resourcePath: String(state.resourcePath || ""),
+    sectionIndex: String(state.sectionIndex)
+  };
+}
+
+function sectionRouteFromLocation() {
+  const params = new URLSearchParams(window.location.search);
+  const projectId = params.get(sectionRouteParams.project);
+  const sectionIndex = params.get(sectionRouteParams.section);
+  if (!projectId || sectionIndex === null) return null;
+  return {
+    projectId,
+    resourcePath: params.get(sectionRouteParams.path) || "",
+    sectionIndex
+  };
+}
+
+function sameSectionRoute(left, right) {
+  return Boolean(left && right &&
+    left.projectId === right.projectId &&
+    String(left.sectionIndex) === String(right.sectionIndex) &&
+    String(left.resourcePath || "") === String(right.resourcePath || ""));
+}
+
+function syncSectionRouteToHistory(projectId, sectionIndex, resourcePath = "", mode = "push") {
+  if (isApplyingSectionRoute || mode === "none" || !canUseSectionHistory()) return;
+  const route = sectionRouteState(projectId, sectionIndex, resourcePath);
+  const url = sectionRouteUrl(projectId, sectionIndex, resourcePath);
+  const currentRoute = sectionRouteFromState(history.state) || sectionRouteFromLocation();
+  const method = mode === "replace" || sameSectionRoute(currentRoute, route) ? "replaceState" : "pushState";
+  try {
+    history[method](route, "", url);
+  } catch {
+    // Preview iframes and restricted browser contexts may reject history writes.
+  }
+}
+
+function clearSectionRouteInHistory() {
+  if (isApplyingSectionRoute || !canUseSectionHistory()) return;
+  try {
+    history.replaceState({ appWindow: "portfolio-base" }, "", sectionBaseUrl());
+  } catch {
+    // The visible dialog is already closed; URL cleanup is best effort.
+  }
+}
+
+function initializeSectionHistoryState() {
+  if (!canUseSectionHistory()) return;
+  const route = sectionRouteFromLocation() || sectionRouteFromState(history.state);
+  try {
+    if (route) history.replaceState(sectionRouteState(route.projectId, route.sectionIndex, route.resourcePath), "", sectionRouteUrl(route.projectId, route.sectionIndex, route.resourcePath));
+    else if (!history.state?.appWindow) history.replaceState({ appWindow: "portfolio-base" }, "", window.location.href);
+  } catch {
+    // Browser history state is progressive enhancement for the portfolio windows.
+  }
+}
+
 function nodeAtPath(section, path = []) {
   let node = section;
   let children = section?.items || [];
@@ -1240,6 +1339,7 @@ function ensureSectionDialog() {
   document.body.append(dialog);
   dialog.querySelector(".section-view-minimize")?.addEventListener("click", () => toggleSectionDialogMinimized(dialog));
   dialog.querySelector(".section-view-close").addEventListener("click", () => closeOrStepBackSectionDialog(dialog));
+  dialog.addEventListener("cancel", () => clearSectionRouteInHistory());
   dialog.addEventListener("close", () => {
     document.body.classList.remove("full-window-open");
     dialog.classList.remove("is-minimized-dialog");
@@ -1256,14 +1356,14 @@ function ensureSectionDialog() {
     stack.push(pathToString(path));
     dialog.dataset.forwardStack = JSON.stringify(stack);
     path.pop();
-    openParsedSection(dialog.dataset.projectId, dialog.dataset.sectionIndex, pathToString(path), { preserveForward: true });
+    openParsedSection(dialog.dataset.projectId, dialog.dataset.sectionIndex, pathToString(path), { historyMode: "replace", preserveForward: true });
   });
   dialog.querySelector(".section-view-forward").addEventListener("click", () => {
     const stack = sectionForwardStack(dialog);
     const nextPath = stack.pop();
     if (!nextPath) return;
     dialog.dataset.forwardStack = JSON.stringify(stack);
-    openParsedSection(dialog.dataset.projectId, dialog.dataset.sectionIndex, nextPath, { preserveForward: true });
+    openParsedSection(dialog.dataset.projectId, dialog.dataset.sectionIndex, nextPath, { historyMode: "replace", preserveForward: true });
   });
   dialog.querySelector("#section-view-content").addEventListener("click", (event) => {
     const nodeButton = event.target.closest("[data-resource-path]");
@@ -1293,21 +1393,22 @@ function closeOrStepBackSectionDialog(dialog) {
     stack.push(pathToString(path));
     dialog.dataset.forwardStack = JSON.stringify(stack);
     path.pop();
-    openParsedSection(dialog.dataset.projectId, dialog.dataset.sectionIndex, pathToString(path), { preserveForward: true });
+    openParsedSection(dialog.dataset.projectId, dialog.dataset.sectionIndex, pathToString(path), { historyMode: "replace", preserveForward: true });
     return;
   }
   dialog.close();
+  clearSectionRouteInHistory();
 }
 
 function openParsedSection(projectId, sectionIndex, resourcePath = "", options = {}) {
   const project = projects.find((item) => item.id === projectId);
   const sections = (project?.portfolioView?.sections || []).filter((section) => section.id !== "brief" && sectionHasRenderableContent(section));
   const section = sections[Number(sectionIndex)];
-  if (!section) return;
+  if (!section) return false;
   const path = pathFromString(resourcePath);
   const node = path.length ? nodeAtPath(section, path) : section;
-  if (!node) return;
-  if (path.length ? !nodeHasRenderableContent(node) : !sectionHasRenderableContent(section)) return;
+  if (!node) return false;
+  if (path.length ? !nodeHasRenderableContent(node) : !sectionHasRenderableContent(section)) return false;
 
   const dialog = ensureSectionDialog();
   const category = categories.find((item) => item.id === project.category) || {};
@@ -1316,13 +1417,47 @@ function openParsedSection(projectId, sectionIndex, resourcePath = "", options =
   dialog.dataset.sectionIndex = String(sectionIndex);
   dialog.dataset.resourcePath = pathToString(path);
   if (!options.preserveForward) dialog.dataset.forwardStack = "[]";
+  syncSectionRouteToHistory(projectId, sectionIndex, pathToString(path), options.historyMode || "push");
   dialog.querySelector("#section-view-title").textContent = displayTitle(node.title || section.title, "Section");
   updateSectionNavigation(dialog, path);
   dialog.querySelector("#section-view-content").innerHTML = parsedSectionContent(section, projectId, Number(sectionIndex), path);
   document.body.classList.add("full-window-open");
   if (!dialog.open) dialog.showModal();
   dialog.scrollTop = 0;
+  return true;
 }
+
+function closeSectionDialogForRoute() {
+  const dialog = document.querySelector("#section-view-dialog");
+  if (dialog?.open) dialog.close();
+}
+
+function applySectionRoute(route) {
+  isApplyingSectionRoute = true;
+  try {
+    if (!route) {
+      closeSectionDialogForRoute();
+      return;
+    }
+
+    const opened = openParsedSection(route.projectId, route.sectionIndex, route.resourcePath, {
+      historyMode: "none",
+      preserveForward: true
+    });
+    if (!opened) closeSectionDialogForRoute();
+  } finally {
+    isApplyingSectionRoute = false;
+  }
+}
+
+function restoreSectionRouteAfterCatalogLoad() {
+  initializeSectionHistoryState();
+  applySectionRoute(sectionRouteFromLocation() || sectionRouteFromState(history.state));
+}
+
+window.addEventListener("popstate", (event) => {
+  applySectionRoute(sectionRouteFromState(event.state) || sectionRouteFromLocation());
+});
 
 filterButtons.forEach((button) => {
   button.addEventListener("click", () => {
@@ -1377,6 +1512,7 @@ function loadProjectCatalog() {
     renderFunFacts();
     renderSiteSections();
     renderProjects();
+    restoreSectionRouteAfterCatalogLoad();
     return;
   }
 
@@ -1396,6 +1532,7 @@ function loadProjectCatalog() {
       renderFunFacts();
       renderSiteSections();
       renderProjects();
+      restoreSectionRouteAfterCatalogLoad();
     })
     .catch(() => {
       grid.innerHTML = `
