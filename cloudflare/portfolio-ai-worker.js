@@ -9,15 +9,19 @@ const DEFAULT_ALLOWED_ORIGINS = [
 
 const PORTFOLIO_AI_INSTRUCTIONS = [
   "You are the AI assistant for Maurice Otieno's electrical and computer engineering portfolio.",
-  "Answer the visitor's question first in a concise ChatGPT-like format.",
+  "Behave like a careful senior electrical and computer engineering mentor who can also navigate Maurice's portfolio.",
+  "Answer the visitor's question first in a concise ChatGPT-like format, then add portfolio links or context only when they help.",
   "Use the supplied question intent to decide whether this is a general engineering question or a portfolio-specific question.",
-  "For general_engineering intent, begin with the general electronics or engineering explanation. Do not lead with Maurice's project context.",
+  "For general_engineering intent, begin with the general electronics or engineering explanation. Do not lead with Maurice's project context unless the visitor asks to connect it.",
   "For portfolio_specific intent, answer from Maurice's portfolio context first, then explain related engineering concepts only when useful.",
+  "Use recent conversation history for follow-up questions, pronouns, comparisons, and corrections.",
   "Use the supplied portfolio context as the trusted source for Maurice's projects, links, files, resume, and contact information.",
   "You may answer related electronics, hardware, analog, mixed-signal, digital, embedded, FPGA, ASIC, PCB, and firmware questions even when the answer is broader than the saved portfolio.",
   "Do not invent portfolio projects, credentials, employers, files, or test results that are not in the context.",
   "If context is missing, say what is missing and answer generally only for the engineering concept.",
-  "Keep the answer recruiter-friendly, specific, and easy to skim. Use short paragraphs and bullets when helpful."
+  "When useful, state assumptions, define terms, explain signal or data flow, identify tradeoffs, and name what evidence would prove the claim.",
+  "Keep the answer recruiter-friendly, specific, and easy to skim. Use short paragraphs and bullets when helpful.",
+  "Do not expose chain-of-thought. Give the polished answer only."
 ].join("\n");
 
 function jsonResponse(data, status = 200, headers = {}) {
@@ -60,6 +64,17 @@ function clampText(value, maxLength = 12000) {
   return String(value || "").slice(0, maxLength);
 }
 
+function cleanConversationHistory(value) {
+  if (!Array.isArray(value)) return [];
+  return value
+    .slice(-8)
+    .map((item) => ({
+      role: item?.role === "assistant" ? "assistant" : "user",
+      content: clampText(item?.content, 1400).trim()
+    }))
+    .filter((item) => item.content);
+}
+
 function extractOpenAiText(data) {
   if (typeof data?.output_text === "string" && data.output_text.trim()) return data.output_text.trim();
   const output = Array.isArray(data?.output) ? data.output : [];
@@ -81,11 +96,13 @@ async function callOpenAi(body, env) {
 
   const intent = body.intent === "general_engineering" ? "general_engineering" : "portfolio_specific";
   const allowWebSearch = body.allowWebSearch === true;
-  const model = env.OPENAI_MODEL || "gpt-4.1-mini";
+  const conversation = cleanConversationHistory(body.conversation);
+  const model = env.OPENAI_MODEL || "gpt-5.5";
+  const fallbackModel = env.OPENAI_FALLBACK_MODEL || "gpt-4.1";
   const webSearchMode = String(env.OPENAI_ENABLE_WEB_SEARCH || "auto").toLowerCase();
   const enableWebSearch = webSearchMode === "true" || (webSearchMode !== "false" && allowWebSearch);
-  const payload = {
-    model,
+  const buildPayload = (selectedModel) => ({
+    model: selectedModel,
     input: [
       {
         role: "developer",
@@ -100,32 +117,44 @@ async function callOpenAi(body, env) {
             `Question intent: ${intent}`,
             `Web search allowed for this question: ${enableWebSearch ? "yes" : "no"}`,
             "",
+            "Recent conversation JSON:",
+            clampText(JSON.stringify(conversation, null, 2), 8000),
+            "",
             "Portfolio context JSON:",
             clampText(JSON.stringify(body.context || {}, null, 2), 18000)
           ].join("\n")
         }]
       }
     ],
-    max_output_tokens: Number(env.OPENAI_MAX_OUTPUT_TOKENS || 700),
-    reasoning: { effort: env.OPENAI_REASONING_EFFORT || "low" },
+    max_output_tokens: Number(env.OPENAI_MAX_OUTPUT_TOKENS || 1100),
+    reasoning: { effort: env.OPENAI_REASONING_EFFORT || "medium" },
     store: false,
-    text: { verbosity: env.OPENAI_VERBOSITY || "low" }
-  };
-
-  if (enableWebSearch) {
-    payload.tools = [{ type: "web_search", search_context_size: env.OPENAI_WEB_SEARCH_CONTEXT_SIZE || "low" }];
-  }
-
-  const openAiResponse = await fetch("https://api.openai.com/v1/responses", {
-    method: "POST",
-    headers: {
-      "Authorization": `Bearer ${env.OPENAI_API_KEY}`,
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(payload)
+    text: { verbosity: env.OPENAI_VERBOSITY || "medium" }
   });
 
-  const data = await openAiResponse.json().catch(() => ({}));
+  const callModel = async (selectedModel) => {
+    const payload = buildPayload(selectedModel);
+    if (enableWebSearch) {
+      payload.tools = [{ type: "web_search", search_context_size: env.OPENAI_WEB_SEARCH_CONTEXT_SIZE || "low" }];
+    }
+
+    const openAiResponse = await fetch("https://api.openai.com/v1/responses", {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${env.OPENAI_API_KEY}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(payload)
+    });
+
+    const data = await openAiResponse.json().catch(() => ({}));
+    return { data, openAiResponse, selectedModel };
+  };
+
+  let { data, openAiResponse, selectedModel } = await callModel(model);
+  if (!openAiResponse.ok && !env.OPENAI_MODEL && fallbackModel && fallbackModel !== model && [400, 404].includes(openAiResponse.status)) {
+    ({ data, openAiResponse, selectedModel } = await callModel(fallbackModel));
+  }
   if (!openAiResponse.ok) {
     return {
       status: openAiResponse.status,
@@ -137,7 +166,7 @@ async function callOpenAi(body, env) {
     status: 200,
     data: {
       answer: extractOpenAiText(data),
-      model,
+      model: selectedModel,
       usedWebSearch: enableWebSearch
     }
   };

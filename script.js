@@ -31,6 +31,7 @@ let searchLimitSelect = null;
 let currentSearchResults = [];
 let assistantSourceCounter = 0;
 let assistantSourceMap = new Map();
+let assistantChatHistory = [];
 let searchableEntries = [];
 let searchResultLimit = 10;
 let searchHighlightTimer = 0;
@@ -1057,6 +1058,28 @@ function assistantContextForQuestion(question = "", intent = assistantQuestionIn
   };
 }
 
+function assistantRemember(role, content = "") {
+  const cleanRole = role === "assistant" ? "assistant" : "user";
+  const cleanContent = String(content || "").trim();
+  if (!cleanContent) return;
+  assistantChatHistory.push({
+    role: cleanRole,
+    content: cleanContent.slice(0, 1400)
+  });
+  assistantChatHistory = assistantChatHistory.slice(-10);
+}
+
+function assistantConversationForRequest(currentQuestion = "", priorConversation = assistantChatHistory) {
+  const history = priorConversation.slice(-8).map((item) => ({
+    role: item.role === "assistant" ? "assistant" : "user",
+    content: String(item.content || "").slice(0, 1200)
+  }));
+  if (currentQuestion) {
+    history.push({ role: "user", content: String(currentQuestion).slice(0, 1200) });
+  }
+  return history;
+}
+
 function assistantFallbackResults(question = "", intent = assistantQuestionIntent(question)) {
   if (intent === "general_engineering") return [];
   const clean = normalize(question).trim();
@@ -1409,6 +1432,7 @@ function clearAssistantChat() {
   if (!aiAssistantLog) return;
   assistantSourceCounter = 0;
   assistantSourceMap = new Map();
+  assistantChatHistory = [];
   aiAssistantLog.innerHTML = "";
   setAssistantStatus("Chat cleared");
   aiAssistantInput?.focus();
@@ -1425,6 +1449,7 @@ async function askRemoteAssistant(question, context, options = {}) {
     signal: controller.signal,
     body: JSON.stringify({
       context,
+      conversation: options.conversation || [],
       intent: options.intent || context.intent || "portfolio_specific",
       allowWebSearch: Boolean(options.allowWebSearch),
       question,
@@ -1441,7 +1466,9 @@ async function askRemoteAssistant(question, context, options = {}) {
 async function answerAssistantQuestion(question = "") {
   const cleanQuestion = String(question || "").trim();
   if (!cleanQuestion) return;
+  const priorConversation = assistantChatHistory.slice();
   appendAssistantMessage("user", cleanQuestion);
+  assistantRemember("user", cleanQuestion);
   const pendingMessage = appendAssistantPendingMessage();
   setAssistantBusy(true);
   try {
@@ -1450,13 +1477,16 @@ async function answerAssistantQuestion(question = "") {
     const intent = assistantQuestionIntent(cleanQuestion);
     const sources = assistantFallbackResults(cleanQuestion, intent);
     const context = assistantContextForQuestion(cleanQuestion, intent, sources);
+    const conversation = assistantConversationForRequest(cleanQuestion, priorConversation);
     try {
       const remoteAnswer = await askRemoteAssistant(cleanQuestion, context, {
         allowWebSearch: intent === "general_engineering",
+        conversation,
         intent
       });
       if (remoteAnswer?.answer) {
         replaceAssistantMessage(pendingMessage, remoteAnswer.answer, sources);
+        assistantRemember("assistant", remoteAnswer.answer);
         setAssistantStatus(remoteAnswer.model ? `AI answer ready: ${remoteAnswer.model}` : "AI answer ready");
         return;
       }
@@ -1464,14 +1494,14 @@ async function answerAssistantQuestion(question = "") {
       setAssistantStatus("Local answer used", "error");
     }
 
-    replaceAssistantMessage(pendingMessage, assistantLocalAnswer(cleanQuestion, sources, intent), sources);
+    const fallbackAnswer = assistantLocalAnswer(cleanQuestion, sources, intent);
+    replaceAssistantMessage(pendingMessage, fallbackAnswer, sources);
+    assistantRemember("assistant", fallbackAnswer);
     if (!assistantEndpoint()) setAssistantStatus("Local portfolio intelligence");
   } catch {
-    replaceAssistantMessage(
-      pendingMessage,
-      "I had trouble processing that question. Try rephrasing it with a project name, tool name, or electronics topic.",
-      []
-    );
+    const errorAnswer = "I had trouble processing that question. Try rephrasing it with a project name, tool name, or electronics topic.";
+    replaceAssistantMessage(pendingMessage, errorAnswer, []);
+    assistantRemember("assistant", errorAnswer);
     setAssistantStatus("Assistant error", "error");
   } finally {
     setAssistantBusy(false);
