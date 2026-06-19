@@ -346,13 +346,41 @@ function renderInlineMath(text) {
   return withMath.replace(/\b(https?:\/\/[^\s<]+|www\.[^\s<]+)/g, (match) => {
     const trailing = match.match(/[),.;:!?]+$/)?.[0] || "";
     const clean = trailing ? match.slice(0, -trailing.length) : match;
-    const href = clean.startsWith("www.") ? `https://${clean}` : clean;
+    const href = normalizeLinkTarget(clean, { assumeWeb: true });
     return `<a href="${href}" target="_blank" rel="noreferrer">${clean}</a>${trailing}`;
   });
 }
 
 function renderMultilineInlineText(text = "") {
   return renderInlineMath(text).replace(/\r\n?|\n/g, "<br>");
+}
+
+function looksLikeBareWebAddress(value = "") {
+  const clean = String(value || "").trim();
+  if (!clean || /\s/.test(clean) || /^(\.?\.?\/|#|mailto:|tel:)/i.test(clean)) return false;
+  if (/^[a-z][a-z0-9+.-]*:/i.test(clean)) return false;
+  const host = clean.split(/[/?#]/)[0].toLowerCase();
+  if (!/^[a-z0-9-]+(\.[a-z0-9-]+)+$/.test(host)) return false;
+  return !/\.(pdf|docx?|xlsx?|pptx?|zip|7z|rar|png|jpe?g|gif|svg|webp|txt|md|csv|json|xml|log|c|h|cpp|hpp|py|js|mjs|ts|v|sv|vhdl?|spice|cir|net|asc|sch|kicad_sch|kicad_pcb)$/i.test(host);
+}
+
+function normalizeLinkTarget(target = "", options = {}) {
+  const clean = String(target || "").trim();
+  if (!clean) return "";
+  if (/^\/\//.test(clean)) return `https:${clean}`;
+  if (/^www\./i.test(clean)) return `https://${clean}`;
+  if (options.assumeWeb && looksLikeBareWebAddress(clean)) return `https://${clean}`;
+  return clean;
+}
+
+function isWebsiteLinkItem(item = {}, target = "") {
+  const clean = String(target || "").trim();
+  if (/^(https?:)?\/\//i.test(clean) || /^www\./i.test(clean)) return true;
+  const typeText = [item.kind, item.type, item.status, item.meta, item.label, item.title]
+    .filter(Boolean)
+    .join(" ")
+    .toLowerCase();
+  return /\b(link|website|web link|url|external|github|linkedin|drive|social|profile)\b/.test(typeText);
 }
 
 function sanitizeRichInlineHtml(value = "") {
@@ -367,7 +395,8 @@ function sanitizeRichInlineHtml(value = "") {
     }
 
     const href = node.tagName === "A" ? String(node.getAttribute("href") || "").trim() : "";
-    const safeHref = /^(https?:|mailto:|tel:|#|\/)/i.test(href) ? href : "";
+    const normalizedHref = normalizeLinkTarget(href, { assumeWeb: true });
+    const safeHref = /^(https?:|mailto:|tel:|#|\/)/i.test(normalizedHref) ? normalizedHref : "";
     const fontFamily = cleanFontFamily(node.style.fontFamily || "");
     const fontPx = normalizeFontPx(parseFloat(node.style.fontSize || ""));
     const color = normalizeTextColor(node.style.color || "");
@@ -473,14 +502,15 @@ function richImageCropStyle(block = {}) {
 function richImageDownloadLink(block = {}) {
     const label = escapeHtml(cleanRichImageTitle(block) || block.caption || "Image file");
     const url = block.url || "#";
+    const target = normalizeLinkTarget(url, { assumeWeb: isWebsiteLinkItem(block, url) });
 
     return `
     <p class="rich-download-only">
       <a
         class="resource-link"
-        href="${escapeHtml(url)}"
-        ${linkAttributes(url)}
-        ${downloadAttribute(url)}
+        href="${escapeHtml(target)}"
+        ${linkAttributes(target, block)}
+        ${downloadAttribute(target, block)}
       >
         ${label}
       </a>
@@ -899,17 +929,19 @@ function searchResultsFor(query) {
     });
 }
 
-function linkAttributes(url) {
-  return /^https?:\/\//.test(url || "") ? ' target="_blank" rel="noreferrer"' : "";
+function linkAttributes(url, item = {}) {
+  const target = normalizeLinkTarget(url, { assumeWeb: isWebsiteLinkItem(item, url) });
+  return /^https?:\/\//i.test(target) ? ' target="_blank" rel="noreferrer"' : "";
 }
 
 function isLocalDownloadTarget(target = "") {
-    const value = String(target || "").trim();
+    const value = normalizeLinkTarget(target, { assumeWeb: true });
     return Boolean(value) && !/^(https?:)?\/\//i.test(value) && !/^(mailto:|tel:|#)/i.test(value);
 }
 
-function downloadAttribute(target = "") {
-    return isLocalDownloadTarget(target) ? " download" : "";
+function downloadAttribute(target = "", item = {}) {
+    const value = normalizeLinkTarget(target, { assumeWeb: isWebsiteLinkItem(item, target) });
+    return isLocalDownloadTarget(value) ? " download" : "";
 }
 
 function fileNameFromUrl(url = "") {
@@ -922,7 +954,8 @@ function fileNameFromUrl(url = "") {
 }
 
 function resourceLink(item = {}, label = item.label || item.title || item.name || fileNameFromUrl(item.url || item.artifact)) {
-    const target = item.url || item.artifact || item.href || item.file || item.path || item.src || "";
+    const rawTarget = item.url || item.artifact || item.href || item.file || item.path || item.src || "";
+    const target = normalizeLinkTarget(rawTarget, { assumeWeb: isWebsiteLinkItem(item, rawTarget) });
 
     if (!target || item.status === "planned") {
         return `<span class="resource-link muted">${escapeHtml(label || "Planned file")}</span>`;
@@ -932,8 +965,8 @@ function resourceLink(item = {}, label = item.label || item.title || item.name |
     <a
       class="resource-link"
       href="${escapeHtml(target)}"
-      ${linkAttributes(target)}
-      ${downloadAttribute(target)}
+      ${linkAttributes(target, item)}
+      ${downloadAttribute(target, item)}
     >
       ${escapeHtml(label || fileNameFromUrl(target))}
     </a>
@@ -975,12 +1008,12 @@ function mediaGrid(items) {
     <div class="media-grid">
       ${items.map((item) => `
         <figure>
-          <a href="${item.url}"${linkAttributes(item.url)}>
-            <img src="${item.url}" alt="${item.title}">
+          <a href="${escapeHtml(normalizeLinkTarget(item.url, { assumeWeb: isWebsiteLinkItem(item, item.url) }))}"${linkAttributes(item.url, item)}>
+            <img src="${escapeHtml(normalizeLinkTarget(item.url, { assumeWeb: isWebsiteLinkItem(item, item.url) }))}" alt="${escapeHtml(item.title)}">
           </a>
           <figcaption>
-            <strong>${item.title}</strong>
-            <span>${item.caption || ""}</span>
+            <strong>${escapeHtml(item.title)}</strong>
+            <span>${escapeHtml(item.caption || "")}</span>
           </figcaption>
         </figure>
       `).join("")}
@@ -1943,8 +1976,9 @@ function renderInlineSectionFiles(items = []) {
       ${downloads.map((item) => `
         <a
           class="section-file-link"
-          href="${escapeHtml(item.url)}"
-          download
+          href="${escapeHtml(normalizeLinkTarget(item.url, { assumeWeb: isWebsiteLinkItem(item, item.url) }))}"
+          ${linkAttributes(item.url, item)}
+          ${downloadAttribute(item.url, item)}
         >
           ${escapeHtml(item.title || fileNameFromUrl(item.url))}
         </a>
