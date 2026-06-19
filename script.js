@@ -12,6 +12,7 @@ const aiAssistantForm = document.querySelector("#ai-assistant-form");
 const aiAssistantInput = document.querySelector("#ai-assistant-input");
 const aiAssistantLog = document.querySelector("#ai-assistant-log");
 const aiAssistantStatus = document.querySelector("#ai-assistant-status");
+const aiClearChatButton = document.querySelector("#ai-clear-chat");
 const aiAssistantPrompts = [...document.querySelectorAll("[data-ai-prompt]")];
 
 let categories = [];
@@ -29,7 +30,8 @@ let searchPanel = null;
 let searchStatus = null;
 let searchLimitSelect = null;
 let currentSearchResults = [];
-let currentAssistantSources = [];
+let assistantSourceCounter = 0;
+let assistantSourceMap = new Map();
 let searchableEntries = [];
 let searchResultLimit = 10;
 let searchHighlightTimer = 0;
@@ -1025,9 +1027,123 @@ function assistantFallbackResults(question = "") {
   return [];
 }
 
+function assistantQuestionIsEngineeringRelated(question = "") {
+  const clean = normalize(question);
+  return /\b(op\s*amp|amplifier|analog|mixed\s*signal|adc|dac|filter|vco|oscillator|pwm|charger|rectifier|regulator|buck|boost|ldo|mosfet|bjt|transistor|diode|pcb|schematic|layout|ground|noise|frequency|gain|phase|ltspice|kicad|vivado|verilog|vhdl|fpga|asic|stm32|mcu|microcontroller|embedded|firmware|rtos|i2c|spi|uart|sensor|control|signal|circuit|electronics|hardware|power)\b/.test(clean);
+}
+
+function assistantGeneralEngineeringAnswer(question = "") {
+  const clean = normalize(question);
+  if (!assistantQuestionIsEngineeringRelated(question)) return "";
+
+  if (/\b(op\s*amp|amplifier|fully differential|differential)\b/.test(clean)) {
+    return [
+      "A useful way to think about an op amp is as a high-gain error-correcting block. With negative feedback, the circuit around it sets the useful behavior: gain, filtering, buffering, summing, integration, or differential conversion.",
+      "",
+      "For a fully differential op amp:",
+      "- The signal is carried on two opposite-phase outputs instead of one output referenced to ground.",
+      "- The differential output improves noise immunity and dynamic range.",
+      "- A common-mode feedback loop is normally needed to hold the average output voltage at the desired common-mode level.",
+      "",
+      "In portfolio terms, this connects most naturally to analog and mixed-signal design, especially filters, VCO control paths, ADC front ends, and precision measurement circuits."
+    ].join("\n");
+  }
+
+  if (/\b(pwm|vco|oscillator|frequency)\b/.test(clean)) {
+    return [
+      "PWM-driven VCO work is about converting a digital timing signal into an analog control quantity and then into a frequency.",
+      "",
+      "The usual signal chain is:",
+      "- PWM duty cycle encodes the control value.",
+      "- A low-pass filter turns the PWM waveform into an average voltage.",
+      "- The VCO maps that voltage to oscillation frequency.",
+      "- Tests compare duty cycle, control voltage, frequency range, ripple, and stability.",
+      "",
+      "That is a mixed-signal problem because digital timing, analog filtering, oscillator behavior, and measurement all interact."
+    ].join("\n");
+  }
+
+  if (/\b(fpga|asic|verilog|vhdl|vivado|digital)\b/.test(clean)) {
+    return [
+      "FPGA and ASIC work both implement digital hardware, but the engineering tradeoffs are different.",
+      "",
+      "- FPGA design is reconfigurable, fast to test, and useful for prototyping or deployment when flexibility matters.",
+      "- ASIC design targets a fixed silicon implementation, so verification, timing closure, power, area, and design-for-test become much more permanent decisions.",
+      "- Verilog or VHDL describes hardware structure and behavior; it is not software running line by line.",
+      "",
+      "For a recruiter, strong evidence includes block diagrams, RTL, simulation waveforms, timing reports, verification plans, and notes explaining design tradeoffs."
+    ].join("\n");
+  }
+
+  if (/\b(stm32|mcu|microcontroller|embedded|firmware|rtos|i2c|spi|uart)\b/.test(clean)) {
+    return [
+      "Embedded work is strongest when the firmware is tied clearly to hardware behavior.",
+      "",
+      "A good explanation usually covers:",
+      "- The MCU role in the system.",
+      "- The peripherals used, such as ADC, PWM, timers, I2C, SPI, UART, or GPIO.",
+      "- How timing, interrupts, sampling, power, and fault handling were managed.",
+      "- What was measured to prove the system worked.",
+      "",
+      "STM32CubeIDE is useful because it helps configure peripherals, generate startup code, debug firmware, and manage the build flow around STM32 devices."
+    ].join("\n");
+  }
+
+  if (/\b(pcb|layout|kicad|schematic|ground|noise)\b/.test(clean)) {
+    return [
+      "PCB design is where the schematic becomes a physical electrical system.",
+      "",
+      "The important ideas are:",
+      "- Current returns matter as much as current paths.",
+      "- Grounding, decoupling, trace width, component placement, and loop area affect noise and stability.",
+      "- Analog, power, and switching sections should be arranged so noisy currents do not corrupt sensitive measurements.",
+      "- A good portfolio PCB section should show schematic intent, layout decisions, board files, bring-up notes, and test results.",
+      "",
+      "KiCad evidence is strongest when the design files are paired with clear measurements or bring-up photos."
+    ].join("\n");
+  }
+
+  if (/\b(charger|rectifier|ac\s*to\s*dc|regulator|buck|boost|ldo|power)\b/.test(clean)) {
+    return [
+      "An AC-to-DC charger or power supply usually has a few major stages.",
+      "",
+      "- Input protection and filtering handle transients and noise.",
+      "- Rectification converts AC into pulsating DC.",
+      "- Bulk capacitance smooths the rectified waveform.",
+      "- Regulation sets the desired output voltage or current.",
+      "- Load testing checks ripple, thermal behavior, regulation, and fault response.",
+      "",
+      "For portfolio presentation, the best proof is a clear schematic, expected waveforms, measured output behavior, and a short explanation of component choices."
+    ].join("\n");
+  }
+
+  return [
+    "I can answer this as a general electronics or hardware-engineering question, even if it is not directly tied to one saved project yet.",
+    "",
+    "The best way to approach it is:",
+    "- Define the signal or energy flow.",
+    "- Identify the active devices, passive networks, and control points.",
+    "- State what should be measured to prove the design works.",
+    "- Connect the explanation back to a project artifact: schematic, code, test data, PCB, or simulation.",
+    "",
+    "If you ask about a specific circuit, tool, waveform, or failure mode, I can make the explanation more concrete."
+  ].join("\n");
+}
+
 function assistantLocalAnswer(question = "", results = []) {
   if (!projects.length) return "The project catalog is still loading. Try again in a moment.";
-  if (!results.length) return `I could not find a strong portfolio match for "${question}" yet. Try a project name, tool, file type, or area such as analog, embedded, digital, PCB, LTspice, STM32, or resume.`;
+  if (!results.length) {
+    const generalAnswer = assistantGeneralEngineeringAnswer(question);
+    if (generalAnswer) return generalAnswer;
+    return [
+      `I could not find a strong portfolio match for "${question}".`,
+      "",
+      "Try asking about:",
+      "- A project name or category.",
+      "- A tool such as LTspice, KiCad, Vivado, STM32CubeIDE, or GitHub.",
+      "- A hardware topic such as op amps, PCB testing, VCOs, embedded firmware, FPGA, ASIC, or power circuits."
+    ].join("\n");
+  }
 
   const projectIds = [...new Set(results.map((item) => item.projectId).filter(Boolean))];
   const matchedProjects = projectIds
@@ -1040,32 +1156,49 @@ function assistantLocalAnswer(question = "", results = []) {
   const parts = [];
 
   if (projectNames.length) {
-    parts.push(`The strongest match is ${projectNames.join(projectNames.length > 2 ? ", " : " and ")}.`);
+    parts.push(`The strongest portfolio match is ${projectNames.join(projectNames.length > 2 ? ", " : " and ")}.`);
   } else if (pageCount) {
     parts.push("The strongest matches are in the profile, resume, contact, or portfolio information sections.");
   } else {
     parts.push(`I found ${results.length} relevant portfolio item${results.length === 1 ? "" : "s"}.`);
   }
 
+  parts.push("");
+  parts.push("What I found:");
   if (sectionCount || fileCount) {
-    parts.push(`I also found ${sectionCount} section match${sectionCount === 1 ? "" : "es"}${fileCount ? ` and ${fileCount} file or link match${fileCount === 1 ? "" : "es"}` : ""}.`);
+    parts.push(`- ${sectionCount} section match${sectionCount === 1 ? "" : "es"}.`);
+    if (fileCount) parts.push(`- ${fileCount} file or link match${fileCount === 1 ? "" : "es"}.`);
+  }
+  if (pageCount) parts.push(`- ${pageCount} page or profile match${pageCount === 1 ? "" : "es"}.`);
+  if (projectNames.length) {
+    parts.push(`- Best project candidate${projectNames.length === 1 ? "" : "s"}: ${projectNames.join(", ")}.`);
   }
 
   const firstSnippet = searchSnippet(results[0].text, question);
-  if (firstSnippet) parts.push(firstSnippet);
-  parts.push("Use the source buttons below to jump directly to the matching place.");
-  return parts.join(" ");
+  if (firstSnippet) {
+    parts.push("");
+    parts.push("Why it matched:");
+    parts.push(firstSnippet);
+  }
+  return parts.join("\n");
 }
 
 function assistantSourcesMarkup(results = []) {
   const sources = results.slice(0, 5);
   if (!sources.length) return "";
-  currentAssistantSources = sources;
+  const sourceButtons = sources.map((source) => {
+    const id = String(assistantSourceCounter++);
+    assistantSourceMap.set(id, source);
+    return `
+        <button type="button" data-ai-source-id="${id}">${escapeHtml(assistantSourceLabel(source))}</button>
+      `;
+  }).join("");
   return `
-    <div class="ai-source-list" aria-label="Assistant sources">
-      ${sources.map((source, index) => `
-        <button type="button" data-ai-source-index="${index}">${escapeHtml(assistantSourceLabel(source))}</button>
-      `).join("")}
+    <div class="ai-source-panel">
+      <p class="ai-source-heading">Related portfolio links</p>
+      <div class="ai-source-list" aria-label="Assistant sources">
+        ${sourceButtons}
+      </div>
     </div>
   `;
 }
@@ -1076,13 +1209,69 @@ function setAssistantStatus(message, state = "ready") {
   aiAssistantStatus.dataset.state = state;
 }
 
+function renderAssistantInline(value = "") {
+  return renderInlineMath(value).replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
+}
+
+function renderAssistantAnswerContent(content = "") {
+  const lines = String(content || "").replace(/\r\n?/g, "\n").split("\n");
+  const html = [];
+  let bulletItems = [];
+  const flushBullets = () => {
+    if (!bulletItems.length) return;
+    html.push(`<ul>${bulletItems.map((item) => `<li>${renderAssistantInline(item)}</li>`).join("")}</ul>`);
+    bulletItems = [];
+  };
+
+  lines.forEach((line) => {
+    const trimmed = line.trim();
+    if (!trimmed) {
+      flushBullets();
+      return;
+    }
+    const bullet = trimmed.match(/^[-*\u2022]\s+(.+)/u);
+    if (bullet) {
+      bulletItems.push(bullet[1]);
+      return;
+    }
+    flushBullets();
+    if (/^[^.!?]{2,64}:$/.test(trimmed)) {
+      html.push(`<p><strong>${renderAssistantInline(trimmed.slice(0, -1))}</strong></p>`);
+    } else {
+      html.push(`<p>${renderAssistantInline(trimmed)}</p>`);
+    }
+  });
+  flushBullets();
+  return `<div class="ai-answer-content">${html.join("") || "<p>I am ready.</p>"}</div>`;
+}
+
 function appendAssistantMessage(role, content, sources = []) {
   if (!aiAssistantLog) return;
   const article = document.createElement("article");
   article.className = `ai-message ai-message-${role}`;
-  article.innerHTML = `<p>${renderMultilineInlineText(content)}</p>${role === "assistant" ? assistantSourcesMarkup(sources) : ""}`;
+  article.innerHTML = role === "assistant"
+    ? `${renderAssistantAnswerContent(content)}${assistantSourcesMarkup(sources)}`
+    : `<p>${renderMultilineInlineText(content)}</p>`;
   aiAssistantLog.append(article);
   aiAssistantLog.scrollTop = aiAssistantLog.scrollHeight;
+}
+
+function assistantWelcomeMarkup() {
+  return `
+    <article class="ai-message ai-message-assistant">
+      <div class="ai-answer-content">
+        <p>Ask me what to open, compare, or summarize from Maurice Otieno's portfolio. I can also explain related electronics concepts when they connect to the work here.</p>
+      </div>
+    </article>
+  `;
+}
+
+function clearAssistantChat() {
+  if (!aiAssistantLog) return;
+  assistantSourceCounter = 0;
+  assistantSourceMap = new Map();
+  aiAssistantLog.innerHTML = assistantWelcomeMarkup();
+  setAssistantStatus("Portfolio + engineering AI");
 }
 
 async function askRemoteAssistant(question, context) {
@@ -1091,7 +1280,12 @@ async function askRemoteAssistant(question, context) {
   const response = await fetch(endpoint, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ context, question })
+    body: JSON.stringify({
+      context,
+      question,
+      mode: "portfolio-plus-engineering",
+      responseStyle: "chatgpt-like-answer-first-links-second"
+    })
   });
   if (!response.ok) throw new Error("AI service unavailable");
   const data = await response.json();
@@ -1102,7 +1296,7 @@ async function answerAssistantQuestion(question = "") {
   const cleanQuestion = String(question || "").trim();
   if (!cleanQuestion) return;
   appendAssistantMessage("user", cleanQuestion);
-  setAssistantStatus(assistantEndpoint() ? "Asking portfolio AI" : "Searching local portfolio", "working");
+  setAssistantStatus(assistantEndpoint() ? "Composing AI answer" : "Composing local answer", "working");
 
   const sources = assistantFallbackResults(cleanQuestion);
   const context = assistantContextForQuestion(cleanQuestion);
@@ -2168,10 +2362,12 @@ aiAssistantPrompts.forEach((button) => {
   });
 });
 
+aiClearChatButton?.addEventListener("click", clearAssistantChat);
+
 aiAssistantLog?.addEventListener("click", (event) => {
-  const button = event.target.closest("[data-ai-source-index]");
+  const button = event.target.closest("[data-ai-source-id]");
   if (!button) return;
-  const source = currentAssistantSources[Number(button.dataset.aiSourceIndex)];
+  const source = assistantSourceMap.get(button.dataset.aiSourceId);
   if (source) goToSearchResult(source);
 });
 

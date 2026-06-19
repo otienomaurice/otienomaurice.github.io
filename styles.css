@@ -430,7 +430,7 @@ h3 {
 }
 
 .ai-assistant-section {
-  padding: clamp(34px, 5vw, 64px) clamp(18px, 5vw, 56px);
+  padding: clamp(34px, 5vw, 64px) clamp(8px, 1.5vw, 20px) clamp(34px, 5vw, 64px) clamp(18px, 5vw, 56px);
   border-top: 1px solid rgba(201, 222, 234, 0.65);
   border-bottom: 1px solid rgba(201, 222, 234, 0.7);
   background:
@@ -443,8 +443,8 @@ h3 {
   grid-template-columns: minmax(260px, 0.82fr) minmax(360px, 1.18fr);
   gap: clamp(18px, 4vw, 44px);
   align-items: stretch;
-  max-width: 1180px;
-  margin: 0 auto;
+  width: min(100%, 1040px);
+  margin: 0 0 0 auto;
 }
 
 .ai-assistant-copy {
@@ -474,11 +474,56 @@ h3 {
   box-shadow: 0 18px 44px rgba(32, 66, 82, 0.13);
 }
 
+.ai-assistant-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
 .ai-assistant-status {
   color: #0b778d;
   font-size: 0.78rem;
   font-weight: 900;
   text-transform: uppercase;
+}
+
+.ai-clear-chat {
+  display: inline-grid;
+  place-items: center;
+  flex: 0 0 auto;
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(166, 35, 35, 0.28);
+  border-radius: 8px;
+  color: #9f2222;
+  background: #ffffff;
+  cursor: pointer;
+  transition: background 150ms ease, border-color 150ms ease, color 150ms ease, transform 150ms ease;
+}
+
+.ai-clear-chat svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+}
+
+.ai-clear-chat:hover,
+.ai-clear-chat:focus-visible {
+  border-color: #b42222;
+  color: #ffffff;
+  background: #b42222;
+  transform: translateY(-1px);
+}
+
+.ai-clear-chat:active {
+  color: #9f2222;
+  background: #ffffff;
+  transform: translateY(0);
 }
 
 .ai-assistant-status[data-state="working"] {
@@ -514,6 +559,24 @@ h3 {
   line-height: 1.52;
 }
 
+.ai-answer-content {
+  display: grid;
+  gap: 10px;
+}
+
+.ai-answer-content ul {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding-left: 18px;
+  color: #23384b;
+  line-height: 1.5;
+}
+
+.ai-answer-content strong {
+  color: #102b3b;
+}
+
 .ai-message-user {
   justify-self: end;
   border-color: rgba(16, 121, 144, 0.36);
@@ -529,6 +592,20 @@ h3 {
   flex-wrap: wrap;
   gap: 8px;
   margin-top: 12px;
+}
+
+.ai-source-panel {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(185, 213, 228, 0.78);
+}
+
+.ai-source-heading {
+  margin: 0 0 8px;
+  color: #526d82;
+  font-size: 0.78rem;
+  font-weight: 900;
+  text-transform: uppercase;
 }
 
 .ai-source-list button,

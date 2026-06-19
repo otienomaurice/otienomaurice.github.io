@@ -117,14 +117,23 @@
             <p class="eyebrow">Portfolio AI</p>
             <h2 id="ai-assistant-title">Ask My Portfolio</h2>
             <p>
-              Ask about projects, tools, test evidence, design work, repositories, or resume links.
+              Ask about projects, tools, test evidence, design work, repositories, resume links, or related electronics concepts.
             </p>
           </div>
           <div class="ai-assistant-console" aria-label="AI portfolio assistant">
-            <div class="ai-assistant-status" id="ai-assistant-status">Local portfolio intelligence</div>
+            <div class="ai-assistant-toolbar">
+              <div class="ai-assistant-status" id="ai-assistant-status">Portfolio + engineering AI</div>
+              <button class="ai-clear-chat" id="ai-clear-chat" type="button" title="Clear chat" aria-label="Clear chat">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M9 4h6m-8 4h10m-9 0 .7 11h6.6L16 8M10 11v5m4-5v5" />
+                </svg>
+              </button>
+            </div>
             <div class="ai-assistant-log" id="ai-assistant-log" aria-live="polite">
               <article class="ai-message ai-message-assistant">
-                <p>Ask me what to open, compare, or summarize from Maurice Otieno's portfolio.</p>
+                <div class="ai-answer-content">
+                  <p>Ask me what to open, compare, or summarize from Maurice Otieno's portfolio. I can also explain related electronics concepts when they connect to the work here.</p>
+                </div>
               </article>
             </div>
             <form class="ai-assistant-form" id="ai-assistant-form">
@@ -133,7 +142,7 @@
                 id="ai-assistant-input"
                 type="text"
                 autocomplete="off"
-                placeholder="Ask about analog projects, PCB tests, STM32, tools..."
+                placeholder="Ask about analog projects, PCB tests, STM32, op amps..."
               />
               <button type="submit">Ask</button>
             </form>
