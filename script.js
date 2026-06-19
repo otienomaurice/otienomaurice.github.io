@@ -13,7 +13,6 @@ const aiAssistantInput = document.querySelector("#ai-assistant-input");
 const aiAssistantLog = document.querySelector("#ai-assistant-log");
 const aiAssistantStatus = document.querySelector("#ai-assistant-status");
 const aiClearChatButton = document.querySelector("#ai-clear-chat");
-const aiAssistantPrompts = [...document.querySelectorAll("[data-ai-prompt]")];
 
 let categories = [];
 let projects = [];
@@ -938,8 +937,10 @@ function searchResultsFor(query) {
 }
 
 function assistantEndpoint() {
+  if (typeof window.OMB_AI_ENDPOINT === "string") return window.OMB_AI_ENDPOINT.trim();
+  if (["localhost", "127.0.0.1"].includes(window.location.hostname)) return "/api/portfolio-ai";
   const metaEndpoint = document.querySelector('meta[name="portfolio-ai-endpoint"]')?.content || "";
-  return String(window.OMB_AI_ENDPOINT || metaEndpoint || "").trim();
+  return String(metaEndpoint || "").trim();
 }
 
 function assistantSourceLabel(result = {}) {
@@ -1277,19 +1278,23 @@ function clearAssistantChat() {
 async function askRemoteAssistant(question, context) {
   const endpoint = assistantEndpoint();
   if (!endpoint) return null;
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), 6500);
   const response = await fetch(endpoint, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
+    signal: controller.signal,
     body: JSON.stringify({
       context,
       question,
       mode: "portfolio-plus-engineering",
       responseStyle: "chatgpt-like-answer-first-links-second"
     })
-  });
+  }).finally(() => clearTimeout(timer));
   if (!response.ok) throw new Error("AI service unavailable");
   const data = await response.json();
-  return String(data.answer || data.message || "").trim() || null;
+  const answer = String(data.answer || data.message || "").trim();
+  return answer ? { answer, model: data.model || "", usedWebSearch: Boolean(data.usedWebSearch) } : null;
 }
 
 async function answerAssistantQuestion(question = "") {
@@ -1302,9 +1307,9 @@ async function answerAssistantQuestion(question = "") {
   const context = assistantContextForQuestion(cleanQuestion);
   try {
     const remoteAnswer = await askRemoteAssistant(cleanQuestion, context);
-    if (remoteAnswer) {
-      appendAssistantMessage("assistant", remoteAnswer, sources);
-      setAssistantStatus("AI answer ready");
+    if (remoteAnswer?.answer) {
+      appendAssistantMessage("assistant", remoteAnswer.answer, sources);
+      setAssistantStatus(remoteAnswer.model ? `AI answer ready: ${remoteAnswer.model}` : "AI answer ready");
       return;
     }
   } catch {
@@ -2347,19 +2352,24 @@ document.addEventListener("click", (event) => {
   searchPanel.hidden = true;
 });
 
+document.addEventListener("click", (event) => {
+  const topLink = event.target.closest('a[href="#top"]');
+  if (!topLink) return;
+  event.preventDefault();
+  closeSectionDialogForRoute();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+  try {
+    history.replaceState({ appWindow: "portfolio-base" }, "", "#top");
+  } catch {
+    window.location.hash = "top";
+  }
+});
+
 aiAssistantForm?.addEventListener("submit", (event) => {
   event.preventDefault();
   const question = aiAssistantInput?.value || "";
   if (aiAssistantInput) aiAssistantInput.value = "";
   answerAssistantQuestion(question);
-});
-
-aiAssistantPrompts.forEach((button) => {
-  button.addEventListener("click", () => {
-    const question = button.dataset.aiPrompt || button.textContent || "";
-    if (aiAssistantInput) aiAssistantInput.value = question;
-    answerAssistantQuestion(question);
-  });
 });
 
 aiClearChatButton?.addEventListener("click", clearAssistantChat);

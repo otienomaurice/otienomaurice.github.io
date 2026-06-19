@@ -9,6 +9,7 @@
     />
     <meta name="robots" content="index, follow" />
     <meta name="author" content="Maurice Otieno" />
+    <meta name="portfolio-ai-endpoint" content="https://ai.mauriceotieno.com/ask" />
     <link rel="canonical" href="https://mauriceotieno.com/" />
     <meta property="og:type" content="profile" />
     <meta property="og:title" content="Maurice Otieno | Electrical and Computer  Engineering Portfolio" />
@@ -105,56 +106,18 @@
             <a class="button secondary" href="https://github.com/otienomaurice" target="_blank" rel="noreferrer">
               GitHub profile
             </a>
+            <a class="ai-jump-link" href="#ask-ai" aria-label="Jump to the portfolio AI assistant">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 3v3m-5 7H4m16 0h-3M7.5 7.5 5.4 5.4m11.1 2.1 2.1-2.1M8 10h8v7a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2z" />
+                <path d="M10 13h.01M14 13h.01M10 16h4" />
+              </svg>
+              <span>Ask AI</span>
+            </a>
           </div>
         </div>
       </section>
 
       <section class="fun-facts-section" id="fun-facts-callout" aria-label="Fun facts" hidden></section>
-
-      <section class="ai-assistant-section" id="ask-ai" aria-labelledby="ai-assistant-title">
-        <div class="ai-assistant-panel">
-          <div class="ai-assistant-copy">
-            <p class="eyebrow">Portfolio AI</p>
-            <h2 id="ai-assistant-title">Ask My Portfolio</h2>
-            <p>
-              Ask about projects, tools, test evidence, design work, repositories, resume links, or related electronics concepts.
-            </p>
-          </div>
-          <div class="ai-assistant-console" aria-label="AI portfolio assistant">
-            <div class="ai-assistant-toolbar">
-              <div class="ai-assistant-status" id="ai-assistant-status">Portfolio + engineering AI</div>
-              <button class="ai-clear-chat" id="ai-clear-chat" type="button" title="Clear chat" aria-label="Clear chat">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M9 4h6m-8 4h10m-9 0 .7 11h6.6L16 8M10 11v5m4-5v5" />
-                </svg>
-              </button>
-            </div>
-            <div class="ai-assistant-log" id="ai-assistant-log" aria-live="polite">
-              <article class="ai-message ai-message-assistant">
-                <div class="ai-answer-content">
-                  <p>Ask me what to open, compare, or summarize from Maurice Otieno's portfolio. I can also explain related electronics concepts when they connect to the work here.</p>
-                </div>
-              </article>
-            </div>
-            <form class="ai-assistant-form" id="ai-assistant-form">
-              <label class="sr-only" for="ai-assistant-input">Ask the portfolio assistant</label>
-              <input
-                id="ai-assistant-input"
-                type="text"
-                autocomplete="off"
-                placeholder="Ask about analog projects, PCB tests, STM32, op amps..."
-              />
-              <button type="submit">Ask</button>
-            </form>
-            <div class="ai-assistant-prompts" aria-label="Suggested questions">
-              <button type="button" data-ai-prompt="Show me analog and mixed signal projects">Analog work</button>
-              <button type="button" data-ai-prompt="Which projects include PCB tests or measured results?">PCB tests</button>
-              <button type="button" data-ai-prompt="Show embedded or STM32 projects">Embedded</button>
-              <button type="button" data-ai-prompt="Where are the resume and professional links?">Resume links</button>
-            </div>
-          </div>
-        </div>
-      </section>
 
       <section class="summary-band" aria-label="Portfolio highlights">
         <div class="metric">
@@ -278,6 +241,39 @@
             <a href="tel:+14845451567">Call</a>
             <a href="https://github.com/otienomaurice" target="_blank" rel="noreferrer">GitHub</a>
             <a href="assets/resume.pdf" target="_blank" rel="noreferrer">Resume</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="ai-assistant-section" id="ask-ai" aria-labelledby="ai-assistant-title">
+        <div class="ai-assistant-panel">
+          <div class="ai-assistant-console" aria-label="AI portfolio assistant">
+            <h2 id="ai-assistant-title">Ask My Portfolio</h2>
+            <div class="ai-assistant-toolbar">
+              <div class="ai-assistant-status" id="ai-assistant-status">Portfolio + engineering AI</div>
+              <button class="ai-clear-chat" id="ai-clear-chat" type="button" title="Clear chat" aria-label="Clear chat">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M9 4h6m-8 4h10m-9 0 .7 11h6.6L16 8M10 11v5m4-5v5" />
+                </svg>
+              </button>
+            </div>
+            <div class="ai-assistant-log" id="ai-assistant-log" aria-live="polite">
+              <article class="ai-message ai-message-assistant">
+                <div class="ai-answer-content">
+                  <p>Ask me what to open, compare, or summarize from Maurice Otieno's portfolio. I can also explain related electronics concepts when they connect to the work here.</p>
+                </div>
+              </article>
+            </div>
+            <form class="ai-assistant-form" id="ai-assistant-form">
+              <label class="sr-only" for="ai-assistant-input">Ask the portfolio assistant</label>
+              <input
+                id="ai-assistant-input"
+                type="text"
+                autocomplete="off"
+                placeholder="Ask about analog projects, PCB tests, STM32, op amps..."
+              />
+              <button type="submit">Ask</button>
+            </form>
           </div>
         </div>
       </section>

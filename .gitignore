@@ -4,3 +4,7 @@ template-preview.html
 template-preview.css
 template-preview.js
 project-templates.json
+.env
+.env.*
+.dev.vars
+.wrangler/

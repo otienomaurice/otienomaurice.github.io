@@ -1,0 +1,15 @@
+name = "maurice-portfolio-ai"
+main = "portfolio-ai-worker.js"
+compatibility_date = "2026-06-19"
+
+[[routes]]
+pattern = "ai.mauriceotieno.com"
+custom_domain = true
+
+[vars]
+OPENAI_MODEL = "gpt-5.4-mini"
+OPENAI_REASONING_EFFORT = "low"
+OPENAI_VERBOSITY = "low"
+OPENAI_MAX_OUTPUT_TOKENS = "700"
+OPENAI_ENABLE_WEB_SEARCH = "true"
+OPENAI_ALLOWED_ORIGINS = "https://mauriceotieno.com,https://www.mauriceotieno.com,http://localhost:8080,http://localhost:8081,http://127.0.0.1:8080,http://127.0.0.1:8081"

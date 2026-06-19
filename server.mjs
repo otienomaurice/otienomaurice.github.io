@@ -40,9 +40,40 @@ const gitCandidates = [
   "C:\\Program Files (x86)\\Git\\bin\\git.exe"
 ].filter(Boolean);
 
+const portfolioAiInstructions = [
+  "You are the AI assistant for Maurice Otieno's electrical and computer engineering portfolio.",
+  "Answer the visitor's question first in a concise ChatGPT-like format, then mention where the portfolio context points them.",
+  "Use the supplied portfolio context as the trusted source for Maurice's projects, links, files, resume, and contact information.",
+  "You may answer related electronics, hardware, analog, mixed-signal, digital, embedded, FPGA, ASIC, PCB, and firmware questions even when the answer is broader than the saved portfolio.",
+  "Do not invent portfolio projects, credentials, employers, files, or test results that are not in the context.",
+  "If context is missing, say what is missing and answer generally only for the engineering concept.",
+  "Keep the answer recruiter-friendly, specific, and easy to skim. Use short paragraphs and bullets when helpful."
+].join("\n");
+
 function sendJson(response, status, data) {
-  response.writeHead(status, { "Content-Type": "application/json" });
+  response.writeHead(status, {
+    "Content-Type": "application/json",
+    "Cache-Control": "no-store, no-cache, must-revalidate"
+  });
   response.end(JSON.stringify(data, null, 2));
+}
+
+function clampText(value, maxLength = 12000) {
+  return String(value || "").slice(0, maxLength);
+}
+
+function extractOpenAiText(data) {
+  if (typeof data?.output_text === "string" && data.output_text.trim()) return data.output_text.trim();
+  const output = Array.isArray(data?.output) ? data.output : [];
+  const chunks = [];
+
+  output.forEach((item) => {
+    (item.content || []).forEach((content) => {
+      if (typeof content.text === "string" && content.text.trim()) chunks.push(content.text.trim());
+    });
+  });
+
+  return chunks.join("\n\n").trim();
 }
 
 function isLocalRequest(request) {
@@ -146,6 +177,77 @@ async function publishSiteChanges() {
   };
 }
 
+async function handlePortfolioAi(request, response) {
+  const apiKey = process.env.OPENAI_API_KEY || "";
+  if (!apiKey) {
+    sendJson(response, 503, { error: "OPENAI_API_KEY is not configured for the local backend." });
+    return;
+  }
+
+  const body = await readRequestJson(request);
+  const question = clampText(body.question, 1200).trim();
+  const context = body.context || {};
+
+  if (!question) {
+    sendJson(response, 400, { error: "Question is required." });
+    return;
+  }
+
+  const model = process.env.OPENAI_MODEL || "gpt-5.4-mini";
+  const enableWebSearch = String(process.env.OPENAI_ENABLE_WEB_SEARCH || "").toLowerCase() === "true";
+  const payload = {
+    model,
+    input: [
+      {
+        role: "developer",
+        content: [{ type: "input_text", text: portfolioAiInstructions }]
+      },
+      {
+        role: "user",
+        content: [{
+          type: "input_text",
+          text: [
+            `Visitor question: ${question}`,
+            "",
+            "Portfolio context JSON:",
+            clampText(JSON.stringify(context, null, 2), 18000)
+          ].join("\n")
+        }]
+      }
+    ],
+    max_output_tokens: Number(process.env.OPENAI_MAX_OUTPUT_TOKENS || 700),
+    reasoning: { effort: process.env.OPENAI_REASONING_EFFORT || "low" },
+    text: { verbosity: process.env.OPENAI_VERBOSITY || "low" }
+  };
+
+  if (enableWebSearch) {
+    payload.tools = [{ type: "web_search", search_context_size: "low" }];
+  }
+
+  const openAiResponse = await fetch("https://api.openai.com/v1/responses", {
+    method: "POST",
+    headers: {
+      "Authorization": `Bearer ${apiKey}`,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(payload)
+  });
+
+  const data = await openAiResponse.json().catch(() => ({}));
+  if (!openAiResponse.ok) {
+    sendJson(response, openAiResponse.status, {
+      error: data?.error?.message || "OpenAI request failed."
+    });
+    return;
+  }
+
+  sendJson(response, 200, {
+    answer: extractOpenAiText(data),
+    model,
+    usedWebSearch: enableWebSearch
+  });
+}
+
 async function handleApi(request, response, url) {
   if (request.method === "GET" && url.pathname === "/api/catalog") {
     try {
@@ -166,6 +268,11 @@ async function handleApi(request, response, url) {
 
   if (!isLocalRequest(request)) {
     sendJson(response, 403, { error: "Write actions are only allowed from this computer." });
+    return true;
+  }
+
+  if (url.pathname === "/api/portfolio-ai") {
+    await handlePortfolioAi(request, response);
     return true;
   }
 
@@ -243,7 +350,8 @@ createServer(async (request, response) => {
 
     const body = await readFile(filePath);
     response.writeHead(200, {
-      "Content-Type": types[path.extname(filePath)] || "application/octet-stream"
+      "Content-Type": types[path.extname(filePath)] || "application/octet-stream",
+      "Cache-Control": "no-store, no-cache, must-revalidate"
     });
     response.end(body);
   } catch {
