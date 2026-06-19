@@ -8,6 +8,11 @@ const heroEyebrow = document.querySelector(".hero-content .eyebrow");
 const heroTitle = document.querySelector("#hero-title");
 const heroCopy = document.querySelector(".hero-copy");
 const searchWrap = searchInput?.closest(".search-wrap");
+const aiAssistantForm = document.querySelector("#ai-assistant-form");
+const aiAssistantInput = document.querySelector("#ai-assistant-input");
+const aiAssistantLog = document.querySelector("#ai-assistant-log");
+const aiAssistantStatus = document.querySelector("#ai-assistant-status");
+const aiAssistantPrompts = [...document.querySelectorAll("[data-ai-prompt]")];
 
 let categories = [];
 let projects = [];
@@ -24,6 +29,7 @@ let searchPanel = null;
 let searchStatus = null;
 let searchLimitSelect = null;
 let currentSearchResults = [];
+let currentAssistantSources = [];
 let searchableEntries = [];
 let searchResultLimit = 10;
 let searchHighlightTimer = 0;
@@ -929,6 +935,191 @@ function searchResultsFor(query) {
     });
 }
 
+function assistantEndpoint() {
+  const metaEndpoint = document.querySelector('meta[name="portfolio-ai-endpoint"]')?.content || "";
+  return String(window.OMB_AI_ENDPOINT || metaEndpoint || "").trim();
+}
+
+function assistantSourceLabel(result = {}) {
+  return [result.title || "Portfolio item", result.type || "", result.context || ""]
+    .filter(Boolean)
+    .join(" / ");
+}
+
+function assistantProjectSummary(project = {}) {
+  const categoryLabel = slugLabel(project.category);
+  const sections = (project.portfolioView?.sections || [])
+    .filter((section) => section.id !== "brief" && sectionHasRenderableContent(section))
+    .map((section) => displayTitle(section.title, "Section"));
+  return {
+    category: categoryLabel,
+    focus: project.focus || [],
+    id: project.id,
+    links: project.links || [],
+    sections,
+    summary: project.summary || "",
+    title: project.portfolioView?.title || project.title,
+    tools: project.tools || []
+  };
+}
+
+function assistantContextForQuestion(question = "") {
+  const directResults = searchResultsFor(question).slice(0, 8);
+  const projectIds = [...new Set(directResults.map((item) => item.projectId).filter(Boolean))];
+  const matchedProjects = projectIds
+    .map((id) => projects.find((project) => project.id === id))
+    .filter(Boolean)
+    .slice(0, 5);
+  return {
+    categories: categories.map((category) => ({ id: category.id, label: category.label })),
+    projects: matchedProjects.map(assistantProjectSummary),
+    question,
+    results: directResults.map((result) => ({
+      context: result.context,
+      kind: result.kind,
+      text: searchSnippet(result.text, question),
+      title: result.title,
+      type: result.type,
+      url: result.url
+    })),
+    siteSections: siteSections.filter(siteSectionRenderable).map((section) => ({ id: section.id, title: section.title }))
+  };
+}
+
+function assistantFallbackResults(question = "") {
+  const clean = normalize(question).trim();
+  if (!clean) return [];
+  let results = searchResultsFor(clean);
+  if (results.length) return results.slice(0, 6);
+
+  const category = categories.find((item) => clean.includes(normalize(item.label)) || clean.includes(normalize(item.id)));
+  if (category) {
+    return projects
+      .filter((project) => project.category === category.id)
+      .map((project) => ({
+        context: category.label,
+        kind: "project",
+        projectId: project.id,
+        text: flattenSearchText([project.summary, project.focus, project.tools, project.languages]),
+        title: project.portfolioView?.title || project.title,
+        type: "Project"
+      }))
+      .slice(0, 6);
+  }
+
+  if (/resume|professional|contact|email|phone|github|linkedin|profile/.test(clean)) {
+    return searchResultsFor("resume contact github professional profile").slice(0, 6);
+  }
+
+  if (/project|work|portfolio|hardware|design/.test(clean)) {
+    return projects.slice(0, 6).map((project) => ({
+      context: slugLabel(project.category),
+      kind: "project",
+      projectId: project.id,
+      text: project.summary || "",
+      title: project.portfolioView?.title || project.title,
+      type: "Project"
+    }));
+  }
+
+  return [];
+}
+
+function assistantLocalAnswer(question = "", results = []) {
+  if (!projects.length) return "The project catalog is still loading. Try again in a moment.";
+  if (!results.length) return `I could not find a strong portfolio match for "${question}" yet. Try a project name, tool, file type, or area such as analog, embedded, digital, PCB, LTspice, STM32, or resume.`;
+
+  const projectIds = [...new Set(results.map((item) => item.projectId).filter(Boolean))];
+  const matchedProjects = projectIds
+    .map((id) => projects.find((project) => project.id === id))
+    .filter(Boolean);
+  const projectNames = matchedProjects.map((project) => project.portfolioView?.title || project.title).slice(0, 3);
+  const fileCount = results.filter((item) => item.kind === "file").length;
+  const sectionCount = results.filter((item) => item.kind === "section" || item.kind === "subsection").length;
+  const pageCount = results.filter((item) => item.kind === "page").length;
+  const parts = [];
+
+  if (projectNames.length) {
+    parts.push(`The strongest match is ${projectNames.join(projectNames.length > 2 ? ", " : " and ")}.`);
+  } else if (pageCount) {
+    parts.push("The strongest matches are in the profile, resume, contact, or portfolio information sections.");
+  } else {
+    parts.push(`I found ${results.length} relevant portfolio item${results.length === 1 ? "" : "s"}.`);
+  }
+
+  if (sectionCount || fileCount) {
+    parts.push(`I also found ${sectionCount} section match${sectionCount === 1 ? "" : "es"}${fileCount ? ` and ${fileCount} file or link match${fileCount === 1 ? "" : "es"}` : ""}.`);
+  }
+
+  const firstSnippet = searchSnippet(results[0].text, question);
+  if (firstSnippet) parts.push(firstSnippet);
+  parts.push("Use the source buttons below to jump directly to the matching place.");
+  return parts.join(" ");
+}
+
+function assistantSourcesMarkup(results = []) {
+  const sources = results.slice(0, 5);
+  if (!sources.length) return "";
+  currentAssistantSources = sources;
+  return `
+    <div class="ai-source-list" aria-label="Assistant sources">
+      ${sources.map((source, index) => `
+        <button type="button" data-ai-source-index="${index}">${escapeHtml(assistantSourceLabel(source))}</button>
+      `).join("")}
+    </div>
+  `;
+}
+
+function setAssistantStatus(message, state = "ready") {
+  if (!aiAssistantStatus) return;
+  aiAssistantStatus.textContent = message;
+  aiAssistantStatus.dataset.state = state;
+}
+
+function appendAssistantMessage(role, content, sources = []) {
+  if (!aiAssistantLog) return;
+  const article = document.createElement("article");
+  article.className = `ai-message ai-message-${role}`;
+  article.innerHTML = `<p>${renderMultilineInlineText(content)}</p>${role === "assistant" ? assistantSourcesMarkup(sources) : ""}`;
+  aiAssistantLog.append(article);
+  aiAssistantLog.scrollTop = aiAssistantLog.scrollHeight;
+}
+
+async function askRemoteAssistant(question, context) {
+  const endpoint = assistantEndpoint();
+  if (!endpoint) return null;
+  const response = await fetch(endpoint, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ context, question })
+  });
+  if (!response.ok) throw new Error("AI service unavailable");
+  const data = await response.json();
+  return String(data.answer || data.message || "").trim() || null;
+}
+
+async function answerAssistantQuestion(question = "") {
+  const cleanQuestion = String(question || "").trim();
+  if (!cleanQuestion) return;
+  appendAssistantMessage("user", cleanQuestion);
+  setAssistantStatus(assistantEndpoint() ? "Asking portfolio AI" : "Searching local portfolio", "working");
+
+  const sources = assistantFallbackResults(cleanQuestion);
+  const context = assistantContextForQuestion(cleanQuestion);
+  try {
+    const remoteAnswer = await askRemoteAssistant(cleanQuestion, context);
+    if (remoteAnswer) {
+      appendAssistantMessage("assistant", remoteAnswer, sources);
+      setAssistantStatus("AI answer ready");
+      return;
+    }
+  } catch {
+    setAssistantStatus("Local answer used", "error");
+  }
+
+  appendAssistantMessage("assistant", assistantLocalAnswer(cleanQuestion, sources), sources);
+  if (!assistantEndpoint()) setAssistantStatus("Local portfolio intelligence");
+}
 function linkAttributes(url, item = {}) {
   const target = normalizeLinkTarget(url, { assumeWeb: isWebsiteLinkItem(item, url) });
   return /^https?:\/\//i.test(target) ? ' target="_blank" rel="noreferrer"' : "";
@@ -1960,6 +2151,28 @@ document.addEventListener("click", (event) => {
   if (!searchPanel || searchPanel.hidden) return;
   if (event.target.closest(".search-engine")) return;
   searchPanel.hidden = true;
+});
+
+aiAssistantForm?.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const question = aiAssistantInput?.value || "";
+  if (aiAssistantInput) aiAssistantInput.value = "";
+  answerAssistantQuestion(question);
+});
+
+aiAssistantPrompts.forEach((button) => {
+  button.addEventListener("click", () => {
+    const question = button.dataset.aiPrompt || button.textContent || "";
+    if (aiAssistantInput) aiAssistantInput.value = question;
+    answerAssistantQuestion(question);
+  });
+});
+
+aiAssistantLog?.addEventListener("click", (event) => {
+  const button = event.target.closest("[data-ai-source-index]");
+  if (!button) return;
+  const source = currentAssistantSources[Number(button.dataset.aiSourceIndex)];
+  if (source) goToSearchResult(source);
 });
 
 grid.addEventListener("click", (event) => {

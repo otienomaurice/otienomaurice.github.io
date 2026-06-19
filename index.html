@@ -72,6 +72,7 @@
 
       <div class="header-right">
         <nav class="site-nav" aria-label="Primary navigation">
+          <a href="#ask-ai">Ask AI</a>
           <a href="#projects">Projects</a>
           <a href="#resume">Resume</a>
           <a href="#process">Process</a>
@@ -109,6 +110,42 @@
       </section>
 
       <section class="fun-facts-section" id="fun-facts-callout" aria-label="Fun facts" hidden></section>
+
+      <section class="ai-assistant-section" id="ask-ai" aria-labelledby="ai-assistant-title">
+        <div class="ai-assistant-panel">
+          <div class="ai-assistant-copy">
+            <p class="eyebrow">Portfolio AI</p>
+            <h2 id="ai-assistant-title">Ask My Portfolio</h2>
+            <p>
+              Ask about projects, tools, test evidence, design work, repositories, or resume links.
+            </p>
+          </div>
+          <div class="ai-assistant-console" aria-label="AI portfolio assistant">
+            <div class="ai-assistant-status" id="ai-assistant-status">Local portfolio intelligence</div>
+            <div class="ai-assistant-log" id="ai-assistant-log" aria-live="polite">
+              <article class="ai-message ai-message-assistant">
+                <p>Ask me what to open, compare, or summarize from Maurice Otieno's portfolio.</p>
+              </article>
+            </div>
+            <form class="ai-assistant-form" id="ai-assistant-form">
+              <label class="sr-only" for="ai-assistant-input">Ask the portfolio assistant</label>
+              <input
+                id="ai-assistant-input"
+                type="text"
+                autocomplete="off"
+                placeholder="Ask about analog projects, PCB tests, STM32, tools..."
+              />
+              <button type="submit">Ask</button>
+            </form>
+            <div class="ai-assistant-prompts" aria-label="Suggested questions">
+              <button type="button" data-ai-prompt="Show me analog and mixed signal projects">Analog work</button>
+              <button type="button" data-ai-prompt="Which projects include PCB tests or measured results?">PCB tests</button>
+              <button type="button" data-ai-prompt="Show embedded or STM32 projects">Embedded</button>
+              <button type="button" data-ai-prompt="Where are the resume and professional links?">Resume links</button>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <section class="summary-band" aria-label="Portfolio highlights">
         <div class="metric">
