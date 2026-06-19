@@ -337,7 +337,7 @@
         }
       },
       "portfolioView": {
-        "builtAt": "2026-06-18T14:23:56.196Z",
+        "builtAt": "2026-06-19T15:27:38.116Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -723,7 +723,7 @@
         }
       },
       "portfolioView": {
-        "builtAt": "2026-06-18T14:23:56.196Z",
+        "builtAt": "2026-06-19T15:27:38.116Z",
         "template": {
           "group": "Appearance",
           "id": "",
@@ -874,7 +874,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-18T14:23:56.196Z",
+        "builtAt": "2026-06-19T15:27:38.116Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -1166,7 +1166,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-18T14:23:56.196Z",
+        "builtAt": "2026-06-19T15:27:38.117Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-steel-teal-click",
@@ -1394,7 +1394,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-18T14:23:56.196Z",
+        "builtAt": "2026-06-19T15:27:38.117Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-graphite-white-click",
@@ -1514,7 +1514,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-18T14:23:56.196Z",
+        "builtAt": "2026-06-19T15:27:38.117Z",
         "template": {
           "group": "Appearance",
           "id": "",
@@ -1570,7 +1570,7 @@
       "links": [],
       "sections": [],
       "portfolioView": {
-        "builtAt": "2026-06-18T14:23:56.196Z",
+        "builtAt": "2026-06-19T15:27:38.117Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -1616,6 +1616,10 @@
           "label": "GitHub",
           "url": "https://github.com/otienomaurice",
           "kind": "github"
+        },
+        {
+          "label": "Linkein",
+          "url": "www.linkedin.com/in/maurice-otieno-037a55341"
         }
       ],
       "assets": [],
