@@ -243,37 +243,22 @@
             <a href="assets/resume.pdf" target="_blank" rel="noreferrer">Resume</a>
           </div>
         </div>
-      </section>
-
-      <section class="ai-assistant-section" id="ask-ai" aria-labelledby="ai-assistant-title">
-        <div class="ai-assistant-panel">
+        <div class="ai-assistant-panel" id="ask-ai" aria-labelledby="ai-assistant-title">
           <div class="ai-assistant-console" aria-label="AI portfolio assistant">
             <h2 id="ai-assistant-title">Ask My Portfolio</h2>
-            <div class="ai-assistant-toolbar">
-              <div class="ai-assistant-status" id="ai-assistant-status">Portfolio + engineering AI</div>
-              <button class="ai-clear-chat" id="ai-clear-chat" type="button" title="Clear chat" aria-label="Clear chat">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M9 4h6m-8 4h10m-9 0 .7 11h6.6L16 8M10 11v5m4-5v5" />
-                </svg>
-              </button>
-            </div>
-            <div class="ai-assistant-log" id="ai-assistant-log" aria-live="polite">
-              <article class="ai-message ai-message-assistant">
-                <div class="ai-answer-content">
-                  <p>Ask me what to open, compare, or summarize from Maurice Otieno's portfolio. I can also explain related electronics concepts when they connect to the work here.</p>
-                </div>
-              </article>
-            </div>
+            <div class="ai-assistant-status sr-only" id="ai-assistant-status" aria-live="polite"></div>
+            <div class="ai-assistant-log" id="ai-assistant-log" aria-live="polite" aria-label="AI chat messages"></div>
             <form class="ai-assistant-form" id="ai-assistant-form">
               <label class="sr-only" for="ai-assistant-input">Ask the portfolio assistant</label>
               <input
                 id="ai-assistant-input"
                 type="text"
                 autocomplete="off"
-                placeholder="Ask about analog projects, PCB tests, STM32, op amps..."
+                placeholder="Ask about projects, tests, resume links, op amps, STM32..."
               />
               <button type="submit">Ask</button>
             </form>
+            <button class="ai-clear-chat" id="ai-clear-chat" type="button">Clear chat</button>
           </div>
         </div>
       </section>

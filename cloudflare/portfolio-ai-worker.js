@@ -9,7 +9,10 @@ const DEFAULT_ALLOWED_ORIGINS = [
 
 const PORTFOLIO_AI_INSTRUCTIONS = [
   "You are the AI assistant for Maurice Otieno's electrical and computer engineering portfolio.",
-  "Answer the visitor's question first in a concise ChatGPT-like format, then mention where the portfolio context points them.",
+  "Answer the visitor's question first in a concise ChatGPT-like format.",
+  "Use the supplied question intent to decide whether this is a general engineering question or a portfolio-specific question.",
+  "For general_engineering intent, begin with the general electronics or engineering explanation. Do not lead with Maurice's project context.",
+  "For portfolio_specific intent, answer from Maurice's portfolio context first, then explain related engineering concepts only when useful.",
   "Use the supplied portfolio context as the trusted source for Maurice's projects, links, files, resume, and contact information.",
   "You may answer related electronics, hardware, analog, mixed-signal, digital, embedded, FPGA, ASIC, PCB, and firmware questions even when the answer is broader than the saved portfolio.",
   "Do not invent portfolio projects, credentials, employers, files, or test results that are not in the context.",
@@ -76,8 +79,11 @@ async function callOpenAi(body, env) {
   if (!question) return { status: 400, data: { error: "Question is required." } };
   if (!env.OPENAI_API_KEY) return { status: 503, data: { error: "OPENAI_API_KEY is not configured." } };
 
-  const model = env.OPENAI_MODEL || "gpt-5.4-mini";
-  const enableWebSearch = String(env.OPENAI_ENABLE_WEB_SEARCH || "").toLowerCase() === "true";
+  const intent = body.intent === "general_engineering" ? "general_engineering" : "portfolio_specific";
+  const allowWebSearch = body.allowWebSearch === true;
+  const model = env.OPENAI_MODEL || "gpt-4.1-mini";
+  const webSearchMode = String(env.OPENAI_ENABLE_WEB_SEARCH || "auto").toLowerCase();
+  const enableWebSearch = webSearchMode === "true" || (webSearchMode !== "false" && allowWebSearch);
   const payload = {
     model,
     input: [
@@ -91,6 +97,8 @@ async function callOpenAi(body, env) {
           type: "input_text",
           text: [
             `Visitor question: ${question}`,
+            `Question intent: ${intent}`,
+            `Web search allowed for this question: ${enableWebSearch ? "yes" : "no"}`,
             "",
             "Portfolio context JSON:",
             clampText(JSON.stringify(body.context || {}, null, 2), 18000)
@@ -105,7 +113,7 @@ async function callOpenAi(body, env) {
   };
 
   if (enableWebSearch) {
-    payload.tools = [{ type: "web_search", search_context_size: "low" }];
+    payload.tools = [{ type: "web_search", search_context_size: env.OPENAI_WEB_SEARCH_CONTEXT_SIZE || "low" }];
   }
 
   const openAiResponse = await fetch("https://api.openai.com/v1/responses", {

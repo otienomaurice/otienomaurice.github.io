@@ -966,8 +966,72 @@ function assistantProjectSummary(project = {}) {
   };
 }
 
-function assistantContextForQuestion(question = "") {
-  const directResults = searchResultsFor(question).slice(0, 8);
+function assistantProjectTitleAcronyms(title = "") {
+  const words = normalize(title)
+    .split(/\s+/)
+    .filter((word) => word.length > 2);
+  const acronyms = new Set();
+  for (let start = 0; start < words.length; start += 1) {
+    for (let length = 2; length <= Math.min(5, words.length - start); length += 1) {
+      acronyms.add(words.slice(start, start + length).map((word) => word[0]).join(""));
+    }
+  }
+  return [...acronyms].filter((item) => item.length >= 2);
+}
+
+function assistantProjectIsNamedInQuestion(question = "", project = {}) {
+  const clean = normalize(question);
+  if (!clean) return false;
+  const fillerWords = new Set(["with", "from", "into", "using", "project", "design", "system", "systems"]);
+  const rawTitle = project.portfolioView?.title || project.title || project.id;
+  const title = normalize(rawTitle);
+  if (!title) return false;
+  if (clean.includes(title)) return true;
+  const cleanWords = new Set(clean.split(/\s+/));
+  const acronymMatch = assistantProjectTitleAcronyms(rawTitle)
+    .some((acronym) => cleanWords.has(acronym));
+  if (acronymMatch) return true;
+  const words = title.split(/\s+/).filter((word) => word.length > 3 && !fillerWords.has(word));
+  if (!words.length) return false;
+  const matches = words.filter((word) => clean.includes(word)).length;
+  return words.length <= 2 ? matches === words.length : matches >= Math.min(3, words.length);
+}
+
+function assistantNamedProjectIds(question = "") {
+  return projects
+    .filter((project) => assistantProjectIsNamedInQuestion(question, project))
+    .map((project) => project.id);
+}
+
+function assistantProjectTitleMatches(question = "") {
+  return assistantNamedProjectIds(question).length > 0;
+}
+
+function assistantQuestionHasPortfolioIntent(question = "") {
+  const clean = normalize(question);
+  return assistantProjectTitleMatches(question)
+    || /\b(maurice|otieno|portfolio|resume|github|linkedin|contact|email|phone|project|projects|repo|repository|repositories|file|files|document|documents|artifact|artifacts|link|links|download|open|show|where|built|build|created|designed|implemented|his|your|you|he)\b/.test(clean);
+}
+
+function assistantQuestionLooksConceptual(question = "") {
+  const clean = normalize(question);
+  if (!assistantQuestionIsEngineeringRelated(question)) return false;
+  return /^(what|what\s+is|what\s+are|what's|define|explain|describe|how|why|compare|differentiate)\b/.test(clean)
+    || /\b(definition|meaning|basics|overview|introduction|difference\s+between|how\s+does|how\s+do|why\s+does|why\s+do)\b/.test(clean);
+}
+
+function assistantQuestionIntent(question = "") {
+  const hasPortfolioIntent = assistantQuestionHasPortfolioIntent(question);
+  if (!hasPortfolioIntent && assistantQuestionIsEngineeringRelated(question)) return "general_engineering";
+  if (!hasPortfolioIntent && assistantQuestionLooksConceptual(question)) return "general_engineering";
+  if (hasPortfolioIntent) return "portfolio_specific";
+  return "general_engineering";
+}
+
+function assistantContextForQuestion(question = "", intent = assistantQuestionIntent(question), knownResults = null) {
+  const directResults = intent === "general_engineering"
+    ? []
+    : (knownResults || searchResultsFor(question)).slice(0, 8);
   const projectIds = [...new Set(directResults.map((item) => item.projectId).filter(Boolean))];
   const matchedProjects = projectIds
     .map((id) => projects.find((project) => project.id === id))
@@ -975,6 +1039,10 @@ function assistantContextForQuestion(question = "") {
     .slice(0, 5);
   return {
     categories: categories.map((category) => ({ id: category.id, label: category.label })),
+    intent,
+    portfolioContextPolicy: intent === "general_engineering"
+      ? "Answer from general electronics knowledge first. Do not lead with Maurice's project context unless the visitor explicitly asks to connect the concept to the portfolio."
+      : "Answer from Maurice's portfolio context first. Do not invent project details outside the supplied context.",
     projects: matchedProjects.map(assistantProjectSummary),
     question,
     results: directResults.map((result) => ({
@@ -989,11 +1057,32 @@ function assistantContextForQuestion(question = "") {
   };
 }
 
-function assistantFallbackResults(question = "") {
+function assistantFallbackResults(question = "", intent = assistantQuestionIntent(question)) {
+  if (intent === "general_engineering") return [];
   const clean = normalize(question).trim();
   if (!clean) return [];
+  const namedProjectIds = assistantNamedProjectIds(question);
   let results = searchResultsFor(clean);
+  if (namedProjectIds.length && results.length) {
+    const focusedResults = results.filter((result) => namedProjectIds.includes(result.projectId));
+    if (focusedResults.length) return focusedResults.slice(0, 6);
+  }
   if (results.length) return results.slice(0, 6);
+
+  if (namedProjectIds.length) {
+    return namedProjectIds
+      .map((id) => projects.find((project) => project.id === id))
+      .filter(Boolean)
+      .map((project) => ({
+        context: slugLabel(project.category),
+        kind: "project",
+        projectId: project.id,
+        text: flattenSearchText([project.summary, project.focus, project.tools, project.languages]),
+        title: project.portfolioView?.title || project.title,
+        type: "Project"
+      }))
+      .slice(0, 6);
+  }
 
   const category = categories.find((item) => clean.includes(normalize(item.label)) || clean.includes(normalize(item.id)));
   if (category) {
@@ -1036,6 +1125,22 @@ function assistantQuestionIsEngineeringRelated(question = "") {
 function assistantGeneralEngineeringAnswer(question = "") {
   const clean = normalize(question);
   if (!assistantQuestionIsEngineeringRelated(question)) return "";
+
+  if (/\bembedded\s+systems?\b/.test(clean)) {
+    return [
+      "Embedded systems is a field of engineering focused on computers that are built into larger products, machines, instruments, or control systems.",
+      "",
+      "Unlike a laptop or desktop computer, an embedded system is usually designed for a specific job. It combines hardware, firmware, sensors, actuators, communication interfaces, and timing constraints so the product can make measurements, control outputs, or respond to events reliably.",
+      "",
+      "Common examples include:",
+      "- A microcontroller controlling a motor drive.",
+      "- A sensor node collecting temperature, pressure, or motion data.",
+      "- A medical device running real-time measurement firmware.",
+      "- An automotive controller reading sensors and driving actuators.",
+      "",
+      "The important engineering ideas are timing, interrupts, power use, peripheral interfaces, reliability, and how the firmware proves the hardware is behaving correctly."
+    ].join("\n");
+  }
 
   if (/\b(op\s*amp|amplifier|fully differential|differential)\b/.test(clean)) {
     return [
@@ -1131,11 +1236,19 @@ function assistantGeneralEngineeringAnswer(question = "") {
   ].join("\n");
 }
 
-function assistantLocalAnswer(question = "", results = []) {
-  if (!projects.length) return "The project catalog is still loading. Try again in a moment.";
-  if (!results.length) {
+function assistantLocalAnswer(question = "", results = [], intent = assistantQuestionIntent(question)) {
+  if (intent === "general_engineering") {
     const generalAnswer = assistantGeneralEngineeringAnswer(question);
     if (generalAnswer) return generalAnswer;
+    return [
+      "I can answer that as a general engineering question, but I need a little more detail to make the answer useful.",
+      "",
+      "Try asking about a specific circuit, device, tool, protocol, waveform, or failure mode."
+    ].join("\n");
+  }
+
+  if (!projects.length) return "The project catalog is still loading. Try again in a moment.";
+  if (!results.length) {
     return [
       `I could not find a strong portfolio match for "${question}".`,
       "",
@@ -1255,27 +1368,53 @@ function appendAssistantMessage(role, content, sources = []) {
     : `<p>${renderMultilineInlineText(content)}</p>`;
   aiAssistantLog.append(article);
   aiAssistantLog.scrollTop = aiAssistantLog.scrollHeight;
+  return article;
 }
 
-function assistantWelcomeMarkup() {
-  return `
-    <article class="ai-message ai-message-assistant">
-      <div class="ai-answer-content">
-        <p>Ask me what to open, compare, or summarize from Maurice Otieno's portfolio. I can also explain related electronics concepts when they connect to the work here.</p>
-      </div>
-    </article>
-  `;
+function scrollAssistantAnswerToStart(article) {
+  if (!aiAssistantLog || !article) return;
+  const scrollToAnswer = () => {
+    aiAssistantLog.scrollTop = Math.max(0, article.offsetTop - aiAssistantLog.offsetTop - 4);
+  };
+  if (typeof window.requestAnimationFrame === "function") {
+    window.requestAnimationFrame(scrollToAnswer);
+  } else {
+    window.setTimeout(scrollToAnswer, 0);
+  }
+}
+
+function appendAssistantPendingMessage() {
+  const article = appendAssistantMessage("assistant", "Thinking", []);
+  article?.classList.add("ai-message-pending");
+  return article;
+}
+
+function replaceAssistantMessage(article, content, sources = []) {
+  if (!article) {
+    appendAssistantMessage("assistant", content, sources);
+    return;
+  }
+  article.className = "ai-message ai-message-assistant";
+  article.innerHTML = `${renderAssistantAnswerContent(content)}${assistantSourcesMarkup(sources)}`;
+  scrollAssistantAnswerToStart(article);
+}
+
+function setAssistantBusy(isBusy) {
+  const submitButton = aiAssistantForm?.querySelector('button[type="submit"]');
+  if (aiAssistantInput) aiAssistantInput.disabled = isBusy;
+  if (submitButton) submitButton.disabled = isBusy;
 }
 
 function clearAssistantChat() {
   if (!aiAssistantLog) return;
   assistantSourceCounter = 0;
   assistantSourceMap = new Map();
-  aiAssistantLog.innerHTML = assistantWelcomeMarkup();
-  setAssistantStatus("Portfolio + engineering AI");
+  aiAssistantLog.innerHTML = "";
+  setAssistantStatus("Chat cleared");
+  aiAssistantInput?.focus();
 }
 
-async function askRemoteAssistant(question, context) {
+async function askRemoteAssistant(question, context, options = {}) {
   const endpoint = assistantEndpoint();
   if (!endpoint) return null;
   const controller = new AbortController();
@@ -1286,6 +1425,8 @@ async function askRemoteAssistant(question, context) {
     signal: controller.signal,
     body: JSON.stringify({
       context,
+      intent: options.intent || context.intent || "portfolio_specific",
+      allowWebSearch: Boolean(options.allowWebSearch),
       question,
       mode: "portfolio-plus-engineering",
       responseStyle: "chatgpt-like-answer-first-links-second"
@@ -1301,23 +1442,41 @@ async function answerAssistantQuestion(question = "") {
   const cleanQuestion = String(question || "").trim();
   if (!cleanQuestion) return;
   appendAssistantMessage("user", cleanQuestion);
-  setAssistantStatus(assistantEndpoint() ? "Composing AI answer" : "Composing local answer", "working");
-
-  const sources = assistantFallbackResults(cleanQuestion);
-  const context = assistantContextForQuestion(cleanQuestion);
+  const pendingMessage = appendAssistantPendingMessage();
+  setAssistantBusy(true);
   try {
-    const remoteAnswer = await askRemoteAssistant(cleanQuestion, context);
-    if (remoteAnswer?.answer) {
-      appendAssistantMessage("assistant", remoteAnswer.answer, sources);
-      setAssistantStatus(remoteAnswer.model ? `AI answer ready: ${remoteAnswer.model}` : "AI answer ready");
-      return;
-    }
-  } catch {
-    setAssistantStatus("Local answer used", "error");
-  }
+    setAssistantStatus(assistantEndpoint() ? "Composing AI answer" : "Composing local answer", "working");
 
-  appendAssistantMessage("assistant", assistantLocalAnswer(cleanQuestion, sources), sources);
-  if (!assistantEndpoint()) setAssistantStatus("Local portfolio intelligence");
+    const intent = assistantQuestionIntent(cleanQuestion);
+    const sources = assistantFallbackResults(cleanQuestion, intent);
+    const context = assistantContextForQuestion(cleanQuestion, intent, sources);
+    try {
+      const remoteAnswer = await askRemoteAssistant(cleanQuestion, context, {
+        allowWebSearch: intent === "general_engineering",
+        intent
+      });
+      if (remoteAnswer?.answer) {
+        replaceAssistantMessage(pendingMessage, remoteAnswer.answer, sources);
+        setAssistantStatus(remoteAnswer.model ? `AI answer ready: ${remoteAnswer.model}` : "AI answer ready");
+        return;
+      }
+    } catch {
+      setAssistantStatus("Local answer used", "error");
+    }
+
+    replaceAssistantMessage(pendingMessage, assistantLocalAnswer(cleanQuestion, sources, intent), sources);
+    if (!assistantEndpoint()) setAssistantStatus("Local portfolio intelligence");
+  } catch {
+    replaceAssistantMessage(
+      pendingMessage,
+      "I had trouble processing that question. Try rephrasing it with a project name, tool name, or electronics topic.",
+      []
+    );
+    setAssistantStatus("Assistant error", "error");
+  } finally {
+    setAssistantBusy(false);
+    aiAssistantInput?.focus();
+  }
 }
 function linkAttributes(url, item = {}) {
   const target = normalizeLinkTarget(url, { assumeWeb: isWebsiteLinkItem(item, url) });
