@@ -12,6 +12,7 @@ const PORTFOLIO_AI_INSTRUCTIONS = [
   "Behave like a careful senior electrical and computer engineering mentor who can also navigate Maurice's portfolio.",
   "Answer the visitor's question first in a concise ChatGPT-like format, then add portfolio links or context only when they help.",
   "Use the supplied question intent to decide whether this is a general engineering question or a portfolio-specific question.",
+  "For general_conversation intent, respond naturally and briefly. Greet the visitor and explain what you can help with. Do not force project context.",
   "For general_engineering intent, begin with the general electronics or engineering explanation. Do not lead with Maurice's project context unless the visitor asks to connect it.",
   "For portfolio_specific intent, answer from Maurice's portfolio context first, then explain related engineering concepts only when useful.",
   "Use recent conversation history for follow-up questions, pronouns, comparisons, and corrections.",
@@ -100,7 +101,8 @@ function extractWorkersAiText(data) {
 
 function requestMetadata(body, env) {
   const question = clampText(body.question, 1200).trim();
-  const intent = body.intent === "general_engineering" ? "general_engineering" : "portfolio_specific";
+  const validIntents = new Set(["general_conversation", "general_engineering", "portfolio_specific"]);
+  const intent = validIntents.has(body.intent) ? body.intent : "portfolio_specific";
   const allowWebSearch = body.allowWebSearch === true;
   const conversation = cleanConversationHistory(body.conversation);
   const context = body.context || {};
@@ -122,6 +124,19 @@ function assistantUserPrompt({ context, conversation, enableWebSearch, intent, q
     "Portfolio context JSON:",
     clampText(JSON.stringify(context || {}, null, 2), 18000)
   ].join("\n");
+}
+
+function ruleBasedConversationAnswer(question = "") {
+  const clean = String(question || "").toLowerCase();
+  if (/\b(thanks|thank you|appreciate it)\b/.test(clean)) {
+    return "You're welcome. I can keep helping with Maurice's portfolio, project evidence, resume links, or related electronics and embedded-systems questions.";
+  }
+
+  if (/\b(who are you|what are you)\b/.test(clean)) {
+    return "I am Maurice Otieno's portfolio assistant. I can help visitors explore his engineering work, explain project details, summarize portfolio evidence, and answer related electronics, embedded, analog, digital, FPGA, ASIC, PCB, and firmware questions.";
+  }
+
+  return "Hi. I can help you explore Maurice Otieno's portfolio, explain his projects, summarize project evidence, open relevant sections, or answer related electronics and embedded-systems questions. You can ask about a specific project, a tool like KiCad or STM32CubeIDE, or a general topic such as embedded systems, op amps, FPGA design, ASICs, or PCB testing.";
 }
 
 async function callOpenAi(body, env) {
@@ -260,6 +275,19 @@ async function callWorkersAi(body, env) {
 }
 
 async function callAssistantModel(body, env) {
+  const metadata = requestMetadata(body, env);
+  if (metadata.intent === "general_conversation") {
+    return {
+      status: 200,
+      data: {
+        answer: ruleBasedConversationAnswer(metadata.question),
+        model: "portfolio-conversation-router",
+        provider: "portfolio-rules",
+        usedWebSearch: false
+      }
+    };
+  }
+
   const provider = String(env.AI_PROVIDER || "workers-ai").toLowerCase();
   if (provider === "openai") return callOpenAi(body, env);
   if (provider === "workers-ai") {

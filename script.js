@@ -1008,10 +1008,17 @@ function assistantProjectTitleMatches(question = "") {
   return assistantNamedProjectIds(question).length > 0;
 }
 
+function assistantQuestionIsCasual(question = "") {
+  const clean = normalize(question);
+  return /^(hi|hello|hey|good\s+(morning|afternoon|evening)|yo|sup|thanks|thank\s+you|ok|okay)\b/.test(clean)
+    || /\b(how\s+are\s+you|what\s+can\s+you\s+help|what\s+do\s+you\s+do|who\s+are\s+you|help\s+me|can\s+you\s+help|nice\s+to\s+meet\s+you)\b/.test(clean);
+}
+
 function assistantQuestionHasPortfolioIntent(question = "") {
   const clean = normalize(question);
   return assistantProjectTitleMatches(question)
-    || /\b(maurice|otieno|portfolio|resume|github|linkedin|contact|email|phone|project|projects|repo|repository|repositories|file|files|document|documents|artifact|artifacts|link|links|download|open|show|where|built|build|created|designed|implemented|his|your|you|he)\b/.test(clean);
+    || /\b(maurice|otieno|portfolio|resume|github|linkedin|contact|email|phone|project|projects|repo|repository|repositories|file|files|document|documents|artifact|artifacts|link|links|download|open|show|where|built|build|created|designed|implemented)\b/.test(clean)
+    || /\b(your|his|maurice's)\s+(project|projects|resume|github|linkedin|portfolio|work|email|phone|contact|repo|repository|files?|documents?|links?)\b/.test(clean);
 }
 
 function assistantQuestionLooksConceptual(question = "") {
@@ -1022,11 +1029,12 @@ function assistantQuestionLooksConceptual(question = "") {
 }
 
 function assistantQuestionIntent(question = "") {
+  if (assistantQuestionIsCasual(question)) return "general_conversation";
   const hasPortfolioIntent = assistantQuestionHasPortfolioIntent(question);
   if (!hasPortfolioIntent && assistantQuestionIsEngineeringRelated(question)) return "general_engineering";
   if (!hasPortfolioIntent && assistantQuestionLooksConceptual(question)) return "general_engineering";
   if (hasPortfolioIntent) return "portfolio_specific";
-  return "general_engineering";
+  return "general_conversation";
 }
 
 function assistantContextForQuestion(question = "", intent = assistantQuestionIntent(question), knownResults = null) {
@@ -1041,7 +1049,7 @@ function assistantContextForQuestion(question = "", intent = assistantQuestionIn
   return {
     categories: categories.map((category) => ({ id: category.id, label: category.label })),
     intent,
-    portfolioContextPolicy: intent === "general_engineering"
+    portfolioContextPolicy: intent !== "portfolio_specific"
       ? "Answer from general electronics knowledge first. Do not lead with Maurice's project context unless the visitor explicitly asks to connect the concept to the portfolio."
       : "Answer from Maurice's portfolio context first. Do not invent project details outside the supplied context.",
     projects: matchedProjects.map(assistantProjectSummary),
@@ -1081,7 +1089,7 @@ function assistantConversationForRequest(currentQuestion = "", priorConversation
 }
 
 function assistantFallbackResults(question = "", intent = assistantQuestionIntent(question)) {
-  if (intent === "general_engineering") return [];
+  if (intent !== "portfolio_specific") return [];
   const clean = normalize(question).trim();
   if (!clean) return [];
   const namedProjectIds = assistantNamedProjectIds(question);
@@ -1260,6 +1268,18 @@ function assistantGeneralEngineeringAnswer(question = "") {
 }
 
 function assistantLocalAnswer(question = "", results = [], intent = assistantQuestionIntent(question)) {
+  if (intent === "general_conversation") {
+    return [
+      "Hi. I can help you explore Maurice Otieno's portfolio, explain projects, summarize files, open relevant sections, or answer related electronics and embedded-systems questions.",
+      "",
+      "You can ask things like:",
+      "- What is embedded systems?",
+      "- Show me the VCO project.",
+      "- What tools did Maurice use?",
+      "- Explain the difference between FPGA and ASIC design."
+    ].join("\n");
+  }
+
   if (intent === "general_engineering") {
     const generalAnswer = assistantGeneralEngineeringAnswer(question);
     if (generalAnswer) return generalAnswer;

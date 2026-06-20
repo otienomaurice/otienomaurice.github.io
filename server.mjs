@@ -45,6 +45,7 @@ const portfolioAiInstructions = [
   "Behave like a careful senior electrical and computer engineering mentor who can also navigate Maurice's portfolio.",
   "Answer the visitor's question first in a concise ChatGPT-like format, then add portfolio links or context only when they help.",
   "Use the supplied question intent to decide whether this is a general engineering question or a portfolio-specific question.",
+  "For general_conversation intent, respond naturally and briefly. Greet the visitor and explain what you can help with. Do not force project context.",
   "For general_engineering intent, begin with the general electronics or engineering explanation. Do not lead with Maurice's project context unless the visitor asks to connect it.",
   "For portfolio_specific intent, answer from Maurice's portfolio context first, then explain related engineering concepts only when useful.",
   "Use recent conversation history for follow-up questions, pronouns, comparisons, and corrections.",
@@ -92,6 +93,19 @@ function extractOpenAiText(data) {
   });
 
   return chunks.join("\n\n").trim();
+}
+
+function ruleBasedConversationAnswer(question = "") {
+  const clean = String(question || "").toLowerCase();
+  if (/\b(thanks|thank you|appreciate it)\b/.test(clean)) {
+    return "You're welcome. I can keep helping with Maurice's portfolio, project evidence, resume links, or related electronics and embedded-systems questions.";
+  }
+
+  if (/\b(who are you|what are you)\b/.test(clean)) {
+    return "I am Maurice Otieno's portfolio assistant. I can help visitors explore his engineering work, explain project details, summarize portfolio evidence, and answer related electronics, embedded, analog, digital, FPGA, ASIC, PCB, and firmware questions.";
+  }
+
+  return "Hi. I can help you explore Maurice Otieno's portfolio, explain his projects, summarize project evidence, open relevant sections, or answer related electronics and embedded-systems questions. You can ask about a specific project, a tool like KiCad or STM32CubeIDE, or a general topic such as embedded systems, op amps, FPGA design, ASICs, or PCB testing.";
 }
 
 function isLocalRequest(request) {
@@ -196,21 +210,32 @@ async function publishSiteChanges() {
 }
 
 async function handlePortfolioAi(request, response) {
-  const apiKey = process.env.OPENAI_API_KEY || "";
-  if (!apiKey) {
-    sendJson(response, 503, { error: "OPENAI_API_KEY is not configured for the local backend." });
-    return;
-  }
-
   const body = await readRequestJson(request);
   const question = clampText(body.question, 1200).trim();
   const context = body.context || {};
   const conversation = cleanConversationHistory(body.conversation);
-  const intent = body.intent === "general_engineering" ? "general_engineering" : "portfolio_specific";
+  const validIntents = new Set(["general_conversation", "general_engineering", "portfolio_specific"]);
+  const intent = validIntents.has(body.intent) ? body.intent : "portfolio_specific";
   const allowWebSearch = body.allowWebSearch === true;
 
   if (!question) {
     sendJson(response, 400, { error: "Question is required." });
+    return;
+  }
+
+  if (intent === "general_conversation") {
+    sendJson(response, 200, {
+      answer: ruleBasedConversationAnswer(question),
+      model: "portfolio-conversation-router",
+      provider: "portfolio-rules",
+      usedWebSearch: false
+    });
+    return;
+  }
+
+  const apiKey = process.env.OPENAI_API_KEY || "";
+  if (!apiKey) {
+    sendJson(response, 503, { error: "OPENAI_API_KEY is not configured for the local backend." });
     return;
   }
 

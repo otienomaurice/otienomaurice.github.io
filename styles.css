@@ -2126,6 +2126,25 @@ h3 {
   color: #d5e7e6;
 }
 
+.contact-band .ai-assistant-console,
+.contact-band .ai-assistant-console p,
+.contact-band .ai-assistant-console li {
+  color: #23384b;
+}
+
+.contact-band .ai-assistant-console h2,
+.contact-band .ai-answer-content strong {
+  color: #102b3b;
+}
+
+.contact-band .ai-source-heading {
+  color: #526d82;
+}
+
+.contact-band .ai-message-user p {
+  color: #17384a;
+}
+
 .contact-intro {
   margin: 16px 0 0;
 }
