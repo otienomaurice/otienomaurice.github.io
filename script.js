@@ -1677,25 +1677,48 @@ function clearAssistantChat() {
   aiAssistantInput?.focus();
 }
 
+function assistantRemoteTimeoutMs(question = "", context = {}, options = {}) {
+  const clean = normalize(question);
+  const sourceFetches = Array.isArray(context.sourceFetches) ? context.sourceFetches : [];
+  const usesGitHub = sourceFetches.some((source) => String(source.kind || "").toLowerCase() === "github" || /github\.com/i.test(source.url || ""));
+  if (usesGitHub || /\b(github|repo|repository|repositories|source\s+code|code|snippet|firmware|verilog|systemverilog|python|javascript|circuit\s+file)\b/.test(clean)) {
+    return 45000;
+  }
+  if (options.allowWebSearch) return 30000;
+  return 18000;
+}
+
 async function askRemoteAssistant(question, context, options = {}) {
   const endpoint = assistantEndpoint();
   if (!endpoint) return null;
   const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), 6500);
-  const response = await fetch(endpoint, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    signal: controller.signal,
-    body: JSON.stringify({
-      context,
-      conversation: options.conversation || [],
-      intent: options.intent || context.intent || "portfolio_specific",
-      allowWebSearch: Boolean(options.allowWebSearch),
-      question,
-      mode: "portfolio-plus-general-knowledge",
-      responseStyle: "chatgpt-like-answer-first-links-second"
-    })
-  }).finally(() => clearTimeout(timer));
+  let didTimeout = false;
+  const timer = setTimeout(() => {
+    didTimeout = true;
+    controller.abort();
+  }, assistantRemoteTimeoutMs(question, context, options));
+  let response;
+  try {
+    response = await fetch(endpoint, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      signal: controller.signal,
+      body: JSON.stringify({
+        context,
+        conversation: options.conversation || [],
+        intent: options.intent || context.intent || "portfolio_specific",
+        allowWebSearch: Boolean(options.allowWebSearch),
+        question,
+        mode: "portfolio-plus-general-knowledge",
+        responseStyle: "chatgpt-like-answer-first-links-second"
+      })
+    });
+  } catch (error) {
+    if (didTimeout) throw new Error("AI request timed out while reading public sources.");
+    throw error;
+  } finally {
+    clearTimeout(timer);
+  }
   if (!response.ok) throw new Error("AI service unavailable");
   const data = await response.json();
   const answer = String(data.answer || data.message || "").trim();
@@ -1729,8 +1752,8 @@ async function answerAssistantQuestion(question = "") {
         setAssistantStatus(remoteAnswer.model ? `AI answer ready: ${remoteAnswer.model}` : "AI answer ready");
         return;
       }
-    } catch {
-      setAssistantStatus("Local answer used", "error");
+    } catch (error) {
+      setAssistantStatus(error?.message || "Local answer used", "error");
     }
 
     const fallbackAnswer = assistantLocalAnswer(cleanQuestion, sources, intent);
