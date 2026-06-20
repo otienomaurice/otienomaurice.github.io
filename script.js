@@ -1171,20 +1171,34 @@ function assistantContextForQuestion(question = "", intent = assistantQuestionIn
     .filter(Boolean)
     .slice(0, 5);
   const includePortfolioLinkContext = intent === "portfolio_specific";
+  const wantsPublicCode = /\b(github|repo|repository|repositories|source\s+code|code|snippet|firmware|verilog|systemverilog|python|javascript)\b/.test(normalize(question));
+  const publicProfileFetches = includePortfolioLinkContext
+    ? assistantPublicProfileLinks()
+      .map((item) => ({ ...item, question }))
+      .sort((a, b) => {
+        if (!wantsPublicCode) return 0;
+        const aGithub = /github/i.test(`${a.kind || ""} ${a.url || ""}`) ? 1 : 0;
+        const bGithub = /github/i.test(`${b.kind || ""} ${b.url || ""}`) ? 1 : 0;
+        return bGithub - aGithub;
+      })
+    : [];
+  const resultFetches = directResults.map((result) => ({
+    context: result.context,
+    kind: assistantUrlKind(result.url),
+    title: result.title,
+    type: result.type,
+    url: assistantAbsoluteUrl(result.url || ""),
+    question
+  }));
+  const projectFetches = matchedProjects.flatMap((project) => assistantProjectEvidence(project)
+    .filter((item) => ["text", "webpage", "github", "linkedin", "resume_text"].includes(item.kind))
+    .slice(0, 6)
+    .map((item) => ({ ...item, question })));
   const sourceFetches = [
-    ...directResults.map((result) => ({
-      context: result.context,
-      kind: assistantUrlKind(result.url),
-      title: result.title,
-      type: result.type,
-      url: assistantAbsoluteUrl(result.url || ""),
-      question
-    })),
-    ...(includePortfolioLinkContext ? assistantPublicProfileLinks().map((item) => ({ ...item, question })) : []),
-    ...matchedProjects.flatMap((project) => assistantProjectEvidence(project)
-      .filter((item) => ["text", "webpage", "github", "linkedin", "resume_text"].includes(item.kind))
-      .slice(0, 6)
-      .map((item) => ({ ...item, question })))
+    ...(wantsPublicCode ? publicProfileFetches : []),
+    ...resultFetches,
+    ...(wantsPublicCode ? [] : publicProfileFetches),
+    ...projectFetches
   ].filter((item) => item.url);
   const uniqueSourceFetches = sourceFetches.filter((item, index, array) => (
     array.findIndex((candidate) => candidate.url === item.url) === index
