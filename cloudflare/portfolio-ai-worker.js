@@ -20,7 +20,8 @@ const PORTFOLIO_AI_INSTRUCTIONS = [
   "Use sourceExcerpts when present as higher-detail evidence from uploaded text files, extracted resume text, same-site files, GitHub pages, or other safe public sources.",
   "Use knowledgeManifest to understand project files, image evidence, public profiles, resumes, and project areas. Treat filenames, captions, surrounding text, and descriptions as evidence.",
   "Do not claim to visually inspect an image unless actual image analysis is provided. If only image metadata is supplied, say what the caption/path/context suggests.",
-  "For GitHub, LinkedIn, resume, or uploaded-file questions, cite what is present in the supplied context or fetched excerpts and then point to the link when useful.",
+  "For GitHub, LinkedIn, resume, or uploaded-file questions, cite what is present in the supplied context or fetched excerpts and then point to the link when useful. Access public pages and fetched excerpts when the website allows it.",
+  "When a visitor asks for source code, use public GitHub source excerpts when provided. Show concise relevant snippets with file paths, and explain what the code is doing. Do not imply private repository access.",
   "You may answer related electronics, hardware, analog, mixed-signal, digital, embedded, FPGA, ASIC, PCB, and firmware questions even when the answer is broader than the saved portfolio.",
   "Do not invent portfolio projects, credentials, employers, files, or test results that are not in the context.",
   "If context is missing, say what is missing and answer generally only for the engineering concept.",
@@ -87,8 +88,8 @@ function stripHtmlToText(value = "") {
 function sourceLooksTextual(source = {}) {
   const url = String(source.url || "");
   const kind = String(source.kind || "").toLowerCase();
-  if (["text", "webpage", "github", "resume_text"].includes(kind)) return true;
-  return /\.(txt|md|markdown|csv|json|xml|log|c|h|cpp|hpp|py|js|mjs|ts|v|sv|vhdl?|spice|cir|net|asc|sch|kicad_sch|kicad_pcb)$/i.test(url)
+  if (["text", "webpage", "github", "linkedin", "public_profile", "resume_text", "code"].includes(kind)) return true;
+  return /\.(txt|md|markdown|csv|json|xml|log|c|h|cpp|hpp|py|js|mjs|ts|tsx|v|sv|vhdl?|spice|cir|net|asc|sch|kicad_sch|kicad_pcb|ino|xdc|sdc|tcl)$/i.test(url)
     || /github\.com|raw\.githubusercontent\.com/i.test(url);
 }
 
@@ -99,6 +100,7 @@ function sourceUrlAllowed(url) {
       "mauriceotieno.com",
       "www.mauriceotieno.com",
       "github.com",
+      "api.github.com",
       "raw.githubusercontent.com",
       "gist.githubusercontent.com",
       "linkedin.com",
@@ -109,9 +111,194 @@ function sourceUrlAllowed(url) {
   }
 }
 
+const GITHUB_TEXT_FILE_PATTERN = /\.(txt|md|markdown|csv|json|xml|log|c|h|cpp|hpp|cc|hh|py|js|mjs|ts|tsx|v|sv|vhdl?|spice|cir|net|asc|sch|kicad_sch|kicad_pcb|ino|xdc|sdc|tcl|yaml|yml)$/i;
+const GITHUB_SKIP_FILE_PATTERN = /\.(png|jpe?g|gif|webp|svg|pdf|zip|7z|rar|exe|dll|bin|obj|o|a|so|dylib|mp4|mov|avi|mp3|wav|xlsx?|pptx?|docx?)$/i;
+
+function gitHubHeaders(accept = "application/vnd.github+json") {
+  return {
+    "Accept": accept,
+    "User-Agent": "Maurice-Otieno-Portfolio-AI"
+  };
+}
+
+function parseGitHubSourceUrl(url) {
+  try {
+    const parsed = new URL(url);
+    const host = parsed.hostname.toLowerCase();
+    const parts = parsed.pathname.split("/").filter(Boolean);
+    if (host === "raw.githubusercontent.com" && parts.length >= 4) {
+      return {
+        type: "file",
+        owner: parts[0],
+        repo: parts[1],
+        branch: parts[2],
+        filePath: parts.slice(3).join("/")
+      };
+    }
+    if (host !== "github.com" || !parts.length) return null;
+    if (parts.length === 1) return { type: "profile", owner: parts[0] };
+    const base = { owner: parts[0], repo: parts[1] };
+    if (parts[2] === "blob" && parts.length >= 5) {
+      return { ...base, type: "file", branch: parts[3], filePath: parts.slice(4).join("/") };
+    }
+    if (parts[2] === "tree" && parts.length >= 4) {
+      return { ...base, type: "repo", branch: parts[3] };
+    }
+    return { ...base, type: "repo" };
+  } catch {
+    return null;
+  }
+}
+
+async function fetchGitHubJson(url) {
+  const response = await fetch(url, { headers: gitHubHeaders() });
+  if (!response.ok) return null;
+  return response.json().catch(() => null);
+}
+
+async function fetchLimitedText(url, maxLength = 12000) {
+  const response = await fetch(url, {
+    headers: gitHubHeaders("text/plain,text/markdown,text/html,application/json;q=0.8,*/*;q=0.1")
+  });
+  if (!response.ok) return "";
+  const rawText = clampText(await response.text(), maxLength);
+  const contentType = response.headers.get("Content-Type") || "";
+  return /html/i.test(contentType) ? stripHtmlToText(rawText) : rawText;
+}
+
+function githubQuestionTokens(question = "") {
+  return [...new Set(String(question || "")
+    .toLowerCase()
+    .replace(/[^a-z0-9_#+.\s-]+/g, " ")
+    .split(/\s+/)
+    .filter((token) => token.length >= 3 && !["the", "and", "with", "from", "show", "code", "file", "github"].includes(token)))];
+}
+
+function scoreGitHubFile(filePath = "", question = "") {
+  const cleanPath = filePath.toLowerCase();
+  const tokens = githubQuestionTokens(question);
+  let score = GITHUB_TEXT_FILE_PATTERN.test(cleanPath) ? 10 : 0;
+  if (/readme\.md$/.test(cleanPath)) score += 55;
+  if (/\.(c|h|cpp|hpp|py|js|mjs|ts|v|sv|vhdl?|ino|tcl|xdc|sdc)$/i.test(cleanPath)) score += 28;
+  if (/\b(test|tb|bench|sim|simulation|src|firmware|hardware|rtl|driver|main)\b/i.test(cleanPath)) score += 12;
+  tokens.forEach((token) => {
+    if (cleanPath.includes(token)) score += 18;
+  });
+  return score;
+}
+
+function wantsGitHubCode(question = "") {
+  return /\b(code|source|snippet|implementation|firmware|driver|module|verilog|vhdl|python|javascript|typescript|c\+\+|cpp|c\s+code|pull|show|display)\b/i.test(question);
+}
+
+async function fetchGitHubProfileSource(source = {}, parsed = {}) {
+  const owner = parsed.owner;
+  const [profile, repos] = await Promise.all([
+    fetchGitHubJson(`https://api.github.com/users/${encodeURIComponent(owner)}`),
+    fetchGitHubJson(`https://api.github.com/users/${encodeURIComponent(owner)}/repos?per_page=30&sort=updated`)
+  ]);
+  const repoList = Array.isArray(repos) ? repos : [];
+  const lines = [
+    `GitHub public profile: ${owner}`,
+    profile?.name ? `Name: ${profile.name}` : "",
+    profile?.bio ? `Bio: ${profile.bio}` : "",
+    profile?.html_url ? `Profile URL: ${profile.html_url}` : source.url,
+    "",
+    "Public repositories visible from the profile:",
+    ...repoList.slice(0, 20).map((repo) => [
+      `- ${repo.full_name}`,
+      repo.description ? `: ${repo.description}` : "",
+      repo.language ? ` | Language: ${repo.language}` : "",
+      repo.html_url ? ` | URL: ${repo.html_url}` : "",
+      repo.updated_at ? ` | Updated: ${repo.updated_at}` : ""
+    ].join(""))
+  ].filter(Boolean);
+  return {
+    context: source.context || "Public GitHub profile",
+    title: source.title || source.label || `GitHub profile: ${owner}`,
+    type: "public GitHub profile",
+    url: source.url,
+    text: clampText(lines.join("\n"), 9000)
+  };
+}
+
+async function fetchGitHubRepositorySource(source = {}, parsed = {}) {
+  const { owner, repo } = parsed;
+  const metadata = await fetchGitHubJson(`https://api.github.com/repos/${encodeURIComponent(owner)}/${encodeURIComponent(repo)}`);
+  const branch = parsed.branch || metadata?.default_branch || "main";
+  const question = source.question || "";
+  const lines = [
+    `GitHub repository: ${owner}/${repo}`,
+    metadata?.description ? `Description: ${metadata.description}` : "",
+    metadata?.language ? `Primary language: ${metadata.language}` : "",
+    metadata?.html_url ? `Repository URL: ${metadata.html_url}` : source.url,
+    metadata?.default_branch ? `Default branch: ${metadata.default_branch}` : "",
+    ""
+  ].filter(Boolean);
+
+  if (parsed.type === "file" && parsed.filePath) {
+    const rawUrl = `https://raw.githubusercontent.com/${owner}/${repo}/${branch}/${parsed.filePath}`;
+    const text = await fetchLimitedText(rawUrl, 14000);
+    if (text.trim()) lines.push(`Source file: ${parsed.filePath}`, text.trim());
+    return {
+      context: source.context || "Public GitHub source file",
+      title: source.title || source.label || `${owner}/${repo}/${parsed.filePath}`,
+      type: "public GitHub source file",
+      url: source.url,
+      text: clampText(lines.join("\n"), 14000)
+    };
+  }
+
+  const tree = await fetchGitHubJson(`https://api.github.com/repos/${encodeURIComponent(owner)}/${encodeURIComponent(repo)}/git/trees/${encodeURIComponent(branch)}?recursive=1`);
+  const files = Array.isArray(tree?.tree)
+    ? tree.tree
+      .filter((item) => item.type === "blob" && item.path && GITHUB_TEXT_FILE_PATTERN.test(item.path) && !GITHUB_SKIP_FILE_PATTERN.test(item.path))
+      .sort((a, b) => scoreGitHubFile(b.path, question) - scoreGitHubFile(a.path, question))
+    : [];
+
+  const readmePath = files.find((file) => /(^|\/)readme\.md$/i.test(file.path))?.path || "README.md";
+  const readmeText = await fetchLimitedText(`https://raw.githubusercontent.com/${owner}/${repo}/${branch}/${readmePath}`, 9000).catch(() => "");
+  if (readmeText.trim()) lines.push(`README excerpt from ${readmePath}:`, readmeText.trim(), "");
+
+  if (files.length) {
+    lines.push("Repository text/code file list:", ...files.slice(0, 30).map((file) => `- ${file.path}`), "");
+  }
+
+  const includeCode = wantsGitHubCode(question);
+  const selectedFiles = files
+    .filter((file) => !/readme\.md$/i.test(file.path))
+    .slice(0, includeCode ? 6 : 3);
+
+  for (const file of selectedFiles) {
+    const rawUrl = `https://raw.githubusercontent.com/${owner}/${repo}/${branch}/${file.path}`;
+    const fileText = await fetchLimitedText(rawUrl, includeCode ? 7000 : 3000).catch(() => "");
+    if (!fileText.trim()) continue;
+    lines.push(`Source file: ${file.path}`, fileText.trim(), "");
+  }
+
+  return {
+    context: source.context || "Public GitHub repository",
+    title: source.title || source.label || `${owner}/${repo}`,
+    type: includeCode ? "public GitHub repository and code" : "public GitHub repository",
+    url: source.url,
+    text: clampText(lines.join("\n"), includeCode ? 22000 : 14000)
+  };
+}
+
+async function fetchGitHubSourceText(source = {}) {
+  const parsed = parseGitHubSourceUrl(source.url || "");
+  if (!parsed) return null;
+  if (parsed.type === "profile") return fetchGitHubProfileSource(source, parsed);
+  return fetchGitHubRepositorySource(source, parsed);
+}
+
 async function fetchSourceText(source = {}) {
   const url = String(source.url || "");
   if (!url || !sourceLooksTextual(source) || !sourceUrlAllowed(url)) return null;
+  if (/github\.com|raw\.githubusercontent\.com/i.test(url)) {
+    const githubText = await fetchGitHubSourceText(source);
+    if (githubText?.text?.trim()) return githubText;
+  }
   try {
     const response = await fetch(url, {
       headers: { "Accept": "text/plain,text/markdown,text/html,application/json;q=0.8,*/*;q=0.1" }
@@ -135,12 +322,15 @@ async function fetchSourceText(source = {}) {
 }
 
 async function enrichPortfolioContext(context = {}) {
-  const sources = Array.isArray(context.sourceFetches) ? context.sourceFetches.slice(0, 10) : [];
+  const question = String(context.question || "");
+  const sources = Array.isArray(context.sourceFetches)
+    ? context.sourceFetches.slice(0, 10).map((source) => ({ ...source, question: source.question || question }))
+    : [];
   const sourceExcerpts = (await Promise.all(sources.map(fetchSourceText))).filter(Boolean);
   return {
     ...context,
     sourceExcerpts,
-    sourceFetchPolicy: "Fetched excerpts are limited to safe text-like same-site, GitHub/raw GitHub, LinkedIn, and public portfolio URLs. PDFs/images are represented by captions, metadata, filenames, and companion text files when available."
+    sourceFetchPolicy: "Fetched excerpts are limited to safe text-like same-site, GitHub/raw GitHub, LinkedIn, and public portfolio URLs. GitHub repository links can be expanded into repository metadata, README text, and selected public source files when a question asks for code. PDFs/images are represented by captions, metadata, filenames, and companion text files when available."
   };
 }
 

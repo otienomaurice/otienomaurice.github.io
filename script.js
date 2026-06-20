@@ -1022,6 +1022,8 @@ function assistantProjectTitleMatches(question = "") {
 function assistantUrlKind(url = "") {
   const clean = String(url || "").split(/[?#]/)[0].toLowerCase();
   if (!clean) return "unknown";
+  if (/github\.com|raw\.githubusercontent\.com|gist\.githubusercontent\.com/i.test(clean)) return "github";
+  if (/linkedin\.com/i.test(clean)) return "linkedin";
   if (/\.(png|jpe?g|gif|webp|svg)$/i.test(clean)) return "image";
   if (/\.pdf$/i.test(clean)) return "pdf";
   if (/\.(zip|7z|rar)$/i.test(clean)) return "archive";
@@ -1066,7 +1068,7 @@ function assistantUrlsFromTextValue(value, context = "") {
     .map((url) => ({
       context,
       description: "",
-      kind: /github\.com/i.test(url) ? "github" : assistantUrlKind(url),
+      kind: assistantUrlKind(url),
       label: /github\.com/i.test(url) ? "GitHub repository or profile" : fileNameFromUrl(url),
       type: "Public link",
       url: assistantAbsoluteUrl(url)
@@ -1174,12 +1176,14 @@ function assistantContextForQuestion(question = "", intent = assistantQuestionIn
       kind: assistantUrlKind(result.url),
       title: result.title,
       type: result.type,
-      url: assistantAbsoluteUrl(result.url || "")
+      url: assistantAbsoluteUrl(result.url || ""),
+      question
     })),
-    ...(includePortfolioLinkContext ? assistantPublicProfileLinks() : []),
+    ...(includePortfolioLinkContext ? assistantPublicProfileLinks().map((item) => ({ ...item, question })) : []),
     ...matchedProjects.flatMap((project) => assistantProjectEvidence(project)
-      .filter((item) => ["text", "webpage", "github", "resume_text"].includes(item.kind))
-      .slice(0, 6))
+      .filter((item) => ["text", "webpage", "github", "linkedin", "resume_text"].includes(item.kind))
+      .slice(0, 6)
+      .map((item) => ({ ...item, question })))
   ].filter((item) => item.url);
   const uniqueSourceFetches = sourceFetches.filter((item, index, array) => (
     array.findIndex((candidate) => candidate.url === item.url) === index
@@ -1189,6 +1193,7 @@ function assistantContextForQuestion(question = "", intent = assistantQuestionIn
     intent,
     knowledgeManifest: {
       publicProfiles: includePortfolioLinkContext ? assistantPublicProfileLinks() : [],
+      publicSourcePolicy: "Only public profile and project links shown in the portfolio are used. GitHub repository links can be expanded into repository metadata, README text, and selected public source files when the visitor asks for code.",
       matchedProjectEvidence: matchedProjects.map((project) => ({
         evidence: assistantProjectEvidence(project),
         projectId: project.id,
@@ -2611,6 +2616,7 @@ function ensureSectionDialog() {
           <h2 id="section-view-title">Section</h2>
         </div>
         <div class="section-view-actions">
+          <button class="section-view-minimize" type="button" title="Minimize window" aria-label="Minimize window">-</button>
           <button class="section-view-close" type="button" aria-label="Close section">&times;</button>
         </div>
       </div>

@@ -1760,7 +1760,7 @@ h3 {
   justify-content: space-between;
   gap: 10px;
   width: 100%;
-  min-height: 42px;
+  min-height: 32px;
   padding: 0;
   border: 0;
   border-bottom: 1px solid var(--line);
@@ -1804,11 +1804,12 @@ h3 {
 }
 
 .section-view-heading h2 {
-  align-self: center;
+  align-self: flex-start;
   max-width: none;
   color: var(--ink);
-  font-size: clamp(1rem, 1.45vw, 1.42rem);
-  line-height: 1.22;
+  padding: 4px 0;
+  font-size: clamp(0.98rem, 1.25vw, 1.24rem);
+  line-height: 1.2;
   font-weight: 850;
   overflow-wrap: anywhere;
 }
@@ -1831,9 +1832,11 @@ h3 {
 .section-view-close {
   display: inline-grid;
   place-items: center;
-  min-width: 42px;
-  height: 42px;
-  padding: 0 10px;
+  width: 32px;
+  min-width: 32px;
+  height: 32px;
+  min-height: 32px;
+  padding: 0;
   border: 1px solid #b9d8e8;
   border-radius: 0;
   color: var(--ink);
@@ -1845,10 +1848,13 @@ h3 {
 
 .section-view-back,
 .section-view-forward {
-  width: 42px;
-  min-width: 42px;
-  padding: 0;
-  font-size: 1.08rem;
+  font-size: 0.95rem;
+  line-height: 1;
+}
+
+.section-view-minimize,
+.section-view-close {
+  font-size: 0.85rem;
   line-height: 1;
 }
 
@@ -2341,9 +2347,9 @@ h3 {
   }
 
   .section-view-heading {
-    align-items: center;
-    gap: 10px;
-    padding: 10px;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 0;
   }
 
   .section-view-actions {
