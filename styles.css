@@ -464,6 +464,8 @@ h3 {
 }
 
 .ai-assistant-panel {
+  --ai-console-rest-height: clamp(340px, 38vh, 390px);
+  --ai-console-live-height: var(--ai-console-rest-height);
   align-self: start;
   justify-self: end;
   width: min(100%, 430px);
@@ -476,9 +478,9 @@ h3 {
   display: grid;
   grid-template-rows: auto minmax(0, 1fr) auto auto;
   gap: 12px;
-  height: clamp(420px, 48vh, 540px);
-  min-height: 420px;
-  max-height: 540px;
+  height: var(--ai-console-live-height);
+  min-height: 0;
+  max-height: min(76vh, 720px);
   min-width: 0;
   padding: clamp(14px, 2vw, 20px);
   border: 1px solid rgba(43, 139, 166, 0.22);
@@ -1754,7 +1756,7 @@ h3 {
   top: 0;
   z-index: 5;
   display: flex;
-  align-items: stretch;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 10px;
   width: 100%;
@@ -1786,7 +1788,7 @@ h3 {
 
 .section-view-titlebar {
   display: flex;
-  align-items: stretch;
+  align-items: flex-start;
   gap: 8px;
   min-width: 0;
   flex: 1;
@@ -1817,9 +1819,9 @@ h3 {
 
 .section-view-actions {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: flex-end;
-  align-self: stretch;
+  align-self: flex-start;
   gap: 0;
 }
 
@@ -2110,6 +2112,8 @@ h3 {
   gap: clamp(22px, 3.5vw, 48px);
   align-items: start;
   padding: clamp(48px, 8vw, 78px) clamp(18px, 5vw, 56px);
+  position: relative;
+  overflow: visible;
   color: #fff;
   background: var(--graphite);
 }
@@ -2197,6 +2201,33 @@ h3 {
   border: 1px solid rgba(255, 255, 255, 0.24);
   background: rgba(255, 255, 255, 0.08);
   white-space: nowrap;
+}
+
+@media (min-width: 901px) {
+  .contact-band {
+    align-items: end;
+    padding-top: clamp(28px, 4vw, 48px);
+    padding-bottom: clamp(24px, 3vw, 38px);
+  }
+
+  .contact-band .profile-photo,
+  .contact-band .contact-content,
+  .contact-band .ai-assistant-panel {
+    align-self: end;
+  }
+
+  .contact-band .ai-assistant-panel {
+    height: var(--ai-console-rest-height);
+    position: relative;
+    z-index: 3;
+  }
+
+  .contact-band .ai-assistant-console {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+  }
 }
 
 .site-footer {
@@ -2293,6 +2324,13 @@ h3 {
     justify-self: stretch;
     width: 100%;
     max-width: none;
+    height: auto;
+  }
+
+  .contact-band .ai-assistant-console {
+    position: relative;
+    right: auto;
+    bottom: auto;
   }
 }
 

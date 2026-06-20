@@ -1,0 +1,53 @@
+Page 1
+MAURICE BARAZA OTIENO
+Easton, PA | (484) 545-1567 |otienomaurice12340@gmail.com |Linkedln
+EDUCATION
+Lafayette College                                                                                                                                                                                  Easton, PA
+Bachelor of Science Electrical and Computer Engineering                                                                                                      Graduation: May, 2026
+Relevant Coursework: Embedded Systems, Digital circuits and computer Architecture, Signals and Communication Systems, Data
+Structures and Algorithms, Mixed Signal-Design of electronic circuits, Industrial electronics and control systems, AI for computer
+vision, Cybersecurity
+
+Relevant Skills: Embedded design with Arduino, STM32, RASP BERRY PI, FPGA validation (System Verilog, Xilinx Vivado),
+circuit simulation (LTSpice), PCB design and hardware bring-up (KiCad), Bench testing, C/C++, VS Code, Assembly language
+(MIPS), Python & MA TLAB, java, I2C, UART, SPI, Signal Integrity. Timing circuits
+
+Awards and Honors: Murray G. Clay '30 Award Fund in Engineering Science, Dean’s List
+Campus Engagement: IEEE, Lafayette African and Caribbean Students Association, Soccer club and National Society of Black Engineers.
+RELEV ANT EXPERIENCE
+Kenya Power and Lighting Company: Junior Intern, Migori Kenya                                                                              July, 2025 - August, 2025
+ Read and recorded electricity consumption for more than 50 residential and commercial meters, supporting load monitoring and billing accuracy
+ Participated in preventive maintenance and inspection of distribution transformers to ensure system    reliability and safety compliance.
+ Assisted in replacement of faulty transformer connection components under supervision.
+
+Project Experience
+COMPUTER ARCHITECTURE                                                                                                                                      27 January - 3 March 2024
+ Described a basic MIPS Instruction set architecture based pipelined processor with ALU, control registers, Data Paths etc. in System Verilog.
+ Verified functional correctness and timing behavior through waveform simulation and testbench development in Vivado
+STRIDE – STAIR-CLIMBING MOBILITY ASSIST SYSTEM                                                                                        20 August 2025 - Present
+ Designed the power management system incorporating 24V battery pack, current monitoring, and protection circuitry for safe motor operation.
+
+ Designed embedded control architecture integrating STM32 microcontrollers, BLDC motor drivers, and sensor feedback for closed-loop mobility
+control.
+ Collaborated with seven teammates to performed hardware integration, PCB design, and system-level debugging across analog, digital, and power
+subsystems.
+DIGITAL DESIGN: PULSE SENSOR AND REACTION TIMER                                                                                 01 June - 20 August 2022
+ Collaborated with a partner to Design and implemented a system Verilog hardware module for pulse detection and reaction-time measurement on a
+Nexys A7100T FPGA.
+ Verified functional correctness and timing behavior through waveform simulation and testbench development in Vivado
+ Integrated and debugged the design on hardware via PMOD interfaces, resolving timing and synchronization issues.
+.https://github.com/otienomaurice/Pulse_Sensor_and_reaction_timer-.git
+Digital Design: Led Matrix controller                                                                                                                               01 June - 20 August 2023
+ Designed a system Verilog-based display controller implementing frame buffer storage using on-chip BRAM to drive Adafruit’s 32 x 16 LED
+matrix display panels.
+ Verified timing and refresh behavior through simulation waveform analysis in Vivado.
+LEADERSHIP AND PROFESSIONAL DEVELOPMENT
+Equity Group Foundation: Intern, College Counselling
+ Mentored recent high school graduates on academic planning, university applications, and career development.
+ Provided structured guidance sessions focused on goal setting, scholarship preparation, and transition to tertiary education.
+ADDITIONAL EXPERIENCE
+ECE Research fellow, Lafayette college                                                                                06/26/ 2025-present
+Student IT Assistant, Tech Lounge, Lafayette College                                                          01/26/ 2024-present
+Student Library Assistant, Lafayette College                                                                         08/22/ 2023-present
+Additional Skills
+Languages: English (Fluent) Swahili (Fluent), Luo (Fluent), Sheng (Conversational)

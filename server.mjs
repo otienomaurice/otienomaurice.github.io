@@ -50,6 +50,10 @@ const portfolioAiInstructions = [
   "For portfolio_specific intent, answer from Maurice's portfolio context first, then explain related engineering concepts only when useful.",
   "Use recent conversation history for follow-up questions, pronouns, comparisons, and corrections.",
   "Use the supplied portfolio context as the trusted source for Maurice's projects, links, files, resume, and contact information.",
+  "Use sourceExcerpts when present as higher-detail evidence from uploaded text files, extracted resume text, same-site files, GitHub pages, or other safe public sources.",
+  "Use knowledgeManifest to understand project files, image evidence, public profiles, resumes, and project areas. Treat filenames, captions, surrounding text, and descriptions as evidence.",
+  "Do not claim to visually inspect an image unless actual image analysis is provided. If only image metadata is supplied, say what the caption/path/context suggests.",
+  "For GitHub, LinkedIn, resume, or uploaded-file questions, cite what is present in the supplied context or fetched excerpts and then point to the link when useful. Acess the website and fetch information from it if the website allows it.",
   "You may answer related electronics, hardware, analog, mixed-signal, digital, embedded, FPGA, ASIC, PCB, and firmware questions even when the answer is broader than the saved portfolio.",
   "Do not invent portfolio projects, credentials, employers, files, or test results that are not in the context.",
   "If context is missing, say what is missing and answer generally only for the engineering concept.",
@@ -68,6 +72,115 @@ function sendJson(response, status, data) {
 
 function clampText(value, maxLength = 12000) {
   return String(value || "").slice(0, maxLength);
+}
+
+function stripHtmlToText(value = "") {
+  return String(value || "")
+    .replace(/<script[\s\S]*?<\/script>/gi, " ")
+    .replace(/<style[\s\S]*?<\/style>/gi, " ")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/&nbsp;/gi, " ")
+    .replace(/&amp;/gi, "&")
+    .replace(/&lt;/gi, "<")
+    .replace(/&gt;/gi, ">")
+    .replace(/&quot;/gi, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function sourceLooksTextual(source = {}) {
+  const url = String(source.url || "");
+  const kind = String(source.kind || "").toLowerCase();
+  if (["text", "webpage", "github", "resume_text"].includes(kind)) return true;
+  return /\.(txt|md|markdown|csv|json|xml|log|c|h|cpp|hpp|py|js|mjs|ts|v|sv|vhdl?|spice|cir|net|asc|sch|kicad_sch|kicad_pcb)$/i.test(url)
+    || /github\.com|raw\.githubusercontent\.com/i.test(url);
+}
+
+function sourceUrlAllowed(url) {
+  try {
+    const parsed = new URL(url);
+    const hostName = parsed.hostname.toLowerCase();
+    return [
+      "localhost",
+      "127.0.0.1",
+      "mauriceotieno.com",
+      "www.mauriceotieno.com",
+      "github.com",
+      "raw.githubusercontent.com",
+      "gist.githubusercontent.com",
+      "linkedin.com",
+      "www.linkedin.com"
+    ].includes(hostName);
+  } catch {
+    return false;
+  }
+}
+
+async function readLocalSourceText(url) {
+  let parsed;
+  try {
+    parsed = new URL(url);
+  } catch {
+    return "";
+  }
+  const localHosts = new Set(["localhost", "127.0.0.1", "mauriceotieno.com", "www.mauriceotieno.com"]);
+  if (!localHosts.has(parsed.hostname.toLowerCase())) return "";
+  const pathname = decodeURIComponent(parsed.pathname.replace(/^\/+/, ""));
+  if (!pathname || pathname.includes("..")) return "";
+  const ext = path.extname(pathname).toLowerCase();
+  if (![".txt", ".md", ".json", ".csv", ".log", ".xml", ".js", ".mjs", ".css", ".c", ".h", ".cpp", ".hpp", ".py", ".v", ".sv", ".spice", ".cir", ".net", ".asc", ".sch", ".kicad_sch", ".kicad_pcb"].includes(ext)) return "";
+  try {
+    return await readFile(resolveInsideRoot(pathname), "utf8");
+  } catch {
+    return "";
+  }
+}
+
+async function fetchSourceText(source = {}) {
+  const url = String(source.url || "");
+  if (!url || !sourceLooksTextual(source) || !sourceUrlAllowed(url)) return null;
+  const localText = await readLocalSourceText(url);
+  if (localText.trim()) {
+    return {
+      context: source.context || "",
+      title: source.title || source.label || url,
+      type: source.type || source.kind || "text source",
+      url,
+      text: clampText(localText.replace(/\s+\n/g, "\n").trim(), 9000)
+    };
+  }
+
+  try {
+    const response = await fetch(url, {
+      headers: { "Accept": "text/plain,text/markdown,text/html,application/json;q=0.8,*/*;q=0.1" }
+    });
+    if (!response.ok) return null;
+    const contentType = response.headers.get("Content-Type") || "";
+    if (!/text|json|xml|html|markdown/i.test(contentType)) return null;
+    const rawText = clampText(await response.text(), 12000);
+    const text = /html/i.test(contentType) ? stripHtmlToText(rawText) : rawText;
+    if (!text.trim()) return null;
+    return {
+      context: source.context || "",
+      title: source.title || source.label || url,
+      type: source.type || source.kind || "public source",
+      url,
+      text: clampText(text.trim(), 9000)
+    };
+  } catch {
+    return null;
+  }
+}
+
+async function enrichPortfolioContext(context = {}) {
+  const sources = Array.isArray(context.sourceFetches) ? context.sourceFetches.slice(0, 10) : [];
+  const sourceExcerpts = (await Promise.all(sources.map(fetchSourceText))).filter(Boolean);
+  return {
+    ...context,
+    sourceExcerpts,
+    sourceFetchPolicy: "Fetched excerpts are limited to safe text-like same-site, GitHub/raw GitHub, LinkedIn, and public portfolio URLs. PDFs/images are represented by captions, metadata, filenames, and companion text files when available."
+  };
 }
 
 function cleanConversationHistory(value) {
@@ -212,7 +325,7 @@ async function publishSiteChanges() {
 async function handlePortfolioAi(request, response) {
   const body = await readRequestJson(request);
   const question = clampText(body.question, 1200).trim();
-  const context = body.context || {};
+  const context = await enrichPortfolioContext(body.context || {});
   const conversation = cleanConversationHistory(body.conversation);
   const validIntents = new Set(["general_conversation", "general_engineering", "portfolio_specific"]);
   const intent = validIntents.has(body.intent) ? body.intent : "portfolio_specific";

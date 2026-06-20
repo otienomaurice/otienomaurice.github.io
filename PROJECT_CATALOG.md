@@ -77,19 +77,19 @@ The website search indexes:
 
 This means a search for `LTspice`, `Rev A`, `frequency response`, `Verilog`, `KiCad`, or `PCB` can surface the relevant project.
 
-## Local Template Preview Workflow
+## Local Appearance Preview Workflow
 
 Use `template-preview.html` to visually build projects before publishing them.
 
 The local builder loads:
 
 - `projects.json` for the current live catalog data
-- `project-templates.json` for reusable visual skins
+- `project-templates.json` for reusable appearance options
 - `projects.local.json` when a saved local draft exists
 
 The builder can:
 
-- add a project into any category and choose a visual skin from one shared library
+- add a project into any category and choose an appearance from one shared 10-item library
 - select, edit, or delete projects locally
 - edit project title, folder slug, category, status, summary, and focus tags
 - add files into standard sections such as `documents`, `tests`, `pcbs`, and `images`

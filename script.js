@@ -9,6 +9,7 @@ const heroTitle = document.querySelector("#hero-title");
 const heroCopy = document.querySelector(".hero-copy");
 const searchWrap = searchInput?.closest(".search-wrap");
 const aiAssistantForm = document.querySelector("#ai-assistant-form");
+const aiAssistantPanel = document.querySelector("#ask-ai");
 const aiAssistantInput = document.querySelector("#ai-assistant-input");
 const aiAssistantLog = document.querySelector("#ai-assistant-log");
 const aiAssistantStatus = document.querySelector("#ai-assistant-status");
@@ -896,6 +897,16 @@ function addSiteSectionSearchEntries(entries) {
     text: section.text
   }));
 
+  const resumeTextEntry = addSearchEntry(entries, {
+    context: "Professional Profile / Resume",
+    kind: "file",
+    title: "Resume searchable text",
+    type: "Resume text",
+    url: "assets/resume.txt",
+    text: "Maurice Otieno resume skills education experience FPGA ASIC embedded STM32 analog mixed signal KiCad LTspice Vivado SystemVerilog"
+  });
+  if (resumeTextEntry) indexSearchableFileText(resumeTextEntry);
+
   (siteSections || []).filter(siteSectionRenderable).forEach((section) => {
     addSearchEntry(entries, {
       domTarget: section.id,
@@ -1008,6 +1019,107 @@ function assistantProjectTitleMatches(question = "") {
   return assistantNamedProjectIds(question).length > 0;
 }
 
+function assistantUrlKind(url = "") {
+  const clean = String(url || "").split(/[?#]/)[0].toLowerCase();
+  if (!clean) return "unknown";
+  if (/\.(png|jpe?g|gif|webp|svg)$/i.test(clean)) return "image";
+  if (/\.pdf$/i.test(clean)) return "pdf";
+  if (/\.(zip|7z|rar)$/i.test(clean)) return "archive";
+  if (/\.(xlsx?|csv)$/i.test(clean)) return "spreadsheet";
+  if (fileIsBrowserSearchable(clean)) return "text";
+  if (/^https?:\/\//i.test(clean)) return "webpage";
+  return "file";
+}
+
+function assistantAbsoluteUrl(url = "") {
+  const target = normalizeLinkTarget(url, { assumeWeb: looksLikeBareWebAddress(url) || /^https?:\/\//i.test(url) });
+  if (!target) return "";
+  try {
+    return new URL(target, window.location.href).href;
+  } catch {
+    return target;
+  }
+}
+
+function assistantLinkRecordsFromValue(value, context = "") {
+  const records = [];
+  const downloads = uniqueDownloads(collectDownloadsFromValue(value, "Portfolio asset", []));
+  downloads.forEach((download) => {
+    const rawUrl = download.url || download.href || download.path || "";
+    if (!rawUrl) return;
+    records.push({
+      context,
+      description: download.description || "",
+      kind: download.kind || assistantUrlKind(rawUrl),
+      label: download.title || download.label || fileNameFromUrl(rawUrl),
+      url: assistantAbsoluteUrl(rawUrl)
+    });
+  });
+  return records;
+}
+
+function assistantUrlsFromTextValue(value, context = "") {
+  const text = flattenSearchText([value]);
+  const matches = text.match(/\b(?:https?:\/\/|www\.)[^\s<>"')]+/gi) || [];
+  return [...new Set(matches.map((url) => url.replace(/[),.;:!?]+$/g, "")))]
+    .slice(0, 16)
+    .map((url) => ({
+      context,
+      description: "",
+      kind: /github\.com/i.test(url) ? "github" : assistantUrlKind(url),
+      label: /github\.com/i.test(url) ? "GitHub repository or profile" : fileNameFromUrl(url),
+      type: "Public link",
+      url: assistantAbsoluteUrl(url)
+    }));
+}
+
+function assistantPublicProfileLinks() {
+  const records = [];
+  const add = (item = {}, context = "") => {
+    const rawUrl = item.url || item.href || item.path || "";
+    if (!rawUrl) return;
+    const label = item.label || item.title || fileNameFromUrl(rawUrl);
+    records.push({
+      context,
+      kind: item.kind || assistantUrlKind(rawUrl),
+      label,
+      text: item.description || "",
+      url: assistantAbsoluteUrl(rawUrl)
+    });
+  };
+
+  add({ label: "Resume PDF", kind: "resume", url: "assets/resume.pdf" }, "Professional Profile");
+  add({ label: "Resume searchable text", kind: "resume_text", url: "assets/resume.txt" }, "Professional Profile");
+  add({ label: "GitHub", kind: "github", url: "https://github.com/otienomaurice" }, "Professional Profile");
+  add({ label: "LinkedIn", kind: "linkedin", url: "https://www.linkedin.com/in/maurice-otieno-037a55341" }, "Professional Profile");
+
+  (siteSections || []).forEach((section) => {
+    (section.links || []).forEach((link) => add(link, section.title || "Portfolio section"));
+  });
+
+  return records.filter((record, index, array) => (
+    record.url && array.findIndex((item) => item.url === record.url && item.label === record.label) === index
+  ));
+}
+
+function assistantProjectEvidence(project = {}) {
+  const downloads = uniqueDownloads(collectDownloadsFromValue(project, "Project asset", []));
+  const downloadRecords = downloads.slice(0, 26).map((download) => {
+    const rawUrl = download.url || "";
+    return {
+      description: download.description || "",
+      kind: assistantUrlKind(rawUrl),
+      label: download.title || download.label || fileNameFromUrl(rawUrl),
+      type: download.type || "",
+      url: assistantAbsoluteUrl(rawUrl)
+    };
+  });
+  const textLinkRecords = assistantUrlsFromTextValue([project.summary, project.links, project.portfolioView], project.portfolioView?.title || project.title);
+  return [...downloadRecords, ...textLinkRecords].filter((record, index, array) => (
+    record.url && array.findIndex((item) => item.url === record.url) === index
+  ));
+}
+
 function assistantQuestionIsCasual(question = "") {
   const clean = normalize(question);
   return /^(hi|hello|hey|good\s+(morning|afternoon|evening)|yo|sup|thanks|thank\s+you|ok|okay)\b/.test(clean)
@@ -1019,6 +1131,12 @@ function assistantQuestionHasPortfolioIntent(question = "") {
   return assistantProjectTitleMatches(question)
     || /\b(maurice|otieno|portfolio|resume|github|linkedin|contact|email|phone|project|projects|repo|repository|repositories|file|files|document|documents|artifact|artifacts|link|links|download|open|show|where|built|build|created|designed|implemented)\b/.test(clean)
     || /\b(your|his|maurice's)\s+(project|projects|resume|github|linkedin|portfolio|work|email|phone|contact|repo|repository|files?|documents?|links?)\b/.test(clean);
+}
+
+function assistantQuestionAllowsPublicLookup(question = "", intent = assistantQuestionIntent(question)) {
+  const clean = normalize(question);
+  return intent === "general_engineering"
+    || /\b(github|linkedin|repo|repository|repositories|public\s+link|website|web\s*page|profile|resume|uploaded\s+file|document|source\s+code)\b/.test(clean);
 }
 
 function assistantQuestionLooksConceptual(question = "") {
@@ -1041,14 +1159,43 @@ function assistantContextForQuestion(question = "", intent = assistantQuestionIn
   const directResults = intent === "general_engineering"
     ? []
     : (knownResults || searchResultsFor(question)).slice(0, 8);
-  const projectIds = [...new Set(directResults.map((item) => item.projectId).filter(Boolean))];
+  const projectIds = [...new Set([
+    ...directResults.map((item) => item.projectId).filter(Boolean),
+    ...assistantNamedProjectIds(question)
+  ])];
   const matchedProjects = projectIds
     .map((id) => projects.find((project) => project.id === id))
     .filter(Boolean)
     .slice(0, 5);
+  const includePortfolioLinkContext = intent === "portfolio_specific";
+  const sourceFetches = [
+    ...directResults.map((result) => ({
+      context: result.context,
+      kind: assistantUrlKind(result.url),
+      title: result.title,
+      type: result.type,
+      url: assistantAbsoluteUrl(result.url || "")
+    })),
+    ...(includePortfolioLinkContext ? assistantPublicProfileLinks() : []),
+    ...matchedProjects.flatMap((project) => assistantProjectEvidence(project)
+      .filter((item) => ["text", "webpage", "github", "resume_text"].includes(item.kind))
+      .slice(0, 6))
+  ].filter((item) => item.url);
+  const uniqueSourceFetches = sourceFetches.filter((item, index, array) => (
+    array.findIndex((candidate) => candidate.url === item.url) === index
+  )).slice(0, 14);
   return {
     categories: categories.map((category) => ({ id: category.id, label: category.label })),
     intent,
+    knowledgeManifest: {
+      publicProfiles: includePortfolioLinkContext ? assistantPublicProfileLinks() : [],
+      matchedProjectEvidence: matchedProjects.map((project) => ({
+        evidence: assistantProjectEvidence(project),
+        projectId: project.id,
+        title: project.portfolioView?.title || project.title
+      })),
+      note: "Image records include filenames, captions, descriptions, and neighboring portfolio text. Use a vision-capable backend before claiming visual details not present in captions or text."
+    },
     portfolioContextPolicy: intent !== "portfolio_specific"
       ? "Answer from general electronics knowledge first. Do not lead with Maurice's project context unless the visitor explicitly asks to connect the concept to the portfolio."
       : "Answer from Maurice's portfolio context first. Do not invent project details outside the supplied context.",
@@ -1062,6 +1209,7 @@ function assistantContextForQuestion(question = "", intent = assistantQuestionIn
       type: result.type,
       url: result.url
     })),
+    sourceFetches: uniqueSourceFetches,
     siteSections: siteSections.filter(siteSectionRenderable).map((section) => ({ id: section.id, title: section.title }))
   };
 }
@@ -1366,6 +1514,38 @@ function setAssistantStatus(message, state = "ready") {
   aiAssistantStatus.dataset.state = state;
 }
 
+function assistantDesktopDockedHeight() {
+  if (!aiAssistantPanel) return 360;
+  const value = getComputedStyle(aiAssistantPanel).getPropertyValue("--ai-console-rest-height").trim();
+  if (value.endsWith("px")) return Number.parseFloat(value) || 360;
+  return Math.min(Math.max(window.innerHeight * 0.38, 340), 390);
+}
+
+function updateAssistantPanelGrowth() {
+  if (!aiAssistantPanel || !aiAssistantLog || !aiAssistantForm) return;
+  const isDesktop = window.matchMedia("(min-width: 901px)").matches;
+  if (!isDesktop) {
+    aiAssistantPanel.style.removeProperty("--ai-console-live-height");
+    aiAssistantPanel.classList.remove("ai-assistant-panel-expanded");
+    return;
+  }
+
+  const dockedHeight = assistantDesktopDockedHeight();
+  const formHeight = aiAssistantForm.getBoundingClientRect().height || 46;
+  const clearHeight = aiClearChatButton?.getBoundingClientRect().height || 38;
+  const titleHeight = document.querySelector("#ai-assistant-title")?.getBoundingClientRect().height || 34;
+  const chromeHeight = titleHeight + formHeight + clearHeight + 92;
+  const messages = [...aiAssistantLog.querySelectorAll(".ai-message")];
+  const messageGap = messages.length > 1 ? (messages.length - 1) * 10 : 0;
+  const messageHeight = messages.reduce((sum, message) => sum + message.getBoundingClientRect().height, 0) + messageGap;
+  const contentHeight = messageHeight + chromeHeight;
+  const maxHeight = Math.min(window.innerHeight * 0.76, 720);
+  const nextHeight = Math.round(Math.max(dockedHeight, Math.min(contentHeight, maxHeight)));
+
+  aiAssistantPanel.style.setProperty("--ai-console-live-height", `${nextHeight}px`);
+  aiAssistantPanel.classList.toggle("ai-assistant-panel-expanded", nextHeight > dockedHeight + 12);
+}
+
 function renderAssistantInline(value = "") {
   return renderInlineMath(value).replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
 }
@@ -1410,6 +1590,7 @@ function appendAssistantMessage(role, content, sources = []) {
     ? `${renderAssistantAnswerContent(content)}${assistantSourcesMarkup(sources)}`
     : `<p>${renderMultilineInlineText(content)}</p>`;
   aiAssistantLog.append(article);
+  updateAssistantPanelGrowth();
   aiAssistantLog.scrollTop = aiAssistantLog.scrollHeight;
   return article;
 }
@@ -1439,6 +1620,7 @@ function replaceAssistantMessage(article, content, sources = []) {
   }
   article.className = "ai-message ai-message-assistant";
   article.innerHTML = `${renderAssistantAnswerContent(content)}${assistantSourcesMarkup(sources)}`;
+  updateAssistantPanelGrowth();
   scrollAssistantAnswerToStart(article);
 }
 
@@ -1455,6 +1637,7 @@ function clearAssistantChat() {
   assistantChatHistory = [];
   aiAssistantLog.innerHTML = "";
   setAssistantStatus("Chat cleared");
+  updateAssistantPanelGrowth();
   aiAssistantInput?.focus();
 }
 
@@ -1500,7 +1683,7 @@ async function answerAssistantQuestion(question = "") {
     const conversation = assistantConversationForRequest(cleanQuestion, priorConversation);
     try {
       const remoteAnswer = await askRemoteAssistant(cleanQuestion, context, {
-        allowWebSearch: intent === "general_engineering",
+        allowWebSearch: assistantQuestionAllowsPublicLookup(cleanQuestion, intent),
         conversation,
         intent
       });
@@ -2618,6 +2801,7 @@ aiAssistantForm?.addEventListener("submit", (event) => {
 });
 
 aiClearChatButton?.addEventListener("click", clearAssistantChat);
+window.addEventListener("resize", updateAssistantPanelGrowth);
 
 aiAssistantLog?.addEventListener("click", (event) => {
   const button = event.target.closest("[data-ai-source-id]");
