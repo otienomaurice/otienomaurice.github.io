@@ -214,7 +214,7 @@ async function handlePortfolioAi(request, response) {
     return;
   }
 
-  const model = process.env.OPENAI_MODEL || "gpt-5.5";
+  const model = process.env.OPENAI_MODEL || "gpt-5.4";
   const fallbackModel = process.env.OPENAI_FALLBACK_MODEL || "gpt-4.1";
   const webSearchMode = String(process.env.OPENAI_ENABLE_WEB_SEARCH || "auto").toLowerCase();
   const enableWebSearch = webSearchMode === "true" || (webSearchMode !== "false" && allowWebSearch);

@@ -7,9 +7,18 @@ pattern = "ai.mauriceotieno.com"
 custom_domain = true
 
 [vars]
-OPENAI_MODEL = "gpt-5.4-mini"
-OPENAI_REASONING_EFFORT = "low"
-OPENAI_VERBOSITY = "low"
-OPENAI_MAX_OUTPUT_TOKENS = "700"
+AI_PROVIDER = "workers-ai"
+WORKERS_AI_MODEL = "@cf/meta/llama-3.3-70b-instruct-fp8-fast"
+WORKERS_AI_FALLBACK_MODEL = "@cf/meta/llama-3.1-8b-instruct-fast"
+WORKERS_AI_MAX_TOKENS = "900"
+WORKERS_AI_TEMPERATURE = "0.35"
+OPENAI_MODEL = "gpt-5.4"
+OPENAI_FALLBACK_MODEL = "gpt-4.1"
+OPENAI_REASONING_EFFORT = "medium"
+OPENAI_VERBOSITY = "medium"
+OPENAI_MAX_OUTPUT_TOKENS = "1100"
 OPENAI_ENABLE_WEB_SEARCH = "true"
 OPENAI_ALLOWED_ORIGINS = "https://mauriceotieno.com,https://www.mauriceotieno.com,http://localhost:8080,http://localhost:8081,http://127.0.0.1:8080,http://127.0.0.1:8081"
+
+[ai]
+binding = "AI"

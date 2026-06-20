@@ -89,18 +89,49 @@ function extractOpenAiText(data) {
   return chunks.join("\n\n").trim();
 }
 
-async function callOpenAi(body, env) {
-  const question = clampText(body.question, 1200).trim();
-  if (!question) return { status: 400, data: { error: "Question is required." } };
-  if (!env.OPENAI_API_KEY) return { status: 503, data: { error: "OPENAI_API_KEY is not configured." } };
+function extractWorkersAiText(data) {
+  if (typeof data === "string" && data.trim()) return data.trim();
+  if (typeof data?.response === "string" && data.response.trim()) return data.response.trim();
+  if (typeof data?.result?.response === "string" && data.result.response.trim()) return data.result.response.trim();
+  if (typeof data?.answer === "string" && data.answer.trim()) return data.answer.trim();
+  if (typeof data?.text === "string" && data.text.trim()) return data.text.trim();
+  return "";
+}
 
+function requestMetadata(body, env) {
+  const question = clampText(body.question, 1200).trim();
   const intent = body.intent === "general_engineering" ? "general_engineering" : "portfolio_specific";
   const allowWebSearch = body.allowWebSearch === true;
   const conversation = cleanConversationHistory(body.conversation);
-  const model = env.OPENAI_MODEL || "gpt-5.5";
-  const fallbackModel = env.OPENAI_FALLBACK_MODEL || "gpt-4.1";
+  const context = body.context || {};
   const webSearchMode = String(env.OPENAI_ENABLE_WEB_SEARCH || "auto").toLowerCase();
   const enableWebSearch = webSearchMode === "true" || (webSearchMode !== "false" && allowWebSearch);
+
+  return { allowWebSearch, context, conversation, enableWebSearch, intent, question };
+}
+
+function assistantUserPrompt({ context, conversation, enableWebSearch, intent, question }) {
+  return [
+    `Visitor question: ${question}`,
+    `Question intent: ${intent}`,
+    `Web search allowed for this question: ${enableWebSearch ? "yes" : "no"}`,
+    "",
+    "Recent conversation JSON:",
+    clampText(JSON.stringify(conversation, null, 2), 8000),
+    "",
+    "Portfolio context JSON:",
+    clampText(JSON.stringify(context || {}, null, 2), 18000)
+  ].join("\n");
+}
+
+async function callOpenAi(body, env) {
+  const metadata = requestMetadata(body, env);
+  const { context, conversation, enableWebSearch, intent, question } = metadata;
+  if (!question) return { status: 400, data: { error: "Question is required." } };
+  if (!env.OPENAI_API_KEY) return { status: 503, data: { error: "OPENAI_API_KEY is not configured." } };
+
+  const model = env.OPENAI_MODEL || "gpt-5.4";
+  const fallbackModel = env.OPENAI_FALLBACK_MODEL || "gpt-4.1";
   const buildPayload = (selectedModel) => ({
     model: selectedModel,
     input: [
@@ -112,17 +143,7 @@ async function callOpenAi(body, env) {
         role: "user",
         content: [{
           type: "input_text",
-          text: [
-            `Visitor question: ${question}`,
-            `Question intent: ${intent}`,
-            `Web search allowed for this question: ${enableWebSearch ? "yes" : "no"}`,
-            "",
-            "Recent conversation JSON:",
-            clampText(JSON.stringify(conversation, null, 2), 8000),
-            "",
-            "Portfolio context JSON:",
-            clampText(JSON.stringify(body.context || {}, null, 2), 18000)
-          ].join("\n")
+          text: assistantUserPrompt({ context, conversation, enableWebSearch, intent, question })
         }]
       }
     ],
@@ -172,6 +193,87 @@ async function callOpenAi(body, env) {
   };
 }
 
+async function callWorkersAi(body, env) {
+  const metadata = requestMetadata(body, env);
+  const { context, conversation, enableWebSearch, intent, question } = metadata;
+  if (!question) return { status: 400, data: { error: "Question is required." } };
+  if (!env.AI || typeof env.AI.run !== "function") {
+    return { status: 503, data: { error: "Cloudflare Workers AI binding is not configured." } };
+  }
+
+  const model = env.WORKERS_AI_MODEL || "@cf/meta/llama-3.3-70b-instruct-fp8-fast";
+  const fallbackModel = env.WORKERS_AI_FALLBACK_MODEL || "@cf/meta/llama-3.1-8b-instruct-fast";
+  const messages = [
+    { role: "system", content: PORTFOLIO_AI_INSTRUCTIONS },
+    { role: "user", content: assistantUserPrompt({ context, conversation, enableWebSearch, intent, question }) }
+  ];
+  const runModel = async (selectedModel) => {
+    const result = await env.AI.run(selectedModel, {
+      max_tokens: Number(env.WORKERS_AI_MAX_TOKENS || 900),
+      messages,
+      temperature: Number(env.WORKERS_AI_TEMPERATURE || 0.35)
+    });
+    return { answer: extractWorkersAiText(result), raw: result, selectedModel };
+  };
+
+  try {
+    let result = await runModel(model);
+    if (!result.answer && fallbackModel && fallbackModel !== model) {
+      result = await runModel(fallbackModel);
+    }
+    if (!result.answer) {
+      return { status: 502, data: { error: "Workers AI returned an empty answer." } };
+    }
+    return {
+      status: 200,
+      data: {
+        answer: result.answer,
+        model: result.selectedModel,
+        provider: "cloudflare-workers-ai",
+        usedWebSearch: false
+      }
+    };
+  } catch (error) {
+    if (fallbackModel && fallbackModel !== model) {
+      try {
+        const result = await runModel(fallbackModel);
+        if (result.answer) {
+          return {
+            status: 200,
+            data: {
+              answer: result.answer,
+              model: result.selectedModel,
+              provider: "cloudflare-workers-ai",
+              usedWebSearch: false
+            }
+          };
+        }
+      } catch {
+        // Use the original error below.
+      }
+    }
+    return {
+      status: 502,
+      data: { error: error?.message || "Cloudflare Workers AI request failed." }
+    };
+  }
+}
+
+async function callAssistantModel(body, env) {
+  const provider = String(env.AI_PROVIDER || "workers-ai").toLowerCase();
+  if (provider === "openai") return callOpenAi(body, env);
+  if (provider === "workers-ai") {
+    const workersAi = await callWorkersAi(body, env);
+    if (workersAi.status === 200 || !env.OPENAI_API_KEY) return workersAi;
+    return callOpenAi(body, env);
+  }
+
+  const workersAi = await callWorkersAi(body, env);
+  if (workersAi.status === 200) return workersAi;
+  if (env.OPENAI_API_KEY) return callOpenAi(body, env);
+  return workersAi;
+}
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
@@ -205,7 +307,7 @@ export default {
       return jsonResponse({ error: "Request body must be JSON." }, 400, headers);
     }
 
-    const result = await callOpenAi(body, env);
+    const result = await callAssistantModel(body, env);
     return jsonResponse(result.data, result.status, headers);
   }
 };
