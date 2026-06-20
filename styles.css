@@ -2261,6 +2261,18 @@ h3 {
     grid-template-columns: 1fr;
   }
 
+  .contact-band .ai-assistant-panel {
+    order: 1;
+  }
+
+  .contact-band .profile-photo {
+    order: 2;
+  }
+
+  .contact-band .contact-content {
+    order: 3;
+  }
+
   .ai-assistant-panel {
     justify-self: stretch;
     width: 100%;
