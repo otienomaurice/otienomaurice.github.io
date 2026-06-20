@@ -13,6 +13,7 @@ const PORTFOLIO_AI_INSTRUCTIONS = [
   "Answer the visitor's question first in a concise ChatGPT-like format, then add portfolio links or context only when they help.",
   "Use the supplied question intent to decide whether this is a general engineering question or a portfolio-specific question.",
   "For general_conversation intent, respond naturally and briefly. Greet the visitor and explain what you can help with. Do not force project context.",
+  "For general_knowledge intent, answer the question directly using broad general knowledge. Do not force portfolio context unless the visitor asks to connect the answer to Maurice's work.",
   "For general_engineering intent, begin with the general electronics or engineering explanation. Do not lead with Maurice's project context unless the visitor asks to connect it.",
   "For portfolio_specific intent, answer from Maurice's portfolio context first, then explain related engineering concepts only when useful.",
   "Use recent conversation history for follow-up questions, pronouns, comparisons, and corrections.",
@@ -191,6 +192,28 @@ function wantsGitHubCode(question = "") {
   return /\b(code|source|snippet|implementation|firmware|driver|module|verilog|vhdl|python|javascript|typescript|c\+\+|cpp|c\s+code|pull|show|display)\b/i.test(question);
 }
 
+function scoreGitHubRepo(repo = {}, question = "") {
+  const tokens = githubQuestionTokens(question);
+  const haystack = [
+    repo.full_name,
+    repo.name,
+    repo.description,
+    repo.language,
+    ...(Array.isArray(repo.topics) ? repo.topics : [])
+  ].join(" ").toLowerCase();
+  let score = repo.fork ? -10 : 12;
+  if (!repo.archived) score += 6;
+  if (repo.language) score += 4;
+  if (repo.name && !/\.github\.io$/i.test(repo.name)) score += 3;
+  tokens.forEach((token) => {
+    if (haystack.includes(token)) score += 22;
+  });
+  if (/\b(vco|oscillator|pwm|analog|mixed|pcb|firmware|stm32|fpga|asic|verilog|embedded|signal|design)\b/i.test(haystack)) {
+    score += 12;
+  }
+  return score;
+}
+
 async function fetchGitHubProfileSource(source = {}, parsed = {}) {
   const owner = parsed.owner;
   const [profile, repos] = await Promise.all([
@@ -198,6 +221,33 @@ async function fetchGitHubProfileSource(source = {}, parsed = {}) {
     fetchGitHubJson(`https://api.github.com/users/${encodeURIComponent(owner)}/repos?per_page=30&sort=updated`)
   ]);
   const repoList = Array.isArray(repos) ? repos : [];
+  const includeCode = wantsGitHubCode(source.question || "");
+  const selectedRepos = includeCode
+    ? [...repoList]
+      .sort((a, b) => scoreGitHubRepo(b, source.question || "") - scoreGitHubRepo(a, source.question || ""))
+      .slice(0, 3)
+    : [];
+  const repoBlocks = [];
+
+  for (const repo of selectedRepos) {
+    if (!repo?.name || !repo?.html_url) continue;
+    const repoSource = await fetchGitHubRepositorySource({
+      ...source,
+      context: `Public GitHub repository selected from ${owner}'s profile`,
+      label: repo.full_name,
+      maxCodeFiles: 3,
+      maxFileTextLength: 3600,
+      maxRepositoryTextLength: 9000,
+      url: repo.html_url
+    }, {
+      owner,
+      repo: repo.name,
+      type: "repo",
+      branch: repo.default_branch
+    });
+    if (repoSource?.text?.trim()) repoBlocks.push(repoSource.text.trim());
+  }
+
   const lines = [
     `GitHub public profile: ${owner}`,
     profile?.name ? `Name: ${profile.name}` : "",
@@ -211,14 +261,18 @@ async function fetchGitHubProfileSource(source = {}, parsed = {}) {
       repo.language ? ` | Language: ${repo.language}` : "",
       repo.html_url ? ` | URL: ${repo.html_url}` : "",
       repo.updated_at ? ` | Updated: ${repo.updated_at}` : ""
-    ].join(""))
+    ].join("")),
+    includeCode && selectedRepos.length ? "" : "",
+    includeCode && selectedRepos.length ? "Selected public repositories inspected for source code:" : "",
+    ...selectedRepos.map((repo) => `- ${repo.full_name}${repo.language ? ` | Language: ${repo.language}` : ""}${repo.description ? ` | ${repo.description}` : ""}`),
+    ...repoBlocks.flatMap((block) => ["", "---", block])
   ].filter(Boolean);
   return {
     context: source.context || "Public GitHub profile",
     title: source.title || source.label || `GitHub profile: ${owner}`,
-    type: "public GitHub profile",
+    type: includeCode ? "public GitHub profile and selected repository code" : "public GitHub profile",
     url: source.url,
-    text: clampText(lines.join("\n"), 9000)
+    text: clampText(lines.join("\n"), includeCode ? 30000 : 9000)
   };
 }
 
@@ -227,6 +281,12 @@ async function fetchGitHubRepositorySource(source = {}, parsed = {}) {
   const metadata = await fetchGitHubJson(`https://api.github.com/repos/${encodeURIComponent(owner)}/${encodeURIComponent(repo)}`);
   const branch = parsed.branch || metadata?.default_branch || "main";
   const question = source.question || "";
+  const requestedMaxCodeFiles = Number(source.maxCodeFiles || (wantsGitHubCode(question) ? 6 : 3));
+  const maxCodeFiles = Math.max(1, Math.min(8, Number.isFinite(requestedMaxCodeFiles) ? requestedMaxCodeFiles : 3));
+  const requestedFileTextLength = Number(source.maxFileTextLength || (wantsGitHubCode(question) ? 7000 : 3000));
+  const maxFileTextLength = Math.max(1000, Math.min(10000, Number.isFinite(requestedFileTextLength) ? requestedFileTextLength : 3000));
+  const requestedRepoTextLength = Number(source.maxRepositoryTextLength || (wantsGitHubCode(question) ? 22000 : 14000));
+  const maxRepositoryTextLength = Math.max(5000, Math.min(26000, Number.isFinite(requestedRepoTextLength) ? requestedRepoTextLength : 14000));
   const lines = [
     `GitHub repository: ${owner}/${repo}`,
     metadata?.description ? `Description: ${metadata.description}` : "",
@@ -267,11 +327,11 @@ async function fetchGitHubRepositorySource(source = {}, parsed = {}) {
   const includeCode = wantsGitHubCode(question);
   const selectedFiles = files
     .filter((file) => !/readme\.md$/i.test(file.path))
-    .slice(0, includeCode ? 6 : 3);
+    .slice(0, maxCodeFiles);
 
   for (const file of selectedFiles) {
     const rawUrl = `https://raw.githubusercontent.com/${owner}/${repo}/${branch}/${file.path}`;
-    const fileText = await fetchLimitedText(rawUrl, includeCode ? 7000 : 3000).catch(() => "");
+    const fileText = await fetchLimitedText(rawUrl, maxFileTextLength).catch(() => "");
     if (!fileText.trim()) continue;
     lines.push(`Source file: ${file.path}`, fileText.trim(), "");
   }
@@ -281,7 +341,7 @@ async function fetchGitHubRepositorySource(source = {}, parsed = {}) {
     title: source.title || source.label || `${owner}/${repo}`,
     type: includeCode ? "public GitHub repository and code" : "public GitHub repository",
     url: source.url,
-    text: clampText(lines.join("\n"), includeCode ? 22000 : 14000)
+    text: clampText(lines.join("\n"), maxRepositoryTextLength)
   };
 }
 
@@ -370,7 +430,7 @@ function extractWorkersAiText(data) {
 
 function requestMetadata(body, env) {
   const question = clampText(body.question, 1200).trim();
-  const validIntents = new Set(["general_conversation", "general_engineering", "portfolio_specific"]);
+  const validIntents = new Set(["general_conversation", "general_engineering", "general_knowledge", "portfolio_specific"]);
   const intent = validIntents.has(body.intent) ? body.intent : "portfolio_specific";
   const allowWebSearch = body.allowWebSearch === true;
   const conversation = cleanConversationHistory(body.conversation);
@@ -413,7 +473,7 @@ async function callOpenAi(body, env) {
   let { context, conversation, enableWebSearch, intent, question } = metadata;
   if (!question) return { status: 400, data: { error: "Question is required." } };
   if (!env.OPENAI_API_KEY) return { status: 503, data: { error: "OPENAI_API_KEY is not configured." } };
-  context = await enrichPortfolioContext(context);
+  context = await enrichPortfolioContext({ ...context, question });
 
   const model = env.OPENAI_MODEL || "gpt-5.4";
   const fallbackModel = env.OPENAI_FALLBACK_MODEL || "gpt-4.1";
@@ -485,7 +545,7 @@ async function callWorkersAi(body, env) {
   if (!env.AI || typeof env.AI.run !== "function") {
     return { status: 503, data: { error: "Cloudflare Workers AI binding is not configured." } };
   }
-  context = await enrichPortfolioContext(context);
+  context = await enrichPortfolioContext({ ...context, question });
 
   const model = env.WORKERS_AI_MODEL || "@cf/meta/llama-3.3-70b-instruct-fp8-fast";
   const fallbackModel = env.WORKERS_AI_FALLBACK_MODEL || "@cf/meta/llama-3.1-8b-instruct-fast";
@@ -560,6 +620,9 @@ async function callAssistantModel(body, env) {
   }
 
   const provider = String(env.AI_PROVIDER || "workers-ai").toLowerCase();
+  if ((metadata.intent === "general_knowledge" || metadata.enableWebSearch) && env.OPENAI_API_KEY) {
+    return callOpenAi(body, env);
+  }
   if (provider === "openai") return callOpenAi(body, env);
   if (provider === "workers-ai") {
     const workersAi = await callWorkersAi(body, env);

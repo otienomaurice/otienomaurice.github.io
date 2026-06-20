@@ -1125,7 +1125,7 @@ function assistantProjectEvidence(project = {}) {
 function assistantQuestionIsCasual(question = "") {
   const clean = normalize(question);
   return /^(hi|hello|hey|good\s+(morning|afternoon|evening)|yo|sup|thanks|thank\s+you|ok|okay)\b/.test(clean)
-    || /\b(how\s+are\s+you|what\s+can\s+you\s+help|what\s+do\s+you\s+do|who\s+are\s+you|help\s+me|can\s+you\s+help|nice\s+to\s+meet\s+you)\b/.test(clean);
+    || /^(how\s+are\s+you|what\s+can\s+you\s+help.*|what\s+do\s+you\s+do|who\s+are\s+you|help|help\s+me|can\s+you\s+help|nice\s+to\s+meet\s+you)\??$/.test(clean);
 }
 
 function assistantQuestionHasPortfolioIntent(question = "") {
@@ -1138,6 +1138,7 @@ function assistantQuestionHasPortfolioIntent(question = "") {
 function assistantQuestionAllowsPublicLookup(question = "", intent = assistantQuestionIntent(question)) {
   const clean = normalize(question);
   return intent === "general_engineering"
+    || intent === "general_knowledge"
     || /\b(github|linkedin|repo|repository|repositories|public\s+link|website|web\s*page|profile|resume|uploaded\s+file|document|source\s+code)\b/.test(clean);
 }
 
@@ -1154,11 +1155,11 @@ function assistantQuestionIntent(question = "") {
   if (!hasPortfolioIntent && assistantQuestionIsEngineeringRelated(question)) return "general_engineering";
   if (!hasPortfolioIntent && assistantQuestionLooksConceptual(question)) return "general_engineering";
   if (hasPortfolioIntent) return "portfolio_specific";
-  return "general_conversation";
+  return "general_knowledge";
 }
 
 function assistantContextForQuestion(question = "", intent = assistantQuestionIntent(question), knownResults = null) {
-  const directResults = intent === "general_engineering"
+  const directResults = ["general_engineering", "general_knowledge", "general_conversation"].includes(intent)
     ? []
     : (knownResults || searchResultsFor(question)).slice(0, 8);
   const projectIds = [...new Set([
@@ -1202,7 +1203,7 @@ function assistantContextForQuestion(question = "", intent = assistantQuestionIn
       note: "Image records include filenames, captions, descriptions, and neighboring portfolio text. Use a vision-capable backend before claiming visual details not present in captions or text."
     },
     portfolioContextPolicy: intent !== "portfolio_specific"
-      ? "Answer from general electronics knowledge first. Do not lead with Maurice's project context unless the visitor explicitly asks to connect the concept to the portfolio."
+      ? "Answer from general knowledge first. Do not lead with Maurice's project context unless the visitor explicitly asks to connect the concept to the portfolio."
       : "Answer from Maurice's portfolio context first. Do not invent project details outside the supplied context.",
     projects: matchedProjects.map(assistantProjectSummary),
     question,
@@ -1443,6 +1444,14 @@ function assistantLocalAnswer(question = "", results = [], intent = assistantQue
     ].join("\n");
   }
 
+  if (intent === "general_knowledge") {
+    return [
+      "I can answer that as a general question when the AI backend is available.",
+      "",
+      "If this appears instead of a full answer, the backend model is not reachable from this browser session. Try again after the AI endpoint is configured, or ask a portfolio-specific question that can be answered from the local catalog."
+    ].join("\n");
+  }
+
   if (!projects.length) return "The project catalog is still loading. Try again in a moment.";
   if (!results.length) {
     return [
@@ -1559,14 +1568,35 @@ function renderAssistantAnswerContent(content = "") {
   const lines = String(content || "").replace(/\r\n?/g, "\n").split("\n");
   const html = [];
   let bulletItems = [];
+  let codeBlock = null;
   const flushBullets = () => {
     if (!bulletItems.length) return;
     html.push(`<ul>${bulletItems.map((item) => `<li>${renderAssistantInline(item)}</li>`).join("")}</ul>`);
     bulletItems = [];
   };
+  const flushCode = () => {
+    if (!codeBlock) return;
+    const language = codeBlock.language ? ` data-language="${escapeHtml(codeBlock.language)}"` : "";
+    html.push(`<pre class="ai-code-block"${language}><code>${escapeHtml(codeBlock.lines.join("\n"))}</code></pre>`);
+    codeBlock = null;
+  };
 
   lines.forEach((line) => {
     const trimmed = line.trim();
+    const fence = trimmed.match(/^```([a-z0-9_+.#-]*)\s*$/i);
+    if (fence) {
+      if (codeBlock) {
+        flushCode();
+      } else {
+        flushBullets();
+        codeBlock = { language: fence[1] || "", lines: [] };
+      }
+      return;
+    }
+    if (codeBlock) {
+      codeBlock.lines.push(line);
+      return;
+    }
     if (!trimmed) {
       flushBullets();
       return;
@@ -1583,6 +1613,7 @@ function renderAssistantAnswerContent(content = "") {
       html.push(`<p>${renderAssistantInline(trimmed)}</p>`);
     }
   });
+  flushCode();
   flushBullets();
   return `<div class="ai-answer-content">${html.join("") || "<p>I am ready.</p>"}</div>`;
 }
@@ -1661,7 +1692,7 @@ async function askRemoteAssistant(question, context, options = {}) {
       intent: options.intent || context.intent || "portfolio_specific",
       allowWebSearch: Boolean(options.allowWebSearch),
       question,
-      mode: "portfolio-plus-engineering",
+      mode: "portfolio-plus-general-knowledge",
       responseStyle: "chatgpt-like-answer-first-links-second"
     })
   }).finally(() => clearTimeout(timer));

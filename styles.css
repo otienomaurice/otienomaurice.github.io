@@ -593,6 +593,23 @@ h3 {
   color: #102b3b;
 }
 
+.ai-code-block {
+  max-width: 100%;
+  margin: 0;
+  padding: 10px 12px;
+  overflow-x: auto;
+  border: 1px solid #c8dce8;
+  border-radius: 6px;
+  background: #102033;
+  color: #eaf6ff;
+  font: 0.82rem/1.5 Consolas, "Liberation Mono", "Courier New", monospace;
+  white-space: pre;
+}
+
+.ai-code-block code {
+  color: inherit;
+}
+
 .ai-message-user {
   justify-self: end;
   border-color: rgba(16, 121, 144, 0.36);
