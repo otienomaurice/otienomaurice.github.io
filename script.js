@@ -1988,8 +1988,33 @@ function nodeSummary(title, rich, text, emptyMessage = "No summary has been adde
   if (!rich?.blocks?.length && !text) return "";
   return `
     <details class="parsed-summary" open>
-      <summary>${title}</summary>
+      <summary>${escapeHtml(title)}</summary>
       ${renderRichContent(rich, text || "")}
+    </details>
+  `;
+}
+
+function nodeIsOverview(item = {}) {
+  const title = normalize(displayTitle(item.title || item.label || ""));
+  return item.kind === "summary" || title === "overview" || title.endsWith(" overview");
+}
+
+function nodeOverviewDetails(node, children = []) {
+  const overviewItems = children.filter(nodeIsOverview);
+  const blocks = [];
+  if (node?.rich?.blocks?.length || node?.description) {
+    blocks.push(renderRichContent(node.rich, node.description || ""));
+  }
+  overviewItems.forEach((item) => {
+    if (item.rich?.blocks?.length || item.description) blocks.push(renderRichContent(item.rich, item.description || ""));
+    const itemFiles = renderInlineSectionFiles(nodeChildren(item));
+    if (itemFiles) blocks.push(itemFiles);
+  });
+  if (!blocks.length) return "";
+  return `
+    <details class="parsed-summary section-overview-default" open>
+      <summary>Overview</summary>
+      ${blocks.join("")}
     </details>
   `;
 }
@@ -2010,11 +2035,11 @@ function parsedNodeCard(node, projectId, sectionIndex, path) {
 }
 
 function parsedChildCards(children, projectId, sectionIndex, basePath = []) {
-  const visibleChildren = children.filter((child) => nodeHasRenderableContent(child) && !child.url);
+  const visibleChildren = children.filter((child) => nodeHasRenderableContent(child) && !child.url && !nodeIsOverview(child));
   if (!visibleChildren.length) return "";
   return `
     <div class="subsection-grid section-content-grid">
-      ${children.map((child, index) => nodeHasRenderableContent(child) && !child.url ? parsedNodeCard(child, projectId, sectionIndex, [...basePath, index]) : "").join("")}
+      ${children.map((child, index) => nodeHasRenderableContent(child) && !child.url && !nodeIsOverview(child) ? parsedNodeCard(child, projectId, sectionIndex, [...basePath, index]) : "").join("")}
     </div>
   `;
 }
@@ -2024,12 +2049,13 @@ function parsedNodeContent(node, projectId, sectionIndex, path = []) {
     if (!isContainer && node.url) return renderInlineSectionFiles([node]);
 
     const children = nodeChildren(node);
+    const contentChildren = children.filter((child) => !nodeIsOverview(child));
 
     return `
     <article class="parsed-window-panel section-directory">
-      ${node.rich?.blocks?.length || node.description ? renderRichContent(node.rich, node.description || "") : ""}
+      ${nodeOverviewDetails(node, children)}
       ${parsedChildCards(children, projectId, sectionIndex, path)}
-      ${renderInlineSectionFiles(children)}
+      ${renderInlineSectionFiles(contentChildren)}
     </article>
   `;
 }
@@ -2410,7 +2436,7 @@ function ensureSectionDialog() {
   `;
   document.body.append(dialog);
   dialog.querySelector(".section-view-minimize")?.addEventListener("click", () => toggleSectionDialogMinimized(dialog));
-  dialog.querySelector(".section-view-close").addEventListener("click", () => closeOrStepBackSectionDialog(dialog));
+  dialog.querySelector(".section-view-close").addEventListener("click", () => closeSectionDialog(dialog));
   dialog.addEventListener("cancel", () => clearSectionRouteInHistory());
   dialog.addEventListener("close", () => {
     document.body.classList.remove("full-window-open");
@@ -2423,7 +2449,10 @@ function ensureSectionDialog() {
   });
   dialog.querySelector(".section-view-back").addEventListener("click", () => {
     const path = pathFromString(dialog.dataset.resourcePath || "");
-    if (!path.length) return;
+    if (!path.length) {
+      closeSectionDialog(dialog);
+      return;
+    }
     const stack = sectionForwardStack(dialog);
     stack.push(pathToString(path));
     dialog.dataset.forwardStack = JSON.stringify(stack);
@@ -2454,8 +2483,16 @@ function sectionForwardStack(dialog) {
 }
 
 function updateSectionNavigation(dialog, path) {
-  dialog.querySelector(".section-view-back").hidden = !path.length;
+  const back = dialog.querySelector(".section-view-back");
+  back.hidden = false;
+  back.title = path.length ? "Previous view" : "Back to projects";
+  back.setAttribute("aria-label", path.length ? "Previous view" : "Back to projects");
   dialog.querySelector(".section-view-forward").hidden = !sectionForwardStack(dialog).length;
+}
+
+function closeSectionDialog(dialog) {
+  dialog.close();
+  clearSectionRouteInHistory();
 }
 
 function closeOrStepBackSectionDialog(dialog) {
@@ -2468,8 +2505,7 @@ function closeOrStepBackSectionDialog(dialog) {
     openParsedSection(dialog.dataset.projectId, dialog.dataset.sectionIndex, pathToString(path), { historyMode: "replace", preserveForward: true });
     return;
   }
-  dialog.close();
-  clearSectionRouteInHistory();
+  closeSectionDialog(dialog);
 }
 
 function openParsedSection(projectId, sectionIndex, resourcePath = "", options = {}) {

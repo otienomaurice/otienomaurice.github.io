@@ -1754,11 +1754,12 @@ h3 {
   top: 0;
   z-index: 5;
   display: flex;
-  align-items: center;
+  align-items: stretch;
   justify-content: space-between;
-  gap: 14px;
+  gap: 10px;
   width: 100%;
-  padding: 12px clamp(14px, 3vw, 28px);
+  min-height: 42px;
+  padding: 0;
   border: 0;
   border-bottom: 1px solid var(--line);
   border-radius: 0;
@@ -1785,8 +1786,8 @@ h3 {
 
 .section-view-titlebar {
   display: flex;
-  align-items: center;
-  gap: 10px;
+  align-items: stretch;
+  gap: 8px;
   min-width: 0;
   flex: 1;
 }
@@ -1801,6 +1802,7 @@ h3 {
 }
 
 .section-view-heading h2 {
+  align-self: center;
   max-width: none;
   color: var(--ink);
   font-size: clamp(1rem, 1.45vw, 1.42rem);
@@ -1817,7 +1819,8 @@ h3 {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: 8px;
+  align-self: stretch;
+  gap: 0;
 }
 
 .section-view-back,
@@ -1826,11 +1829,11 @@ h3 {
 .section-view-close {
   display: inline-grid;
   place-items: center;
-  min-width: 36px;
-  height: 32px;
+  min-width: 42px;
+  height: 42px;
   padding: 0 10px;
   border: 1px solid #b9d8e8;
-  border-radius: 8px;
+  border-radius: 0;
   color: var(--ink);
   background: #ffffff;
   font: inherit;
@@ -1840,11 +1843,16 @@ h3 {
 
 .section-view-back,
 .section-view-forward {
-  width: 34px;
-  min-width: 34px;
+  width: 42px;
+  min-width: 42px;
   padding: 0;
   font-size: 1.08rem;
   line-height: 1;
+}
+
+.section-view-close {
+  border-color: #f0c3c3;
+  color: #9f1d1d;
 }
 
 .section-view-minimize:hover {
@@ -1881,10 +1889,18 @@ h3 {
   background: #1f6ed4;
 }
 
-.section-view-close:hover {
+.section-view-close:hover,
+.section-view-close:focus-visible {
   border-color: #dc2626;
   color: #ffffff;
   background: #dc2626;
+}
+
+.section-view-close:active {
+  border-color: #b91c1c;
+  color: #ffffff;
+  background: #b91c1c;
+  transform: translateY(1px);
 }
 
 .section-view-content {
