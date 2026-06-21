@@ -221,6 +221,60 @@
   white-space: pre-wrap;
 }
 
+.publish-target-form {
+  display: grid;
+  gap: 16px;
+  min-width: min(680px, 84vw);
+  padding: 0 18px 18px;
+}
+
+.publish-target-form label {
+  display: grid;
+  gap: 7px;
+}
+
+.publish-target-form input {
+  min-height: 42px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0 12px;
+  color: var(--ink);
+  background: #ffffff;
+  font: inherit;
+}
+
+.publish-target-current {
+  display: grid;
+  gap: 8px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fafdff;
+  color: var(--muted);
+  font-size: 0.86rem;
+}
+
+.publish-target-current div {
+  display: grid;
+  grid-template-columns: minmax(120px, 0.32fr) minmax(0, 1fr);
+  gap: 10px;
+}
+
+.publish-target-current strong {
+  color: var(--ink);
+}
+
+.publish-target-current span {
+  overflow-wrap: anywhere;
+}
+
+.publish-target-note {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.55;
+}
+
 .portfolio-preview-button {
   display: inline-flex;
   align-items: center;

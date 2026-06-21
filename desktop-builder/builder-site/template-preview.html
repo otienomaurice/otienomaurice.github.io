@@ -27,6 +27,7 @@
           </a>
           <div class="builder-header-actions">
               <a class="button secondary" href="index.html#projects" target="_blank" rel="noreferrer">Portfolio</a>
+              <button class="button secondary" id="publish-target-open" type="button">Publishing target</button>
               <button class="button primary" id="save-draft" type="button">Save draft</button>
               <button class="button secondary" id="apply-catalog" type="button">Apply to site</button>
           </div>
@@ -303,6 +304,44 @@
                       id="portfolio-preview-frame"
                       title="Complete portfolio website preview before saving"></iframe>
           </div>
+      </dialog>
+
+      <dialog class="asset-dialog" id="publish-target-dialog">
+          <form class="publish-target-form" method="dialog" id="publish-target-form">
+              <div class="project-preview-heading">
+                  <div>
+                      <p class="eyebrow">Website publishing</p>
+                      <h2>Publishing target</h2>
+                  </div>
+                  <button class="project-window-close" id="publish-target-close" type="button" aria-label="Close publishing target">&times;</button>
+              </div>
+              <div class="publish-target-current" id="publish-target-current">
+                  Current target is loading.
+              </div>
+              <label>
+                  <span>GitHub Pages repository URL</span>
+                  <input id="publish-target-repository" type="text" placeholder="https://github.com/USERNAME/USERNAME.github.io.git" />
+              </label>
+              <label>
+                  <span>Custom domain, optional</span>
+                  <input id="publish-target-domain" type="text" placeholder="example.com" />
+              </label>
+              <label>
+                  <span>GitHub username, optional</span>
+                  <input id="publish-target-username" type="text" autocomplete="off" placeholder="GitHub username" />
+              </label>
+              <label>
+                  <span>Password or token, optional</span>
+                  <input id="publish-target-password" type="password" autocomplete="off" placeholder="GitHub personal access token or credential password" />
+              </label>
+              <p class="publish-target-note">
+                  The app can publish to Maurice Otieno's website only when the signed-in GitHub account has write access. Other users may connect their own compatible GitHub Pages repository and publish there after GitHub authorization succeeds. GitHub account passwords are usually rejected for Git pushes; use a personal access token or Git Credential Manager password/token when needed.
+              </p>
+              <div class="dialog-actions">
+                  <button class="button primary" type="submit">Save target</button>
+                  <button class="button secondary" id="publish-target-cancel" type="button">Cancel</button>
+              </div>
+          </form>
       </dialog>
 
       <dialog class="asset-dialog" id="publish-result-dialog">

@@ -1,6 +1,6 @@
 import { createServer } from "node:http";
-import { execFile } from "node:child_process";
-import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { execFile, spawn } from "node:child_process";
+import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { promisify } from "node:util";
 import { fileURLToPath } from "node:url";
@@ -32,6 +32,14 @@ const types = {
 
 const draftPath = path.join(root, "projects.local.json");
 const catalogPath = path.join(root, "projects.json");
+const defaultSiteRepository = process.env.OMB_BUILDER_REPOSITORY || "https://github.com/otienomaurice/otienomaurice.github.io.git";
+const publishAuthorizationHelp = [
+  "Publishing was blocked before live website files were applied.",
+  "Sign in to GitHub with an account that has write access to the selected Pages repository, then try Apply to site again.",
+  "If this is not Maurice Otieno's website, associate the builder workspace with your own GitHub Pages repository or compatible static website repository.",
+  "For a custom domain, add or update the repository CNAME file after the repository is associated.",
+  "Until a compatible writable website repository is associated, the builder remains local-only."
+].join(" ");
 const gitCandidates = [
   process.env.GIT_EXE,
   "git",
@@ -60,7 +68,7 @@ const portfolioAiInstructions = [
   "When a visitor asks for source code, use public GitHub source excerpts when provided. Show concise relevant snippets with file paths, and explain what the code is doing. Do not imply private repository access.",
   "If sourceExcerpts include lines labeled Source file, include at least one fenced code block with the file path immediately before it, unless the visitor explicitly asks for links only.",
   "Never invent, infer, or write hypothetical code for Maurice's repositories. Every fenced code block about Maurice's work must be copied from a fetched Source file excerpt. If no source file excerpt is available, say that the code was not available in the fetched public sources and give the repository link instead.",
-  "For questions about Maurice's GitHub repositories, prefer actual public GitHub source excerpts over portfolio summaries or project descriptions.",
+  "For questions about Maurice's public GitHub repositories, prefer fetched public GitHub source excerpts over portfolio summaries or project descriptions. You may fetch and display concise code from public GitHub URLs supplied in the portfolio context or safe source fetches, but never imply access to private repositories.",
   "You may answer related electronics, hardware, analog, mixed-signal, digital, embedded, FPGA, ASIC, PCB, and firmware questions even when the answer is broader than the saved portfolio.",
   "Do not invent portfolio projects, credentials, employers, files, or test results that are not in the context.",
   "If context is missing, say what is missing and answer generally only for the engineering concept.",
@@ -525,6 +533,130 @@ function resolveInsideRoot(...segments) {
   return target;
 }
 
+function publishAccessError(message, details = "", extra = {}) {
+  const error = new Error(message);
+  error.code = "PUBLISH_AUTHORIZATION_REQUIRED";
+  error.details = details || publishAuthorizationHelp;
+  error.publishAccess = {
+    authorizationRequired: true,
+    help: publishAuthorizationHelp,
+    ...extra
+  };
+  return error;
+}
+
+function gitFailureText(error) {
+  return [
+    error?.stderr,
+    error?.stdout,
+    error?.message
+  ].filter(Boolean).join("\n").trim();
+}
+
+function remoteUrlForDisplay(remoteUrl = "") {
+  return String(remoteUrl || "")
+    .replace(/^https:\/\/([^:@/]+):[^@/]+@/i, "https://$1:***@")
+    .replace(/^https:\/\/[^@/]+@/i, "https://");
+}
+
+function parseGitHubRemote(remoteUrl = "") {
+  const trimmed = String(remoteUrl || "").trim();
+  const sshMatch = trimmed.match(/^git@github\.com:([^/]+)\/(.+?)(?:\.git)?$/i);
+  if (sshMatch) return { owner: sshMatch[1], repo: sshMatch[2].replace(/\.git$/i, "") };
+
+  try {
+    const parsed = new URL(trimmed.replace(/^git\+/, ""));
+    if (!/github\.com$/i.test(parsed.hostname)) return null;
+    const parts = parsed.pathname.replace(/^\/+/, "").split("/");
+    if (parts.length < 2) return null;
+    return { owner: parts[0], repo: parts[1].replace(/\.git$/i, "") };
+  } catch {
+    return null;
+  }
+}
+
+function validatePublishRemoteUrl(value = "") {
+  const remoteUrl = String(value || "").trim();
+  if (!remoteUrl) return "";
+  if (/^git@github\.com:[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+(?:\.git)?$/i.test(remoteUrl)) return remoteUrl;
+  try {
+    const parsed = new URL(remoteUrl);
+    if (parsed.protocol !== "https:" || parsed.hostname.toLowerCase() !== "github.com") {
+      throw new Error("Only GitHub HTTPS repository URLs are supported by the guided setup.");
+    }
+    const parts = parsed.pathname.replace(/^\/+/, "").split("/");
+    if (parts.length < 2 || !parts[0] || !parts[1]) {
+      throw new Error("GitHub repository URL must include owner and repository name.");
+    }
+    return `https://github.com/${parts[0]}/${parts[1].replace(/\.git$/i, "")}.git`;
+  } catch (error) {
+    if (error.message?.includes("Only GitHub") || error.message?.includes("owner")) throw error;
+    throw new Error("Enter a GitHub repository URL such as https://github.com/USERNAME/USERNAME.github.io.git.");
+  }
+}
+
+function validateCustomDomain(value = "") {
+  const domain = String(value || "").trim().toLowerCase();
+  if (!domain) return "";
+  if (!/^(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z]{2,63}$/i.test(domain)) {
+    throw new Error("Custom domain must look like example.com or portfolio.example.com.");
+  }
+  return domain;
+}
+
+async function workspaceHasCompatibleSiteFiles() {
+  for (const fileName of ["index.html", "styles.css", "script.js"]) {
+    try {
+      await readFile(resolveInsideRoot(fileName));
+    } catch {
+      return false;
+    }
+  }
+  return true;
+}
+
+async function getPublishTargetInfo() {
+  const info = {
+    workspace: root,
+    defaultRepository: defaultSiteRepository,
+    gitBacked: false,
+    compatible: await workspaceHasCompatibleSiteFiles(),
+    remote: "",
+    branch: "",
+    repository: "",
+    customDomain: ""
+  };
+
+  try {
+    info.gitBacked = (await runGit(["rev-parse", "--is-inside-work-tree"])).stdout.trim() === "true";
+  } catch {
+    return info;
+  }
+
+  try {
+    info.remote = remoteUrlForDisplay((await runGit(["remote", "get-url", "origin"])).stdout.trim());
+  } catch {
+    info.remote = "";
+  }
+
+  try {
+    info.branch = (await runGit(["branch", "--show-current"])).stdout.trim();
+  } catch {
+    info.branch = "";
+  }
+
+  const parsedRemote = parseGitHubRemote(info.remote);
+  info.repository = parsedRemote ? `${parsedRemote.owner}/${parsedRemote.repo}` : info.remote;
+
+  try {
+    info.customDomain = (await readFile(resolveInsideRoot("CNAME"), "utf8")).trim();
+  } catch {
+    info.customDomain = "";
+  }
+
+  return info;
+}
+
 async function runGit(args) {
   let lastError = null;
   for (const candidate of gitCandidates) {
@@ -544,7 +676,216 @@ async function runGit(args) {
   throw lastError || new Error("Git executable was not found.");
 }
 
-async function publishSiteChanges() {
+async function runGitWithInput(args, input) {
+  let lastError = null;
+  for (const candidate of gitCandidates) {
+    try {
+      return await new Promise((resolve, reject) => {
+        const child = spawn(candidate, args, {
+          cwd: root,
+          windowsHide: true,
+          stdio: ["pipe", "pipe", "pipe"]
+        });
+        let stdout = "";
+        let stderr = "";
+
+        child.stdout.on("data", (chunk) => {
+          stdout += chunk.toString();
+        });
+        child.stderr.on("data", (chunk) => {
+          stderr += chunk.toString();
+        });
+        child.once("error", reject);
+        child.once("close", (code) => {
+          if (code === 0) {
+            resolve({ stdout, stderr, git: candidate });
+            return;
+          }
+          const error = new Error(stderr || stdout || `Git exited with code ${code}.`);
+          error.stdout = stdout;
+          error.stderr = stderr;
+          error.code = code;
+          error.git = candidate;
+          reject(error);
+        });
+
+        child.stdin.end(input);
+      });
+    } catch (error) {
+      lastError = error;
+      if (error.code === "ENOENT") continue;
+      throw error;
+    }
+  }
+  throw lastError || new Error("Git executable was not found.");
+}
+
+async function storeGitCredentials(remoteUrl, username, password) {
+  const cleanUsername = String(username || "").trim();
+  const cleanPassword = String(password || "");
+  if (!cleanUsername && !cleanPassword) return { stored: false };
+  if (!cleanUsername || !cleanPassword) {
+    throw new Error("Both username and password/token are required when credentials are provided.");
+  }
+
+  let parsed = null;
+  try {
+    parsed = new URL(remoteUrl);
+  } catch {
+    throw new Error("Username and password/token credentials require a GitHub HTTPS repository URL.");
+  }
+
+  if (parsed.protocol !== "https:" || parsed.hostname.toLowerCase() !== "github.com") {
+    throw new Error("Username and password/token credentials require a GitHub HTTPS repository URL.");
+  }
+
+  const pathName = parsed.pathname.replace(/^\/+/, "");
+  await runGit(["config", "--local", "credential.useHttpPath", "true"]);
+  const credentialInput = [
+    "protocol=https",
+    "host=github.com",
+    `path=${pathName}`,
+    `username=${cleanUsername}`,
+    `password=${cleanPassword}`,
+    ""
+  ].join("\n");
+  await runGitWithInput(["credential", "approve"], credentialInput);
+  return { stored: true, username: cleanUsername };
+}
+
+function validateCredentialPair(username, password) {
+  const cleanUsername = String(username || "").trim();
+  const cleanPassword = String(password || "");
+  if ((cleanUsername && !cleanPassword) || (!cleanUsername && cleanPassword)) {
+    throw new Error("Both username and password/token are required when credentials are provided.");
+  }
+  return { cleanUsername, cleanPassword };
+}
+
+async function ensureGitRepository() {
+  try {
+    const insideWorkTree = (await runGit(["rev-parse", "--is-inside-work-tree"])).stdout.trim();
+    if (insideWorkTree === "true") return;
+  } catch {
+    await runGit(["init"]);
+  }
+
+  const branch = (await runGit(["branch", "--show-current"])).stdout.trim();
+  if (!branch) {
+    await runGit(["checkout", "-B", "main"]);
+  }
+}
+
+async function configurePublishTarget(options = {}) {
+  const {
+    repositoryUrl = "",
+    customDomain = "",
+    authUsername = "",
+    authPassword = ""
+  } = options;
+  const customDomainProvided = Object.prototype.hasOwnProperty.call(options, "customDomain");
+  const remoteUrl = validatePublishRemoteUrl(repositoryUrl);
+  const domain = validateCustomDomain(customDomain);
+  validateCredentialPair(authUsername, authPassword);
+
+  await ensureGitRepository();
+
+  if (remoteUrl) {
+    try {
+      await runGit(["remote", "set-url", "origin", remoteUrl]);
+    } catch {
+      await runGit(["remote", "add", "origin", remoteUrl]);
+    }
+  }
+
+  if (customDomainProvided && domain) {
+    await writeFile(resolveInsideRoot("CNAME"), `${domain}\n`, "utf8");
+  } else if (customDomainProvided && !domain) {
+    await rm(resolveInsideRoot("CNAME"), { force: true });
+  }
+
+  const currentRemote = remoteUrl || (await getPublishTargetInfo()).remote;
+  const credentials = await storeGitCredentials(currentRemote, authUsername, authPassword);
+  const target = await getPublishTargetInfo();
+  return {
+    ...target,
+    credentialsStored: credentials.stored,
+    credentialUsername: credentials.username || ""
+  };
+}
+
+async function assertPublishAccess() {
+  let insideWorkTree = "";
+  try {
+    insideWorkTree = (await runGit(["rev-parse", "--is-inside-work-tree"])).stdout.trim();
+  } catch (error) {
+    throw publishAccessError(
+      "This workspace is not connected to a Git repository.",
+      gitFailureText(error),
+      { repository: defaultSiteRepository }
+    );
+  }
+
+  if (insideWorkTree !== "true") {
+    throw publishAccessError(
+      "This workspace is local-only and cannot publish yet.",
+      "Clone or associate a GitHub Pages/static-site repository before applying to site.",
+      { repository: defaultSiteRepository }
+    );
+  }
+
+  let remote = "";
+  let branch = "";
+  try {
+    remote = (await runGit(["remote", "get-url", "origin"])).stdout.trim();
+    branch = (await runGit(["branch", "--show-current"])).stdout.trim();
+  } catch (error) {
+    throw publishAccessError(
+      "A publish remote or branch is missing.",
+      gitFailureText(error),
+      { repository: defaultSiteRepository }
+    );
+  }
+
+  if (!remote || !branch) {
+    throw publishAccessError(
+      "A publish remote or branch is missing.",
+      "Set the origin remote and use a named branch before applying to site.",
+      { remote: remoteUrlForDisplay(remote), branch }
+    );
+  }
+
+  if (!await workspaceHasCompatibleSiteFiles()) {
+    throw publishAccessError(
+      "This repository does not look like a compatible static portfolio website.",
+      "The workspace must include index.html, styles.css, and script.js before it can be used as a publish target.",
+      { remote: remoteUrlForDisplay(remote), branch }
+    );
+  }
+
+  const parsedRemote = parseGitHubRemote(remote);
+  const repository = parsedRemote ? `${parsedRemote.owner}/${parsedRemote.repo}` : remoteUrlForDisplay(remote);
+
+  try {
+    await runGit(["push", "--dry-run", "origin", branch]);
+  } catch (error) {
+    throw publishAccessError(
+      "GitHub authorization is required before this website can be changed.",
+      gitFailureText(error),
+      { remote: remoteUrlForDisplay(remote), branch, repository }
+    );
+  }
+
+  return {
+    branch,
+    remote: remoteUrlForDisplay(remote),
+    repository,
+    authorizationChecked: true
+  };
+}
+
+async function publishSiteChanges(publishAccess = null) {
+  const access = publishAccess || await assertPublishAccess();
   const publishPaths = [
     "projects.json",
     "docs",
@@ -565,11 +906,12 @@ async function publishSiteChanges() {
     commit = await runGit(["commit", "-m", message]);
   }
 
-  const branch = (await runGit(["branch", "--show-current"])).stdout.trim();
+  const branch = access.branch || (await runGit(["branch", "--show-current"])).stdout.trim();
   const pushArgs = branch ? ["push", "origin", branch] : ["push"];
   const push = await runGit(pushArgs);
 
   return {
+    ...access,
     branch: branch || "current branch",
     committed: hasChanges,
     commitOutput: commit?.stdout || commit?.stderr || "",
@@ -686,6 +1028,15 @@ async function handleApi(request, response, url) {
     return true;
   }
 
+  if (request.method === "GET" && url.pathname === "/api/publish-target") {
+    if (!isLocalRequest(request)) {
+      sendJson(response, 403, { error: "Publishing target details are only available from this computer." });
+      return true;
+    }
+    sendJson(response, 200, { ok: true, target: await getPublishTargetInfo() });
+    return true;
+  }
+
   if (request.method !== "POST") return false;
 
   if (!isLocalRequest(request)) {
@@ -698,6 +1049,17 @@ async function handleApi(request, response, url) {
     return true;
   }
 
+  if (url.pathname === "/api/publish-target") {
+    try {
+      const body = await readRequestJson(request);
+      const target = await configurePublishTarget(body || {});
+      sendJson(response, 200, { ok: true, target });
+    } catch (error) {
+      sendJson(response, 400, { ok: false, error: error.message || "Publishing target could not be updated." });
+    }
+    return true;
+  }
+
   if (url.pathname === "/api/save-draft" || url.pathname === "/api/apply-catalog") {
     const body = await readRequestJson(request);
     const catalog = body.catalog;
@@ -707,11 +1069,32 @@ async function handleApi(request, response, url) {
       return true;
     }
 
-    const target = url.pathname === "/api/save-draft" ? draftPath : catalogPath;
-    await writeFile(target, `${JSON.stringify(catalog, null, 2)}\n`, "utf8");
-    if (url.pathname === "/api/apply-catalog") {
+    const applyingToSite = url.pathname === "/api/apply-catalog";
+    let publishAccess = null;
+    if (applyingToSite) {
       try {
-        const publish = await publishSiteChanges();
+        publishAccess = await assertPublishAccess();
+      } catch (error) {
+        sendJson(response, 200, {
+          ok: false,
+          file: path.relative(root, catalogPath),
+          publish: {
+            pushed: false,
+            authorizationRequired: true,
+            error: error.message || "Publishing authorization failed.",
+            details: error.details || publishAuthorizationHelp,
+            ...(error.publishAccess || {})
+          }
+        });
+        return true;
+      }
+    }
+
+    const target = applyingToSite ? catalogPath : draftPath;
+    await writeFile(target, `${JSON.stringify(catalog, null, 2)}\n`, "utf8");
+    if (applyingToSite) {
+      try {
+        const publish = await publishSiteChanges(publishAccess);
         sendJson(response, 200, { ok: true, file: path.relative(root, target), publish });
       } catch (error) {
         sendJson(response, 200, {

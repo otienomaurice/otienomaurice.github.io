@@ -39,6 +39,42 @@ For `Apply to site` to push successfully:
 - The Windows user must be authenticated for GitHub push access, usually through Git Credential Manager.
 - The remote repository must allow pushes to the active branch, normally `main`.
 
+The builder checks write access with Git before live website files are applied. If GitHub does not allow the signed-in identity to push, the app stops the publish and keeps the work local.
+
+Maurice Otieno's website repository is:
+
+```text
+https://github.com/otienomaurice/otienomaurice.github.io.git
+```
+
+That website can only be changed by a GitHub identity with write access to that repository.
+
+## Publishing To A Different Website
+
+The app is public and can also be used for another compatible GitHub Pages/static website.
+
+1. Open **Publishing target** in the app header.
+2. Enter the target GitHub repository URL, for example:
+
+```text
+https://github.com/YOUR-USERNAME/YOUR-USERNAME.github.io.git
+```
+
+3. Optionally enter a custom domain such as `example.com`; the builder writes it to `CNAME`.
+4. Sign in to GitHub with an account that has write access to that target repository.
+5. Optionally enter a GitHub username plus password/token. The app passes it to Git on that Windows machine and does not commit it to the repository.
+6. Click **Save draft** before **Apply to site**.
+
+If the repository is missing, incompatible, or the GitHub identity cannot push, publishing is rejected and the portfolio remains local-only.
+
+The app does not store Maurice's password or embed private credentials. GitHub usually rejects normal account passwords for Git pushes, so use a GitHub personal access token, Git Credential Manager, or an approved organization SSO credential in the password/token field. Use GitHub MFA and short-lived personal access tokens when stronger identity checks are required.
+
+## Offline Editing
+
+The builder runs from a local server inside the desktop app. Project creation, section editing, file attachment, previews, and **Save draft** work offline because they write to the local workspace.
+
+When the computer is online again, click **Apply to site**. The app checks the selected publishing target, verifies GitHub push access, writes the live site catalog, commits the changed site files, and pushes.
+
 The builder shows a result window after publishing with the Git output and success/failure state.
 
 ## Development Commands
@@ -80,3 +116,9 @@ git push origin builder-v0.2.0
 ```
 
 Tags beginning with `builder-v` create a GitHub Release containing the installer and portable executable.
+
+The latest public download page is:
+
+```text
+https://github.com/otienomaurice/otienomaurice.github.io/releases/latest
+```

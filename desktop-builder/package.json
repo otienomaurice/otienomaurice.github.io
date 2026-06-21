@@ -1,6 +1,6 @@
 {
   "name": "omb-portfolio-builder-desktop",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "private": true,
   "author": "Maurice Otieno",
   "description": "Windows desktop application wrapper for Maurice Otieno's local portfolio builder.",

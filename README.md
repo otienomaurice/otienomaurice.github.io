@@ -61,11 +61,46 @@ The site has no build step and no external runtime dependency.
 
 The portfolio builder is also packaged as a Windows desktop application in `desktop-builder`.
 
+Download the app from the GitHub Releases page:
+
+[OMB Portfolio Builder Windows downloads](https://github.com/otienomaurice/omb-portfolio-builder/releases/latest)
+
+Current release assets include:
+
+- `OMB-Portfolio-Builder-Setup-0.2.1-x64.exe` for a normal Windows installer.
+- `OMB-Portfolio-Builder-Portable-0.2.1-x64.exe` for a portable app that runs without installation.
+
 - The app keeps the same builder behavior as the previous local browser workflow.
 - Save draft continues to write local draft data.
-- Apply to site writes the website catalog, commits changed site files, and pushes to GitHub when the workspace is Git-backed.
+- Apply to site first verifies GitHub write access, then writes the website catalog, commits changed site files, and pushes to GitHub when the workspace is Git-backed.
 - The installer defaults to `C:\Program Files\OMB Portfolio Builder` and lets the user choose a different folder.
 - A portable executable is also produced for Windows machines where installation is not desired.
+
+### Install On Another Windows Machine
+
+1. Open the release link above.
+2. Download `OMB-Portfolio-Builder-Setup-0.2.1-x64.exe`.
+3. Run the installer. The default path is under `C:\Program Files`, but the installer lets you choose another folder.
+4. Open **OMB Portfolio Builder** from the Desktop or Start Menu.
+5. Install Git for Windows if the machine does not already have Git.
+6. Sign in to GitHub through Git Credential Manager using an account that has write access to the website repository.
+7. Use **Publishing target** if this machine should publish to a different GitHub Pages repository or custom domain.
+8. Optionally enter a GitHub username plus password/token in **Publishing target**. The builder hands this to Git on that Windows machine; it is not committed to the repository.
+9. Use **Save draft** first, then **Apply to site** when ready.
+
+### Publishing Security
+
+The builder app is public, but publishing Maurice Otieno's live website is not public.
+
+- The app does not store an owner password and does not embed private credentials.
+- `Apply to site` performs a GitHub push permission check before live website files are applied.
+- Maurice Otieno's live website can be changed only by a GitHub identity that has write access to `otienomaurice/otienomaurice.github.io`.
+- Another user may use the same builder for a different website by opening **Publishing target**, entering their own GitHub Pages/static-site repository URL, optionally entering a custom domain, and authenticating to GitHub with write access to that repository.
+- If the signed-in GitHub identity cannot push to the selected target repository, the live website is not changed and the builder stays local-only.
+- For custom domains, the builder can write the repository `CNAME` file after the target website repository is associated.
+- Use GitHub MFA, Git Credential Manager, and short-lived personal access tokens when stronger approval controls are needed.
+- GitHub usually rejects normal account passwords for Git pushes. Use a GitHub personal access token, Git Credential Manager, or an approved organization SSO credential in the password/token field.
+- The app works offline for local editing and **Save draft**. When the computer is back online, use **Apply to site** to run the GitHub authorization check and push the saved work.
 
 Build locally:
 

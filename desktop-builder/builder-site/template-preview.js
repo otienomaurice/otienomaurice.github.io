@@ -51,6 +51,16 @@ const openPortfolioPreviewButton = document.querySelector("#open-portfolio-previ
 const saveAllSectionsButton = document.querySelector("#save-all-sections");
 const portfolioPreviewDialog = document.querySelector("#portfolio-preview-dialog");
 const portfolioPreviewClose = document.querySelector("#portfolio-preview-close");
+const publishTargetOpen = document.querySelector("#publish-target-open");
+const publishTargetDialog = document.querySelector("#publish-target-dialog");
+const publishTargetForm = document.querySelector("#publish-target-form");
+const publishTargetClose = document.querySelector("#publish-target-close");
+const publishTargetCancel = document.querySelector("#publish-target-cancel");
+const publishTargetCurrent = document.querySelector("#publish-target-current");
+const publishTargetRepository = document.querySelector("#publish-target-repository");
+const publishTargetDomain = document.querySelector("#publish-target-domain");
+const publishTargetUsername = document.querySelector("#publish-target-username");
+const publishTargetPassword = document.querySelector("#publish-target-password");
 const publishResultDialog = document.querySelector("#publish-result-dialog");
 const publishResultEyebrow = document.querySelector("#publish-result-eyebrow");
 const publishResultTitle = document.querySelector("#publish-result-title");
@@ -318,6 +328,7 @@ let activeProjectPreviewProject = null;
 let activeProjectPreviewSectionIndex = -1;
 let activeProjectPreviewPath = [];
 let activeProjectPreviewForwardStack = [];
+let currentPublishTarget = null;
 let summaryEditorProjectId = "";
 let activeSummaryEditor = null;
 let activeSummaryBlock = null;
@@ -848,23 +859,108 @@ function showBuilderError(title, message, details = "") {
   publishResultDialog.showModal();
 }
 
+function renderPublishTargetInfo(target = {}) {
+  if (!publishTargetCurrent) return;
+  currentPublishTarget = target;
+  const rows = [
+    ["Workspace", target.workspace || "Not available"],
+    ["Repository", target.repository || target.remote || "No repository connected"],
+    ["Branch", target.branch || "No branch selected"],
+    ["Custom domain", target.customDomain || "None"],
+    ["Compatible site", target.compatible ? "Yes" : "No"],
+    ["Git-backed", target.gitBacked ? "Yes" : "No"]
+  ];
+  publishTargetCurrent.innerHTML = rows
+    .map(([label, value]) => `<div><strong>${escapeHtml(label)}</strong><span>${escapeHtml(value)}</span></div>`)
+    .join("");
+  if (publishTargetRepository) {
+    publishTargetRepository.value = target.remote || "";
+    publishTargetRepository.dataset.loadedValue = target.remote || "";
+  }
+  if (publishTargetDomain) {
+    publishTargetDomain.value = target.customDomain || "";
+    publishTargetDomain.dataset.autofilled = "true";
+  }
+}
+
+async function loadPublishTargetInfo() {
+  if (!publishTargetDialog) return;
+  publishTargetCurrent.textContent = "Current target is loading.";
+  try {
+    const response = await fetch(`/api/publish-target?t=${Date.now()}`, { cache: "no-store" });
+    const result = await response.json();
+    if (!response.ok || !result.ok) throw new Error(result.error || "Publishing target could not be loaded.");
+    renderPublishTargetInfo(result.target || {});
+  } catch (error) {
+    publishTargetCurrent.textContent = error.message || "Publishing target could not be loaded.";
+  }
+}
+
+async function openPublishTargetDialog() {
+  await loadPublishTargetInfo();
+  publishTargetDialog.showModal();
+}
+
+async function savePublishTarget(event) {
+  event.preventDefault();
+  try {
+    const response = await fetch(`/api/publish-target?t=${Date.now()}`, {
+      method: "POST",
+      cache: "no-store",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        repositoryUrl: publishTargetRepository?.value || "",
+        customDomain: publishTargetDomain?.value || "",
+        authUsername: publishTargetUsername?.value || "",
+        authPassword: publishTargetPassword?.value || ""
+      })
+    });
+    const result = await response.json();
+    if (!response.ok || !result.ok) throw new Error(result.error || "Publishing target could not be saved.");
+    renderPublishTargetInfo(result.target || {});
+    if (publishTargetPassword) publishTargetPassword.value = "";
+    publishTargetDialog.close();
+    showBuilderError(
+      "Publishing target saved",
+      result.target?.credentialsStored
+        ? `The builder saved this target and handed credentials for ${result.target.credentialUsername || "the selected GitHub user"} to Git on this computer.`
+        : "The builder will use this associated website repository the next time Apply to site is clicked.",
+      "GitHub will still verify write permission before any live website files are applied."
+    );
+  } catch (error) {
+    publishTargetCurrent.textContent = error.message || "Publishing target could not be saved.";
+  }
+}
+
 function showPublishResult(result) {
   const publish = result.publish || {};
   const pushed = Boolean(publish.pushed);
+  const authorizationRequired = Boolean(publish.authorizationRequired);
   publishResultEyebrow.textContent = "GitHub publish";
-  publishResultTitle.textContent = pushed ? "Successfully pushed to GitHub" : "Site applied, push failed";
+  publishResultTitle.textContent = pushed
+    ? "Successfully pushed to GitHub"
+    : authorizationRequired
+      ? "Publishing access required"
+      : "Site applied, push failed";
   publishResultMessage.textContent = pushed
     ? `Your portfolio changes were committed and pushed to ${publish.branch || "GitHub"}.`
-    : `The site was applied locally, but Git push did not complete.`;
+    : authorizationRequired
+      ? "No live website files were applied. Sign in with a GitHub account that has write access to this website repository, or associate the builder with your own compatible website repository."
+      : "The site was applied locally, but Git push did not complete.";
 
   const output = [
     pushed ? "PUSH STATUS: SUCCESS" : "PUSH STATUS: FAILED",
     `FILE: ${result.file || "projects.json"}`,
+    authorizationRequired ? "AUTHORIZATION: REQUIRED BEFORE WEBSITE CHANGES" : "",
+    publish.repository ? `REPOSITORY: ${publish.repository}` : "",
+    publish.remote ? `REMOTE: ${publish.remote}` : "",
     publish.branch ? `BRANCH: ${publish.branch}` : "",
     publish.committed === false ? "COMMIT: No file changes to commit." : "",
     publish.commitOutput ? `COMMIT OUTPUT:\n${publish.commitOutput}` : "",
     publish.pushOutput ? `PUSH OUTPUT:\n${publish.pushOutput}` : "",
-    publish.error ? `ERROR:\n${publish.error}` : ""
+    publish.error ? `ERROR:\n${publish.error}` : "",
+    publish.details ? `DETAILS:\n${publish.details}` : "",
+    publish.help ? `NEXT STEP:\n${publish.help}` : ""
   ].filter(Boolean).join("\n\n");
 
   publishResultOutput.textContent = output || "No Git output was returned.";
@@ -6144,6 +6240,23 @@ portfolioPreviewClose.addEventListener("click", () => {
 });
 portfolioPreviewDialog.addEventListener("close", () => {
   document.body.classList.remove("full-window-open");
+});
+publishTargetOpen?.addEventListener("click", openPublishTargetDialog);
+publishTargetClose?.addEventListener("click", () => {
+  publishTargetDialog.close();
+});
+publishTargetCancel?.addEventListener("click", () => {
+  publishTargetDialog.close();
+});
+publishTargetForm?.addEventListener("submit", savePublishTarget);
+publishTargetRepository?.addEventListener("input", () => {
+  const loadedRepository = publishTargetRepository.dataset.loadedValue || currentPublishTarget?.remote || "";
+  if (publishTargetRepository.value.trim() !== loadedRepository.trim() && publishTargetDomain?.dataset.autofilled === "true") {
+    publishTargetDomain.value = "";
+  }
+});
+publishTargetDomain?.addEventListener("input", () => {
+  publishTargetDomain.dataset.autofilled = "false";
 });
 publishResultClose.addEventListener("click", () => {
   publishResultDialog.close();
