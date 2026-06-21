@@ -1,0 +1,71 @@
+{
+  "name": "omb-portfolio-builder-desktop",
+  "version": "0.1.0",
+  "private": true,
+  "author": "Maurice Otieno",
+  "description": "Windows desktop application wrapper for Maurice Otieno's local portfolio builder.",
+  "main": "main.cjs",
+  "scripts": {
+    "dev": "electron .",
+    "pack": "electron-builder --win portable",
+    "dist": "electron-builder --win nsis"
+  },
+  "devDependencies": {
+    "electron": "^39.2.7",
+    "electron-builder": "^26.0.12"
+  },
+  "build": {
+    "appId": "com.mauriceotieno.portfoliobuilder",
+    "productName": "OMB Portfolio Builder",
+    "copyright": "Copyright © Maurice Otieno",
+    "asar": true,
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.cjs",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "../",
+        "to": "site",
+        "filter": [
+          "assets/**",
+          "Backgrounds/**",
+          "docs/**",
+          "server.mjs",
+          "index.html",
+          "styles.css",
+          "script.js",
+          "electronics-search.js",
+          "builder-rich-future-sections.js",
+          "template-preview.html",
+          "template-preview.css",
+          "template-preview.js",
+          "projects.json",
+          "project-templates.json",
+          "README.md",
+          ".nojekyll",
+          "robots.txt",
+          "sitemap.xml",
+          "CNAME"
+        ]
+      }
+    ],
+    "win": {
+      "icon": "../assets/omb-app-icon.ico",
+      "target": [
+        "portable",
+        "nsis"
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "OMB Portfolio Builder"
+    }
+  }
+}
