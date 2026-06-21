@@ -1,6 +1,6 @@
 {
   "name": "omb-portfolio-builder-desktop",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "author": "Maurice Otieno",
   "description": "Windows desktop application wrapper for Maurice Otieno's local portfolio builder.",
@@ -8,7 +8,8 @@
   "scripts": {
     "dev": "electron .",
     "pack": "electron-builder --win portable",
-    "dist": "electron-builder --win nsis"
+    "installer": "electron-builder --win nsis",
+    "dist": "electron-builder --win"
   },
   "devDependencies": {
     "electron": "^39.2.7",
@@ -17,7 +18,7 @@
   "build": {
     "appId": "com.mauriceotieno.portfoliobuilder",
     "productName": "OMB Portfolio Builder",
-    "copyright": "Copyright © Maurice Otieno",
+    "copyright": "Copyright (c) Maurice Otieno",
     "asar": true,
     "directories": {
       "output": "dist"
@@ -40,16 +41,19 @@
           "script.js",
           "electronics-search.js",
           "builder-rich-future-sections.js",
-          "template-preview.html",
-          "template-preview.css",
-          "template-preview.js",
           "projects.json",
-          "project-templates.json",
           "README.md",
           ".nojekyll",
           "robots.txt",
           "sitemap.xml",
           "CNAME"
+        ]
+      },
+      {
+        "from": "builder-site",
+        "to": "site",
+        "filter": [
+          "**/*"
         ]
       }
     ],
@@ -60,8 +64,13 @@
         "nsis"
       ]
     },
+    "portable": {
+      "artifactName": "OMB-Portfolio-Builder-Portable-${version}-${arch}.${ext}"
+    },
     "nsis": {
+      "artifactName": "OMB-Portfolio-Builder-Setup-${version}-${arch}.${ext}",
       "oneClick": false,
+      "perMachine": true,
       "allowToChangeInstallationDirectory": true,
       "createDesktopShortcut": true,
       "createStartMenuShortcut": true,

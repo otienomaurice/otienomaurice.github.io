@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Local Portfolio Builder | Maurice Otieno</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192.png" />
+    <link rel="shortcut icon" href="assets/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="template-preview.css" />
+  </head>
+  <body class="template-preview-page">
+      <header class="template-header">
+          <a class="brand" href="index.html#top" aria-label="Back to portfolio">
+              <span class="brand-lockup" aria-hidden="true">
+                  <img class="brand-icon" src="assets/omb-mark.png" alt="" />
+                  <span class="omb-engraving">OMB</span>
+              </span>
+              <span>
+                  <strong>Local Portfolio Builder</strong>
+                  <small>Build, preview, save locally, then publish when ready</small>
+              </span>
+          </a>
+          <div class="builder-header-actions">
+              <a class="button secondary" href="index.html#projects" target="_blank" rel="noreferrer">Portfolio</a>
+              <button class="button primary" id="save-draft" type="button">Save draft</button>
+              <button class="button secondary" id="apply-catalog" type="button">Apply to site</button>
+          </div>
+      </header>
+
+      <main class="builder-workspace">
+          <aside class="builder-sidebar" aria-labelledby="library-title">
+              <button class="builder-guide-panel" id="builder-guide-open" type="button" aria-label="Open builder guide">
+                  <span class="builder-guide-icon" aria-hidden="true"></span>
+                  <span>
+                      <strong id="library-title">Portfolio Builder</strong>
+                      <small>Click for a quick build guide</small>
+                  </span>
+              </button>
+
+              <div class="builder-panel site-section-panel">
+                  <div class="panel-title-row">
+                      <h2>Front page text</h2>
+                      <button class="button secondary compact-button" id="save-site-content" type="button">Save</button>
+                  </div>
+                  <div class="front-page-text-fields">
+                      <label>
+                          <span>Small label</span>
+                          <input id="site-hero-eyebrow" type="text" placeholder="Engineering portfolio" />
+                      </label>
+                      <label>
+                          <span>Main headline</span>
+                          <textarea id="site-hero-title" rows="2" placeholder="Analog, embedded, and digital systems built with purpose."></textarea>
+                      </label>
+                      <label>
+                          <span>Intro copy</span>
+                          <textarea id="site-hero-copy" rows="4" placeholder="Short opening statement shown on the front page."></textarea>
+                      </label>
+                  </div>
+              </div>
+
+              <div class="builder-panel site-section-panel">
+                  <div class="panel-title-row">
+                      <h2>Portfolio areas</h2>
+                      <button class="button secondary compact-button" id="add-site-section" type="button">Add section</button>
+                  </div>
+                  <div class="site-section-list" id="site-section-list"></div>
+              </div>
+
+              <div class="builder-panel fun-facts-builder-panel">
+                  <div class="panel-title-row">
+                      <h2>Fun facts</h2>
+                      <small id="fun-facts-count">0/3</small>
+                  </div>
+                  <p>One fact per paragraph. The website shows the first three non-empty facts near the top.</p>
+                  <div
+                      class="rich-summary-editor main-builder-rich-input"
+                      id="fun-facts-input"
+                      data-rich-editor="fun-facts"
+                      data-rich-text-only="true"
+                      data-placeholder="I built a builder to build this portfolio."
+                      contenteditable="true"
+                      spellcheck="true"
+                      aria-label="Fun facts editor"
+                  ></div>
+                  <div class="fun-facts-actions">
+                      <button class="button primary compact-button" id="save-fun-facts" type="button">Save</button>
+                      <button class="button secondary compact-button" id="clear-fun-facts" type="button">Clear</button>
+                  </div>
+              </div>
+
+              <div class="project-library-heading">
+                  <p class="eyebrow">PROJECTS</p>
+                  <h2>Projects</h2>
+              </div>
+              <nav class="project-tree" id="project-tree" aria-label="Project tree"></nav>
+              <div class="builder-panel new-project-panel">
+                  <h2>Add project</h2>
+                  <select id="new-category-select" hidden></select>
+                  <div class="add-project-wrap">
+                      <button class="button primary add-project-button" id="add-project" type="button" aria-expanded="false">
+                          Add new project
+                      </button>
+                      <div class="category-dropdown" id="category-dropdown" hidden></div>
+                  </div>
+              </div>
+          </aside>
+
+          <aside class="builder-inspector" aria-labelledby="inspector-title">
+              <div class="builder-panel">
+                  <p class="eyebrow">Local outlook</p>
+                  <h2 id="inspector-title">Preview</h2>
+                  <p id="builder-status">Changes are local until saved or applied.</p>
+                  <button class="portfolio-preview-button" id="open-portfolio-preview" type="button" aria-label="Open full portfolio preview">
+                      <span class="portfolio-preview-icon" aria-hidden="true"></span>
+                      <span>Portfolio preview</span>
+                  </button>
+                  <button class="portfolio-preview-button" id="save-all-sections" type="button" aria-label="Save all sections before preview">
+                      <span class="save-all-icon" aria-hidden="true"></span>
+                      <span>Save all sections</span>
+                  </button>
+              </div>
+          </aside>
+      </main>
+
+      <input id="file-picker" type="file" hidden />
+
+      <dialog class="asset-dialog" id="builder-guide-dialog">
+          <div class="builder-guide-dialog-content">
+              <div class="project-preview-heading">
+                  <div>
+                      <p class="eyebrow">Builder guide</p>
+                      <h2>How to build the portfolio</h2>
+                  </div>
+                  <button class="project-window-close" id="builder-guide-close" type="button" aria-label="Close builder guide">&times;</button>
+              </div>
+              <ol class="builder-guide-steps">
+                  <li>
+                      <strong>Create projects from Add new project.</strong>
+                      <p>Click Add new project, choose Analog and Mixed Signal, Digital, or Embedded, then complete the separate create-project window. The category controls where the project lives; appearance choices are selected from one shared library.</p>
+                  </li>
+                  <li>
+                      <strong>Select appearance, placement, and title.</strong>
+                      <p>Appearance only controls background, accent color, hover behavior, click response, and preview styling. It does not add text, tools, files, tests, or placeholder project content. Placement controls where the project appears in the project list.</p>
+                  </li>
+                  <li>
+                      <strong>Edit the default project areas.</strong>
+                      <p>Overview and Design are default areas. Analog projects also include Simulation as a separate default area. Overview uses the rich editor for text, images, and formulas. Analog Design includes Design Overview, Documentation, References, Math / Analysis, PCB evidence, and images.</p>
+                  </li>
+                  <li>
+                      <strong>Add files and custom sections.</strong>
+                      <p>Use Add file or image inside the correct subsection. The builder checks file types so images stay in image areas and documents, simulation results, PCB artifacts, and references go into their proper sections. Custom sections can hold extra subsections, files, and notes.</p>
+                  </li>
+                  <li>
+                      <strong>Add top-page fun facts.</strong>
+                      <p>Use the Fun facts panel to type up to three short lines. They render near the top of the website, just below the hero, so recruiters see a bit of personality before scrolling into projects.</p>
+                  </li>
+                  <li>
+                      <strong>Build rich summaries deliberately.</strong>
+                      <p>Click Create overview before typing. Right-click in the editor to add images, formulas, font sizing, and alignment. Pasted images are uploaded locally, pasted formulas are recognized, and Save overview commits the generated overview blocks.</p>
+                  </li>
+                  <li>
+                      <strong>Save staged editor changes.</strong>
+                      <p>When a small edit form opens, typed content is staged first. It is not committed to the project until the Save button inside that form is clicked. Cancel leaves the previous content unchanged.</p>
+                  </li>
+                  <li>
+                      <strong>Save the project to run the parser.</strong>
+                      <p>Click Save or Save and close in the project window. This invokes the project parser, which reads the typed inputs and files, then builds the recruiter-facing project with Overview shown by default and other sections opening only when they contain real content.</p>
+                  </li>
+                  <li>
+                      <strong>Use Save all sections before previewing the whole site.</strong>
+                      <p>Save all sections runs the parser across all current projects and closes the active project editor. It prepares the projects area for the full portfolio preview.</p>
+                  </li>
+                  <li>
+                      <strong>Inspect Portfolio preview.</strong>
+                      <p>Portfolio preview opens a full website replica with the header, OMB mark, background, resume, process section, contact section, and parsed projects. Search, filters, and navigation links work inside the preview.</p>
+                  </li>
+                  <li>
+                      <strong>Autosave protects builder work.</strong>
+                      <p>The builder autosaves local edits to the draft catalog so closing the builder should not lose work. Save draft is still available when you want to manually write the current local draft.</p>
+                  </li>
+                  <li>
+                      <strong>Apply to site publishes when ready.</strong>
+                      <p>Apply to site writes the website data, commits the site changes, and pushes to GitHub automatically without a prompt. After the push finishes, a result window shows whether it succeeded and displays the Git output.</p>
+                  </li>
+              </ol>
+          </div>
+      </dialog>
+
+      <dialog class="asset-dialog" id="project-create-dialog">
+          <form method="dialog" id="project-create-form">
+              <div>
+                  <p class="eyebrow" id="project-create-category">Project category</p>
+                  <h2>Create project</h2>
+              </div>
+
+              <label>
+                  <span>Select appearance</span>
+                  <select id="template-select"></select>
+              </label>
+
+              <label>
+                  <span>Placement</span>
+                  <select id="placement-select">
+                      <option value="category-start">Top of selected category</option>
+                      <option value="category-end">Bottom of selected category</option>
+                      <option value="site-start">Top of all projects</option>
+                      <option value="site-end">Bottom of all projects</option>
+                  </select>
+              </label>
+
+              <label>
+                  <span>Project title</span>
+                  <input id="new-project-title" type="text" value="New Hardware Project" />
+              </label>
+
+              <div class="dialog-actions">
+                  <button class="button primary" id="project-create-save" type="submit">Create project</button>
+                  <button class="project-window-close" id="project-create-cancel" type="button" aria-label="Close create project dialog">&times;</button>
+              </div>
+          </form>
+      </dialog>
+
+      <dialog class="project-dialog" id="project-dialog">
+          <div class="project-dialog-shell">
+              <div class="project-dialog-heading">
+                  <div>
+                      <h2 id="project-window-title" tabindex="0" title="Double-click to rename. Right-click for title options.">Select a project</h2>
+                  </div>
+                  <div class="project-window-actions">
+                      <button class="button secondary" id="view-project-preview" type="button">View project preview</button>
+                      <button class="project-control danger-control" id="project-window-delete" type="button">Delete project</button>
+                      <button class="project-control close-control" id="project-window-close" type="button" aria-label="Close project window">&times;</button>
+                  </div>
+              </div>
+              <div class="project-title-menu" id="project-title-menu" hidden>
+                  <button type="button" data-title-action="close">Close menu</button>
+                  <button type="button" data-title-action="rename">Rename project</button>
+                  <button type="button" data-title-action="details">Details</button>
+              </div>
+              <div class="title-rename-actions" id="title-rename-actions" hidden>
+                  <button class="button primary" id="title-rename-save" type="button">Save title</button>
+                  <button class="button secondary" id="title-rename-cancel" type="button">Cancel</button>
+              </div>
+
+              <div class="section-bar" id="section-tabs"></div>
+              <div class="project-window-content">
+                  <div class="builder-panel project-fields" id="project-fields"></div>
+                  <div class="builder-panel section-content" id="section-content"></div>
+              </div>
+              <div class="project-save-bar">
+                  <button class="button primary save-project-button" id="save-project" type="button">Save</button>
+                  <button class="button secondary save-project-button" id="save-project-close" type="button">Save and close</button>
+              </div>
+          </div>
+      </dialog>
+
+      <dialog class="asset-dialog project-meta-dialog" id="project-meta-dialog">
+          <div class="builder-guide-dialog-content project-meta-dialog-content">
+              <div class="project-preview-heading">
+                  <div>
+                      <p class="eyebrow">Project metadata</p>
+                      <h2 id="project-meta-title">Project details</h2>
+                  </div>
+                  <button class="project-window-close" id="project-meta-close" type="button" aria-label="Close project details">&times;</button>
+              </div>
+              <div class="project-meta-grid" id="project-meta-grid"></div>
+          </div>
+      </dialog>
+
+      <dialog class="project-preview-dialog" id="project-preview-dialog">
+          <div class="project-preview-shell">
+              <div class="project-preview-heading">
+                  <div class="section-view-titlebar">
+                      <button class="section-view-back" id="project-preview-back" type="button" title="Previous view" aria-label="Previous view" hidden>&larr;</button>
+                      <button class="section-view-forward" id="project-preview-forward" type="button" title="Next view" aria-label="Next view" hidden>&rarr;</button>
+                      <h2 id="project-preview-title">Project preview</h2>
+                  </div>
+                  <div class="section-view-actions">
+                      <button class="project-window-close" id="project-preview-close" type="button" aria-label="Close project preview">&times;</button>
+                  </div>
+              </div>
+              <div class="project-preview-content" id="project-preview-content"></div>
+          </div>
+      </dialog>
+
+      <dialog class="portfolio-preview-dialog" id="portfolio-preview-dialog">
+          <div class="portfolio-preview-shell">
+              <div class="project-preview-heading portfolio-window-heading">
+                  <div>
+                      <p class="eyebrow">Website preview</p>
+                      <h2>Portfolio preview</h2>
+                  </div>
+                  <div class="section-view-actions">
+                      <button class="project-window-close portfolio-preview-close" id="portfolio-preview-close" type="button" aria-label="Close portfolio preview">&times;</button>
+                  </div>
+              </div>
+              <iframe class="portfolio-preview-frame"
+                      id="portfolio-preview-frame"
+                      title="Complete portfolio website preview before saving"></iframe>
+          </div>
+      </dialog>
+
+      <dialog class="asset-dialog" id="publish-result-dialog">
+          <div class="builder-guide-dialog-content">
+              <div class="project-preview-heading">
+                  <div>
+                      <p class="eyebrow" id="publish-result-eyebrow">GitHub publish</p>
+                      <h2 id="publish-result-title">Publish result</h2>
+                  </div>
+                  <button class="project-window-close" id="publish-result-close" type="button" aria-label="Close publish result">&times;</button>
+              </div>
+              <div class="publish-result-box">
+                  <p id="publish-result-message"></p>
+                  <pre id="publish-result-output"></pre>
+              </div>
+          </div>
+      </dialog>
+
+      <dialog class="asset-dialog" id="delete-confirm-dialog">
+          <div class="builder-guide-dialog-content delete-confirm-content">
+              <div class="project-preview-heading">
+                  <div>
+                      <p class="eyebrow">Confirm delete</p>
+                      <h2 id="delete-confirm-title">Delete project</h2>
+                  </div>
+                  <button class="project-window-close" id="delete-confirm-no" type="button" aria-label="Cancel delete">&times;</button>
+              </div>
+              <p id="delete-confirm-message" class="delete-confirm-message">Are you sure you want to delete this project?</p>
+              <div class="dialog-actions delete-confirm-actions">
+                  <button class="button danger-control" id="delete-confirm-yes" type="button">Yes</button>
+                  <button class="button secondary" type="button" data-delete-cancel="true">No</button>
+              </div>
+          </div>
+      </dialog>
+
+      <dialog class="asset-dialog" id="asset-dialog">
+          <form method="dialog" id="asset-form">
+              <div>
+                  <p class="eyebrow">Add file or image</p>
+                  <h2 id="asset-dialog-title">Choose source</h2>
+              </div>
+
+              <label>
+                  <span>Source</span>
+                  <select id="asset-source">
+                      <option value="local">Local machine</option>
+                      <option value="web">Web URL</option>
+                      <option value="drive">Google Drive link</option>
+                  </select>
+              </label>
+
+              <label class="asset-local-field">
+                  <span>Choose file</span>
+                  <input id="asset-file" type="file" />
+              </label>
+
+              <label class="asset-url-field" hidden>
+                  <span>URL or share link</span>
+                  <input id="asset-url" type="url" placeholder="https://..." />
+              </label>
+
+              <label>
+                  <span>Rename file or display title</span>
+                  <input id="asset-title" type="text" placeholder="Use default file name" />
+              </label>
+
+              <label>
+                  <span>Caption source</span>
+                  <select id="caption-source">
+                      <option value="text">Type caption</option>
+                      <option value="file">Load caption from text file</option>
+                  </select>
+              </label>
+
+              <label class="caption-text-field">
+                  <span>Caption</span>
+                  <textarea id="asset-caption" rows="4" placeholder="Optional caption or description"></textarea>
+              </label>
+
+              <label class="caption-file-field" hidden>
+                  <span>Caption file</span>
+                  <input id="caption-file" type="file" accept=".txt,.md,text/plain,text/markdown" />
+              </label>
+
+              <div class="dialog-actions">
+                  <button class="button primary" id="asset-save" type="submit">Save asset</button>
+                  <button class="project-window-close" id="asset-cancel" type="button" aria-label="Close add file dialog">&times;</button>
+              </div>
+          </form>
+      </dialog>
+
+      <dialog class="asset-dialog" id="section-dialog">
+          <form method="dialog" id="section-form">
+              <div>
+                  <h2 id="section-dialog-title">Create a section</h2>
+              </div>
+
+              <label>
+                  <span>Section title</span>
+                  <input id="section-title" type="text" placeholder="Design, Measurements, Firmware..." />
+              </label>
+
+              <label class="section-description-field">
+                  <span>Overview</span>
+                  <div
+                      class="rich-summary-editor dialog-rich-input"
+                      id="section-description"
+                      data-rich-editor="standalone"
+                      data-placeholder="Optional overview shown to recruiters"
+                      contenteditable="true"
+                      spellcheck="true"
+                      aria-label="Portfolio section overview editor"
+                  ></div>
+              </label>
+
+              <div class="dialog-actions">
+                  <button class="button primary" id="section-save" type="submit">Save section</button>
+                  <button class="project-window-close" id="section-cancel" type="button" aria-label="Close add section dialog">&times;</button>
+              </div>
+          </form>
+      </dialog>
+
+      <dialog class="asset-dialog" id="site-link-dialog">
+          <form method="dialog" id="site-link-form">
+              <div>
+                  <p class="eyebrow" id="site-link-eyebrow">Portfolio link</p>
+                  <h2 id="site-link-title">Add a link</h2>
+              </div>
+
+              <label>
+                  <span>Label</span>
+                  <input id="site-link-label" type="text" placeholder="Resume, GitHub, LinkedIn, portfolio..." />
+              </label>
+
+              <label>
+                  <span>URL</span>
+                  <input id="site-link-url" type="text" placeholder="https://..., mailto:..., tel:..." />
+              </label>
+
+              <div class="dialog-actions">
+                  <button class="button primary" id="site-link-save" type="submit">Save link</button>
+                  <button class="project-window-close" id="site-link-cancel" type="button" aria-label="Close link dialog">&times;</button>
+              </div>
+          </form>
+      </dialog>
+
+      <dialog class="asset-dialog" id="summary-image-dialog">
+          <form method="dialog" id="summary-image-form">
+              <div>
+                  <p class="eyebrow">Overview image</p>
+                  <h2>Add image to overview</h2>
+              </div>
+              <label>
+                  <span>Choose image</span>
+                  <input id="summary-image-file" type="file" accept=".png,.jpg,.jpeg,.webp,image/*" />
+              </label>
+              <label>
+                  <span>Display title</span>
+                  <input id="summary-image-title" type="text" placeholder="Use file name" />
+              </label>
+              <label>
+                  <span>Caption</span>
+                  <textarea id="summary-image-caption" rows="3" placeholder="Optional caption"></textarea>
+              </label>
+              <label>
+                  <span>Justification</span>
+                  <select id="summary-image-align">
+                      <option value="center">Center</option>
+                      <option value="left">Left</option>
+                      <option value="right">Right</option>
+                  </select>
+              </label>
+              <label>
+                  <span>Website behavior</span>
+                  <select id="summary-image-display">
+                      <option value="show">Show image on website</option>
+                      <option value="download">Downloadable file only</option>
+                  </select>
+              </label>
+              <label>
+                  <span>Crop</span>
+                  <select id="summary-image-crop">
+                      <option value="original">Original image</option>
+                      <option value="1 / 1">Square (1:1)</option>
+                      <option value="4 / 3">Landscape (4:3)</option>
+                      <option value="16 / 9">Wide (16:9)</option>
+                      <option value="3 / 4">Portrait (3:4)</option>
+                  </select>
+              </label>
+              <label>
+                  <span>Crop zoom</span>
+                  <input id="summary-image-zoom" type="range" min="1" max="3" step="0.05" value="1" />
+              </label>
+              <div class="dialog-actions">
+                  <button class="button primary" type="submit">Add image</button>
+                  <button class="project-window-close" id="summary-image-cancel" type="button" aria-label="Close image dialog">&times;</button>
+              </div>
+          </form>
+      </dialog>
+
+      <dialog class="asset-dialog" id="summary-formula-dialog">
+          <form method="dialog" id="summary-formula-form">
+              <div>
+                  <p class="eyebrow">Math formula</p>
+                  <h2>Add formula</h2>
+              </div>
+              <label>
+                  <span>Formula</span>
+                  <textarea id="summary-formula-input" rows="4" placeholder="Paste LaTeX or formula text"></textarea>
+              </label>
+              <label>
+                  <span>Justification</span>
+                  <select id="summary-formula-align">
+                      <option value="center">Center</option>
+                      <option value="left">Left</option>
+                      <option value="right">Right</option>
+                  </select>
+              </label>
+              <div class="dialog-actions">
+                  <button class="button primary" type="submit">Add formula</button>
+                  <button class="project-window-close" id="summary-formula-cancel" type="button" aria-label="Close formula dialog">&times;</button>
+              </div>
+          </form>
+      </dialog>
+
+      <dialog class="template-dialog" id="template-dialog">
+          <div class="template-dialog-shell">
+              <div class="template-dialog-heading">
+                  <div>
+                      <p class="eyebrow" id="template-preview-group">Appearance preview</p>
+                      <h2 id="template-preview-title">Appearance</h2>
+                      <p id="template-preview-description"></p>
+                  </div>
+                  <button class="project-window-close" id="template-preview-close" type="button" aria-label="Close appearance preview">&times;</button>
+              </div>
+              <div class="template-preview-card" id="template-preview-card">
+                  <div class="template-visual" id="template-visual"></div>
+                  <div class="template-preview-copy">
+                      <h3 id="template-preview-card-title">Project Card</h3>
+                      <p id="template-preview-interaction">Interaction preview</p>
+                      <div class="template-palette" id="template-palette"></div>
+                  </div>
+              </div>
+          </div>
+      </dialog>
+      <div class="summary-context-menu" id="summary-context-menu" hidden>
+          <button type="button" data-rich-action="add-image">Add image</button>
+          <button type="button" data-rich-action="add-formula">Add mathematical formula</button>
+          <button type="button" data-rich-action="copy-text">Copy text</button>
+          <button type="button" data-rich-action="paste-text">Paste text</button>
+          <button type="button" data-rich-action="toggle-bold" data-rich-bold>Bold</button>
+
+          <label class="rich-menu-field">
+              <span>Text color</span>
+              <input id="rich-color-input" type="color" value="#17202a" data-rich-color-input />
+          </label>
+          <label class="rich-menu-field">
+              <span>Font</span>
+              <select id="rich-font-select" data-rich-font-select>
+                  <option selected>Arial</option>
+                  <option>Calibri</option>
+                  <option>Cambria</option>
+                  <option>Georgia</option>
+                  <option>Times New Roman</option>
+                  <option>Verdana</option>
+                  <option>Tahoma</option>
+                  <option>Trebuchet MS</option>
+                  <option>Helvetica</option>
+                  <option>Garamond</option>
+                  <option>Palatino Linotype</option>
+                  <option>Courier New</option>
+                  <option>Consolas</option>
+                  <option>Lucida Console</option>
+                  <option>Segoe UI</option>
+                  <option>Inter</option>
+                  <option>Roboto</option>
+                  <option>Open Sans</option>
+                  <option>Lato</option>
+                  <option>Montserrat</option>
+              </select>
+          </label>
+          <label class="rich-menu-field">
+              <span>Size</span>
+              <select id="rich-font-size" data-rich-font-size>
+                  <option>8</option>
+                  <option>9</option>
+                  <option>10</option>
+                  <option>11</option>
+                  <option>12</option>
+                  <option>13</option>
+                  <option>14</option>
+                  <option>15</option>
+                  <option selected>16</option>
+                  <option>17</option>
+                  <option>18</option>
+                  <option>19</option>
+                  <option>20</option>
+                  <option>21</option>
+                  <option>22</option>
+                  <option>23</option>
+                  <option>24</option>
+              </select>
+          </label>
+          <button type="button" data-rich-action="align-left">Align left</button>
+          <button type="button" data-rich-action="align-center">Align center</button>
+          <button type="button" data-rich-action="align-right">Align right</button>
+          <button type="button" data-rich-action="edit-block">Edit selected block</button>
+          <button class="danger-menu-item" type="button" data-rich-action="delete-block">Delete selected block</button>
+      </div>
+      <div class="text-selection-inspector" id="text-selection-inspector" hidden>
+          <div class="selection-inspector-heading" data-selection-inspector-drag>
+              <strong>Selection</strong>
+              <button type="button" data-selection-inspector-close aria-label="Close selection formatting">&times;</button>
+          </div>
+          <p class="selection-text-preview" id="selection-text-preview"></p>
+          <div class="selection-inspector-fields">
+              <label>
+                  <span>Font</span>
+                  <div class="selection-combo">
+                      <input id="selection-font-input" type="text" autocomplete="off" placeholder="Mixed" aria-label="Selected text font">
+                      <button type="button" data-selection-options-toggle="font" aria-label="Show font choices"><span class="selection-wedge"></span></button>
+                      <div class="selection-options" data-selection-options="font" hidden></div>
+                  </div>
+              </label>
+              <label>
+                  <span>Color</span>
+                  <div class="selection-combo">
+                      <input id="selection-color-input" type="text" autocomplete="off" placeholder="Mixed" aria-label="Selected text color">
+                      <button type="button" data-selection-options-toggle="color" aria-label="Show color choices"><span class="selection-wedge"></span></button>
+                      <div class="selection-options selection-color-options" data-selection-options="color" hidden>
+                          <input id="selection-color-picker" type="color" value="#17202a" aria-label="Choose selected text color">
+                          <div class="selection-color-swatches" id="selection-color-swatches"></div>
+                      </div>
+                  </div>
+              </label>
+              <label>
+                  <span>Size</span>
+                  <div class="selection-combo">
+                      <input id="selection-size-input" type="number" min="8" max="24" step="1" placeholder="Mixed" aria-label="Selected text size">
+                      <button type="button" data-selection-options-toggle="size" aria-label="Show size choices"><span class="selection-wedge"></span></button>
+                      <div class="selection-options" data-selection-options="size" hidden></div>
+                  </div>
+              </label>
+          </div>
+      </div>
+      <script src="electronics-search.js"></script>
+      <script src="template-preview.js"></script>
+  </body>
+</html>

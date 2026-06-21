@@ -1,0 +1,184 @@
+{
+  "templates": [
+    {
+      "id": "appearance-light-blue-red-click",
+      "label": "Light blue, navy hover, red click",
+      "description": "Light blue engineering background with calm navy hover states and a sharp red click flash.",
+      "visual": {
+        "style": "schematic",
+        "palette": ["#e9f8ff", "#1f6ed4", "#ef4444", "#ffffff"],
+        "background": "#e9f8ff",
+        "panel": "#ffffff",
+        "accent": "#1f6ed4",
+        "hover": "#1f6ed4",
+        "click": "#ef4444",
+        "clickText": "#ffffff",
+        "line": "#b8def3",
+        "text": "#172636",
+        "interaction": "Navy-blue hover with a red active click flash."
+      }
+    },
+    {
+      "id": "appearance-white-blue-click",
+      "label": "Clean white, blue hover, white click",
+      "description": "Minimal white project panels with professional blue hover behavior and quiet white click feedback.",
+      "visual": {
+        "style": "device",
+        "palette": ["#ffffff", "#2563eb", "#f8fbff"],
+        "background": "#ffffff",
+        "panel": "#ffffff",
+        "accent": "#2563eb",
+        "hover": "#2563eb",
+        "click": "#ffffff",
+        "clickText": "#172636",
+        "line": "#d8e2ef",
+        "text": "#172636",
+        "interaction": "Blue hover with a clean white click state."
+      }
+    },
+    {
+      "id": "appearance-deep-navy-cyan-click",
+      "label": "Deep navy, cyan hover, white click",
+      "description": "Dark navy technical background with cyan hover states and high-contrast white click feedback.",
+      "visual": {
+        "style": "chip",
+        "palette": ["#10263c", "#0f6f96", "#ffffff"],
+        "background": "#10263c",
+        "panel": "#f8fbff",
+        "accent": "#0f6f96",
+        "hover": "#0f6f96",
+        "click": "#ffffff",
+        "clickText": "#142536",
+        "line": "#8ccfe8",
+        "text": "#f8fbff",
+        "interaction": "Cyan hover with a white active click state."
+      }
+    },
+    {
+      "id": "appearance-warm-red-pale-click",
+      "label": "Warm red, wine hover, pale click",
+      "description": "Warm signal-lab styling with wine-red hover behavior and a soft pale-red click response.",
+      "visual": {
+        "style": "waveform",
+        "palette": ["#fff7f5", "#c2413b", "#fff4f2"],
+        "background": "#fff7f5",
+        "panel": "#ffffff",
+        "accent": "#b9332e",
+        "hover": "#c2413b",
+        "click": "#fff4f2",
+        "clickText": "#2f2020",
+        "line": "#efb0aa",
+        "text": "#2f2020",
+        "interaction": "Wine-red hover with a pale red click state."
+      }
+    },
+    {
+      "id": "appearance-emerald-mint-click",
+      "label": "Emerald bench, green hover, mint click",
+      "description": "Instrumentation-style panels with emerald hover states and a light mint click response.",
+      "visual": {
+        "style": "instrument",
+        "palette": ["#f0fdf6", "#16865a", "#effff6"],
+        "background": "#f0fdf6",
+        "panel": "#ffffff",
+        "accent": "#16865a",
+        "hover": "#16865a",
+        "click": "#effff6",
+        "clickText": "#182f26",
+        "line": "#9adfbd",
+        "text": "#182f26",
+        "interaction": "Emerald hover with a soft mint click state."
+      }
+    },
+    {
+      "id": "appearance-amber-cream-click",
+      "label": "Amber rail, gold hover, cream click",
+      "description": "Power-rail inspired appearance with amber hover behavior and warm cream click feedback.",
+      "visual": {
+        "style": "power",
+        "palette": ["#fff9ec", "#b7791f", "#fff7df"],
+        "background": "#fff9ec",
+        "panel": "#ffffff",
+        "accent": "#b7791f",
+        "hover": "#b7791f",
+        "click": "#fff7df",
+        "clickText": "#302617",
+        "line": "#e8c47d",
+        "text": "#302617",
+        "interaction": "Gold hover with a warm cream click state."
+      }
+    },
+    {
+      "id": "appearance-violet-lilac-click",
+      "label": "Violet timing, purple hover, lilac click",
+      "description": "Soft violet timing-grid appearance with purple hover behavior and pale lilac click feedback.",
+      "visual": {
+        "style": "timing",
+        "palette": ["#f7f4ff", "#6d55c6", "#f5f1ff"],
+        "background": "#f7f4ff",
+        "panel": "#ffffff",
+        "accent": "#6d55c6",
+        "hover": "#6d55c6",
+        "click": "#f5f1ff",
+        "clickText": "#26223a",
+        "line": "#c8b9f2",
+        "text": "#26223a",
+        "interaction": "Purple hover with a pale lilac click state."
+      }
+    },
+    {
+      "id": "appearance-graphite-white-click",
+      "label": "Graphite ASIC, slate hover, white click",
+      "description": "Neutral graphite engineering appearance with precise slate hover states and white click feedback.",
+      "visual": {
+        "style": "grid",
+        "palette": ["#f6f8fb", "#334155", "#ffffff"],
+        "background": "#f6f8fb",
+        "panel": "#ffffff",
+        "accent": "#334155",
+        "hover": "#334155",
+        "click": "#ffffff",
+        "clickText": "#1f2937",
+        "line": "#b8c2d1",
+        "text": "#1f2937",
+        "interaction": "Slate hover with a crisp white click state."
+      }
+    },
+    {
+      "id": "appearance-steel-teal-click",
+      "label": "Steel teal, teal hover, ice click",
+      "description": "Cool steel-blue panels with teal hover behavior and a bright ice-blue click state.",
+      "visual": {
+        "style": "instrument",
+        "palette": ["#eef7fa", "#0f766e", "#e6fffb"],
+        "background": "#eef7fa",
+        "panel": "#ffffff",
+        "accent": "#0f766e",
+        "hover": "#0f766e",
+        "click": "#e6fffb",
+        "clickText": "#14333a",
+        "line": "#9bd7d3",
+        "text": "#14333a",
+        "interaction": "Teal hover with a bright ice-blue click state."
+      }
+    },
+    {
+      "id": "appearance-black-lab-blue-click",
+      "label": "Black lab, electric hover, white click",
+      "description": "Dark lab-style appearance with electric-blue hover behavior and strong white click feedback.",
+      "visual": {
+        "style": "chip",
+        "palette": ["#111827", "#38bdf8", "#ffffff"],
+        "background": "#111827",
+        "panel": "#f9fbff",
+        "accent": "#0284c7",
+        "hover": "#0284c7",
+        "click": "#ffffff",
+        "clickText": "#111827",
+        "line": "#7dd3fc",
+        "text": "#f9fbff",
+        "interaction": "Electric-blue hover with a high-contrast white click state."
+      }
+    }
+  ]
+}

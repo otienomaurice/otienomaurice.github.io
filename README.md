@@ -56,3 +56,23 @@ The site has no build step and no external runtime dependency.
 4. Under `Build and deployment`, choose `Deploy from a branch`.
 5. Select the `main` branch and `/ (root)`, then save.
 6. Wait a few minutes for GitHub to publish the public URL.
+
+## Windows Portfolio Builder App
+
+The portfolio builder is also packaged as a Windows desktop application in `desktop-builder`.
+
+- The app keeps the same builder behavior as the previous local browser workflow.
+- Save draft continues to write local draft data.
+- Apply to site writes the website catalog, commits changed site files, and pushes to GitHub when the workspace is Git-backed.
+- The installer defaults to `C:\Program Files\OMB Portfolio Builder` and lets the user choose a different folder.
+- A portable executable is also produced for Windows machines where installation is not desired.
+
+Build locally:
+
+```powershell
+cd desktop-builder
+pnpm install
+pnpm run dist
+```
+
+The GitHub Actions workflow `.github/workflows/build-windows-builder.yml` builds downloadable Windows artifacts. Pushing a tag such as `builder-v0.2.0` creates a GitHub Release with both the installer and portable executable.

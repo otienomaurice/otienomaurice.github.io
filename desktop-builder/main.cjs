@@ -1,12 +1,16 @@
 const { app, BrowserWindow, dialog, shell } = require("electron");
+const { execFile } = require("node:child_process");
 const fs = require("node:fs");
 const fsp = require("node:fs/promises");
 const net = require("node:net");
 const path = require("node:path");
 const { pathToFileURL } = require("node:url");
+const { promisify } = require("node:util");
 
 let mainWindow = null;
 let builderOrigin = "";
+const execFileAsync = promisify(execFile);
+const defaultRepositoryUrl = process.env.OMB_BUILDER_REPOSITORY || "https://github.com/otienomaurice/otienomaurice.github.io.git";
 
 const rootFilesToRefresh = [
   "server.mjs",
@@ -31,6 +35,14 @@ const rootFilesToSeed = [
 ];
 
 const directorySeeds = ["assets", "Backgrounds", "docs"];
+const gitCandidates = [
+  process.env.GIT_EXE,
+  "git",
+  "C:\\Program Files\\Git\\cmd\\git.exe",
+  "C:\\Program Files\\Git\\bin\\git.exe",
+  "C:\\Program Files (x86)\\Git\\cmd\\git.exe",
+  "C:\\Program Files (x86)\\Git\\bin\\git.exe"
+].filter(Boolean);
 
 function fileExists(filePath) {
   try {
@@ -63,11 +75,72 @@ async function copyDirectoryMissingFiles(source, target) {
   }
 }
 
+async function directoryIsEmpty(directory) {
+  try {
+    const entries = await fsp.readdir(directory);
+    return entries.length === 0;
+  } catch {
+    return true;
+  }
+}
+
+async function runGit(args, cwd) {
+  let lastError = null;
+  for (const candidate of gitCandidates) {
+    try {
+      await execFileAsync(candidate, args, {
+        cwd,
+        maxBuffer: 10 * 1024 * 1024,
+        windowsHide: true
+      });
+      return true;
+    } catch (error) {
+      lastError = error;
+      if (error.code === "ENOENT") continue;
+      throw error;
+    }
+  }
+  throw lastError || new Error("Git executable was not found.");
+}
+
+function workspaceLooksUsable(workspaceRoot) {
+  return fileExists(path.join(workspaceRoot, "server.mjs"))
+    && fileExists(path.join(workspaceRoot, "index.html"));
+}
+
+function workspaceIsGitBacked(workspaceRoot) {
+  return fileExists(path.join(workspaceRoot, ".git"));
+}
+
+function findRepositoryNearExecutable() {
+  let current = path.dirname(process.execPath);
+  for (let index = 0; index < 8; index += 1) {
+    if (workspaceLooksUsable(current) && workspaceIsGitBacked(current)) return current;
+    const next = path.dirname(current);
+    if (next === current) break;
+    current = next;
+  }
+  return "";
+}
+
+async function cloneWorkspaceIfPossible(workspaceRoot) {
+  if (workspaceIsGitBacked(workspaceRoot)) return true;
+  await fsp.mkdir(workspaceRoot, { recursive: true });
+  if (!(await directoryIsEmpty(workspaceRoot))) return false;
+  try {
+    await runGit(["clone", "--depth", "1", defaultRepositoryUrl, workspaceRoot], path.dirname(workspaceRoot));
+    return workspaceIsGitBacked(workspaceRoot);
+  } catch {
+    return false;
+  }
+}
+
 async function preparePackagedWorkspace() {
   const bundledSiteRoot = path.join(process.resourcesPath, "site");
-  const workspaceRoot = path.join(app.getPath("userData"), "workspace");
+  const workspaceRoot = path.join(app.getPath("documents"), "OMB Portfolio Builder Workspace");
 
   await fsp.mkdir(workspaceRoot, { recursive: true });
+  await cloneWorkspaceIfPossible(workspaceRoot);
 
   for (const fileName of rootFilesToRefresh) {
     await copyFileIfAvailable(path.join(bundledSiteRoot, fileName), path.join(workspaceRoot, fileName), true);
@@ -84,8 +157,10 @@ async function preparePackagedWorkspace() {
 
 async function resolveWorkspaceRoot() {
   const envWorkspace = process.env.OMB_BUILDER_WORKSPACE;
-  if (envWorkspace && fileExists(path.join(envWorkspace, "server.mjs"))) return envWorkspace;
+  if (envWorkspace && workspaceLooksUsable(envWorkspace)) return envWorkspace;
   if (!app.isPackaged) return path.resolve(__dirname, "..");
+  const nearbyRepository = findRepositoryNearExecutable();
+  if (nearbyRepository) return nearbyRepository;
   return preparePackagedWorkspace();
 }
 
@@ -106,6 +181,8 @@ async function startBuilderServer(workspaceRoot) {
   process.env.PORT = String(port);
   process.env.HOST = "127.0.0.1";
   process.env.OMB_DESKTOP_APP = "1";
+  process.env.OMB_BUILDER_WORKSPACE = workspaceRoot;
+  process.env.OMB_BUILDER_REPOSITORY = defaultRepositoryUrl;
 
   const serverPath = path.join(workspaceRoot, "server.mjs");
   await import(`${pathToFileURL(serverPath).href}?desktop=${Date.now()}`);

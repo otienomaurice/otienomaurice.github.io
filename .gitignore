@@ -1,9 +1,12 @@
 maurice-otieno-portfolio.zip
+.vs/
 projects.local.json
 template-preview.html
 template-preview.css
 template-preview.js
 project-templates.json
+!desktop-builder/builder-site/
+!desktop-builder/builder-site/**
 .env
 .env.*
 .dev.vars
