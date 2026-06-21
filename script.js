@@ -950,8 +950,9 @@ function searchResultsFor(query) {
 
 function assistantEndpoint() {
   if (typeof window.OMB_AI_ENDPOINT === "string") return window.OMB_AI_ENDPOINT.trim();
-  if (["localhost", "127.0.0.1"].includes(window.location.hostname)) return "/api/portfolio-ai";
   const metaEndpoint = document.querySelector('meta[name="portfolio-ai-endpoint"]')?.content || "";
+  if (metaEndpoint.trim()) return String(metaEndpoint).trim();
+  if (["localhost", "127.0.0.1"].includes(window.location.hostname)) return "/api/portfolio-ai";
   return String(metaEndpoint || "").trim();
 }
 
