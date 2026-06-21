@@ -957,9 +957,14 @@ function assistantEndpoint() {
 }
 
 function assistantSourceLabel(result = {}) {
-  return [result.title || "Portfolio item", result.type || "", result.context || ""]
-    .filter(Boolean)
-    .join(" / ");
+  const title = result.title || "Portfolio item";
+  if (result.kind === "project" || result.kind === "page") return title;
+  const contextParts = String(result.context || "")
+    .split("/")
+    .map((item) => item.trim())
+    .filter(Boolean);
+  const specificContext = contextParts.slice(-2).join(" / ");
+  return [title, specificContext].filter(Boolean).join(" - ");
 }
 
 function assistantProjectSummary(project = {}) {
@@ -1186,22 +1191,87 @@ function assistantQuestionTokens(question = "") {
     .filter((token) => token.length > 2 && !stopWords.has(token));
 }
 
+function assistantSpecificSourceTokens(question = "") {
+  const genericTokens = new Set([
+    "built", "build", "created", "designed", "did", "done", "engineering", "file", "files", "hardware",
+    "item", "items", "section", "sections", "system", "systems", "thing", "things", "tool", "tools",
+    "use", "used", "using", "website"
+  ]);
+  return assistantQuestionTokens(question).filter((token) => !genericTokens.has(token));
+}
+
+function assistantPromptTargetsProjectLanding(question = "") {
+  const clean = normalize(question);
+  return /\b(open|show|view|go\s+to|take\s+me\s+to)\b/.test(clean)
+    && /\b(project|overview|page)\b/.test(clean)
+    && !/\b(code|source|repo|repository|github|file|files|document|documents|test|tests|result|results|pcb|schematic|simulation|tool|tools|resume|linkedin)\b/.test(clean);
+}
+
+function assistantEntryRelationScore(result = {}, question = "") {
+  const tokens = assistantSpecificSourceTokens(question);
+  const haystack = normalize([result.title, result.context, result.type, result.text, result.url].filter(Boolean).join(" "));
+  const tokenHits = tokens.filter((token) => haystack.includes(token)).length;
+  let relation = tokenHits * 30;
+
+  if (tokens.length && tokenHits === tokens.length) relation += 25;
+  if (Number(result.score || 0) >= 120) relation += 15;
+  if (Number(result.score || 0) >= 80) relation += 8;
+  if (result.kind === "project") relation += 12;
+  if (result.kind === "file" && /\b(file|files|download|document|documents|code|source|github|repo|repository|test|tests|result|results|pcb|schematic|simulation)\b/.test(normalize(question))) {
+    relation += 16;
+  }
+  return relation;
+}
+
+function assistantNamedProjectTopicTokens(question = "", namedIds = assistantNamedProjectIds(question)) {
+  const projectVocabulary = new Set();
+  namedIds
+    .map((id) => projects.find((project) => project.id === id))
+    .filter(Boolean)
+    .forEach((project) => {
+      const title = project.portfolioView?.title || project.title || project.id;
+      normalize(title).split(/\s+/).filter((word) => word.length > 2).forEach((word) => projectVocabulary.add(word));
+      assistantProjectTitleAcronyms(title).forEach((acronym) => projectVocabulary.add(acronym));
+      projectVocabulary.add(normalize(project.id));
+    });
+  return assistantSpecificSourceTokens(question).filter((token) => !projectVocabulary.has(token));
+}
+
 function assistantSourcesForDisplay(question = "", results = [], intent = assistantQuestionIntent(question)) {
   if (intent !== "portfolio_specific") return [];
-  const tokens = assistantQuestionTokens(question);
-  const namedProjectIds = new Set(assistantNamedProjectIds(question));
+  const tokens = assistantSpecificSourceTokens(question);
+  const namedProjectIdList = assistantNamedProjectIds(question);
+  const namedProjectIds = new Set(namedProjectIdList);
+  const namedProjectTopicTokens = assistantNamedProjectTopicTokens(question, namedProjectIdList);
   const asksForLinks = /\b(open|show|where|link|links|github|linkedin|resume|download|file|files|repo|repository|source\s+code)\b/.test(normalize(question));
-  return results
+  const asksForProjectLanding = assistantPromptTargetsProjectLanding(question);
+  const pageLinkIntent = /\b(resume|github|linkedin|contact|email|phone)\b/.test(normalize(question));
+  const asksForSpecificArtifact = /\b(code|source|repo|repository|github|file|files|document|documents|test|tests|result|results|pcb|schematic|simulation|tool|tools)\b/.test(normalize(question));
+
+  if (!namedProjectIds.size && !pageLinkIntent && tokens.length === 0) return [];
+
+  const filtered = results
+    .map((result) => ({ ...result, relation: assistantEntryRelationScore(result, question) }))
     .filter((result) => {
       if (!result) return false;
-      if (namedProjectIds.size && namedProjectIds.has(result.projectId)) return true;
+      if (namedProjectIds.size && !namedProjectIds.has(result.projectId)) return false;
+      if (asksForProjectLanding) return result.kind === "project";
       const haystack = normalize([result.title, result.context, result.type, result.text, result.url].filter(Boolean).join(" "));
       const tokenHits = tokens.filter((token) => haystack.includes(token)).length;
-      if (tokenHits >= Math.min(2, Math.max(1, tokens.length))) return true;
-      if (asksForLinks && tokenHits >= 1) return true;
-      return Number(result.score || 0) >= 80 && tokens.length > 0;
-    })
-    .slice(0, asksForLinks ? 5 : 3);
+      const topicHits = namedProjectTopicTokens.filter((token) => haystack.includes(token)).length;
+      if (namedProjectIds.size && namedProjectTopicTokens.length && result.kind !== "project" && topicHits === 0) return false;
+      if (namedProjectIds.size && namedProjectTopicTokens.length && result.kind === "project" && asksForSpecificArtifact) return false;
+      if (namedProjectIds.size && result.kind === "project") return true;
+      if (pageLinkIntent && tokenHits >= 1) return true;
+      if (!tokens.length) return false;
+      if (tokenHits >= Math.min(2, tokens.length)) return true;
+      if (asksForLinks && tokenHits >= 1 && result.relation >= 35) return true;
+      return result.relation >= 55;
+    });
+
+  return filtered
+    .sort((a, b) => b.relation - a.relation || Number(b.score || 0) - Number(a.score || 0))
+    .slice(0, asksForLinks ? 4 : 2);
 }
 
 function assistantContextForQuestion(question = "", intent = assistantQuestionIntent(question), knownResults = null) {
@@ -1584,7 +1654,7 @@ function assistantSourcesMarkup(results = []) {
   }).join("");
   return `
     <div class="ai-source-panel">
-      <p class="ai-source-heading">Related portfolio links</p>
+      <p class="ai-source-heading">Relevant portfolio links</p>
       <div class="ai-source-list" aria-label="Assistant sources">
         ${sourceButtons}
       </div>
