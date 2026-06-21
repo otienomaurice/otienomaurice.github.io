@@ -1125,7 +1125,9 @@ function assistantProjectEvidence(project = {}) {
 function assistantQuestionIsCasual(question = "") {
   const clean = normalize(question);
   return /^(hi|hello|hey|good\s+(morning|afternoon|evening)|yo|sup|thanks|thank\s+you|ok|okay)\b/.test(clean)
-    || /^(how\s+are\s+you|what\s+can\s+you\s+help.*|what\s+do\s+you\s+do|who\s+are\s+you|help|help\s+me|can\s+you\s+help|nice\s+to\s+meet\s+you)\??$/.test(clean);
+    || /^(how\s+are\s+you|what\s+can\s+you\s+help.*|what\s+do\s+you\s+do|who\s+are\s+you|help|help\s+me|can\s+you\s+help|nice\s+to\s+meet\s+you)\??$/.test(clean)
+    || /^(what'?s|what\s+is|do\s+you\s+know)\s+my\s+name\??$/.test(clean)
+    || /^who\s+am\s+i\??$/.test(clean);
 }
 
 function assistantQuestionHasPortfolioIntent(question = "") {
@@ -1133,6 +1135,12 @@ function assistantQuestionHasPortfolioIntent(question = "") {
   return assistantProjectTitleMatches(question)
     || /\b(maurice|otieno|portfolio|resume|github|linkedin|contact|email|phone|project|projects|repo|repository|repositories|file|files|document|documents|artifact|artifacts|link|links|download|open|show|where|built|build|created|designed|implemented)\b/.test(clean)
     || /\b(your|his|maurice's)\s+(project|projects|resume|github|linkedin|portfolio|work|email|phone|contact|repo|repository|files?|documents?|links?)\b/.test(clean);
+}
+
+function assistantConversationSuggestsPortfolioContext(history = []) {
+  return history
+    .slice(-4)
+    .some((item) => /\b(maurice|otieno|portfolio|project|resume|github|linkedin|electronics|engineering)\b/.test(normalize(item?.content)));
 }
 
 function assistantQuestionAllowsPublicLookup(question = "", intent = assistantQuestionIntent(question)) {
@@ -1149,13 +1157,50 @@ function assistantQuestionLooksConceptual(question = "") {
     || /\b(definition|meaning|basics|overview|introduction|difference\s+between|how\s+does|how\s+do|why\s+does|why\s+do)\b/.test(clean);
 }
 
-function assistantQuestionIntent(question = "") {
+function assistantQuestionIntent(question = "", history = assistantChatHistory) {
   if (assistantQuestionIsCasual(question)) return "general_conversation";
+  if (/^(what'?s|what\s+is|do\s+you\s+know)\s+my\s+name\??$/.test(normalize(question)) || /^who\s+am\s+i\??$/.test(normalize(question))) {
+    return "general_conversation";
+  }
   const hasPortfolioIntent = assistantQuestionHasPortfolioIntent(question);
+  if (!hasPortfolioIntent && assistantConversationSuggestsPortfolioContext(history) && /\b(name|you|your|he|his|him|that|this|it)\b/.test(normalize(question))) {
+    return "general_conversation";
+  }
   if (!hasPortfolioIntent && assistantQuestionIsEngineeringRelated(question)) return "general_engineering";
   if (!hasPortfolioIntent && assistantQuestionLooksConceptual(question)) return "general_engineering";
   if (hasPortfolioIntent) return "portfolio_specific";
   return "general_knowledge";
+}
+
+function assistantQuestionTokens(question = "") {
+  const stopWords = new Set([
+    "about", "again", "also", "and", "are", "can", "could", "does", "for", "from", "give", "have", "his",
+    "into", "link", "links", "maurice", "me", "my", "open", "otieno", "please", "portfolio", "project",
+    "projects", "show", "tell", "that", "the", "their", "this", "what", "where", "which", "who", "with",
+    "work", "your"
+  ]);
+  return normalize(question)
+    .split(/[^a-z0-9+#.]+/i)
+    .map((token) => token.trim())
+    .filter((token) => token.length > 2 && !stopWords.has(token));
+}
+
+function assistantSourcesForDisplay(question = "", results = [], intent = assistantQuestionIntent(question)) {
+  if (intent !== "portfolio_specific") return [];
+  const tokens = assistantQuestionTokens(question);
+  const namedProjectIds = new Set(assistantNamedProjectIds(question));
+  const asksForLinks = /\b(open|show|where|link|links|github|linkedin|resume|download|file|files|repo|repository|source\s+code)\b/.test(normalize(question));
+  return results
+    .filter((result) => {
+      if (!result) return false;
+      if (namedProjectIds.size && namedProjectIds.has(result.projectId)) return true;
+      const haystack = normalize([result.title, result.context, result.type, result.text, result.url].filter(Boolean).join(" "));
+      const tokenHits = tokens.filter((token) => haystack.includes(token)).length;
+      if (tokenHits >= Math.min(2, Math.max(1, tokens.length))) return true;
+      if (asksForLinks && tokenHits >= 1) return true;
+      return Number(result.score || 0) >= 80 && tokens.length > 0;
+    })
+    .slice(0, asksForLinks ? 5 : 3);
 }
 
 function assistantContextForQuestion(question = "", intent = assistantQuestionIntent(question), knownResults = null) {
@@ -1437,8 +1482,18 @@ function assistantGeneralEngineeringAnswer(question = "") {
 
 function assistantLocalAnswer(question = "", results = [], intent = assistantQuestionIntent(question)) {
   if (intent === "general_conversation") {
+    const clean = normalize(question);
+    if (/^(hi|hello|hey|yo|sup)\b/.test(clean)) {
+      return "Hi, what can I do for you?";
+    }
+    if (/^(what'?s|what\s+is|do\s+you\s+know)\s+my\s+name\??$/.test(clean) || /^who\s+am\s+i\??$/.test(clean)) {
+      return "I am an AI agent for Maurice Otieno's portfolio. I know the portfolio owner is Maurice Otieno, but I do not know a visitor's personal name unless they tell me.";
+    }
+    if (/\b(who are you|what are you)\b/.test(clean)) {
+      return "I am an AI agent for Maurice Otieno's portfolio. I can help with his projects, resume, public links, and related engineering questions.";
+    }
     return [
-      "Hi. I can help you explore Maurice Otieno's portfolio, explain projects, summarize files, open relevant sections, or answer related electronics and embedded-systems questions.",
+      "I am here with you. I can help explore Maurice Otieno's portfolio, explain projects, summarize files, open relevant sections, or answer related electronics and embedded-systems questions.",
       "",
       "You can ask things like:",
       "- What is embedded systems?",
@@ -1750,9 +1805,10 @@ async function answerAssistantQuestion(question = "") {
   try {
     setAssistantStatus(assistantEndpoint() ? "Composing AI answer" : "Composing local answer", "working");
 
-    const intent = assistantQuestionIntent(cleanQuestion);
-    const sources = assistantFallbackResults(cleanQuestion, intent);
-    const context = assistantContextForQuestion(cleanQuestion, intent, sources);
+    const intent = assistantQuestionIntent(cleanQuestion, priorConversation);
+    const rawSources = assistantFallbackResults(cleanQuestion, intent);
+    const sources = assistantSourcesForDisplay(cleanQuestion, rawSources, intent);
+    const context = assistantContextForQuestion(cleanQuestion, intent, rawSources);
     const conversation = assistantConversationForRequest(cleanQuestion, priorConversation);
     try {
       const remoteAnswer = await askRemoteAssistant(cleanQuestion, context, {
