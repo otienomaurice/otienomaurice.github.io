@@ -19,21 +19,6 @@
       "accent": "#d18b21"
     }
   ],
-  "profile": {
-    "brandImage": "assets/omb-mark.png",
-    "brandText": "OMB",
-    "contactIntro": "Hardware and software engineer focused on analog design, mixed-signal systems, embedded platforms, and digital hardware.",
-    "displayName": "Maurice Otieno",
-    "email": "otienomaurice12340@gmail.com",
-    "githubUrl": "https://github.com/otienomaurice",
-    "heroImage": "assets/hero-analog-lab.png",
-    "linkedinUrl": "https://www.linkedin.com/in/maurice-otieno-037a55341",
-    "phone": "+14845451567",
-    "portfolioLabel": "Hardware Engineering Portfolio",
-    "profileImage": "assets/maurice-otieno-profile.png",
-    "resumeUrl": "assets/resume.pdf",
-    "websiteUrl": "https://mauriceotieno.com"
-  },
   "funFacts": [
     "I built the builder to create this portfolio, letting me add text and files while parsing the provided input.",
     "I enjoy playing soccer, especially as a defensive midfielder.",
@@ -55,9 +40,9 @@
     ]
   },
   "siteContent": {
-    "heroCopy": ".",
+    "heroCopy": "I design and document systems across analog circuits, embedded firmware, digital hardware, and software.\nThis portfolio presents selected work, technical artifacts, and the engineering decisions behind each build.",
     "heroEyebrow": "Engineering portfolio",
-    "heroTitle": "Analog, embedded, and digital systems."
+    "heroTitle": "Analog, embedded, and digital systems built with purpose."
   },
   "projects": [
     {
@@ -352,7 +337,7 @@
         }
       },
       "portfolioView": {
-        "builtAt": "2026-06-21T22:05:48.088Z",
+        "builtAt": "2026-06-22T00:51:09.867Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -738,7 +723,7 @@
         }
       },
       "portfolioView": {
-        "builtAt": "2026-06-21T22:05:48.089Z",
+        "builtAt": "2026-06-22T00:51:09.868Z",
         "template": {
           "group": "Appearance",
           "id": "",
@@ -889,7 +874,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-21T22:05:48.089Z",
+        "builtAt": "2026-06-22T00:51:09.868Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -1181,7 +1166,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-21T22:05:48.089Z",
+        "builtAt": "2026-06-22T00:51:09.868Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-steel-teal-click",
@@ -1409,7 +1394,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-21T22:05:48.089Z",
+        "builtAt": "2026-06-22T00:51:09.868Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-graphite-white-click",
@@ -1529,7 +1514,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-21T22:05:48.089Z",
+        "builtAt": "2026-06-22T00:51:09.868Z",
         "template": {
           "group": "Appearance",
           "id": "",
@@ -1585,7 +1570,7 @@
       "links": [],
       "sections": [],
       "portfolioView": {
-        "builtAt": "2026-06-21T22:05:48.089Z",
+        "builtAt": "2026-06-22T00:51:09.868Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -1620,7 +1605,7 @@
       "eyebrow": "Professional profile",
       "description": "",
       "visible": true,
-      "backgroundImage": "",
+      "backgroundImage": "docs/_site-sections/professional-profile/techback.png",
       "links": [
         {
           "label": "Resume",
@@ -1680,6 +1665,120 @@
             ]
           },
           "title": "Career Direction and Interests"
+        }
+      ]
+    },
+    {
+      "id": "personal-background",
+      "title": "Personal Background",
+      "eyebrow": "Personal story",
+      "description": "",
+      "visible": true,
+      "backgroundImage": "",
+      "links": [],
+      "assets": [],
+      "subsections": [
+        {
+          "description": "Hometown: Migori, Kenya.\nWhere you will find me: Nairobi, Kenya",
+          "id": "origin-and-home",
+          "links": [],
+          "richDescription": {
+            "blocks": [
+              {
+                "align": "left",
+                "bold": false,
+                "color": "",
+                "fontFamily": "Arial",
+                "fontPx": "",
+                "fontSize": "normal",
+                "html": "<span style=\"font-weight: 400;\"><span style=\"color: rgb(31, 110, 212);\">Hometown</span>: Migori, Kenya.\n</span><span style=\"color: rgb(31, 110, 212); font-weight: 400;\">Where you will find me</span><span style=\"font-weight: 400;\">: Nairobi, Kenya </span>",
+                "text": "Hometown: Migori, Kenya.\nWhere you will find me: Nairobi, Kenya",
+                "type": "paragraph"
+              }
+            ]
+          },
+          "title": "Origin and Home"
+        },
+        {
+          "description": "University: Lafayette College.\nHigh school: Kapsabet Boys High School.",
+          "id": "education-path",
+          "links": [],
+          "richDescription": {
+            "blocks": [
+              {
+                "align": "left",
+                "bold": false,
+                "color": "",
+                "fontFamily": "Arial",
+                "fontPx": "",
+                "fontSize": "normal",
+                "html": "<span style=\"font-weight: 400;\"><span style=\"color: rgb(31, 110, 212);\">University: </span>Lafayette College.\n</span><span style=\"color: rgb(109, 40, 217); font-weight: 400;\"><span style=\"color: rgb(31, 110, 212);\">High school:</span></span><span style=\"font-weight: 400;\"> Kapsabet Boys High School. </span>",
+                "text": "University: Lafayette College.\nHigh school: Kapsabet Boys High School.",
+                "type": "paragraph"
+              }
+            ]
+          },
+          "title": "Education Path"
+        },
+        {
+          "description": "My personal values include creating a comfortable environment for everyone around me while also fostering a space where people can have fun, make jokes, and enjoy themselves.rts of stuff and also so fun",
+          "id": "values",
+          "links": [],
+          "title": "Values"
+        }
+      ]
+    },
+    {
+      "id": "life-outside-engineering",
+      "title": "Life Outside Engineering",
+      "eyebrow": "Beyond the bench",
+      "description": "",
+      "visible": true,
+      "backgroundImage": "",
+      "links": [],
+      "assets": [],
+      "subsections": [
+        {
+          "description": "Soccer - Defending Midfield / leftback\nSoccer Icon - Luka Modric\nThe Only Goat - Christiano Ronaldo",
+          "id": "sports",
+          "links": [],
+          "richDescription": {
+            "blocks": [
+              {
+                "align": "left",
+                "bold": false,
+                "color": "",
+                "fontFamily": "Arial",
+                "fontPx": "",
+                "fontSize": "normal",
+                "html": "<span style=\"color: rgb(31, 110, 212);\">Soccer</span> - Defending Midfield / leftback\n<span style=\"color: rgb(31, 110, 212);\">Soccer Icon</span> - Luka Modric\n<span style=\"color: rgb(31, 110, 212);\">The Only Goat </span>- Christiano Ronaldo",
+                "text": "Soccer - Defending Midfield / leftback\nSoccer Icon - Luka Modric\nThe Only Goat - Christiano Ronaldo",
+                "type": "paragraph"
+              }
+            ]
+          },
+          "title": "Sports"
+        },
+        {
+          "description": "Cycling, Swimming, Hiking, and watching Documentaries and Soccer Matches.",
+          "id": "hobbies",
+          "links": [],
+          "richDescription": {
+            "blocks": [
+              {
+                "align": "left",
+                "bold": false,
+                "color": "",
+                "fontFamily": "Arial",
+                "fontPx": "",
+                "fontSize": "normal",
+                "html": "<span style=\"color: rgb(0, 0, 0);\"><span style=\"font-size: 15px;\"><span style=\"font-size: 16px;\"><span style=\"font-size: 17px;\"><span style=\"font-size: 18px;\"><span style=\"font-size: 17px;\"><span style=\"font-size: 16px;\"><span style=\"font-size: 15px;\"><span style=\"font-size: 14px;\"><span style=\"font-size: 13px; font-weight: 400;\">Cycling, Swimming, Hiking, and watching Documentaries and Soccer Matches.</span></span></span></span></span></span></span></span></span></span>",
+                "text": "Cycling, Swimming, Hiking, and watching Documentaries and Soccer Matches.",
+                "type": "paragraph"
+              }
+            ]
+          },
+          "title": "Hobbies"
         }
       ]
     }
