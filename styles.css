@@ -451,6 +451,57 @@ h3 {
   line-height: 1.45;
 }
 
+.builder-download-section {
+  padding: 0 clamp(18px, 5vw, 56px) 18px;
+  background:
+    linear-gradient(135deg, rgba(250, 253, 255, 0.98), rgba(232, 247, 252, 0.96)),
+    #fafdff;
+  border-bottom: 1px solid var(--line);
+}
+
+.builder-download-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  width: fit-content;
+  margin: 0 auto;
+  color: #06384f;
+  text-decoration: none;
+  font-size: 0.94rem;
+  font-weight: 900;
+  line-height: 1.1;
+  padding: 11px 14px;
+  border: 1px solid #9cd2e8;
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 10px 24px rgba(23, 32, 42, 0.1);
+  transition: background 140ms ease, border-color 140ms ease, color 140ms ease, transform 140ms ease;
+}
+
+.builder-download-link:hover,
+.builder-download-link:focus-visible {
+  color: #041c2a;
+  border-color: #47b8df;
+  background: #dff5ff;
+  transform: translateY(-1px);
+}
+
+.builder-download-link:active {
+  background: #ffffff;
+  transform: translateY(0);
+}
+
+.builder-download-link svg {
+  width: 19px;
+  height: 19px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.1;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex: 0 0 auto;
+}
+
 .sr-only {
   position: absolute;
   width: 1px;
@@ -2436,6 +2487,15 @@ h3 {
 
   .fun-facts-window {
     padding: 14px;
+  }
+
+  .builder-download-section {
+    padding: 0 12px 14px;
+  }
+
+  .builder-download-link {
+    width: 100%;
+    justify-content: center;
   }
 
   .project-card {

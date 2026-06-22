@@ -3061,7 +3061,9 @@ function loadProjectCatalog() {
     return;
   }
 
-  fetch("projects.json")
+  const catalogUrl = new URL("projects.json", window.location.href);
+  catalogUrl.searchParams.set("v", String(Date.now()));
+  fetch(catalogUrl.href, { cache: "no-store" })
     .then((response) => {
       if (!response.ok) throw new Error("Could not load projects.json");
       return response.json();

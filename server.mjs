@@ -615,6 +615,23 @@ async function workspaceHasCompatibleSiteFiles() {
   return true;
 }
 
+async function bumpPublishedAssetVersions() {
+  let html = "";
+  try {
+    html = await readFile(resolveInsideRoot("index.html"), "utf8");
+  } catch {
+    return false;
+  }
+  const version = Date.now().toString();
+  const next = html
+    .replace(/(href="styles\.css)(?:\?v=[^"]*)?"/g, `$1?v=${version}"`)
+    .replace(/(src="script\.js)(?:\?v=[^"]*)?"/g, `$1?v=${version}"`)
+    .replace(/(src="electronics-search\.js)(?:\?v=[^"]*)?"/g, `$1?v=${version}"`);
+  if (next === html) return false;
+  await writeFile(resolveInsideRoot("index.html"), next, "utf8");
+  return true;
+}
+
 async function getPublishTargetInfo() {
   const info = {
     workspace: root,
@@ -1094,6 +1111,7 @@ async function handleApi(request, response, url) {
     await writeFile(target, `${JSON.stringify(catalog, null, 2)}\n`, "utf8");
     if (applyingToSite) {
       try {
+        await bumpPublishedAssetVersions();
         const publish = await publishSiteChanges(publishAccess);
         sendJson(response, 200, { ok: true, file: path.relative(root, target), publish });
       } catch (error) {
