@@ -19,6 +19,21 @@
       "accent": "#d18b21"
     }
   ],
+  "profile": {
+    "brandImage": "assets/omb-mark.png",
+    "brandText": "OMB",
+    "contactIntro": "Hardware and software engineer focused on analog design, mixed-signal systems, embedded platforms, and digital hardware.",
+    "displayName": "Maurice Otieno",
+    "email": "otienomaurice12340@gmail.com",
+    "githubUrl": "https://github.com/otienomaurice",
+    "heroImage": "assets/hero-analog-lab.png",
+    "linkedinUrl": "https://www.linkedin.com/in/maurice-otieno-037a55341",
+    "phone": "+14845451567",
+    "portfolioLabel": "Hardware Engineering Portfolio",
+    "profileImage": "assets/maurice-otieno-profile.png",
+    "resumeUrl": "assets/resume.pdf",
+    "websiteUrl": "https://mauriceotieno.com"
+  },
   "funFacts": [
     "I built the builder to create this portfolio, letting me add text and files while parsing the provided input.",
     "I enjoy playing soccer, especially as a defensive midfielder.",
