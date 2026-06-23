@@ -337,7 +337,7 @@
         }
       },
       "portfolioView": {
-        "builtAt": "2026-06-23T06:27:11.321Z",
+        "builtAt": "2026-06-23T06:33:02.778Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -723,7 +723,7 @@
         }
       },
       "portfolioView": {
-        "builtAt": "2026-06-23T06:27:11.321Z",
+        "builtAt": "2026-06-23T06:33:02.778Z",
         "template": {
           "group": "Appearance",
           "id": "",
@@ -874,7 +874,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-23T06:27:11.321Z",
+        "builtAt": "2026-06-23T06:33:02.778Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -1166,7 +1166,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-23T06:27:11.321Z",
+        "builtAt": "2026-06-23T06:33:02.778Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-steel-teal-click",
@@ -1394,7 +1394,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-23T06:27:11.322Z",
+        "builtAt": "2026-06-23T06:33:02.778Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-graphite-white-click",
@@ -1514,7 +1514,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-23T06:27:11.322Z",
+        "builtAt": "2026-06-23T06:33:02.778Z",
         "template": {
           "group": "Appearance",
           "id": "",
@@ -1577,7 +1577,7 @@
       "links": [],
       "sections": [],
       "portfolioView": {
-        "builtAt": "2026-06-23T06:27:11.322Z",
+        "builtAt": "2026-06-23T06:33:02.778Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -1762,7 +1762,7 @@
       "assets": [],
       "subsections": [
         {
-          "description": "Soccer - Defending Midfield / leftback\nSoccer Icon - Luka Modric\nThe Only Goat - Christiano Ronaldo",
+          "description": "Soccer - Defending Midfield / leftback\nSoccer Icon - Luka Modric",
           "id": "sports",
           "links": [],
           "richDescription": {
@@ -1774,8 +1774,8 @@
                 "fontFamily": "Arial",
                 "fontPx": "",
                 "fontSize": "normal",
-                "html": "<span style=\"color: rgb(31, 110, 212);\">Soccer</span> - Defending Midfield / leftback\n<span style=\"color: rgb(31, 110, 212);\">Soccer Icon</span> - Luka Modric\n<span style=\"color: rgb(31, 110, 212);\">The Only Goat </span>- Christiano Ronaldo",
-                "text": "Soccer - Defending Midfield / leftback\nSoccer Icon - Luka Modric\nThe Only Goat - Christiano Ronaldo",
+                "html": "<span style=\"color: rgb(31, 110, 212);\">Soccer</span> - Defending Midfield / leftback\n<span style=\"color: rgb(31, 110, 212);\">Soccer Icon</span> - Luka Modric\n<br>",
+                "text": "Soccer - Defending Midfield / leftback\nSoccer Icon - Luka Modric",
                 "type": "paragraph"
               }
             ]
