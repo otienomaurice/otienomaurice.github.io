@@ -20,9 +20,7 @@
     }
   ],
   "funFacts": [
-    "I built the builder to create this portfolio, letting me add text and files while parsing the provided input.",
-    "I enjoy playing soccer, especially as a defensive midfielder.",
-    "I also enjoy a good debate about the game, whether it’s tactics, positional awareness, or the way players carry themselves on the field."
+    "I built the builder to create this portfolio, letting me add text and files while parsing the provided input. You can download it as a standalone desktop app by clicking the link below. It would, however, require you to specify a GitHub Pages website where Your portfolio will be hosted."
   ],
   "funFactsRich": {
     "blocks": [
@@ -33,8 +31,8 @@
         "fontFamily": "Arial",
         "fontPx": "",
         "fontSize": "normal",
-        "html": "I built the builder to create this portfolio, letting me add text and files while parsing the provided input.\nI enjoy playing soccer, especially as a defensive midfielder.\nI also enjoy a good debate about the game, whether it’s tactics, positional awareness, or the way players carry themselves on the field.",
-        "text": "I built the builder to create this portfolio, letting me add text and files while parsing the provided input.\nI enjoy playing soccer, especially as a defensive midfielder.\nI also enjoy a good debate about the game, whether it’s tactics, positional awareness, or the way players carry themselves on the field.",
+        "html": "I built the builder to create this portfolio, letting me add text and files while parsing the provided input. You can download it as a standalone desktop app by clicking the link below. It would, however, require you to specify a GitHub Pages website where Your portfolio will be hosted.\n<br>",
+        "text": "I built the builder to create this portfolio, letting me add text and files while parsing the provided input. You can download it as a standalone desktop app by clicking the link below. It would, however, require you to specify a GitHub Pages website where Your portfolio will be hosted.",
         "type": "paragraph"
       }
     ]
@@ -337,7 +335,7 @@
         }
       },
       "portfolioView": {
-        "builtAt": "2026-06-23T06:45:18.959Z",
+        "builtAt": "2026-06-23T17:00:50.042Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -723,7 +721,7 @@
         }
       },
       "portfolioView": {
-        "builtAt": "2026-06-23T06:45:18.959Z",
+        "builtAt": "2026-06-23T17:00:50.042Z",
         "template": {
           "group": "Appearance",
           "id": "",
@@ -874,7 +872,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-23T06:45:18.959Z",
+        "builtAt": "2026-06-23T17:00:50.042Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -1166,7 +1164,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-23T06:45:18.959Z",
+        "builtAt": "2026-06-23T17:00:50.042Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-steel-teal-click",
@@ -1394,7 +1392,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-23T06:45:18.959Z",
+        "builtAt": "2026-06-23T17:00:50.042Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-graphite-white-click",
@@ -1514,7 +1512,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-23T06:45:18.959Z",
+        "builtAt": "2026-06-23T17:00:50.042Z",
         "template": {
           "group": "Appearance",
           "id": "",
@@ -1577,7 +1575,7 @@
       "links": [],
       "sections": [],
       "portfolioView": {
-        "builtAt": "2026-06-23T06:45:18.959Z",
+        "builtAt": "2026-06-23T17:00:50.042Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
