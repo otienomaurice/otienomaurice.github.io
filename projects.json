@@ -337,7 +337,7 @@
         }
       },
       "portfolioView": {
-        "builtAt": "2026-06-23T03:38:36.791Z",
+        "builtAt": "2026-06-23T04:47:51.581Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -723,7 +723,7 @@
         }
       },
       "portfolioView": {
-        "builtAt": "2026-06-23T03:38:36.791Z",
+        "builtAt": "2026-06-23T04:47:51.581Z",
         "template": {
           "group": "Appearance",
           "id": "",
@@ -874,7 +874,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-23T03:38:36.791Z",
+        "builtAt": "2026-06-23T04:47:51.582Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -1166,7 +1166,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-23T03:38:36.791Z",
+        "builtAt": "2026-06-23T04:47:51.582Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-steel-teal-click",
@@ -1394,7 +1394,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-23T03:38:36.791Z",
+        "builtAt": "2026-06-23T04:47:51.582Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-graphite-white-click",
@@ -1514,7 +1514,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-23T03:38:36.791Z",
+        "builtAt": "2026-06-23T04:47:51.582Z",
         "template": {
           "group": "Appearance",
           "id": "",
@@ -1561,7 +1561,14 @@
       "summaryRich": null,
       "focus": [],
       "highlights": [],
-      "documents": [],
+      "documents": [
+        {
+          "title": "HEALTH MONITOR.pdf",
+          "type": "Document",
+          "url": "docs/fpga-base-health-monitor-pulse-sensor-and-reaction-timer-controllers/documents/health-monitor.pdf",
+          "status": "uploaded"
+        }
+      ],
       "tests": [],
       "pcbs": [],
       "media": [],
@@ -1570,7 +1577,7 @@
       "links": [],
       "sections": [],
       "portfolioView": {
-        "builtAt": "2026-06-23T03:38:36.791Z",
+        "builtAt": "2026-06-23T04:47:51.582Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -1594,7 +1601,23 @@
           }
         },
         "title": "FPGA base Health Monitor (Pulse Sensor and Reaction Timer controllers)",
-        "sections": []
+        "sections": [
+          {
+            "description": "",
+            "id": "design",
+            "items": [
+              {
+                "children": [],
+                "description": "",
+                "kind": "document",
+                "meta": "Document",
+                "title": "HEALTH MONITOR.pdf",
+                "url": "docs/fpga-base-health-monitor-pulse-sensor-and-reaction-timer-controllers/documents/health-monitor.pdf"
+              }
+            ],
+            "title": "Design"
+          }
+        ]
       }
     }
   ],
