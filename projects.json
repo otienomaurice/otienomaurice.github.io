@@ -335,7 +335,7 @@
         }
       },
       "portfolioView": {
-        "builtAt": "2026-06-23T17:00:50.042Z",
+        "builtAt": "2026-06-23T17:03:43.251Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -721,7 +721,7 @@
         }
       },
       "portfolioView": {
-        "builtAt": "2026-06-23T17:00:50.042Z",
+        "builtAt": "2026-06-23T17:03:43.251Z",
         "template": {
           "group": "Appearance",
           "id": "",
@@ -872,7 +872,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-23T17:00:50.042Z",
+        "builtAt": "2026-06-23T17:03:43.251Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -1164,7 +1164,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-23T17:00:50.042Z",
+        "builtAt": "2026-06-23T17:03:43.252Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-steel-teal-click",
@@ -1392,7 +1392,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-23T17:00:50.042Z",
+        "builtAt": "2026-06-23T17:03:43.252Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-graphite-white-click",
@@ -1512,7 +1512,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-23T17:00:50.042Z",
+        "builtAt": "2026-06-23T17:03:43.252Z",
         "template": {
           "group": "Appearance",
           "id": "",
@@ -1575,7 +1575,7 @@
       "links": [],
       "sections": [],
       "portfolioView": {
-        "builtAt": "2026-06-23T17:00:50.042Z",
+        "builtAt": "2026-06-23T17:03:43.252Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -1686,66 +1686,6 @@
             ]
           },
           "title": "Career Direction and Interests"
-        }
-      ]
-    },
-    {
-      "id": "personal-background",
-      "title": "Personal Background",
-      "eyebrow": "Personal story",
-      "description": "",
-      "visible": true,
-      "backgroundImage": "",
-      "links": [],
-      "assets": [],
-      "subsections": [
-        {
-          "description": "Hometown: Migori, Kenya.\nWhere you will find me: Nairobi, Kenya",
-          "id": "origin-and-home",
-          "links": [],
-          "richDescription": {
-            "blocks": [
-              {
-                "align": "left",
-                "bold": false,
-                "color": "",
-                "fontFamily": "Arial",
-                "fontPx": "",
-                "fontSize": "normal",
-                "html": "<span style=\"font-weight: 400;\"><span style=\"color: rgb(31, 110, 212);\">Hometown</span>: Migori, Kenya.\n</span><span style=\"color: rgb(31, 110, 212); font-weight: 400;\">Where you will find me</span><span style=\"font-weight: 400;\">: Nairobi, Kenya </span>",
-                "text": "Hometown: Migori, Kenya.\nWhere you will find me: Nairobi, Kenya",
-                "type": "paragraph"
-              }
-            ]
-          },
-          "title": "Origin and Home"
-        },
-        {
-          "description": "University: Lafayette College.\nHigh school: Kapsabet Boys High School.",
-          "id": "education-path",
-          "links": [],
-          "richDescription": {
-            "blocks": [
-              {
-                "align": "left",
-                "bold": false,
-                "color": "",
-                "fontFamily": "Arial",
-                "fontPx": "",
-                "fontSize": "normal",
-                "html": "<span style=\"font-weight: 400;\"><span style=\"color: rgb(31, 110, 212);\">University: </span>Lafayette College.\n</span><span style=\"color: rgb(109, 40, 217); font-weight: 400;\"><span style=\"color: rgb(31, 110, 212);\">High school:</span></span><span style=\"font-weight: 400;\"> Kapsabet Boys High School. </span>",
-                "text": "University: Lafayette College.\nHigh school: Kapsabet Boys High School.",
-                "type": "paragraph"
-              }
-            ]
-          },
-          "title": "Education Path"
-        },
-        {
-          "description": "My personal values include creating a comfortable environment for everyone around me while also fostering a space where people can have fun, make jokes, and enjoy themselves.rts of stuff and also so fun",
-          "id": "values",
-          "links": [],
-          "title": "Values"
         }
       ]
     },
