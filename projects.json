@@ -337,7 +337,7 @@
         }
       },
       "portfolioView": {
-        "builtAt": "2026-06-23T06:33:02.778Z",
+        "builtAt": "2026-06-23T06:45:18.959Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -723,7 +723,7 @@
         }
       },
       "portfolioView": {
-        "builtAt": "2026-06-23T06:33:02.778Z",
+        "builtAt": "2026-06-23T06:45:18.959Z",
         "template": {
           "group": "Appearance",
           "id": "",
@@ -874,7 +874,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-23T06:33:02.778Z",
+        "builtAt": "2026-06-23T06:45:18.959Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -1166,7 +1166,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-23T06:33:02.778Z",
+        "builtAt": "2026-06-23T06:45:18.959Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-steel-teal-click",
@@ -1394,7 +1394,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-23T06:33:02.778Z",
+        "builtAt": "2026-06-23T06:45:18.959Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-graphite-white-click",
@@ -1514,7 +1514,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-23T06:33:02.778Z",
+        "builtAt": "2026-06-23T06:45:18.959Z",
         "template": {
           "group": "Appearance",
           "id": "",
@@ -1577,7 +1577,7 @@
       "links": [],
       "sections": [],
       "portfolioView": {
-        "builtAt": "2026-06-23T06:33:02.778Z",
+        "builtAt": "2026-06-23T06:45:18.959Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -1628,7 +1628,7 @@
       "eyebrow": "Professional profile",
       "description": "",
       "visible": true,
-      "backgroundImage": "docs/_site-sections/professional-profile/techback.png",
+      "backgroundImage": "",
       "links": [
         {
           "label": "Resume",
