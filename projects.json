@@ -335,7 +335,7 @@
         }
       },
       "portfolioView": {
-        "builtAt": "2026-06-23T17:03:43.251Z",
+        "builtAt": "2026-06-27T05:40:25.382Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -721,7 +721,7 @@
         }
       },
       "portfolioView": {
-        "builtAt": "2026-06-23T17:03:43.251Z",
+        "builtAt": "2026-06-27T05:40:25.382Z",
         "template": {
           "group": "Appearance",
           "id": "",
@@ -872,7 +872,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-23T17:03:43.251Z",
+        "builtAt": "2026-06-27T05:40:25.382Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -1164,7 +1164,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-23T17:03:43.252Z",
+        "builtAt": "2026-06-27T05:40:25.382Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-steel-teal-click",
@@ -1392,7 +1392,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-23T17:03:43.252Z",
+        "builtAt": "2026-06-27T05:40:25.382Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-graphite-white-click",
@@ -1508,11 +1508,20 @@
           "id": "software-hdl",
           "title": "Software HDL",
           "description": "https://github.com/otienomaurice/32X16_LED_Matrix_Controller.git",
-          "items": []
+          "items": [],
+          "richDescription": {
+            "blocks": [
+              {
+                "align": "left",
+                "formula": "https://github.com/otienomaurice/32X16_LED_Matrix_Controller.git",
+                "type": "formula"
+              }
+            ]
+          }
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-23T17:03:43.252Z",
+        "builtAt": "2026-06-27T05:40:25.383Z",
         "template": {
           "group": "Appearance",
           "id": "",
@@ -1525,7 +1534,16 @@
             "description": "https://github.com/otienomaurice/32X16_LED_Matrix_Controller.git",
             "id": "custom:software-hdl",
             "items": [],
-            "title": "Software HDL"
+            "title": "Software HDL",
+            "rich": {
+              "blocks": [
+                {
+                  "align": "left",
+                  "formula": "https://github.com/otienomaurice/32X16_LED_Matrix_Controller.git",
+                  "type": "formula"
+                }
+              ]
+            }
           }
         ]
       }
@@ -1575,7 +1593,7 @@
       "links": [],
       "sections": [],
       "portfolioView": {
-        "builtAt": "2026-06-23T17:03:43.252Z",
+        "builtAt": "2026-06-27T05:40:25.383Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
