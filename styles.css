@@ -1405,6 +1405,17 @@ h3 {
   gap: 12px;
 }
 
+.rich-field-line {
+  display: block;
+  white-space: pre-wrap;
+}
+
+.brand .rich-field-line,
+.contact-details .rich-field-line,
+.contact-links .rich-field-line {
+  display: inline;
+}
+
 .rich-paragraph {
   margin: 0;
   color: var(--ink);

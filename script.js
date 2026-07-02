@@ -38,8 +38,11 @@ let projects = [];
 let siteSections = [];
 let funFacts = [];
 let funFactsRich = null;
+let fieldStyles = {};
 let siteContent = null;
+let siteContentRich = {};
 let profile = null;
+let profileRich = {};
 let activeFilter = "all";
 let activeSectionDialogDrag = null;
 let activeSectionDialogResize = null;
@@ -382,9 +385,12 @@ function phoneLink(phone = "") {
 
 function renderSiteContent() {
   const content = normalizeSiteContent(siteContent || {});
-  if (heroEyebrow) heroEyebrow.textContent = content.heroEyebrow;
-  if (heroTitle) heroTitle.innerHTML = renderPlainMultiline(content.heroTitle);
-  if (heroCopy) heroCopy.innerHTML = renderPlainMultiline(content.heroCopy);
+  if (heroEyebrow) heroEyebrow.innerHTML = renderRichFieldContent(siteContentRich.heroEyebrow, content.heroEyebrow);
+  if (heroTitle) heroTitle.innerHTML = renderRichFieldContent(siteContentRich.heroTitle, content.heroTitle);
+  if (heroCopy) heroCopy.innerHTML = renderRichFieldContent(siteContentRich.heroCopy, content.heroCopy);
+  applyPlainFieldStyle(heroEyebrow, "site-hero-eyebrow");
+  applyPlainFieldStyle(heroTitle, "site-hero-title");
+  applyPlainFieldStyle(heroCopy, "site-hero-copy");
 }
 
 function renderProfile() {
@@ -403,8 +409,10 @@ function renderProfile() {
   ].filter(Boolean);
 
   document.title = `${displayName} | ${label}`;
-  if (brandName) brandName.textContent = displayName;
-  if (brandSubtitle) brandSubtitle.textContent = label;
+  if (brandName) brandName.innerHTML = renderRichFieldContent(profileRich.displayName, displayName);
+  if (brandSubtitle) brandSubtitle.innerHTML = renderRichFieldContent(profileRich.portfolioLabel, label);
+  applyPlainFieldStyle(brandName, "profile-display-name");
+  applyPlainFieldStyle(brandSubtitle, "profile-portfolio-label");
   if (brandText) brandText.textContent = current.brandText || displayName.slice(0, 3).toUpperCase() || "PORT";
   if (brandIcon) {
     if (current.brandImage) {
@@ -462,18 +470,36 @@ function renderProfile() {
       profilePhoto.alt = `Portrait of ${displayName}`;
     }
   }
-  if (contactTitle) contactTitle.textContent = displayName;
+  if (contactTitle) contactTitle.innerHTML = renderRichFieldContent(profileRich.displayName, displayName);
+  applyPlainFieldStyle(contactTitle, "profile-display-name");
   if (contactIntro) {
-    contactIntro.textContent = current.contactIntro || (current.displayName ? `${displayName}'s contact information and public links.` : "Add contact details in the builder.");
+    contactIntro.innerHTML = renderRichFieldContent(
+      profileRich.contactIntro,
+      current.contactIntro || (current.displayName ? `${displayName}'s contact information and public links.` : "Add contact details in the builder.")
+    );
   }
+  applyPlainFieldStyle(contactIntro, "profile-contact-intro");
   if (contactDetails) {
     contactDetails.innerHTML = [
-      current.email ? `<a href="${emailLink}" target="_blank" rel="noreferrer">${current.email}</a>` : "",
-      current.phone ? `<a href="${callLink}">${current.phone}</a>` : ""
+      current.email ? `<a href="${emailLink}" target="_blank" rel="noreferrer"${plainFieldStyleAttribute("profile-email")}>${renderRichFieldContent(profileRich.email, current.email)}</a>` : "",
+      current.phone ? `<a href="${callLink}"${plainFieldStyleAttribute("profile-phone")}>${renderRichFieldContent(profileRich.phone, current.phone)}</a>` : ""
     ].filter(Boolean).join("");
   }
   if (contactLinks) {
-    contactLinks.innerHTML = links.map((link) => `<a href="${link.url}"${link.external ? ' target="_blank" rel="noreferrer"' : ""}>${link.label}</a>`).join("");
+    contactLinks.innerHTML = links.map((link) => {
+      const styleId = link.label === "GitHub"
+        ? "profile-github"
+        : link.label === "LinkedIn"
+          ? "profile-linkedin"
+          : link.label === "Website"
+            ? "profile-website"
+            : link.label === "Email"
+              ? "profile-email"
+              : link.label === "Call"
+                ? "profile-phone"
+                : "";
+      return `<a href="${link.url}"${link.external ? ' target="_blank" rel="noreferrer"' : ""}${styleId ? plainFieldStyleAttribute(styleId) : ""}>${link.label}</a>`;
+    }).join("");
   }
   if (footerOwner) footerOwner.innerHTML = `&copy; <span id="year">${new Date().getFullYear()}</span> ${displayName}`;
   if (contactBand) contactBand.hidden = !links.length && !current.profileImage && !current.contactIntro && !current.displayName;
@@ -672,6 +698,66 @@ function normalizeTextColor(value = "") {
         : "";
 }
 
+function rgbColorToHex(value = "") {
+  const color = String(value || "").trim();
+  if (/^#[0-9a-f]{6}$/i.test(color)) return color.toLowerCase();
+  const shortHex = color.match(/^#([0-9a-f])([0-9a-f])([0-9a-f])$/i);
+  if (shortHex) return `#${shortHex[1]}${shortHex[1]}${shortHex[2]}${shortHex[2]}${shortHex[3]}${shortHex[3]}`.toLowerCase();
+  const rgb = color.match(/^rgba?\((\d+),\s*(\d+),\s*(\d+)/i);
+  if (!rgb) return color;
+  return `#${[rgb[1], rgb[2], rgb[3]].map((part) => Math.max(0, Math.min(255, Number(part))).toString(16).padStart(2, "0")).join("")}`;
+}
+
+function normalizePlainFieldStyle(style = {}) {
+  const normalized = {};
+  const fontFamily = cleanFontFamily(style.fontFamily || "");
+  const fontPx = normalizeFontPx(style.fontPx || style.fontSize || "");
+  const color = normalizeTextColor(style.color || "");
+  if (fontFamily) normalized.fontFamily = fontFamily;
+  if (fontPx) normalized.fontPx = fontPx;
+  if (color) normalized.color = rgbColorToHex(color);
+  if (style.bold === true || style.bold === "true") normalized.bold = true;
+  if (style.italic === true || style.italic === "true") normalized.italic = true;
+  if (style.underline === true || style.underline === "true") normalized.underline = true;
+  return normalized;
+}
+
+function normalizeFieldStyles(styles = {}) {
+  return Object.fromEntries(
+    Object.entries(styles || {})
+      .map(([fieldId, style]) => [fieldId, normalizePlainFieldStyle(style)])
+      .filter(([, style]) => Object.keys(style).length)
+  );
+}
+
+function plainFieldStyleToCss(style = {}) {
+  const normalized = normalizePlainFieldStyle(style);
+  const rules = [];
+  if (normalized.fontFamily) rules.push(`font-family: ${normalized.fontFamily}`);
+  if (normalized.fontPx) rules.push(`font-size: ${normalized.fontPx}px`);
+  if (normalized.color) rules.push(`color: ${normalized.color}`);
+  if (normalized.bold) rules.push("font-weight: 700");
+  if (normalized.italic) rules.push("font-style: italic");
+  if (normalized.underline) rules.push("text-decoration: underline");
+  return rules.join("; ");
+}
+
+function applyPlainFieldStyle(element, fieldId = "") {
+  if (!element) return;
+  const style = normalizePlainFieldStyle(fieldStyles[fieldId] || {});
+  element.style.fontFamily = style.fontFamily || "";
+  element.style.fontSize = style.fontPx ? `${style.fontPx}px` : "";
+  element.style.color = style.color || "";
+  element.style.fontWeight = style.bold ? "700" : "";
+  element.style.fontStyle = style.italic ? "italic" : "";
+  element.style.textDecoration = style.underline ? "underline" : "";
+}
+
+function plainFieldStyleAttribute(fieldId = "") {
+  const css = plainFieldStyleToCss(fieldStyles[fieldId] || {});
+  return css ? ` style="${escapeHtml(css)}"` : "";
+}
+
 function richTextStyle(block = {}) {
     const styles = [];
     const fontFamily = cleanFontFamily(block.fontFamily || "Arial") || "Arial";
@@ -682,6 +768,8 @@ function richTextStyle(block = {}) {
     if (fontPx) styles.push(`font-size: ${fontPx}px`);
     if (color) styles.push(`color: ${color}`);
     if (block.bold) styles.push("font-weight: 700");
+    if (block.italic) styles.push("font-style: italic");
+    if (block.underline) styles.push("text-decoration: underline");
 
     return styles.length ? ` style="${escapeHtml(styles.join("; "))}"` : "";
 }
@@ -769,6 +857,18 @@ function renderRichContent(rich, fallbackText = "") {
       }).join("")}
     </div>
   `;
+}
+
+function renderRichFieldContent(rich, fallbackText = "") {
+  const blocks = rich?.blocks?.length ? rich.blocks : textBlocksFromPlainText(fallbackText);
+  return blocks.map((block) => {
+    if (block.type !== "paragraph") return "";
+    const align = ["left", "center", "right"].includes(block.align) ? block.align : "left";
+    const content = block.html
+      ? sanitizeRichInlineHtml(block.html)
+      : renderInlineMath(block.text || "");
+    return `<span class="rich-field-line text-${align}"${richTextStyle(block)}>${content}</span>`;
+  }).filter(Boolean).join("");
 }
 
 function slugLabel(value) {
@@ -3422,8 +3522,11 @@ function loadProjectCatalog() {
     projects = window.__PORTFOLIO_CATALOG__.projects || [];
     categories = hydrateProjectCategories(window.__PORTFOLIO_CATALOG__.categories || [], projects);
     siteSections = window.__PORTFOLIO_CATALOG__.siteSections || [];
+    fieldStyles = normalizeFieldStyles(window.__PORTFOLIO_CATALOG__.fieldStyles || {});
     siteContent = normalizeSiteContent(window.__PORTFOLIO_CATALOG__.siteContent || {});
+    siteContentRich = window.__PORTFOLIO_CATALOG__.siteContentRich || {};
     profile = normalizeProfile(window.__PORTFOLIO_CATALOG__.profile || {});
+    profileRich = window.__PORTFOLIO_CATALOG__.profileRich || {};
     funFacts = normalizeFunFacts(window.__PORTFOLIO_CATALOG__.funFacts || []);
     funFactsRich = window.__PORTFOLIO_CATALOG__.funFactsRich || null;
     renderProfile();
@@ -3449,8 +3552,11 @@ function loadProjectCatalog() {
       projects = data.projects || [];
       categories = hydrateProjectCategories(data.categories || [], projects);
       siteSections = data.siteSections || [];
+      fieldStyles = normalizeFieldStyles(data.fieldStyles || {});
       siteContent = normalizeSiteContent(data.siteContent || {});
+      siteContentRich = data.siteContentRich || {};
       profile = normalizeProfile(data.profile || {});
+      profileRich = data.profileRich || {};
       funFacts = normalizeFunFacts(data.funFacts || []);
       funFactsRich = data.funFactsRich || null;
       renderProfile();

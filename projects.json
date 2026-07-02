@@ -25,6 +25,7 @@
       "label": "Software Engineering"
     }
   ],
+  "fieldStyles": {},
   "funFacts": [
     "I built the builder to create this portfolio, letting me add text and files while parsing the provided input. You can download it as a standalone desktop app by clicking the link below. It would, however, require you to specify a GitHub Pages website where Your portfolio will be hosted."
   ],
@@ -38,7 +39,9 @@
         "fontPx": "",
         "fontSize": "normal",
         "html": "<span style=\"font-size: 8px; display: inline;\"><span style=\"font-size: 13px; display: inline;\">I built the builder to create this portfolio, letting me add text and files while parsing the provided input. You can download it as a standalone desktop app by clicking the link below. It would, however, require you to specify a GitHub Pages website where Your portfolio will be hosted.</span></span>\n<br>",
+        "italic": false,
         "text": "I built the builder to create this portfolio, letting me add text and files while parsing the provided input. You can download it as a standalone desktop app by clicking the link below. It would, however, require you to specify a GitHub Pages website where Your portfolio will be hosted.",
+        "underline": false,
         "type": "paragraph"
       }
     ]
@@ -58,10 +61,201 @@
     "resumeUrl": "assets/resume.pdf",
     "websiteUrl": "https://mauriceotieno.com"
   },
+  "profileRich": {
+    "linkedinUrl": {
+      "blocks": [
+        {
+          "align": "left",
+          "bold": false,
+          "color": "",
+          "fontFamily": "Arial",
+          "fontPx": "",
+          "fontSize": "normal",
+          "html": "<span style=\"font-size: 11px; display: inline;\"><span style=\"font-size: 13px; display: inline;\"><span style=\"font-size: 14px; display: inline;\"><span style=\"font-size: 13px; display: inline;\"><span style=\"color: rgb(14, 165, 233); display: inline;\"><a href=\"https://www.linkedin.com/in/maurice-otieno-037a55341\" target=\"_blank\" rel=\"noreferrer\">https://www.linkedin.com/in/maurice-otieno-037a55341</a></span></span></span></span></span>",
+          "italic": false,
+          "text": "https://www.linkedin.com/in/maurice-otieno-037a55341",
+          "underline": false,
+          "type": "paragraph"
+        }
+      ]
+    },
+    "websiteUrl": {
+      "blocks": [
+        {
+          "align": "left",
+          "bold": false,
+          "color": "",
+          "fontFamily": "Arial",
+          "fontPx": "",
+          "fontSize": "normal",
+          "html": "<span style=\"color: rgb(14, 165, 233); display: inline;\"><a href=\"https://mauriceotieno.com\" target=\"_blank\" rel=\"noreferrer\">https://mauriceotieno.com</a></span>",
+          "italic": false,
+          "text": "https://mauriceotieno.com",
+          "underline": false,
+          "type": "paragraph"
+        }
+      ]
+    },
+    "githubUrl": {
+      "blocks": [
+        {
+          "align": "left",
+          "bold": false,
+          "color": "",
+          "fontFamily": "Arial",
+          "fontPx": "",
+          "fontSize": "normal",
+          "html": "<span style=\"color: rgb(14, 165, 233); display: inline;\"><a href=\"https://github.com/otienomaurice\" target=\"_blank\" rel=\"noreferrer\">https://github.com/otienomaurice</a></span>",
+          "italic": false,
+          "text": "https://github.com/otienomaurice",
+          "underline": false,
+          "type": "paragraph"
+        }
+      ]
+    },
+    "phone": {
+      "blocks": [
+        {
+          "align": "left",
+          "bold": false,
+          "color": "",
+          "fontFamily": "Arial",
+          "fontPx": "",
+          "fontSize": "normal",
+          "html": "<span style=\"color: rgb(14, 165, 233); display: inline;\">+14845451567</span>",
+          "italic": false,
+          "text": "+14845451567",
+          "underline": false,
+          "type": "paragraph"
+        }
+      ]
+    },
+    "email": {
+      "blocks": [
+        {
+          "align": "left",
+          "bold": false,
+          "color": "",
+          "fontFamily": "Arial",
+          "fontPx": "",
+          "fontSize": "normal",
+          "html": "<span style=\"color: rgb(14, 165, 233); display: inline;\">otienomaurice12340@gmail.com</span>",
+          "italic": false,
+          "text": "otienomaurice12340@gmail.com",
+          "underline": false,
+          "type": "paragraph"
+        }
+      ]
+    },
+    "contactIntro": {
+      "blocks": [
+        {
+          "align": "left",
+          "bold": false,
+          "color": "",
+          "fontFamily": "Arial",
+          "fontPx": "",
+          "fontSize": "normal",
+          "html": "Hardware and software engineer focused on analog design, mixed-signal systems, embedded platforms, and digital hardware.",
+          "italic": false,
+          "text": "Hardware and software engineer focused on analog design, mixed-signal systems, embedded platforms, and digital hardware.",
+          "underline": false,
+          "type": "paragraph"
+        }
+      ]
+    },
+    "displayName": {
+      "blocks": [
+        {
+          "align": "left",
+          "bold": false,
+          "color": "",
+          "fontFamily": "Arial",
+          "fontPx": "",
+          "fontSize": "normal",
+          "html": "Maurice Otieno",
+          "italic": false,
+          "text": "Maurice Otieno",
+          "underline": false,
+          "type": "paragraph"
+        }
+      ]
+    },
+    "portfolioLabel": {
+      "blocks": [
+        {
+          "align": "left",
+          "bold": false,
+          "color": "",
+          "fontFamily": "Arial",
+          "fontPx": "",
+          "fontSize": "normal",
+          "html": "Electrical and Computer Engineering Portfolio",
+          "italic": false,
+          "text": "Electrical and Computer Engineering Portfolio",
+          "underline": false,
+          "type": "paragraph"
+        }
+      ]
+    }
+  },
   "siteContent": {
     "heroCopy": "This portfolio presents selected work, technical artifacts, and the engineering decisions behind each build.",
     "heroEyebrow": "Engineering portfolio",
     "heroTitle": "Analog, embedded, and digital systems."
+  },
+  "siteContentRich": {
+    "heroEyebrow": {
+      "blocks": [
+        {
+          "align": "left",
+          "bold": false,
+          "color": "",
+          "fontFamily": "Arial",
+          "fontPx": "",
+          "fontSize": "normal",
+          "html": "Engineering portfolio",
+          "italic": false,
+          "text": "Engineering portfolio",
+          "underline": false,
+          "type": "paragraph"
+        }
+      ]
+    },
+    "heroTitle": {
+      "blocks": [
+        {
+          "align": "left",
+          "bold": false,
+          "color": "",
+          "fontFamily": "Arial",
+          "fontPx": "",
+          "fontSize": "normal",
+          "html": "Analog, embedded, and digital systems.",
+          "italic": false,
+          "text": "Analog, embedded, and digital systems.",
+          "underline": false,
+          "type": "paragraph"
+        }
+      ]
+    },
+    "heroCopy": {
+      "blocks": [
+        {
+          "align": "left",
+          "bold": false,
+          "color": "",
+          "fontFamily": "Arial",
+          "fontPx": "",
+          "fontSize": "normal",
+          "html": "This portfolio presents selected work, technical artifacts, and the engineering decisions behind each build.",
+          "italic": false,
+          "text": "This portfolio presents selected work, technical artifacts, and the engineering decisions behind each build.",
+          "underline": false,
+          "type": "paragraph"
+        }
+      ]
+    }
   },
   "projects": [
     {
@@ -356,7 +550,7 @@
         }
       },
       "portfolioView": {
-        "builtAt": "2026-07-02T05:47:06.888Z",
+        "builtAt": "2026-07-02T06:02:42.047Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -757,7 +951,7 @@
         }
       },
       "portfolioView": {
-        "builtAt": "2026-07-02T05:47:06.888Z",
+        "builtAt": "2026-07-02T06:02:42.047Z",
         "template": {
           "group": "Appearance",
           "id": "",
@@ -941,7 +1135,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-07-02T05:47:06.888Z",
+        "builtAt": "2026-07-02T06:02:42.048Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -1266,7 +1460,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-07-02T05:47:06.888Z",
+        "builtAt": "2026-07-02T06:02:42.048Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-steel-teal-click",
@@ -1544,7 +1738,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-07-02T05:47:06.889Z",
+        "builtAt": "2026-07-02T06:02:42.048Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-graphite-white-click",
@@ -1731,7 +1925,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-07-02T05:47:06.889Z",
+        "builtAt": "2026-07-02T06:02:42.048Z",
         "template": {
           "group": "Appearance",
           "id": "",
@@ -1818,7 +2012,7 @@
       "links": [],
       "sections": [],
       "portfolioView": {
-        "builtAt": "2026-07-02T05:47:06.889Z",
+        "builtAt": "2026-07-02T06:02:42.048Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -1937,8 +2131,10 @@
                 "fontFamily": "Arial",
                 "fontPx": "",
                 "fontSize": "normal",
-                "html": "<span style=\"font-weight: 400;\">Hardware Engineering -  FPGA, ASICs and Electronics( Consumer Electronics , Power electronics and Avionics)\nSoftware Engineering - Embedded Software design, Backend development</span>",
+                "html": "<span style=\"font-weight: 400; display: inline;\"><span style=\"color: rgb(14, 165, 233); display: inline;\">Hardware Engineering -  FPGA, ASICs and Electronics( Consumer Electronics , Power electronics and Avionics)\nSoftware Engineering - Embedded Software design, Backend development</span></span>",
+                "italic": false,
                 "text": "Hardware Engineering -  FPGA, ASICs and Electronics( Consumer Electronics , Power electronics and Avionics)\nSoftware Engineering - Embedded Software design, Backend development",
+                "underline": false,
                 "type": "paragraph"
               }
             ]
