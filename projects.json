@@ -38,7 +38,7 @@
         "fontFamily": "Arial",
         "fontPx": "",
         "fontSize": "normal",
-        "html": "<span style=\"font-size: 8px; display: inline;\"><span style=\"font-size: 13px; display: inline;\">I built the builder to create this portfolio, letting me add text and files while parsing the provided input. You can download it as a standalone desktop app by clicking the link below. It would, however, require you to specify a GitHub Pages website where Your portfolio will be hosted.</span></span>\n<br>",
+        "html": "<span style=\"font-size: 8px; display: inline;\"><span style=\"font-size: 13px; display: inline;\"><span style=\"color: rgb(0, 0, 0); display: inline;\">I built the builder to create this portfolio, letting me add text and files while parsing the provided input. You can download it as a standalone desktop app by clicking the link below. It would, however, require you to specify a GitHub Pages website where Your portfolio will be hosted.</span></span></span>\n<br>",
         "italic": false,
         "text": "I built the builder to create this portfolio, letting me add text and files while parsing the provided input. You can download it as a standalone desktop app by clicking the link below. It would, however, require you to specify a GitHub Pages website where Your portfolio will be hosted.",
         "underline": false,
@@ -71,7 +71,7 @@
           "fontFamily": "Arial",
           "fontPx": "",
           "fontSize": "normal",
-          "html": "<span style=\"font-size: 11px; display: inline;\"><span style=\"font-size: 13px; display: inline;\"><span style=\"font-size: 14px; display: inline;\"><span style=\"font-size: 13px; display: inline;\"><span style=\"color: rgb(14, 165, 233); display: inline;\"><a href=\"https://www.linkedin.com/in/maurice-otieno-037a55341\" target=\"_blank\" rel=\"noreferrer\"><span style=\"color: rgb(14, 165, 233); display: inline;\"><span style=\"color: rgb(23, 32, 42); display: inline;\"><span style=\"color: rgb(255, 255, 255); display: inline;\"><span style=\"color: rgb(29, 78, 216); display: inline;\"><span style=\"color: rgb(148, 163, 184); display: inline;\">https://www.linkedin.com/in/maurice-otieno-037a55341</span></span></span></span></span></a></span></span></span></span></span>",
+          "html": "<span style=\"font-size: 11px; display: inline;\"><span style=\"font-size: 13px; display: inline;\"><span style=\"font-size: 14px; display: inline;\"><span style=\"font-size: 13px; display: inline;\"><span style=\"color: rgb(14, 165, 233); display: inline;\"><a href=\"https://www.linkedin.com/in/maurice-otieno-037a55341\" target=\"_blank\" rel=\"noreferrer\"><span style=\"color: rgb(14, 165, 233); display: inline;\"><span style=\"color: rgb(23, 32, 42); display: inline;\"><span style=\"color: rgb(255, 255, 255); display: inline;\"><span style=\"color: rgb(29, 78, 216); display: inline;\"><span style=\"color: rgb(148, 163, 184); display: inline;\"><span style=\"font-weight: 400; display: inline;\"><span style=\"font-weight: 700; display: inline;\"><span style=\"font-weight: 400; display: inline;\">https://www.linkedin.com/in/maurice-otieno-037a55341</span></span></span></span></span></span></span></span></a></span></span></span></span></span>",
           "italic": false,
           "text": "https://www.linkedin.com/in/maurice-otieno-037a55341",
           "underline": false,
@@ -105,7 +105,7 @@
           "fontFamily": "Arial",
           "fontPx": "",
           "fontSize": "normal",
-          "html": "<span style=\"color: rgb(14, 165, 233); display: inline;\"><a href=\"https://github.com/otienomaurice\" target=\"_blank\" rel=\"noreferrer\"><span style=\"color: rgb(14, 165, 233); display: inline;\"><span style=\"color: rgb(23, 32, 42); display: inline;\"><span style=\"color: rgb(255, 255, 255); display: inline;\"><span style=\"color: rgb(29, 78, 216); display: inline;\"><span style=\"color: rgb(148, 163, 184); display: inline;\">https://github.com/otienomaurice</span></span></span></span></span></a></span>",
+          "html": "<span style=\"color: rgb(14, 165, 233); display: inline;\"><a href=\"https://github.com/otienomaurice\" target=\"_blank\" rel=\"noreferrer\"><span style=\"color: rgb(14, 165, 233); display: inline;\"><span style=\"color: rgb(23, 32, 42); display: inline;\"><span style=\"color: rgb(255, 255, 255); display: inline;\"><span style=\"color: rgb(29, 78, 216); display: inline;\"><span style=\"color: rgb(148, 163, 184); display: inline;\"><span style=\"font-weight: 400; display: inline;\"><span style=\"font-weight: 700; display: inline;\">https://github.com/otienomaurice</span></span></span></span></span></span></span></a></span>",
           "italic": false,
           "text": "https://github.com/otienomaurice",
           "underline": false,
@@ -122,7 +122,7 @@
           "fontFamily": "Arial",
           "fontPx": "",
           "fontSize": "normal",
-          "html": "<span style=\"color: rgb(14, 165, 233); display: inline;\"><span style=\"color: rgb(23, 32, 42); display: inline;\"><span style=\"color: rgb(255, 255, 255); display: inline;\"><span style=\"color: rgb(29, 78, 216); display: inline;\"><span style=\"color: rgb(148, 163, 184); display: inline;\">+14845451567</span></span></span></span></span>",
+          "html": "<span style=\"color: rgb(14, 165, 233); display: inline;\"><span style=\"color: rgb(23, 32, 42); display: inline;\"><span style=\"color: rgb(255, 255, 255); display: inline;\"><span style=\"color: rgb(29, 78, 216); display: inline;\"><span style=\"color: rgb(148, 163, 184); display: inline;\"><span style=\"font-weight: 400; display: inline;\"><span style=\"font-weight: 700; display: inline;\"><span style=\"font-weight: 400; display: inline;\">+14845451567</span></span></span></span></span></span></span></span>",
           "italic": false,
           "text": "+14845451567",
           "underline": false,
@@ -139,7 +139,7 @@
           "fontFamily": "Arial",
           "fontPx": "",
           "fontSize": "normal",
-          "html": "<span style=\"color: rgb(14, 165, 233); display: inline;\"><span style=\"color: rgb(8, 145, 178); display: inline;\"><span style=\"color: rgb(23, 32, 42); display: inline;\"><span style=\"color: rgb(255, 255, 255); display: inline;\"><span style=\"color: rgb(29, 78, 216); display: inline;\"><span style=\"color: rgb(148, 163, 184); display: inline;\">otienomaurice12340@gmail.com</span></span></span></span></span></span>",
+          "html": "<span style=\"color: rgb(14, 165, 233); display: inline;\"><span style=\"color: rgb(8, 145, 178); display: inline;\"><span style=\"color: rgb(23, 32, 42); display: inline;\"><span style=\"color: rgb(255, 255, 255); display: inline;\"><span style=\"color: rgb(29, 78, 216); display: inline;\"><span style=\"color: rgb(148, 163, 184); display: inline;\"><span style=\"font-weight: 400; display: inline;\"><span style=\"font-weight: 700; display: inline;\"><span style=\"font-weight: 400; display: inline;\"><span style=\"font-weight: 700; display: inline;\">otienomaurice12340@gmail.com</span></span></span></span></span></span></span></span></span></span>",
           "italic": false,
           "text": "otienomaurice12340@gmail.com",
           "underline": false,
@@ -156,7 +156,7 @@
           "fontFamily": "Arial",
           "fontPx": "",
           "fontSize": "normal",
-          "html": "<span style=\"color: rgb(14, 165, 233); display: inline;\"><span style=\"color: rgb(23, 32, 42); display: inline;\"><span style=\"color: rgb(255, 255, 255); display: inline;\"><span style=\"color: rgb(29, 78, 216); display: inline;\"><span style=\"color: rgb(148, 163, 184); display: inline;\"><span style=\"font-weight: 400; display: inline;\">Hardware and software engineer focused on analog design, mixed-signal systems, embedded platforms, and digital hardware.</span></span></span></span></span></span>",
+          "html": "<span style=\"color: rgb(14, 165, 233); display: inline;\"><span style=\"color: rgb(23, 32, 42); display: inline;\"><span style=\"color: rgb(255, 255, 255); display: inline;\"><span style=\"color: rgb(29, 78, 216); display: inline;\"><span style=\"color: rgb(148, 163, 184); display: inline;\"><span style=\"font-weight: 400; display: inline;\"><span style=\"font-weight: 700; display: inline;\"><span style=\"font-weight: 400; display: inline;\"><span style=\"font-weight: 700; display: inline;\"><span style=\"font-weight: 400; display: inline;\"><span style=\"font-weight: 700; display: inline;\">Hardware and software engineer focused on analog design, mixed-signal systems, embedded platforms, and digital hardware.</span></span></span></span></span></span></span></span></span></span></span>",
           "italic": false,
           "text": "Hardware and software engineer focused on analog design, mixed-signal systems, embedded platforms, and digital hardware.",
           "underline": false,
@@ -190,7 +190,7 @@
           "fontFamily": "Arial",
           "fontPx": "",
           "fontSize": "normal",
-          "html": "<span style=\"color: rgb(14, 165, 233); display: inline;\"><span style=\"color: rgb(23, 32, 42); display: inline;\"><span style=\"color: rgb(255, 255, 255); display: inline;\"><span style=\"color: rgb(37, 99, 235); display: inline;\"><span style=\"color: rgb(148, 163, 184); display: inline;\"><span style=\"font-weight: 400; display: inline;\">Electrical and Computer Engineering Portfolio</span></span></span></span></span></span>",
+          "html": "<span style=\"color: rgb(14, 165, 233); display: inline;\"><span style=\"color: rgb(23, 32, 42); display: inline;\"><span style=\"color: rgb(255, 255, 255); display: inline;\"><span style=\"color: rgb(37, 99, 235); display: inline;\"><span style=\"color: rgb(148, 163, 184); display: inline;\"><span style=\"font-weight: 400; display: inline;\"><span style=\"font-weight: 700; display: inline;\"><span style=\"font-weight: 400; display: inline;\"><span style=\"font-weight: 700; display: inline;\"><span style=\"font-weight: 400; display: inline;\"><span style=\"font-weight: 700; display: inline;\"><span style=\"font-weight: 400; display: inline;\"><span style=\"font-weight: 700; display: inline;\">Electrical and Computer Engineering Portfolio</span></span></span></span></span></span></span></span></span></span></span></span></span>",
           "italic": false,
           "text": "Electrical and Computer Engineering Portfolio",
           "underline": false,
@@ -565,7 +565,7 @@
         }
       },
       "portfolioView": {
-        "builtAt": "2026-07-02T18:31:07.778Z",
+        "builtAt": "2026-07-02T18:34:29.462Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -981,7 +981,7 @@
         }
       },
       "portfolioView": {
-        "builtAt": "2026-07-02T18:31:07.778Z",
+        "builtAt": "2026-07-02T18:34:29.462Z",
         "template": {
           "group": "Appearance",
           "id": "",
@@ -1165,7 +1165,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-07-02T18:31:07.778Z",
+        "builtAt": "2026-07-02T18:34:29.463Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -1490,7 +1490,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-07-02T18:31:07.779Z",
+        "builtAt": "2026-07-02T18:34:29.463Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-steel-teal-click",
@@ -1768,7 +1768,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-07-02T18:31:07.779Z",
+        "builtAt": "2026-07-02T18:34:29.463Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-graphite-white-click",
@@ -1964,7 +1964,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-07-02T18:31:07.779Z",
+        "builtAt": "2026-07-02T18:34:29.463Z",
         "template": {
           "group": "Appearance",
           "id": "",
@@ -2076,7 +2076,7 @@
       "links": [],
       "sections": [],
       "portfolioView": {
-        "builtAt": "2026-07-02T18:31:07.779Z",
+        "builtAt": "2026-07-02T18:34:29.463Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -2195,7 +2195,7 @@
                 "fontFamily": "Arial",
                 "fontPx": "",
                 "fontSize": "normal",
-                "html": "<span style=\"font-weight: 400; display: inline;\"><span style=\"color: rgb(14, 165, 233); display: inline;\">Hardware Engineering -  FPGA, ASICs and Electronics( Consumer Electronics , Power electronics and Avionics)\nSoftware Engineering - Embedded Software design, Backend development</span></span>",
+                "html": "<span style=\"font-weight: 400; display: inline;\"><span style=\"color: rgb(14, 165, 233); display: inline;\"><span style=\"font-size: 13px; display: inline;\"><span style=\"color: rgb(0, 0, 0); display: inline;\">Hardware Engineering -  FPGA, ASICs and Electronics( Consumer Electronics , Power electronics and Avionics)\nSoftware Engineering - Embedded Software design, Backend development</span></span></span></span>",
                 "italic": false,
                 "text": "Hardware Engineering -  FPGA, ASICs and Electronics( Consumer Electronics , Power electronics and Avionics)\nSoftware Engineering - Embedded Software design, Backend development",
                 "underline": false,
@@ -2251,8 +2251,10 @@
                 "fontFamily": "Arial",
                 "fontPx": "",
                 "fontSize": "normal",
-                "html": "<span style=\"color: rgb(0, 0, 0);\"><span style=\"font-size: 15px;\"><span style=\"font-size: 16px;\"><span style=\"font-size: 17px;\"><span style=\"font-size: 18px;\"><span style=\"font-size: 17px;\"><span style=\"font-size: 16px;\"><span style=\"font-size: 15px;\"><span style=\"font-size: 14px;\"><span style=\"font-size: 13px; font-weight: 400;\">Cycling, Swimming, Hiking, and watching Documentaries and Soccer Matches.</span></span></span></span></span></span></span></span></span></span>",
+                "html": "<span style=\"color: rgb(0, 0, 0); display: inline;\"><span style=\"font-size: 15px; display: inline;\"><span style=\"font-size: 16px; display: inline;\"><span style=\"font-size: 17px; display: inline;\"><span style=\"font-size: 18px; display: inline;\"><span style=\"font-size: 17px; display: inline;\"><span style=\"font-size: 16px; display: inline;\"><span style=\"font-size: 15px; display: inline;\"><span style=\"font-size: 14px; display: inline;\"><span style=\"font-size: 13px; font-weight: 400; display: inline;\"><span style=\"color: rgb(0, 0, 0); display: inline;\">Cycling, Swimming, Hiking, and watching Documentaries and Soccer Matches.</span></span></span></span></span></span></span></span></span></span></span>",
+                "italic": false,
                 "text": "Cycling, Swimming, Hiking, and watching Documentaries and Soccer Matches.",
+                "underline": false,
                 "type": "paragraph"
               }
             ]
