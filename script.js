@@ -1,12 +1,30 @@
 const grid = document.querySelector("#project-grid");
 const searchInput = document.querySelector("#project-search");
-const filterButtons = [...document.querySelectorAll(".filter-button")];
+const projectFilters = document.querySelector("#project-filters");
+let filterButtons = [...document.querySelectorAll(".filter-button")];
 const projectCount = document.querySelector("#project-count");
+const projectTrackCount = document.querySelector("#project-track-count");
+const projectTrackLabels = document.querySelector("#project-track-labels");
 const year = document.querySelector("#year");
 const funFactsCallout = document.querySelector("#fun-facts-callout");
 const heroEyebrow = document.querySelector(".hero-content .eyebrow");
 const heroTitle = document.querySelector("#hero-title");
 const heroCopy = document.querySelector(".hero-copy");
+const brandName = document.querySelector(".brand strong");
+const brandSubtitle = document.querySelector(".brand small");
+const brandIcon = document.querySelector(".brand-icon");
+const brandText = document.querySelector(".omb-engraving");
+const headerAvatar = document.querySelector(".header-avatar");
+const headerAvatarImage = document.querySelector(".header-avatar img");
+const heroImage = document.querySelector(".hero-image");
+const resumeSection = document.querySelector("#resume");
+const contactBand = document.querySelector("#contact");
+const profilePhoto = document.querySelector(".profile-photo");
+const contactTitle = document.querySelector("#contact-title");
+const contactIntro = document.querySelector(".contact-intro");
+const contactDetails = document.querySelector(".contact-details");
+const contactLinks = document.querySelector(".contact-links");
+const footerOwner = document.querySelector(".site-footer span");
 const searchWrap = searchInput?.closest(".search-wrap");
 const aiAssistantForm = document.querySelector("#ai-assistant-form");
 const aiAssistantPanel = document.querySelector("#ask-ai");
@@ -21,6 +39,7 @@ let siteSections = [];
 let funFacts = [];
 let funFactsRich = null;
 let siteContent = null;
+let profile = null;
 let activeFilter = "all";
 let activeSectionDialogDrag = null;
 let activeSectionDialogResize = null;
@@ -72,9 +91,25 @@ const legacyTemplateSkins = {
 };
 
 const defaultSiteContent = {
-  heroCopy: "I design and document systems across analog circuits, embedded firmware, digital hardware, and software.\nThis portfolio presents selected work, technical artifacts, and the engineering decisions behind each build.",
+  heroCopy: "Add your projects, documents, diagrams, source code, images, profile details, and links.\nSave drafts locally, preview the site, then publish when your target repository is ready.",
   heroEyebrow: "Engineering portfolio",
-  heroTitle: "Analog, embedded, and digital systems built with purpose."
+  heroTitle: "Build a portfolio that presents your work clearly."
+};
+
+const defaultProfile = {
+  brandImage: "",
+  brandText: "Portfolio",
+  contactIntro: "",
+  displayName: "",
+  email: "",
+  githubUrl: "",
+  heroImage: "",
+  linkedinUrl: "",
+  phone: "",
+  portfolioLabel: "Portfolio",
+  profileImage: "",
+  resumeUrl: "",
+  websiteUrl: ""
 };
 
 year.textContent = new Date().getFullYear();
@@ -317,11 +352,131 @@ function normalizeSiteContent(content = {}) {
   };
 }
 
+function normalizeProfile(profileValue = {}) {
+  return {
+    brandImage: String(profileValue.brandImage || "").trim(),
+    brandText: String(profileValue.brandText || "").trim() || String(profileValue.displayName || "").trim() || defaultProfile.brandText,
+    contactIntro: String(profileValue.contactIntro || "").trim(),
+    displayName: String(profileValue.displayName || "").trim(),
+    email: String(profileValue.email || "").trim(),
+    githubUrl: String(profileValue.githubUrl || "").trim(),
+    heroImage: String(profileValue.heroImage || "").trim(),
+    linkedinUrl: String(profileValue.linkedinUrl || "").trim(),
+    phone: String(profileValue.phone || "").trim(),
+    portfolioLabel: String(profileValue.portfolioLabel || "").trim() || defaultProfile.portfolioLabel,
+    profileImage: String(profileValue.profileImage || "").trim(),
+    resumeUrl: String(profileValue.resumeUrl || "").trim(),
+    websiteUrl: String(profileValue.websiteUrl || "").trim()
+  };
+}
+
+function mailComposeLink(email = "") {
+  const clean = String(email || "").trim();
+  return clean ? `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(clean)}` : "";
+}
+
+function phoneLink(phone = "") {
+  const clean = String(phone || "").trim();
+  return clean ? `tel:${clean.replace(/[^\d+]/g, "")}` : "";
+}
+
 function renderSiteContent() {
   const content = normalizeSiteContent(siteContent || {});
   if (heroEyebrow) heroEyebrow.textContent = content.heroEyebrow;
   if (heroTitle) heroTitle.innerHTML = renderPlainMultiline(content.heroTitle);
   if (heroCopy) heroCopy.innerHTML = renderPlainMultiline(content.heroCopy);
+}
+
+function renderProfile() {
+  const current = normalizeProfile(profile || {});
+  const displayName = current.displayName || "Portfolio";
+  const label = current.portfolioLabel || "Portfolio";
+  const emailLink = mailComposeLink(current.email);
+  const callLink = phoneLink(current.phone);
+  const links = [
+    current.email ? { label: "Email", url: emailLink, external: true } : null,
+    current.phone ? { label: "Call", url: callLink } : null,
+    current.githubUrl ? { label: "GitHub", url: normalizeLinkTarget(current.githubUrl, { assumeWeb: true }), external: true } : null,
+    current.linkedinUrl ? { label: "LinkedIn", url: normalizeLinkTarget(current.linkedinUrl, { assumeWeb: true }), external: true } : null,
+    current.websiteUrl ? { label: "Website", url: normalizeLinkTarget(current.websiteUrl, { assumeWeb: true }), external: true } : null,
+    current.resumeUrl ? { label: "Resume", url: current.resumeUrl, external: false } : null
+  ].filter(Boolean);
+
+  document.title = `${displayName} | ${label}`;
+  if (brandName) brandName.textContent = displayName;
+  if (brandSubtitle) brandSubtitle.textContent = label;
+  if (brandText) brandText.textContent = current.brandText || displayName.slice(0, 3).toUpperCase() || "PORT";
+  if (brandIcon) {
+    if (current.brandImage) {
+      brandIcon.src = current.brandImage;
+      brandIcon.hidden = false;
+    } else {
+      brandIcon.hidden = true;
+    }
+  }
+
+  if (headerAvatar && headerAvatarImage) {
+    headerAvatar.hidden = !current.profileImage;
+    if (current.profileImage) {
+      headerAvatarImage.src = current.profileImage;
+      headerAvatarImage.alt = displayName;
+      headerAvatar.setAttribute("aria-label", `Go to ${displayName} contact information`);
+    }
+  }
+
+  if (heroImage) {
+    if (current.heroImage) {
+      heroImage.hidden = false;
+      heroImage.src = current.heroImage;
+      heroImage.alt = `${displayName} portfolio background`;
+    } else {
+      heroImage.hidden = true;
+    }
+  }
+
+  document.querySelectorAll('a[href="#resume"]').forEach((link) => {
+    link.hidden = !current.resumeUrl;
+  });
+  const heroGithubLink = [...document.querySelectorAll(".hero-actions a")]
+    .find((link) => /github/i.test(link.textContent || ""));
+  if (heroGithubLink) {
+    heroGithubLink.hidden = !current.githubUrl;
+    if (current.githubUrl) heroGithubLink.href = normalizeLinkTarget(current.githubUrl, { assumeWeb: true });
+  }
+
+  if (resumeSection) {
+    resumeSection.hidden = !current.resumeUrl;
+    resumeSection.querySelectorAll("a").forEach((link) => {
+      link.href = current.resumeUrl || "#";
+    });
+    const resumeObject = resumeSection.querySelector("object");
+    if (resumeObject) resumeObject.data = current.resumeUrl || "";
+    const fallbackLink = resumeSection.querySelector("object a");
+    if (fallbackLink) fallbackLink.href = current.resumeUrl || "#";
+  }
+
+  if (profilePhoto) {
+    profilePhoto.hidden = !current.profileImage;
+    if (current.profileImage) {
+      profilePhoto.src = current.profileImage;
+      profilePhoto.alt = `Portrait of ${displayName}`;
+    }
+  }
+  if (contactTitle) contactTitle.textContent = displayName;
+  if (contactIntro) {
+    contactIntro.textContent = current.contactIntro || (current.displayName ? `${displayName}'s contact information and public links.` : "Add contact details in the builder.");
+  }
+  if (contactDetails) {
+    contactDetails.innerHTML = [
+      current.email ? `<a href="${emailLink}" target="_blank" rel="noreferrer">${current.email}</a>` : "",
+      current.phone ? `<a href="${callLink}">${current.phone}</a>` : ""
+    ].filter(Boolean).join("");
+  }
+  if (contactLinks) {
+    contactLinks.innerHTML = links.map((link) => `<a href="${link.url}"${link.external ? ' target="_blank" rel="noreferrer"' : ""}>${link.label}</a>`).join("");
+  }
+  if (footerOwner) footerOwner.innerHTML = `&copy; <span id="year">${new Date().getFullYear()}</span> ${displayName}`;
+  if (contactBand) contactBand.hidden = !links.length && !current.profileImage && !current.contactIntro && !current.displayName;
 }
 
 function textBlocksFromPlainText(text) {
@@ -352,7 +507,7 @@ function unwrapFormula(value) {
 function renderInlineMath(text) {
   const escaped = escapeHtml(text);
   const withMath = escaped.replace(/\$([^$]+)\$/g, '<span class="rich-inline-formula">$1</span>');
-  return withMath.replace(/\b(https?:\/\/[^\s<]+|www\.[^\s<]+)/g, (match) => {
+  return withMath.replace(/\b(https?:\/\/[^\s<]+|www\.[^\s<]+|(?:github|linkedin|gitlab|bitbucket|drive|docs)\.com\/[^\s<]+)/gi, (match) => {
     const trailing = match.match(/[),.;:!?]+$/)?.[0] || "";
     const clean = trailing ? match.slice(0, -trailing.length) : match;
     const href = normalizeLinkTarget(clean, { assumeWeb: true });
@@ -373,6 +528,16 @@ function looksLikeBareWebAddress(value = "") {
   return !/\.(pdf|docx?|xlsx?|pptx?|zip|7z|rar|png|jpe?g|gif|svg|webp|txt|md|csv|json|xml|log|c|h|cpp|hpp|py|js|mjs|ts|v|sv|vhdl?|spice|cir|net|asc|sch|kicad_sch|kicad_pcb)$/i.test(host);
 }
 
+function looksLikeWebOrContactText(value = "") {
+  const clean = String(value || "").trim();
+  if (!clean) return false;
+  if (/\b(?:https?:\/\/|www\.)[^\s<>"']+/i.test(clean)) return true;
+  if (/\b[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}\b/i.test(clean)) return true;
+  if (/\b(?:github|linkedin|gitlab|bitbucket|drive|docs)\.com\/[^\s<>"']+/i.test(clean)) return true;
+  if (looksLikeBareWebAddress(clean)) return true;
+  return clean.split(/\s+/).some((word) => looksLikeBareWebAddress(word.replace(/^[("']+|[)"'.,;:!?]+$/g, "")));
+}
+
 function normalizeLinkTarget(target = "", options = {}) {
   const clean = String(target || "").trim();
   if (!clean) return "";
@@ -390,6 +555,43 @@ function isWebsiteLinkItem(item = {}, target = "") {
     .join(" ")
     .toLowerCase();
   return /\b(link|website|web link|url|external|github|linkedin|drive|social|profile)\b/.test(typeText);
+}
+
+function linkifyRichTextNodes(root) {
+  const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+    acceptNode(node) {
+      if (!node.textContent || !/(https?:\/\/|www\.|(?:github|linkedin|gitlab|bitbucket|drive|docs)\.com\/)/i.test(node.textContent)) return NodeFilter.FILTER_REJECT;
+      return node.parentElement?.closest("a") ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT;
+    }
+  });
+  const nodes = [];
+  let node = walker.nextNode();
+  while (node) {
+    nodes.push(node);
+    node = walker.nextNode();
+  }
+
+  nodes.forEach((textNode) => {
+    const text = textNode.textContent || "";
+    const fragment = document.createDocumentFragment();
+    let cursor = 0;
+    text.replace(/\b(https?:\/\/[^\s<]+|www\.[^\s<]+|(?:github|linkedin|gitlab|bitbucket|drive|docs)\.com\/[^\s<]+)/gi, (match, _url, offset) => {
+      if (offset > cursor) fragment.append(document.createTextNode(text.slice(cursor, offset)));
+      const trailing = match.match(/[),.;:!?]+$/)?.[0] || "";
+      const clean = trailing ? match.slice(0, -trailing.length) : match;
+      const link = document.createElement("a");
+      link.href = normalizeLinkTarget(clean, { assumeWeb: true });
+      link.target = "_blank";
+      link.rel = "noreferrer";
+      link.textContent = clean;
+      fragment.append(link);
+      if (trailing) fragment.append(document.createTextNode(trailing));
+      cursor = offset + match.length;
+      return match;
+    });
+    if (cursor < text.length) fragment.append(document.createTextNode(text.slice(cursor)));
+    textNode.replaceWith(fragment);
+  });
 }
 
 function sanitizeRichInlineHtml(value = "") {
@@ -433,6 +635,7 @@ function sanitizeRichInlineHtml(value = "") {
     if (textDecoration) node.style.textDecoration = textDecoration;
   });
 
+  linkifyRichTextNodes(template.content);
   return template.innerHTML;
 }
 
@@ -541,17 +744,22 @@ function renderRichContent(rich, fallbackText = "") {
         if (block.type === "image") {
           if (block.display === "download") return richImageDownloadLink(block);
           const title = cleanRichImageTitle(block);
+          const imageSrc = normalizeLinkTarget(block.url, { assumeWeb: true });
             return `
               <figure class="rich-image justify-${align}">
                 <span class="rich-image-viewport crop-${normalizeCropAspect(block.cropAspect) === "original" ? "original" : "active"}"${richImageCropStyle(block)}>
-                  <img src="${escapeHtml(block.url)}" alt="${escapeHtml(title || "Overview image")}">
+                  <img src="${escapeHtml(imageSrc)}" alt="${escapeHtml(title || "Overview image")}">
                 </span>
                 ${(title || block.caption) ? `<figcaption>${title ? `<strong>${escapeHtml(title)}</strong>` : ""}${block.caption ? `<span>${escapeHtml(block.caption)}</span>` : ""}</figcaption>` : ""}
-            </figure>
-          `;
+              </figure>
+            `;
         }
         if (block.type === "formula") {
-          return `<div class="rich-formula justify-${align}">${escapeHtml(unwrapFormula(block.formula))}</div>`;
+          const formula = unwrapFormula(block.formula);
+          if (looksLikeWebOrContactText(formula)) {
+            return `<p class="rich-paragraph rich-text-normal text-${align}">${renderInlineMath(formula)}</p>`;
+          }
+          return `<div class="rich-formula justify-${align}">${escapeHtml(formula)}</div>`;
         }
         const size = ["small", "normal", "large"].includes(block.fontSize) ? block.fontSize : "normal";
         const content = block.html
@@ -573,12 +781,34 @@ function canonicalTemplateId(id) {
 }
 
 function projectTemplateId(project) {
-  return canonicalTemplateId(project.portfolioView?.template?.id || project.templateId || "");
+  return canonicalTemplateId(project?.portfolioView?.template?.id || project?.templateId || "");
 }
 
 function projectTemplateClass(project) {
   const templateId = projectTemplateId(project);
   return templateId ? `project-template project-template-${templateId}` : "project-template-white";
+}
+
+function responsiveClassName(value, fallback) {
+  return String(value || fallback || "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "") || fallback;
+}
+
+function projectResponsiveClass(project) {
+  const profile = projectResponsiveProfile(project);
+  return `responsive-project responsive-density-${responsiveClassName(profile.density, "balanced")} responsive-card-${responsiveClassName(profile.cardLayout, "single")}`;
+}
+
+function responsiveStyleValues(project) {
+  const profile = projectResponsiveProfile(project);
+  return {
+    "--responsive-section-card-min": profile.sectionCardMin,
+    "--responsive-content-max": profile.contentMax,
+    "--responsive-media-max": profile.mediaMax,
+    "--responsive-touch-target": profile.touchTarget
+  };
 }
 
 function hasPublicTemplate(project) {
@@ -600,7 +830,8 @@ function projectTemplateStyle(project, accent) {
     "--template-click": visual.click,
     "--template-click-text": visual.clickText,
     "--template-line": visual.line,
-    "--template-text": visual.text
+    "--template-text": visual.text,
+    ...responsiveStyleValues(project)
   };
   return Object.entries(values)
     .filter(([, value]) => value)
@@ -611,9 +842,17 @@ function projectTemplateStyle(project, accent) {
 function applyProjectTemplateToElement(element, project, accent) {
   if (!element) return;
   [...element.classList]
-    .filter((className) => className === "project-template" || className === "project-template-white" || className.startsWith("project-template-"))
+    .filter((className) =>
+      className === "project-template" ||
+      className === "project-template-white" ||
+      className === "responsive-project" ||
+      className.startsWith("project-template-") ||
+      className.startsWith("responsive-density-") ||
+      className.startsWith("responsive-card-")
+    )
     .forEach((className) => element.classList.remove(className));
   projectTemplateClass(project).split(" ").forEach((className) => element.classList.add(className));
+  projectResponsiveClass(project).split(" ").forEach((className) => element.classList.add(className));
   const visual = projectTemplateVisual(project) || {};
   const values = {
     "--accent": accent,
@@ -624,7 +863,8 @@ function applyProjectTemplateToElement(element, project, accent) {
     "--template-click": visual.click,
     "--template-click-text": visual.clickText,
     "--template-line": visual.line,
-    "--template-text": visual.text
+    "--template-text": visual.text,
+    ...responsiveStyleValues(project)
   };
   Object.entries(values).forEach(([key, value]) => {
     if (value) {
@@ -709,6 +949,73 @@ function projectMatches(project, query) {
 function projectVisible(project, query) {
   const categoryMatch = activeFilter === "all" || project.category === activeFilter;
   return categoryMatch && projectMatches(project, query);
+}
+
+function normalizeCategory(category = {}) {
+  const label = String(category.label || category.title || category.id || "Project category").trim() || "Project category";
+  return {
+    accent: normalizeTextColor(category.accent || "") || "#1677a8",
+    description: String(category.description || "").trim(),
+    id: String(category.id || label.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "category"),
+    label
+  };
+}
+
+function hydrateProjectCategories(rawCategories = [], rawProjects = []) {
+  const normalized = rawCategories.map(normalizeCategory);
+  const knownIds = new Set(normalized.map((category) => category.id));
+  rawProjects.forEach((project) => {
+    const id = String(project?.category || "").trim();
+    if (!id || knownIds.has(id)) return;
+    const label = id
+      .split(/[-_\s]+/)
+      .filter(Boolean)
+      .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+      .join(" ") || "Project category";
+    normalized.push(normalizeCategory({ id, label, description: "Project category" }));
+    knownIds.add(id);
+  });
+  return normalized;
+}
+
+function setActiveFilter(filter = "all") {
+  activeFilter = filter;
+  if (activeFilter !== "all" && !categories.some((category) => category.id === activeFilter)) {
+    activeFilter = "all";
+  }
+  filterButtons.forEach((item) => item.classList.toggle("active", item.dataset.filter === activeFilter));
+}
+
+function bindFilterButtons() {
+  filterButtons = [...document.querySelectorAll(".filter-button")];
+  filterButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      setActiveFilter(button.dataset.filter || "all");
+      renderProjects();
+      updateSearchDropdown();
+    });
+  });
+}
+
+function renderCategoryFilters() {
+  if (projectTrackCount) {
+    projectTrackCount.textContent = `${categories.length} Track${categories.length === 1 ? "" : "s"}`;
+  }
+  if (projectTrackLabels) {
+    projectTrackLabels.textContent = categories.length
+      ? categories.map((category) => category.label).join(", ")
+      : "project categories";
+  }
+  if (projectFilters) {
+    projectFilters.innerHTML = `
+      <button class="filter-button active" type="button" data-filter="all">All</button>
+      ${categories.map((category) => `
+        <button class="filter-button" type="button" data-filter="${escapeHtml(category.id)}">${escapeHtml(category.label)}</button>
+      `).join("")}
+    `;
+  }
+  bindFilterButtons();
+  setActiveFilter(activeFilter);
 }
 
 function flattenSearchText(values = []) {
@@ -883,13 +1190,17 @@ function addProjectSearchEntries(entries, project) {
 }
 
 function addSiteSectionSearchEntries(entries) {
-  [
+  const current = normalizeProfile(profile || {});
+  const pageSections = [
     { id: "top", title: heroTitle?.textContent || "Front page", type: "Page section", text: [heroEyebrow?.textContent, heroCopy?.textContent] },
     { id: "projects", title: "Engineering Projects", type: "Directory", text: "project directory categories files sections" },
-    { id: "resume", title: "Resume", type: "Page section", text: "resume professional profile document" },
     { id: "process", title: "Process", type: "Page section", text: "engineering process design testing documentation" },
-    { id: "contact", title: "Contact", type: "Page section", text: "email phone github contact" }
-  ].forEach((section) => addSearchEntry(entries, {
+    { id: "contact", title: "Contact", type: "Page section", text: [current.displayName, current.email, current.phone, current.githubUrl, current.linkedinUrl, current.websiteUrl, current.contactIntro] }
+  ];
+  if (current.resumeUrl) {
+    pageSections.splice(2, 0, { id: "resume", title: "Resume", type: "Page section", text: "resume professional profile document" });
+  }
+  pageSections.forEach((section) => addSearchEntry(entries, {
     domTarget: section.id,
     kind: "page",
     title: section.title,
@@ -897,15 +1208,17 @@ function addSiteSectionSearchEntries(entries) {
     text: section.text
   }));
 
-  const resumeTextEntry = addSearchEntry(entries, {
-    context: "Professional Profile / Resume",
-    kind: "file",
-    title: "Resume searchable text",
-    type: "Resume text",
-    url: "assets/resume.txt",
-    text: "Maurice Otieno resume skills education experience FPGA ASIC embedded STM32 analog mixed signal KiCad LTspice Vivado SystemVerilog"
-  });
-  if (resumeTextEntry) indexSearchableFileText(resumeTextEntry);
+  if (current.resumeUrl) {
+    const resumeTextEntry = addSearchEntry(entries, {
+      context: "Professional Profile / Resume",
+      kind: "file",
+      title: "Resume",
+      type: "Resume",
+      url: current.resumeUrl,
+      text: [current.displayName, current.portfolioLabel, current.contactIntro, current.resumeUrl]
+    });
+    if (resumeTextEntry) indexSearchableFileText(resumeTextEntry);
+  }
 
   (siteSections || []).filter(siteSectionRenderable).forEach((section) => {
     addSearchEntry(entries, {
@@ -1096,10 +1409,11 @@ function assistantPublicProfileLinks() {
     });
   };
 
-  add({ label: "Resume PDF", kind: "resume", url: "assets/resume.pdf" }, "Professional Profile");
-  add({ label: "Resume searchable text", kind: "resume_text", url: "assets/resume.txt" }, "Professional Profile");
-  add({ label: "GitHub", kind: "github", url: "https://github.com/otienomaurice" }, "Professional Profile");
-  add({ label: "LinkedIn", kind: "linkedin", url: "https://www.linkedin.com/in/maurice-otieno-037a55341" }, "Professional Profile");
+  const current = normalizeProfile(profile || {});
+  if (current.resumeUrl) add({ label: "Resume", kind: "resume", url: current.resumeUrl }, "Professional Profile");
+  if (current.githubUrl) add({ label: "GitHub", kind: "github", url: current.githubUrl }, "Professional Profile");
+  if (current.linkedinUrl) add({ label: "LinkedIn", kind: "linkedin", url: current.linkedinUrl }, "Professional Profile");
+  if (current.websiteUrl) add({ label: "Website", kind: "webpage", url: current.websiteUrl }, "Professional Profile");
 
   (siteSections || []).forEach((section) => {
     (section.links || []).forEach((link) => add(link, section.title || "Portfolio section"));
@@ -1322,6 +1636,7 @@ function assistantContextForQuestion(question = "", intent = assistantQuestionIn
   return {
     categories: categories.map((category) => ({ id: category.id, label: category.label })),
     intent,
+    profile: normalizeProfile(profile || {}),
     knowledgeManifest: {
       publicProfiles: includePortfolioLinkContext ? assistantPublicProfileLinks() : [],
       publicSourcePolicy: "Only public profile and project links shown in the portfolio are used. GitHub repository links can be expanded into repository metadata, README text, and selected public source files when the visitor asks for code.",
@@ -1333,8 +1648,8 @@ function assistantContextForQuestion(question = "", intent = assistantQuestionIn
       note: "Image records include filenames, captions, descriptions, and neighboring portfolio text. Use a vision-capable backend before claiming visual details not present in captions or text."
     },
     portfolioContextPolicy: intent !== "portfolio_specific"
-      ? "Answer from general knowledge first. Do not lead with Maurice's project context unless the visitor explicitly asks to connect the concept to the portfolio."
-      : "Answer from Maurice's portfolio context first. Do not invent project details outside the supplied context.",
+      ? "Answer from general knowledge first. Do not lead with the portfolio owner's project context unless the visitor explicitly asks to connect the concept to the portfolio."
+      : "Answer from the configured portfolio context first. Do not invent project details outside the supplied context.",
     projects: matchedProjects.map(assistantProjectSummary),
     question,
     results: directResults.map((result) => ({
@@ -1552,24 +1867,25 @@ function assistantGeneralEngineeringAnswer(question = "") {
 }
 
 function assistantLocalAnswer(question = "", results = [], intent = assistantQuestionIntent(question)) {
+  const ownerName = normalizeProfile(profile || {}).displayName || "the portfolio owner";
   if (intent === "general_conversation") {
     const clean = normalize(question);
     if (/^(hi|hello|hey|yo|sup)\b/.test(clean)) {
       return "Hi, what can I do for you?";
     }
     if (/^(what'?s|what\s+is|do\s+you\s+know)\s+my\s+name\??$/.test(clean) || /^who\s+am\s+i\??$/.test(clean)) {
-      return "I am an AI agent for Maurice Otieno's portfolio. I know the portfolio owner is Maurice Otieno, but I do not know a visitor's personal name unless they tell me.";
+      return `I am an AI agent for ${ownerName}'s portfolio. I know the portfolio owner is ${ownerName}, but I do not know a visitor's personal name unless they tell me.`;
     }
     if (/\b(who are you|what are you)\b/.test(clean)) {
-      return "I am an AI agent for Maurice Otieno's portfolio. I can help with his projects, resume, public links, and related engineering questions.";
+      return `I am an AI agent for ${ownerName}'s portfolio. I can help with projects, resume links, public links, files, and related engineering questions.`;
     }
     return [
-      "I am here with you. I can help explore Maurice Otieno's portfolio, explain projects, summarize files, open relevant sections, or answer related electronics and embedded-systems questions.",
+      `I am here with you. I can help explore ${ownerName}'s portfolio, explain projects, summarize files, open relevant sections, or answer related engineering questions.`,
       "",
       "You can ask things like:",
       "- What is embedded systems?",
-      "- Show me the VCO project.",
-      "- What tools did Maurice use?",
+      "- Show me a project.",
+      "- What tools were used?",
       "- Explain the difference between FPGA and ASIC design."
     ].join("\n");
   }
@@ -2367,6 +2683,74 @@ function sectionHasRenderableContent(section) {
   return Boolean(section?.description || richHasRenderableContent(section?.rich) || (section?.items || []).some(nodeHasRenderableContent));
 }
 
+function responsiveChildren(node) {
+  return node?.items || node?.children || [];
+}
+
+function richContainsMedia(rich) {
+  return Boolean(rich?.blocks?.some((block) => block.type === "image" && block.url));
+}
+
+function responsiveNodeHasMedia(node) {
+  if (!node) return false;
+  if (node.kind === "image" || richContainsMedia(node.rich)) return true;
+  const url = String(node.url || "");
+  if (/\.(apng|avif|gif|jpe?g|png|svg|webp)(\?|#|$)/i.test(url)) return true;
+  return responsiveChildren(node).some(responsiveNodeHasMedia);
+}
+
+function responsiveNodeCount(node) {
+  if (!node || !nodeHasRenderableContent(node)) return 0;
+  return 1 + responsiveChildren(node).reduce((count, child) => count + responsiveNodeCount(child), 0);
+}
+
+function responsiveNodeDepth(node) {
+  if (!node || !nodeHasRenderableContent(node)) return 0;
+  const children = responsiveChildren(node).filter(nodeHasRenderableContent);
+  if (!children.length) return 1;
+  return 1 + Math.max(...children.map(responsiveNodeDepth));
+}
+
+function inferResponsiveProfile(project) {
+  const sections = project?.portfolioView?.sections || [];
+  const visibleSections = sections.filter((section) => section?.id !== "brief" && sectionHasRenderableContent(section));
+  const itemCount = visibleSections.reduce(
+    (count, section) => count + (section.items || []).reduce((sum, item) => sum + responsiveNodeCount(item), 0),
+    0
+  );
+  const maxDepth = visibleSections.reduce(
+    (depth, section) => Math.max(depth, ...(section.items || []).map(responsiveNodeDepth), 1),
+    1
+  );
+  const hasMedia = visibleSections.some((section) => responsiveNodeHasMedia(section));
+  const density = itemCount >= 18 || visibleSections.length >= 6 || maxDepth >= 4
+    ? "dense"
+    : itemCount <= 6 && visibleSections.length <= 2
+      ? "simple"
+      : "balanced";
+  return {
+    version: 1,
+    breakpoints: {
+      mobile: 640,
+      tablet: 900,
+      desktop: 1180
+    },
+    cardLayout: hasPublicTemplate(project) ? "single" : "split",
+    contentMax: hasMedia || maxDepth >= 3 ? "1180px" : "980px",
+    density,
+    mediaMax: hasMedia ? "860px" : "720px",
+    sectionCardMin: density === "dense" ? "210px" : density === "simple" ? "280px" : "240px",
+    touchTarget: "44px",
+    windowMode: "full-screen"
+  };
+}
+
+function projectResponsiveProfile(project) {
+  const savedProfile = project?.portfolioView?.responsive;
+  if (savedProfile?.version) return { ...inferResponsiveProfile(project), ...savedProfile };
+  return inferResponsiveProfile(project);
+}
+
 function nodeSummary(title, rich, text, emptyMessage = "No summary has been added yet.") {
   if (!rich?.blocks?.length && !text) return "";
   return `
@@ -2474,7 +2858,7 @@ function projectCard(project) {
     const otherSections = sections.filter((section) => section.id !== "brief" && sectionHasRenderableContent(section));
 
     return `
-      <article class="project-card catalog-card ${projectTemplateClass(project)}" id="${project.id}" style="${projectTemplateStyle(project, accent)}">
+      <article class="project-card catalog-card ${projectTemplateClass(project)} ${projectResponsiveClass(project)}" id="${project.id}" style="${projectTemplateStyle(project, accent)}">
         <div class="project-body">
           <h3>${project.portfolioView.title || project.title}</h3>
           ${renderParsedBriefBlock(briefSection, project.summary)}
@@ -2490,7 +2874,7 @@ function projectCard(project) {
   const accent = category.accent || "#117c7a";
 
   return `
-      <article class="project-card catalog-card ${projectTemplateClass(project)}" id="${project.id}" style="${projectTemplateStyle(project, accent)}">
+      <article class="project-card catalog-card ${projectTemplateClass(project)} ${projectResponsiveClass(project)}" id="${project.id}" style="${projectTemplateStyle(project, accent)}">
         <div class="project-body">
           <h3>${project.title}</h3>
           <p class="rich-paragraph">${renderMultilineInlineText(project.summary)}</p>
@@ -2551,14 +2935,14 @@ function projectCard(project) {
 
 function categorySection(category, visibleProjects) {
   return `
-    <section class="category-section ${visibleProjects.length ? "" : "empty-category-section"}" aria-labelledby="${category.id}-title">
+    <section class="category-section ${visibleProjects.length ? "" : "empty-category-section"}" aria-labelledby="${escapeHtml(category.id)}-title">
       <div class="category-heading">
         <div>
-          <h3 id="${category.id}-title">${category.label}</h3>
+          <h3 id="${escapeHtml(category.id)}-title">${escapeHtml(category.label)}</h3>
         </div>
         ${visibleProjects.length ? `<span>${visibleProjects.length} project${visibleProjects.length === 1 ? "" : "s"}</span>` : ""}
       </div>
-      ${visibleProjects.length ? `<p class="category-description">${category.description}</p>` : ""}
+      ${visibleProjects.length && category.description ? `<p class="category-description">${escapeHtml(category.description)}</p>` : ""}
       <div class="category-projects">
         ${visibleProjects.map(projectCard).join("")}
       </div>
@@ -2750,8 +3134,7 @@ function goToSearchResult(result) {
 
   if (result.projectId) {
     if (!document.getElementById(result.projectId)) {
-      activeFilter = "all";
-      filterButtons.forEach((item) => item.classList.toggle("active", item.dataset.filter === "all"));
+      setActiveFilter("all");
       renderProjects();
     }
     const target = document.getElementById(result.projectId);
@@ -2952,15 +3335,6 @@ window.addEventListener("popstate", (event) => {
   applySectionRoute(sectionRouteFromState(event.state) || sectionRouteFromLocation());
 });
 
-filterButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    activeFilter = button.dataset.filter;
-    filterButtons.forEach((item) => item.classList.toggle("active", item === button));
-    renderProjects();
-    updateSearchDropdown();
-  });
-});
-
 ensureSearchPanel();
 searchInput.addEventListener("input", handleSearchInput);
 searchInput.addEventListener("focus", showSearchPanelIfNeeded);
@@ -3045,15 +3419,18 @@ function normalizeTextColor(value = "") {
 }
 function loadProjectCatalog() {
   if (window.__PORTFOLIO_CATALOG__) {
-    categories = window.__PORTFOLIO_CATALOG__.categories || [];
     projects = window.__PORTFOLIO_CATALOG__.projects || [];
+    categories = hydrateProjectCategories(window.__PORTFOLIO_CATALOG__.categories || [], projects);
     siteSections = window.__PORTFOLIO_CATALOG__.siteSections || [];
     siteContent = normalizeSiteContent(window.__PORTFOLIO_CATALOG__.siteContent || {});
+    profile = normalizeProfile(window.__PORTFOLIO_CATALOG__.profile || {});
     funFacts = normalizeFunFacts(window.__PORTFOLIO_CATALOG__.funFacts || []);
     funFactsRich = window.__PORTFOLIO_CATALOG__.funFactsRich || null;
+    renderProfile();
     renderSiteContent();
     renderFunFacts();
     renderSiteSections();
+    renderCategoryFilters();
     renderProjects();
     rebuildSearchIndex();
     updateSearchDropdown();
@@ -3069,15 +3446,18 @@ function loadProjectCatalog() {
       return response.json();
     })
     .then((data) => {
-      categories = data.categories || [];
       projects = data.projects || [];
+      categories = hydrateProjectCategories(data.categories || [], projects);
       siteSections = data.siteSections || [];
       siteContent = normalizeSiteContent(data.siteContent || {});
+      profile = normalizeProfile(data.profile || {});
       funFacts = normalizeFunFacts(data.funFacts || []);
       funFactsRich = data.funFactsRich || null;
+      renderProfile();
       renderSiteContent();
       renderFunFacts();
       renderSiteSections();
+      renderCategoryFilters();
       renderProjects();
       rebuildSearchIndex();
       updateSearchDropdown();

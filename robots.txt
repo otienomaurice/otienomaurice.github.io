@@ -1,1 +1,2 @@
-Duke Junior Otieno
+User-agent: *
+Allow: /

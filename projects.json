@@ -1,22 +1,28 @@
 {
   "categories": [
     {
-      "id": "analog-mixed-signal",
-      "label": "Analog and Mixed Signal",
+      "accent": "#117c7a",
       "description": "Circuit-level work including amplifiers, filters, converters, measurement front ends, power stages, and mixed-signal interfaces.",
-      "accent": "#117c7a"
+      "id": "analog-mixed-signal",
+      "label": "Analog and Mixed Signal"
     },
     {
-      "id": "digital",
-      "label": "Digital",
+      "accent": "#52606d",
       "description": "Digital design projects involving logic design, FPGA workflows, verification, timing, and ASIC-oriented architecture.",
-      "accent": "#52606d"
+      "id": "digital",
+      "label": "Digital"
     },
     {
-      "id": "embedded",
-      "label": "Embedded",
+      "accent": "#d18b21",
       "description": "MCU-based systems with firmware, board bring-up, interfaces, sensing, control, and hardware/software integration.",
-      "accent": "#d18b21"
+      "id": "embedded",
+      "label": "Embedded"
+    },
+    {
+      "accent": "#1677a8",
+      "description": "",
+      "id": "software-engineering",
+      "label": "Software Engineering"
     }
   ],
   "funFacts": [
@@ -36,6 +42,21 @@
         "type": "paragraph"
       }
     ]
+  },
+  "profile": {
+    "brandImage": "assets/omb-mark.png",
+    "brandText": "OMB",
+    "contactIntro": "Hardware and software engineer focused on analog design, mixed-signal systems, embedded platforms, and digital hardware.",
+    "displayName": "Maurice Otieno",
+    "email": "otienomaurice12340@gmail.com",
+    "githubUrl": "https://github.com/otienomaurice",
+    "heroImage": "assets/hero-analog-lab.png",
+    "linkedinUrl": "https://www.linkedin.com/in/maurice-otieno-037a55341",
+    "phone": "+14845451567",
+    "portfolioLabel": "Electrical and Computer Engineering Portfolio",
+    "profileImage": "assets/maurice-otieno-profile.png",
+    "resumeUrl": "assets/resume.pdf",
+    "websiteUrl": "https://mauriceotieno.com"
   },
   "siteContent": {
     "heroCopy": "This portfolio presents selected work, technical artifacts, and the engineering decisions behind each build.",
@@ -335,7 +356,7 @@
         }
       },
       "portfolioView": {
-        "builtAt": "2026-06-27T05:40:25.382Z",
+        "builtAt": "2026-07-02T03:07:16.433Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -357,6 +378,21 @@
             "text": "#172636",
             "interaction": "Blue hover with a clean white click state."
           }
+        },
+        "responsive": {
+          "version": 1,
+          "breakpoints": {
+            "mobile": 640,
+            "tablet": 900,
+            "desktop": 1180
+          },
+          "cardLayout": "single",
+          "contentMax": "1180px",
+          "density": "balanced",
+          "mediaMax": "860px",
+          "sectionCardMin": "240px",
+          "touchTarget": "44px",
+          "windowMode": "full-screen"
         },
         "title": "PWM Generating Voltage Controlled oscillator",
         "sections": [
@@ -721,12 +757,27 @@
         }
       },
       "portfolioView": {
-        "builtAt": "2026-06-27T05:40:25.382Z",
+        "builtAt": "2026-07-02T03:07:16.433Z",
         "template": {
           "group": "Appearance",
           "id": "",
           "label": "",
           "visual": null
+        },
+        "responsive": {
+          "version": 1,
+          "breakpoints": {
+            "mobile": 640,
+            "tablet": 900,
+            "desktop": 1180
+          },
+          "cardLayout": "split",
+          "contentMax": "980px",
+          "density": "simple",
+          "mediaMax": "720px",
+          "sectionCardMin": "280px",
+          "touchTarget": "44px",
+          "windowMode": "full-screen"
         },
         "title": "Phase locked Loop (status - ongoing)",
         "sections": []
@@ -872,7 +923,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-27T05:40:25.382Z",
+        "builtAt": "2026-07-02T03:07:16.434Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -894,6 +945,21 @@
             "text": "#172636",
             "interaction": "Blue hover with a clean white click state."
           }
+        },
+        "responsive": {
+          "version": 1,
+          "breakpoints": {
+            "mobile": 640,
+            "tablet": 900,
+            "desktop": 1180
+          },
+          "cardLayout": "single",
+          "contentMax": "980px",
+          "density": "simple",
+          "mediaMax": "720px",
+          "sectionCardMin": "280px",
+          "touchTarget": "44px",
+          "windowMode": "full-screen"
         },
         "title": "Smart Technology Rollator for Independence, Detection, and Empowerment (STRIDE)",
         "sections": [
@@ -1164,7 +1230,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-27T05:40:25.382Z",
+        "builtAt": "2026-07-02T03:07:16.434Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-steel-teal-click",
@@ -1186,6 +1252,21 @@
             "text": "#14333a",
             "interaction": "Teal hover with a bright ice-blue click state."
           }
+        },
+        "responsive": {
+          "version": 1,
+          "breakpoints": {
+            "mobile": 640,
+            "tablet": 900,
+            "desktop": 1180
+          },
+          "cardLayout": "single",
+          "contentMax": "980px",
+          "density": "balanced",
+          "mediaMax": "720px",
+          "sectionCardMin": "240px",
+          "touchTarget": "44px",
+          "windowMode": "full-screen"
         },
         "title": "STRIDE- Battery Status Monitor",
         "sections": [
@@ -1325,52 +1406,65 @@
       },
       "category": "embedded",
       "status": "Draft",
-      "summary": "The STRIDE motor system was designed to provide reliable powered mobility on flat ground while also delivering enough torque for stair traversal. The architecture uses two ElectroCraft MP24 brushless DC motors, one on each side of the rollator, to drive the front tri-wheel assemblies. Each motor includes an integrated right-angle gearbox with a 21:1 reduction ratio, providing high torque at the low speeds needed for a mobility device. The motors are powered from the 24 V LiFePO₄ battery through the tractive power path, while the ElectroCraft EZ Drive controllers handle the high-power three-phase commutation required by the BLDC motors.\n\nThe motor control system is organized as a layered architecture. The Jetson Orin Nano acts as the high-level decision-making unit, interpreting user commands, obstacle detection results, mode selection, and system safety states. It sends motion commands to the STM32 system microcontroller, which performs the low-level real-time control. This separation keeps safety-critical motor signaling on the STM32 while allowing the Jetson to focus on higher-level system behavior.\n\nFigure: The Motor amplifier PCB\n\nThe STM32 does not directly drive the motor phases. Instead, it sends command signals to the EZ Drive motor controllers. Motor speed is controlled using the STM32’s DAC output, which produces a 0–3.3 V analog signal. Since the EZ Drive requires a 0–10 V speed command, I developed a custom motor control interface board using a non-inverting op-amp amplifier with a gain of approximately 3. This scales the MCU output to the full command range needed for the motor controller.\n\nIn addition to analog speed control, the STM32 manages digital signals for enable, braking, and direction. It also reads feedback such as fault status and speed-related signals from the motor controller. Testing confirmed that the amplifier output was highly linear, with a measured gain of about 3.02, allowing predictable mapping between MCU command voltage and motor speed. Overall, this architecture combines high-power BLDC actuation, safe low-level embedded control, and modular system-level decision-making.",
+      "summary": "The STRIDE motor system was designed to provide reliable powered mobility on flat ground while also delivering enough torque for stair traversal. The architecture uses two ElectroCraft MP24 brushless DC motors, one on each side of the rollator, to drive the front tri-wheel assemblies. Each motor includes an integrated right-angle gearbox with a 21:1 reduction ratio, providing high torque at the low speeds needed for a mobility device. The motors are powered from the 24 V LiFePO₄ battery through the tractive power path, while the ElectroCraft EZ Drive controllers handle the high-power three-phase commutation required by the BLDC motors.\n\nThe motor control system is organized as a layered architecture. The Jetson Orin Nano acts as the high-level decision-making unit, interpreting user commands, obstacle detection results, mode selection, and system safety states. It sends motion commands to the STM32 system microcontroller, which performs the low-level real-time control. This separation keeps safety-critical motor signaling on the STM32 while allowing the Jetson to focus on higher-level system behavior.\n\nThe STM32 does not directly drive the motor phases. Instead, it sends command signals to the EZ Drive motor controllers. Motor speed is controlled using the STM32’s DAC output, which produces a 0–3.3 V analog signal. Since the EZ Drive requires a 0–10 V speed command, I developed a custom motor control interface board using a non-inverting op-amp amplifier with a gain of approximately 3. This scales the MCU output to the full command range needed for the motor controller.\n\nIn addition to analog speed control, the STM32 manages digital signals for enable, braking, and direction. It also reads feedback such as fault status and speed-related signals from the motor controller. Testing confirmed that the amplifier output was highly linear, with a measured gain of about 3.02, allowing predictable mapping between MCU command voltage and motor speed. Overall, this architecture combines high-power BLDC actuation, safe low-level embedded control, and modular system-level decision-making.\n\nFigure: The Motor amplifier PCB",
       "summaryRich": {
         "blocks": [
           {
             "align": "left",
+            "bold": false,
             "color": "",
-            "fontFamily": "",
+            "fontFamily": "Arial",
             "fontPx": "",
             "fontSize": "normal",
+            "html": "The STRIDE motor system was designed to provide reliable powered mobility on flat ground while also delivering enough torque for stair traversal. The architecture uses two ElectroCraft MP24 brushless DC motors, one on each side of the rollator, to drive the front tri-wheel assemblies. Each motor includes an integrated right-angle gearbox with a 21:1 reduction ratio, providing high torque at the low speeds needed for a mobility device. The motors are powered from the 24 V LiFePO₄ battery through the tractive power path, while the ElectroCraft EZ Drive controllers handle the high-power three-phase commutation required by the BLDC motors.",
             "text": "The STRIDE motor system was designed to provide reliable powered mobility on flat ground while also delivering enough torque for stair traversal. The architecture uses two ElectroCraft MP24 brushless DC motors, one on each side of the rollator, to drive the front tri-wheel assemblies. Each motor includes an integrated right-angle gearbox with a 21:1 reduction ratio, providing high torque at the low speeds needed for a mobility device. The motors are powered from the 24 V LiFePO₄ battery through the tractive power path, while the ElectroCraft EZ Drive controllers handle the high-power three-phase commutation required by the BLDC motors.",
             "type": "paragraph"
           },
           {
             "align": "left",
+            "bold": false,
             "color": "",
-            "fontFamily": "",
+            "fontFamily": "Arial",
             "fontPx": "",
             "fontSize": "normal",
+            "html": "The motor control system is organized as a layered architecture. The Jetson Orin Nano acts as the high-level decision-making unit, interpreting user commands, obstacle detection results, mode selection, and system safety states. It sends motion commands to the STM32 system microcontroller, which performs the low-level real-time control. This separation keeps safety-critical motor signaling on the STM32 while allowing the Jetson to focus on higher-level system behavior.",
             "text": "The motor control system is organized as a layered architecture. The Jetson Orin Nano acts as the high-level decision-making unit, interpreting user commands, obstacle detection results, mode selection, and system safety states. It sends motion commands to the STM32 system microcontroller, which performs the low-level real-time control. This separation keeps safety-critical motor signaling on the STM32 while allowing the Jetson to focus on higher-level system behavior.",
             "type": "paragraph"
           },
           {
-            "align": "center",
-            "caption": "Figure: The Motor amplifier PCB",
-            "display": "show",
-            "title": "",
-            "type": "image",
-            "url": "docs/stride-the-motor-control-system/summary/image.png"
-          },
-          {
             "align": "left",
+            "bold": false,
             "color": "",
-            "fontFamily": "",
+            "fontFamily": "Arial",
             "fontPx": "",
             "fontSize": "normal",
+            "html": "The STM32 does not directly drive the motor phases. Instead, it sends command signals to the EZ Drive motor controllers. Motor speed is controlled using the STM32’s DAC output, which produces a 0–3.3 V analog signal. Since the EZ Drive requires a 0–10 V speed command, I developed a custom motor control interface board using a non-inverting op-amp amplifier with a gain of approximately 3. This scales the MCU output to the full command range needed for the motor controller.",
             "text": "The STM32 does not directly drive the motor phases. Instead, it sends command signals to the EZ Drive motor controllers. Motor speed is controlled using the STM32’s DAC output, which produces a 0–3.3 V analog signal. Since the EZ Drive requires a 0–10 V speed command, I developed a custom motor control interface board using a non-inverting op-amp amplifier with a gain of approximately 3. This scales the MCU output to the full command range needed for the motor controller.",
             "type": "paragraph"
           },
           {
             "align": "left",
+            "bold": false,
             "color": "",
-            "fontFamily": "",
+            "fontFamily": "Arial",
             "fontPx": "",
             "fontSize": "normal",
+            "html": "In addition to analog speed control, the STM32 manages digital signals for enable, braking, and direction. It also reads feedback such as fault status and speed-related signals from the motor controller. Testing confirmed that the amplifier output was highly linear, with a measured gain of about 3.02, allowing predictable mapping between MCU command voltage and motor speed. Overall, this architecture combines high-power BLDC actuation, safe low-level embedded control, and modular system-level decision-making.",
             "text": "In addition to analog speed control, the STM32 manages digital signals for enable, braking, and direction. It also reads feedback such as fault status and speed-related signals from the motor controller. Testing confirmed that the amplifier output was highly linear, with a measured gain of about 3.02, allowing predictable mapping between MCU command voltage and motor speed. Overall, this architecture combines high-power BLDC actuation, safe low-level embedded control, and modular system-level decision-making.",
             "type": "paragraph"
+          },
+          {
+            "align": "center",
+            "caption": "Figure: The Motor amplifier PCB",
+            "cropAspect": "original",
+            "cropX": 50,
+            "cropY": 50,
+            "cropZoom": 1,
+            "display": "show",
+            "source": "local",
+            "title": "",
+            "type": "image",
+            "url": "docs/stride-the-motor-control-system/summary/image.png"
           }
         ]
       },
@@ -1388,11 +1482,33 @@
           "id": "software",
           "title": "Software",
           "description": "",
-          "items": []
+          "items": [
+            {
+              "title": "C++",
+              "description": "fwtwyhgha",
+              "richDescription": {
+                "blocks": [
+                  {
+                    "align": "left",
+                    "bold": false,
+                    "color": "",
+                    "fontFamily": "Arial",
+                    "fontPx": "",
+                    "fontSize": "normal",
+                    "html": "fwtwyhgha",
+                    "text": "fwtwyhgha",
+                    "type": "paragraph"
+                  }
+                ]
+              },
+              "type": "Text",
+              "status": "draft"
+            }
+          ]
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-27T05:40:25.382Z",
+        "builtAt": "2026-07-02T03:07:16.434Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-graphite-white-click",
@@ -1415,6 +1531,21 @@
             "interaction": "Slate hover with a crisp white click state."
           }
         },
+        "responsive": {
+          "version": 1,
+          "breakpoints": {
+            "mobile": 640,
+            "tablet": 900,
+            "desktop": 1180
+          },
+          "cardLayout": "single",
+          "contentMax": "980px",
+          "density": "simple",
+          "mediaMax": "720px",
+          "sectionCardMin": "280px",
+          "touchTarget": "44px",
+          "windowMode": "full-screen"
+        },
         "title": "STRIDE - The Motor Control System",
         "sections": [
           {
@@ -1423,7 +1554,7 @@
             "items": [
               {
                 "children": [],
-                "description": "The STRIDE motor system was designed to provide reliable powered mobility on flat ground while also delivering enough torque for stair traversal. The architecture uses two ElectroCraft MP24 brushless DC motors, one on each side of the rollator, to drive the front tri-wheel assemblies. Each motor includes an integrated right-angle gearbox with a 21:1 reduction ratio, providing high torque at the low speeds needed for a mobility device. The motors are powered from the 24 V LiFePO₄ battery through the tractive power path, while the ElectroCraft EZ Drive controllers handle the high-power three-phase commutation required by the BLDC motors.\n\nThe motor control system is organized as a layered architecture. The Jetson Orin Nano acts as the high-level decision-making unit, interpreting user commands, obstacle detection results, mode selection, and system safety states. It sends motion commands to the STM32 system microcontroller, which performs the low-level real-time control. This separation keeps safety-critical motor signaling on the STM32 while allowing the Jetson to focus on higher-level system behavior.\n\nFigure: The Motor amplifier PCB\n\nThe STM32 does not directly drive the motor phases. Instead, it sends command signals to the EZ Drive motor controllers. Motor speed is controlled using the STM32’s DAC output, which produces a 0–3.3 V analog signal. Since the EZ Drive requires a 0–10 V speed command, I developed a custom motor control interface board using a non-inverting op-amp amplifier with a gain of approximately 3. This scales the MCU output to the full command range needed for the motor controller.\n\nIn addition to analog speed control, the STM32 manages digital signals for enable, braking, and direction. It also reads feedback such as fault status and speed-related signals from the motor controller. Testing confirmed that the amplifier output was highly linear, with a measured gain of about 3.02, allowing predictable mapping between MCU command voltage and motor speed. Overall, this architecture combines high-power BLDC actuation, safe low-level embedded control, and modular system-level decision-making.",
+                "description": "The STRIDE motor system was designed to provide reliable powered mobility on flat ground while also delivering enough torque for stair traversal. The architecture uses two ElectroCraft MP24 brushless DC motors, one on each side of the rollator, to drive the front tri-wheel assemblies. Each motor includes an integrated right-angle gearbox with a 21:1 reduction ratio, providing high torque at the low speeds needed for a mobility device. The motors are powered from the 24 V LiFePO₄ battery through the tractive power path, while the ElectroCraft EZ Drive controllers handle the high-power three-phase commutation required by the BLDC motors.\n\nThe motor control system is organized as a layered architecture. The Jetson Orin Nano acts as the high-level decision-making unit, interpreting user commands, obstacle detection results, mode selection, and system safety states. It sends motion commands to the STM32 system microcontroller, which performs the low-level real-time control. This separation keeps safety-critical motor signaling on the STM32 while allowing the Jetson to focus on higher-level system behavior.\n\nThe STM32 does not directly drive the motor phases. Instead, it sends command signals to the EZ Drive motor controllers. Motor speed is controlled using the STM32’s DAC output, which produces a 0–3.3 V analog signal. Since the EZ Drive requires a 0–10 V speed command, I developed a custom motor control interface board using a non-inverting op-amp amplifier with a gain of approximately 3. This scales the MCU output to the full command range needed for the motor controller.\n\nIn addition to analog speed control, the STM32 manages digital signals for enable, braking, and direction. It also reads feedback such as fault status and speed-related signals from the motor controller. Testing confirmed that the amplifier output was highly linear, with a measured gain of about 3.02, allowing predictable mapping between MCU command voltage and motor speed. Overall, this architecture combines high-power BLDC actuation, safe low-level embedded control, and modular system-level decision-making.\n\nFigure: The Motor amplifier PCB",
                 "kind": "summary",
                 "meta": "Overview",
                 "title": "Overview",
@@ -1432,53 +1563,96 @@
                   "blocks": [
                     {
                       "align": "left",
+                      "bold": false,
                       "color": "",
-                      "fontFamily": "",
+                      "fontFamily": "Arial",
                       "fontPx": "",
                       "fontSize": "normal",
+                      "html": "The STRIDE motor system was designed to provide reliable powered mobility on flat ground while also delivering enough torque for stair traversal. The architecture uses two ElectroCraft MP24 brushless DC motors, one on each side of the rollator, to drive the front tri-wheel assemblies. Each motor includes an integrated right-angle gearbox with a 21:1 reduction ratio, providing high torque at the low speeds needed for a mobility device. The motors are powered from the 24 V LiFePO₄ battery through the tractive power path, while the ElectroCraft EZ Drive controllers handle the high-power three-phase commutation required by the BLDC motors.",
                       "text": "The STRIDE motor system was designed to provide reliable powered mobility on flat ground while also delivering enough torque for stair traversal. The architecture uses two ElectroCraft MP24 brushless DC motors, one on each side of the rollator, to drive the front tri-wheel assemblies. Each motor includes an integrated right-angle gearbox with a 21:1 reduction ratio, providing high torque at the low speeds needed for a mobility device. The motors are powered from the 24 V LiFePO₄ battery through the tractive power path, while the ElectroCraft EZ Drive controllers handle the high-power three-phase commutation required by the BLDC motors.",
                       "type": "paragraph"
                     },
                     {
                       "align": "left",
+                      "bold": false,
                       "color": "",
-                      "fontFamily": "",
+                      "fontFamily": "Arial",
                       "fontPx": "",
                       "fontSize": "normal",
+                      "html": "The motor control system is organized as a layered architecture. The Jetson Orin Nano acts as the high-level decision-making unit, interpreting user commands, obstacle detection results, mode selection, and system safety states. It sends motion commands to the STM32 system microcontroller, which performs the low-level real-time control. This separation keeps safety-critical motor signaling on the STM32 while allowing the Jetson to focus on higher-level system behavior.",
                       "text": "The motor control system is organized as a layered architecture. The Jetson Orin Nano acts as the high-level decision-making unit, interpreting user commands, obstacle detection results, mode selection, and system safety states. It sends motion commands to the STM32 system microcontroller, which performs the low-level real-time control. This separation keeps safety-critical motor signaling on the STM32 while allowing the Jetson to focus on higher-level system behavior.",
                       "type": "paragraph"
                     },
                     {
-                      "align": "center",
-                      "caption": "Figure: The Motor amplifier PCB",
-                      "display": "show",
-                      "title": "",
-                      "type": "image",
-                      "url": "docs/stride-the-motor-control-system/summary/image.png"
-                    },
-                    {
                       "align": "left",
+                      "bold": false,
                       "color": "",
-                      "fontFamily": "",
+                      "fontFamily": "Arial",
                       "fontPx": "",
                       "fontSize": "normal",
+                      "html": "The STM32 does not directly drive the motor phases. Instead, it sends command signals to the EZ Drive motor controllers. Motor speed is controlled using the STM32’s DAC output, which produces a 0–3.3 V analog signal. Since the EZ Drive requires a 0–10 V speed command, I developed a custom motor control interface board using a non-inverting op-amp amplifier with a gain of approximately 3. This scales the MCU output to the full command range needed for the motor controller.",
                       "text": "The STM32 does not directly drive the motor phases. Instead, it sends command signals to the EZ Drive motor controllers. Motor speed is controlled using the STM32’s DAC output, which produces a 0–3.3 V analog signal. Since the EZ Drive requires a 0–10 V speed command, I developed a custom motor control interface board using a non-inverting op-amp amplifier with a gain of approximately 3. This scales the MCU output to the full command range needed for the motor controller.",
                       "type": "paragraph"
                     },
                     {
                       "align": "left",
+                      "bold": false,
                       "color": "",
-                      "fontFamily": "",
+                      "fontFamily": "Arial",
                       "fontPx": "",
                       "fontSize": "normal",
+                      "html": "In addition to analog speed control, the STM32 manages digital signals for enable, braking, and direction. It also reads feedback such as fault status and speed-related signals from the motor controller. Testing confirmed that the amplifier output was highly linear, with a measured gain of about 3.02, allowing predictable mapping between MCU command voltage and motor speed. Overall, this architecture combines high-power BLDC actuation, safe low-level embedded control, and modular system-level decision-making.",
                       "text": "In addition to analog speed control, the STM32 manages digital signals for enable, braking, and direction. It also reads feedback such as fault status and speed-related signals from the motor controller. Testing confirmed that the amplifier output was highly linear, with a measured gain of about 3.02, allowing predictable mapping between MCU command voltage and motor speed. Overall, this architecture combines high-power BLDC actuation, safe low-level embedded control, and modular system-level decision-making.",
                       "type": "paragraph"
+                    },
+                    {
+                      "align": "center",
+                      "caption": "Figure: The Motor amplifier PCB",
+                      "cropAspect": "original",
+                      "cropX": 50,
+                      "cropY": 50,
+                      "cropZoom": 1,
+                      "display": "show",
+                      "source": "local",
+                      "title": "",
+                      "type": "image",
+                      "url": "docs/stride-the-motor-control-system/summary/image.png"
                     }
                   ]
                 }
               }
             ],
             "title": "Overview"
+          },
+          {
+            "description": "",
+            "id": "custom:software",
+            "items": [
+              {
+                "children": [],
+                "description": "fwtwyhgha",
+                "kind": "subsection",
+                "meta": "Subsection",
+                "title": "C++",
+                "url": "",
+                "rich": {
+                  "blocks": [
+                    {
+                      "align": "left",
+                      "bold": false,
+                      "color": "",
+                      "fontFamily": "Arial",
+                      "fontPx": "",
+                      "fontSize": "normal",
+                      "html": "fwtwyhgha",
+                      "text": "fwtwyhgha",
+                      "type": "paragraph"
+                    }
+                  ]
+                }
+              }
+            ],
+            "title": "Software"
           }
         ]
       }
@@ -1521,12 +1695,27 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-06-27T05:40:25.383Z",
+        "builtAt": "2026-07-02T03:07:16.434Z",
         "template": {
           "group": "Appearance",
           "id": "",
           "label": "",
           "visual": null
+        },
+        "responsive": {
+          "version": 1,
+          "breakpoints": {
+            "mobile": 640,
+            "tablet": 900,
+            "desktop": 1180
+          },
+          "cardLayout": "split",
+          "contentMax": "980px",
+          "density": "simple",
+          "mediaMax": "720px",
+          "sectionCardMin": "280px",
+          "touchTarget": "44px",
+          "windowMode": "full-screen"
         },
         "title": "FPGA -based LED Matrix Panel Controller for ultra-fast Display",
         "sections": [
@@ -1593,7 +1782,7 @@
       "links": [],
       "sections": [],
       "portfolioView": {
-        "builtAt": "2026-06-27T05:40:25.383Z",
+        "builtAt": "2026-07-02T03:07:16.434Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -1615,6 +1804,21 @@
             "text": "#172636",
             "interaction": "Blue hover with a clean white click state."
           }
+        },
+        "responsive": {
+          "version": 1,
+          "breakpoints": {
+            "mobile": 640,
+            "tablet": 900,
+            "desktop": 1180
+          },
+          "cardLayout": "single",
+          "contentMax": "980px",
+          "density": "simple",
+          "mediaMax": "720px",
+          "sectionCardMin": "280px",
+          "touchTarget": "44px",
+          "windowMode": "full-screen"
         },
         "title": "FPGA base Health Monitor (Pulse Sensor and Reaction Timer controllers)",
         "sections": [
