@@ -1,0 +1,4 @@
+Contact: mailto:otienomaurice12340@gmail.com
+Preferred-Languages: en
+Canonical: https://mauriceotieno.com/.well-known/security.txt
+Policy: https://mauriceotieno.com/

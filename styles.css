@@ -1069,6 +1069,29 @@ h3 {
   color: var(--template-text);
 }
 
+.responsive-project {
+  --responsive-section-card-min: 240px;
+  --responsive-content-max: 1180px;
+  --responsive-media-max: 760px;
+  --responsive-touch-target: 44px;
+  container-type: inline-size;
+}
+
+.responsive-density-simple {
+  --responsive-section-card-min: 280px;
+  --responsive-content-max: 980px;
+}
+
+.responsive-density-dense {
+  --responsive-section-card-min: 210px;
+  --responsive-content-max: 1180px;
+}
+
+.responsive-project.project-card .project-body {
+  width: min(100%, var(--responsive-content-max, 1180px));
+  justify-self: center;
+}
+
 .project-template .project-body {
   background: transparent;
 }
@@ -1442,7 +1465,7 @@ h3 {
 .rich-image {
   display: grid;
   gap: 8px;
-  max-width: min(100%, 720px);
+  max-width: min(100%, var(--responsive-media-max, 720px));
   margin: 0;
 }
 
@@ -1458,7 +1481,7 @@ h3 {
 .rich-image-viewport {
   position: relative;
   display: block;
-  width: min(100%, 720px);
+  width: min(100%, var(--responsive-media-max, 720px));
   overflow: hidden;
   border-radius: 8px;
   background: #ffffff;
@@ -1542,7 +1565,7 @@ h3 {
 
 .evidence-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--responsive-section-card-min, 240px)), 1fr));
   gap: 12px;
 }
 
@@ -1560,7 +1583,7 @@ h3 {
 }
 
 .section-open-card {
-  min-height: 88px;
+  min-height: max(var(--responsive-touch-target, 44px), 76px);
   color: var(--ink);
   text-align: left;
   cursor: pointer;
@@ -1989,7 +2012,7 @@ h3 {
 }
 
 .section-content-grid {
-  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--responsive-section-card-min, 210px)), 1fr));
 }
 
 .subsection-grid.section-content-grid {
@@ -2003,8 +2026,8 @@ h3 {
 .subsection-grid.section-content-grid .section-open-card {
   flex: 0 1 auto;
   width: fit-content;
-  min-width: min(210px, 100%);
-  max-width: min(360px, 100%);
+  min-width: min(var(--responsive-section-card-min, 210px), 100%);
+  max-width: min(420px, 100%);
 }
 
 .subsection-grid.section-content-grid .section-open-card span {
@@ -2067,7 +2090,7 @@ h3 {
 
 .media-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr));
   gap: 12px;
 }
 
@@ -2575,4 +2598,79 @@ h3 {
     border: 0;
     background: transparent;
     box-shadow: none;
+}
+
+.section-view-dialog.responsive-project .section-view-content {
+    width: 100%;
+    max-width: none;
+}
+
+.section-view-dialog.responsive-project .rich-image,
+.section-view-dialog.responsive-project .rich-image-viewport {
+    max-width: min(100%, var(--responsive-media-max, 760px));
+}
+
+.responsive-project .rich-paragraph,
+.responsive-project .resource-detail,
+.responsive-project .section-file-link,
+.section-view-dialog .rich-paragraph,
+.section-view-dialog .resource-detail,
+.section-view-dialog .section-file-link {
+    overflow-wrap: anywhere;
+}
+
+.responsive-project .rich-formula,
+.section-view-dialog .rich-formula {
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+@media (max-width: 760px) {
+    .responsive-project.project-card .project-body {
+        width: 100%;
+        padding: 16px;
+    }
+
+    .evidence-grid,
+    .section-content-grid,
+    .subsection-grid.section-content-grid,
+    .project-tooling,
+    .media-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+
+    .section-open-card,
+    .subsection-grid.section-content-grid .section-open-card {
+        width: 100%;
+        min-width: 0;
+        max-width: none;
+        min-height: max(var(--responsive-touch-target, 44px), 58px);
+    }
+
+    .section-view-dialog.is-draggable-dialog:not(.is-minimized-dialog),
+    .section-view-dialog.is-resized-dialog:not(.is-minimized-dialog) {
+        inset: 0 !important;
+        width: 100vw !important;
+        height: 100dvh !important;
+    }
+
+    .section-view-dialog:not(.is-minimized-dialog) .dialog-resize-handle {
+        display: none;
+    }
+
+    .section-view-content {
+        padding: 14px;
+    }
+
+    .parsed-window-panel {
+        padding: 14px;
+        box-shadow: none;
+    }
+
+    .rich-image,
+    .rich-image-viewport {
+        width: 100%;
+        max-width: 100%;
+    }
 }

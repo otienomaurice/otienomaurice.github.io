@@ -37,7 +37,7 @@
         "fontFamily": "Arial",
         "fontPx": "",
         "fontSize": "normal",
-        "html": "I built the builder to create this portfolio, letting me add text and files while parsing the provided input. You can download it as a standalone desktop app by clicking the link below. It would, however, require you to specify a GitHub Pages website where Your portfolio will be hosted.\n<br>",
+        "html": "<span style=\"font-size: 8px; display: inline;\"><span style=\"font-size: 13px; display: inline;\">I built the builder to create this portfolio, letting me add text and files while parsing the provided input. You can download it as a standalone desktop app by clicking the link below. It would, however, require you to specify a GitHub Pages website where Your portfolio will be hosted.</span></span>\n<br>",
         "text": "I built the builder to create this portfolio, letting me add text and files while parsing the provided input. You can download it as a standalone desktop app by clicking the link below. It would, however, require you to specify a GitHub Pages website where Your portfolio will be hosted.",
         "type": "paragraph"
       }
@@ -356,7 +356,7 @@
         }
       },
       "portfolioView": {
-        "builtAt": "2026-07-02T03:07:16.433Z",
+        "builtAt": "2026-07-02T05:47:06.888Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -757,7 +757,7 @@
         }
       },
       "portfolioView": {
-        "builtAt": "2026-07-02T03:07:16.433Z",
+        "builtAt": "2026-07-02T05:47:06.888Z",
         "template": {
           "group": "Appearance",
           "id": "",
@@ -813,52 +813,70 @@
         "blocks": [
           {
             "align": "left",
+            "bold": false,
             "color": "",
-            "fontFamily": "",
+            "fontFamily": "Arial",
             "fontPx": "",
             "fontSize": "normal",
+            "html": "<span style=\"color: rgb(220, 38, 38); display: inline;\">STRIDE, the Smart Technology Rollator for Independence, Detection, and Empowerment, is a senior design project developed to improve mobility, safety, and independence for users who need more support than a cane but do not require a wheelchair. Traditional rollators are useful on flat ground, but they become difficult to control on ramps and nearly impossible for many users to move safely up or down stairs. STRIDE addresses this problem by combining a powered rollator, stair-climbing mechanism, obstacle detection, embedded control, custom electronics, and an accessible user interface into one integrated prototype.</span>",
             "text": "STRIDE, the Smart Technology Rollator for Independence, Detection, and Empowerment, is a senior design project developed to improve mobility, safety, and independence for users who need more support than a cane but do not require a wheelchair. Traditional rollators are useful on flat ground, but they become difficult to control on ramps and nearly impossible for many users to move safely up or down stairs. STRIDE addresses this problem by combining a powered rollator, stair-climbing mechanism, obstacle detection, embedded control, custom electronics, and an accessible user interface into one integrated prototype.",
             "type": "paragraph"
           },
           {
             "align": "left",
             "caption": "",
+            "cropAspect": "original",
+            "cropX": 50,
+            "cropY": 50,
+            "cropZoom": 1,
             "display": "show",
+            "source": "local",
             "title": "",
             "type": "image",
             "url": "docs/smart-technology-rollator-for-independence-detection-and-empowerment-stride/summary/image.png"
           },
           {
             "align": "left",
+            "bold": false,
             "color": "",
-            "fontFamily": "",
+            "fontFamily": "Arial",
             "fontPx": "",
             "fontSize": "normal",
+            "html": "The system is built around four tri-wheel assemblies. The front tri-wheels are powered by ElectroCraft brushless DC motors through a gear-chain transmission, while the rear tri-wheels use omnidirectional wheels to preserve steering and support passive stair traversal. This allows STRIDE to move like a standard rollator on flat ground and transition into stair-climbing operation when needed. The frame was fabricated from aluminum tubing to balance strength, weight, and manufacturability, with custom motor plates, protective panels, battery mounting, and internal electronics support.",
             "text": "The system is built around four tri-wheel assemblies. The front tri-wheels are powered by ElectroCraft brushless DC motors through a gear-chain transmission, while the rear tri-wheels use omnidirectional wheels to preserve steering and support passive stair traversal. This allows STRIDE to move like a standard rollator on flat ground and transition into stair-climbing operation when needed. The frame was fabricated from aluminum tubing to balance strength, weight, and manufacturability, with custom motor plates, protective panels, battery mounting, and internal electronics support.",
             "type": "paragraph"
           },
           {
             "align": "left",
+            "bold": false,
             "color": "",
-            "fontFamily": "",
+            "fontFamily": "Arial",
             "fontPx": "",
             "fontSize": "normal",
+            "html": "My work involved major electrical and embedded-system contributions, including motor control, battery monitoring, power distribution, firmware architecture, and system integration. STRIDE uses a centralized 24 V LiFePO₄ battery, custom power distribution board, LTC2944-based battery monitor, STM32 microcontrollers, an ESP32 wireless interface, and a Jetson Orin Nano for high-level decision-making. The STM32 handles real-time low-level control such as motor commands, brake inputs, battery readings, sensor communication, and feedback to the Jetson.",
             "text": "My work involved major electrical and embedded-system contributions, including motor control, battery monitoring, power distribution, firmware architecture, and system integration. STRIDE uses a centralized 24 V LiFePO₄ battery, custom power distribution board, LTC2944-based battery monitor, STM32 microcontrollers, an ESP32 wireless interface, and a Jetson Orin Nano for high-level decision-making. The STM32 handles real-time low-level control such as motor commands, brake inputs, battery readings, sensor communication, and feedback to the Jetson.",
             "type": "paragraph"
           },
           {
             "align": "left",
+            "bold": false,
             "color": "",
-            "fontFamily": "",
+            "fontFamily": "Arial",
             "fontPx": "",
             "fontSize": "normal",
+            "html": "For safety, STRIDE combines a ZED 2i depth camera with ultrasonic sensors to detect obstacles, classify ground and walls, and provide redundant sensing for transparent or low-light conditions. The project demonstrates practical experience in PCB design, embedded C/C++, motor control, sensor integration, power electronics, hardware debugging, and full-system testing. STRIDE reflects my ability to turn a real user problem into a working electromechanical system.",
             "text": "For safety, STRIDE combines a ZED 2i depth camera with ultrasonic sensors to detect obstacles, classify ground and walls, and provide redundant sensing for transparent or low-light conditions. The project demonstrates practical experience in PCB design, embedded C/C++, motor control, sensor integration, power electronics, hardware debugging, and full-system testing. STRIDE reflects my ability to turn a real user problem into a working electromechanical system.",
             "type": "paragraph"
           },
           {
             "align": "left",
             "caption": "",
+            "cropAspect": "original",
+            "cropX": 50,
+            "cropY": 50,
+            "cropZoom": 1,
             "display": "show",
+            "source": "local",
             "title": "STRIDE_CONTROL.png",
             "type": "image",
             "url": "docs/smart-technology-rollator-for-independence-detection-and-empowerment-stride/summary/stride_control.png"
@@ -923,7 +941,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-07-02T03:07:16.434Z",
+        "builtAt": "2026-07-02T05:47:06.888Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -978,52 +996,70 @@
                   "blocks": [
                     {
                       "align": "left",
+                      "bold": false,
                       "color": "",
-                      "fontFamily": "",
+                      "fontFamily": "Arial",
                       "fontPx": "",
                       "fontSize": "normal",
+                      "html": "<span style=\"color: rgb(220, 38, 38); display: inline;\">STRIDE, the Smart Technology Rollator for Independence, Detection, and Empowerment, is a senior design project developed to improve mobility, safety, and independence for users who need more support than a cane but do not require a wheelchair. Traditional rollators are useful on flat ground, but they become difficult to control on ramps and nearly impossible for many users to move safely up or down stairs. STRIDE addresses this problem by combining a powered rollator, stair-climbing mechanism, obstacle detection, embedded control, custom electronics, and an accessible user interface into one integrated prototype.</span>",
                       "text": "STRIDE, the Smart Technology Rollator for Independence, Detection, and Empowerment, is a senior design project developed to improve mobility, safety, and independence for users who need more support than a cane but do not require a wheelchair. Traditional rollators are useful on flat ground, but they become difficult to control on ramps and nearly impossible for many users to move safely up or down stairs. STRIDE addresses this problem by combining a powered rollator, stair-climbing mechanism, obstacle detection, embedded control, custom electronics, and an accessible user interface into one integrated prototype.",
                       "type": "paragraph"
                     },
                     {
                       "align": "left",
                       "caption": "",
+                      "cropAspect": "original",
+                      "cropX": 50,
+                      "cropY": 50,
+                      "cropZoom": 1,
                       "display": "show",
+                      "source": "local",
                       "title": "",
                       "type": "image",
                       "url": "docs/smart-technology-rollator-for-independence-detection-and-empowerment-stride/summary/image.png"
                     },
                     {
                       "align": "left",
+                      "bold": false,
                       "color": "",
-                      "fontFamily": "",
+                      "fontFamily": "Arial",
                       "fontPx": "",
                       "fontSize": "normal",
+                      "html": "The system is built around four tri-wheel assemblies. The front tri-wheels are powered by ElectroCraft brushless DC motors through a gear-chain transmission, while the rear tri-wheels use omnidirectional wheels to preserve steering and support passive stair traversal. This allows STRIDE to move like a standard rollator on flat ground and transition into stair-climbing operation when needed. The frame was fabricated from aluminum tubing to balance strength, weight, and manufacturability, with custom motor plates, protective panels, battery mounting, and internal electronics support.",
                       "text": "The system is built around four tri-wheel assemblies. The front tri-wheels are powered by ElectroCraft brushless DC motors through a gear-chain transmission, while the rear tri-wheels use omnidirectional wheels to preserve steering and support passive stair traversal. This allows STRIDE to move like a standard rollator on flat ground and transition into stair-climbing operation when needed. The frame was fabricated from aluminum tubing to balance strength, weight, and manufacturability, with custom motor plates, protective panels, battery mounting, and internal electronics support.",
                       "type": "paragraph"
                     },
                     {
                       "align": "left",
+                      "bold": false,
                       "color": "",
-                      "fontFamily": "",
+                      "fontFamily": "Arial",
                       "fontPx": "",
                       "fontSize": "normal",
+                      "html": "My work involved major electrical and embedded-system contributions, including motor control, battery monitoring, power distribution, firmware architecture, and system integration. STRIDE uses a centralized 24 V LiFePO₄ battery, custom power distribution board, LTC2944-based battery monitor, STM32 microcontrollers, an ESP32 wireless interface, and a Jetson Orin Nano for high-level decision-making. The STM32 handles real-time low-level control such as motor commands, brake inputs, battery readings, sensor communication, and feedback to the Jetson.",
                       "text": "My work involved major electrical and embedded-system contributions, including motor control, battery monitoring, power distribution, firmware architecture, and system integration. STRIDE uses a centralized 24 V LiFePO₄ battery, custom power distribution board, LTC2944-based battery monitor, STM32 microcontrollers, an ESP32 wireless interface, and a Jetson Orin Nano for high-level decision-making. The STM32 handles real-time low-level control such as motor commands, brake inputs, battery readings, sensor communication, and feedback to the Jetson.",
                       "type": "paragraph"
                     },
                     {
                       "align": "left",
+                      "bold": false,
                       "color": "",
-                      "fontFamily": "",
+                      "fontFamily": "Arial",
                       "fontPx": "",
                       "fontSize": "normal",
+                      "html": "For safety, STRIDE combines a ZED 2i depth camera with ultrasonic sensors to detect obstacles, classify ground and walls, and provide redundant sensing for transparent or low-light conditions. The project demonstrates practical experience in PCB design, embedded C/C++, motor control, sensor integration, power electronics, hardware debugging, and full-system testing. STRIDE reflects my ability to turn a real user problem into a working electromechanical system.",
                       "text": "For safety, STRIDE combines a ZED 2i depth camera with ultrasonic sensors to detect obstacles, classify ground and walls, and provide redundant sensing for transparent or low-light conditions. The project demonstrates practical experience in PCB design, embedded C/C++, motor control, sensor integration, power electronics, hardware debugging, and full-system testing. STRIDE reflects my ability to turn a real user problem into a working electromechanical system.",
                       "type": "paragraph"
                     },
                     {
                       "align": "left",
                       "caption": "",
+                      "cropAspect": "original",
+                      "cropX": 50,
+                      "cropY": 50,
+                      "cropZoom": 1,
                       "display": "show",
+                      "source": "local",
                       "title": "STRIDE_CONTROL.png",
                       "type": "image",
                       "url": "docs/smart-technology-rollator-for-independence-detection-and-empowerment-stride/summary/stride_control.png"
@@ -1230,7 +1266,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-07-02T03:07:16.434Z",
+        "builtAt": "2026-07-02T05:47:06.888Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-steel-teal-click",
@@ -1508,7 +1544,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-07-02T03:07:16.434Z",
+        "builtAt": "2026-07-02T05:47:06.889Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-graphite-white-click",
@@ -1695,7 +1731,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-07-02T03:07:16.434Z",
+        "builtAt": "2026-07-02T05:47:06.889Z",
         "template": {
           "group": "Appearance",
           "id": "",
@@ -1782,7 +1818,7 @@
       "links": [],
       "sections": [],
       "portfolioView": {
-        "builtAt": "2026-07-02T03:07:16.434Z",
+        "builtAt": "2026-07-02T05:47:06.889Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
