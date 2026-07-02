@@ -38,7 +38,7 @@
         "fontFamily": "Arial",
         "fontPx": "",
         "fontSize": "normal",
-        "html": "<span style=\"font-size: 8px; display: inline;\"><span style=\"font-size: 13px; display: inline;\"><span style=\"color: rgb(0, 0, 0); display: inline;\">I built the builder to create this portfolio, letting me add text and files while parsing the provided input. You can download it as a standalone desktop app by clicking the link below. It would, however, require you to specify a GitHub Pages website where Your portfolio will be hosted.</span></span></span>\n<br>",
+        "html": "<span style=\"font-size: 8px; display: inline;\"><span style=\"font-size: 13px; display: inline;\"><span style=\"color: rgb(0, 0, 0); display: inline;\"><span style=\"font-size: 13px; display: inline;\"><span style=\"font-weight: 700; display: inline;\">I built the builder to create this portfolio, letting me add text and files while parsing the provided input. You can download it as a standalone desktop app by clicking the link below. It would, however, require you to specify a GitHub Pages website where Your portfolio will be hosted.</span></span></span></span></span><span style=\"font-size: 13px; display: inline;\">\n</span><br>",
         "italic": false,
         "text": "I built the builder to create this portfolio, letting me add text and files while parsing the provided input. You can download it as a standalone desktop app by clicking the link below. It would, however, require you to specify a GitHub Pages website where Your portfolio will be hosted.",
         "underline": false,
@@ -565,7 +565,7 @@
         }
       },
       "portfolioView": {
-        "builtAt": "2026-07-02T18:34:29.462Z",
+        "builtAt": "2026-07-02T18:39:53.958Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -981,7 +981,7 @@
         }
       },
       "portfolioView": {
-        "builtAt": "2026-07-02T18:34:29.462Z",
+        "builtAt": "2026-07-02T18:39:53.958Z",
         "template": {
           "group": "Appearance",
           "id": "",
@@ -1165,7 +1165,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-07-02T18:34:29.463Z",
+        "builtAt": "2026-07-02T18:39:53.958Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -1490,7 +1490,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-07-02T18:34:29.463Z",
+        "builtAt": "2026-07-02T18:39:53.959Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-steel-teal-click",
@@ -1768,7 +1768,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-07-02T18:34:29.463Z",
+        "builtAt": "2026-07-02T18:39:53.959Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-graphite-white-click",
@@ -1964,7 +1964,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-07-02T18:34:29.463Z",
+        "builtAt": "2026-07-02T18:39:53.959Z",
         "template": {
           "group": "Appearance",
           "id": "",
@@ -2076,7 +2076,7 @@
       "links": [],
       "sections": [],
       "portfolioView": {
-        "builtAt": "2026-07-02T18:34:29.463Z",
+        "builtAt": "2026-07-02T18:39:53.959Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -2174,8 +2174,10 @@
                 "fontFamily": "Arial",
                 "fontPx": "",
                 "fontSize": "normal",
-                "html": "<span style=\"font-size: 12px;\"><span style=\"color: rgb(0, 0, 0);\"><span style=\"color: rgb(71, 85, 105); font-weight: 400;\">I enjoy creating projects from the ground up as well as reverse engineering existing ones, taking them from the initial idea to full realization. This often involves working on everything from project constraints and budget to design, implementation, testing, and validation.</span></span></span>",
+                "html": "<span style=\"font-size: 12px; display: inline;\"><span style=\"color: rgb(0, 0, 0); display: inline;\"><span style=\"color: rgb(71, 85, 105); font-weight: 400; display: inline;\"><span style=\"color: rgb(0, 0, 0); display: inline;\"><span style=\"font-size: 13px; display: inline;\">I enjoy creating projects from the ground up as well as reverse engineering existing ones, taking them from the initial idea to full realization. This often involves working on everything from project constraints and budget to design, implementation, testing, and validation.</span></span></span></span></span>",
+                "italic": false,
                 "text": "I enjoy creating projects from the ground up as well as reverse engineering existing ones, taking them from the initial idea to full realization. This often involves working on everything from project constraints and budget to design, implementation, testing, and validation.",
+                "underline": false,
                 "type": "paragraph"
               }
             ]
