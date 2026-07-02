@@ -71,7 +71,7 @@
           "fontFamily": "Arial",
           "fontPx": "",
           "fontSize": "normal",
-          "html": "<span style=\"font-size: 11px; display: inline;\"><span style=\"font-size: 13px; display: inline;\"><span style=\"font-size: 14px; display: inline;\"><span style=\"font-size: 13px; display: inline;\"><span style=\"color: rgb(14, 165, 233); display: inline;\"><a href=\"https://www.linkedin.com/in/maurice-otieno-037a55341\" target=\"_blank\" rel=\"noreferrer\">https://www.linkedin.com/in/maurice-otieno-037a55341</a></span></span></span></span></span>",
+          "html": "<span style=\"font-size: 11px; display: inline;\"><span style=\"font-size: 13px; display: inline;\"><span style=\"font-size: 14px; display: inline;\"><span style=\"font-size: 13px; display: inline;\"><span style=\"color: rgb(14, 165, 233); display: inline;\"><a href=\"https://www.linkedin.com/in/maurice-otieno-037a55341\" target=\"_blank\" rel=\"noreferrer\"><span style=\"color: rgb(14, 165, 233); display: inline;\">https://www.linkedin.com/in/maurice-otieno-037a55341</span></a></span></span></span></span></span>",
           "italic": false,
           "text": "https://www.linkedin.com/in/maurice-otieno-037a55341",
           "underline": false,
@@ -88,7 +88,7 @@
           "fontFamily": "Arial",
           "fontPx": "",
           "fontSize": "normal",
-          "html": "<span style=\"color: rgb(14, 165, 233); display: inline;\"><a href=\"https://mauriceotieno.com\" target=\"_blank\" rel=\"noreferrer\">https://mauriceotieno.com</a></span>",
+          "html": "<span style=\"color: rgb(14, 165, 233); display: inline;\"><a href=\"https://mauriceotieno.com\" target=\"_blank\" rel=\"noreferrer\"><span style=\"color: rgb(14, 165, 233); display: inline;\">https://mauriceotieno.com</span></a></span>",
           "italic": false,
           "text": "https://mauriceotieno.com",
           "underline": false,
@@ -105,7 +105,7 @@
           "fontFamily": "Arial",
           "fontPx": "",
           "fontSize": "normal",
-          "html": "<span style=\"color: rgb(14, 165, 233); display: inline;\"><a href=\"https://github.com/otienomaurice\" target=\"_blank\" rel=\"noreferrer\">https://github.com/otienomaurice</a></span>",
+          "html": "<span style=\"color: rgb(14, 165, 233); display: inline;\"><a href=\"https://github.com/otienomaurice\" target=\"_blank\" rel=\"noreferrer\"><span style=\"color: rgb(14, 165, 233); display: inline;\">https://github.com/otienomaurice</span></a></span>",
           "italic": false,
           "text": "https://github.com/otienomaurice",
           "underline": false,
@@ -156,7 +156,7 @@
           "fontFamily": "Arial",
           "fontPx": "",
           "fontSize": "normal",
-          "html": "Hardware and software engineer focused on analog design, mixed-signal systems, embedded platforms, and digital hardware.",
+          "html": "<span style=\"color: rgb(14, 165, 233); display: inline;\">Hardware and software engineer focused on analog design, mixed-signal systems, embedded platforms, and digital hardware.</span>",
           "italic": false,
           "text": "Hardware and software engineer focused on analog design, mixed-signal systems, embedded platforms, and digital hardware.",
           "underline": false,
@@ -190,7 +190,7 @@
           "fontFamily": "Arial",
           "fontPx": "",
           "fontSize": "normal",
-          "html": "Electrical and Computer Engineering Portfolio",
+          "html": "<span style=\"color: rgb(14, 165, 233); display: inline;\">Electrical and Computer Engineering Portfolio</span>",
           "italic": false,
           "text": "Electrical and Computer Engineering Portfolio",
           "underline": false,
@@ -550,7 +550,7 @@
         }
       },
       "portfolioView": {
-        "builtAt": "2026-07-02T06:02:42.047Z",
+        "builtAt": "2026-07-02T06:13:58.721Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -951,7 +951,7 @@
         }
       },
       "portfolioView": {
-        "builtAt": "2026-07-02T06:02:42.047Z",
+        "builtAt": "2026-07-02T06:13:58.721Z",
         "template": {
           "group": "Appearance",
           "id": "",
@@ -1135,7 +1135,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-07-02T06:02:42.048Z",
+        "builtAt": "2026-07-02T06:13:58.722Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -1460,7 +1460,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-07-02T06:02:42.048Z",
+        "builtAt": "2026-07-02T06:13:58.722Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-steel-teal-click",
@@ -1738,7 +1738,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-07-02T06:02:42.048Z",
+        "builtAt": "2026-07-02T06:13:58.722Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-graphite-white-click",
@@ -1925,7 +1925,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-07-02T06:02:42.048Z",
+        "builtAt": "2026-07-02T06:13:58.722Z",
         "template": {
           "group": "Appearance",
           "id": "",
@@ -2012,7 +2012,7 @@
       "links": [],
       "sections": [],
       "portfolioView": {
-        "builtAt": "2026-07-02T06:02:42.048Z",
+        "builtAt": "2026-07-02T06:13:58.722Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
