@@ -67,6 +67,17 @@ const sectionRouteParams = {
   section: "portfolioSection"
 };
 
+const supportedCodeLanguages = [
+  { id: "c", label: "C", aliases: ["c"] },
+  { id: "cpp", label: "C++", aliases: ["cpp", "c++", "cplusplus"] },
+  { id: "systemverilog", label: "SystemVerilog", aliases: ["systemverilog", "system verilog", "sv"] },
+  { id: "ltspice", label: "LTspice", aliases: ["ltspice", "spice", "cir", "net", "asc"] },
+  { id: "java", label: "Java", aliases: ["java"] },
+  { id: "javascript", label: "JavaScript", aliases: ["javascript", "js", "mjs"] },
+  { id: "python", label: "Python", aliases: ["python", "py"] },
+  { id: "html", label: "HTML", aliases: ["html", "htm"] }
+];
+
 const legacyTemplateSkins = {
   "skin-light-blue": "appearance-light-blue-red-click",
   "skin-clean-white": "appearance-white-blue-click",
@@ -341,6 +352,98 @@ function escapeHtml(value) {
     .replaceAll(">", "&gt;")
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&#039;");
+}
+
+function normalizeCodeLanguage(value = "") {
+  const clean = String(value || "").trim().toLowerCase().replace(/[_-]+/g, " ");
+  const match = supportedCodeLanguages.find((language) =>
+    language.id === clean || language.aliases.includes(clean)
+  );
+  return match?.id || "javascript";
+}
+
+function codeLanguageLabel(value = "") {
+  return supportedCodeLanguages.find((language) => language.id === normalizeCodeLanguage(value))?.label || "Code";
+}
+
+function normalizeCodePasteMode(value = "") {
+  return value === "source" ? "source" : "basic";
+}
+
+function normalizeCodeText(value = "", pasteMode = "source") {
+  const normalized = String(value || "").replace(/\r\n?/g, "\n").replace(/\u00a0/g, " ");
+  if (normalizeCodePasteMode(pasteMode) === "source") return normalized.replace(/\t/g, "  ").replace(/\s+$/g, "");
+  return normalized
+    .split("\n")
+    .map((line) => line.trimEnd())
+    .join("\n")
+    .replace(/\n{4,}/g, "\n\n\n")
+    .trim();
+}
+
+function detectCodeLanguage(value = "") {
+  const code = String(value || "");
+  if (/<\/?[a-z][\s\S]*?>/i.test(code) || /<!doctype\s+html/i.test(code)) return "html";
+  if (/\b(module|endmodule|always_ff|always_comb|logic|reg|wire|assign)\b/.test(code)) return "systemverilog";
+  if (/^\s*\.?(tran|ac|dc|op|model|subckt|ends|param)\b/im.test(code) || /\bV\w+\s+\w+\s+\w+\s+(?:DC|SIN|PULSE)?/i.test(code)) return "ltspice";
+  if (/\b(def|elif|import\s+\w+|from\s+\w+\s+import|self|None|True|False)\b/.test(code)) return "python";
+  if (/\b(public\s+class|private\s+|protected\s+|static\s+void\s+main|System\.out)\b/.test(code)) return "java";
+  if (/\b(const|let|var|function|=>|console\.log|document\.|window\.)\b/.test(code)) return "javascript";
+  if (/\b(#include|printf|scanf|malloc|free|std::|cout|cin|namespace|template\s*<)\b/.test(code)) {
+    return /\b(std::|cout|cin|namespace|template\s*<|class\s+\w+)/.test(code) ? "cpp" : "c";
+  }
+  return "javascript";
+}
+
+function tokenizedCodeHtml(code = "", language = "javascript") {
+  let html = escapeHtml(code);
+  const tokens = [];
+  const protect = (pattern, className) => {
+    html = html.replace(pattern, (match) => {
+      const token = `@@CODE_TOKEN_${tokens.length}@@`;
+      tokens.push(`<span class="${className}">${match}</span>`);
+      return token;
+    });
+  };
+
+  if (language === "html") {
+    protect(/&lt;!--[\s\S]*?--&gt;/g, "code-token-comment");
+    protect(/(&lt;\/?)([a-zA-Z0-9:-]+)([\s\S]*?)(\/?&gt;)/g, "code-token-tag");
+  } else {
+    const commentPattern = ["python", "ltspice"].includes(normalizeCodeLanguage(language))
+      ? /\/\*[\s\S]*?\*\/|\/\/[^\n]*|#[^\n]*/g
+      : /\/\*[\s\S]*?\*\/|\/\/[^\n]*/g;
+    protect(commentPattern, "code-token-comment");
+    protect(/"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|`(?:\\.|[^`\\])*`/g, "code-token-string");
+  }
+
+  protect(/\b(?:0x[\da-f]+|\d+(?:\.\d+)?(?:e[+-]?\d+)?)\b/gi, "code-token-number");
+
+  const keywordMap = {
+    c: "auto|break|case|char|const|continue|default|do|double|else|enum|extern|float|for|goto|if|inline|int|long|register|return|short|signed|sizeof|static|struct|switch|typedef|union|unsigned|void|volatile|while",
+    cpp: "alignas|alignof|auto|bool|break|case|catch|char|class|const|constexpr|continue|default|delete|do|double|else|enum|explicit|export|extern|false|float|for|friend|if|inline|int|long|namespace|new|nullptr|operator|private|protected|public|return|short|signed|sizeof|static|struct|switch|template|this|throw|true|try|typedef|typename|union|unsigned|using|virtual|void|volatile|while",
+    systemverilog: "always|always_comb|always_ff|always_latch|assign|automatic|begin|bit|case|class|clocking|covergroup|default|disable|do|else|end|endcase|endclass|endclocking|endfunction|endmodule|endpackage|endtask|enum|for|forever|function|generate|genvar|if|initial|input|int|interface|logic|module|negedge|output|package|parameter|posedge|reg|return|signed|task|typedef|wire",
+    ltspice: "ac|dc|end|ends|four|func|global|ic|include|lib|meas|model|nodeset|op|options|param|plot|probe|save|step|subckt|temp|tran",
+    java: "abstract|assert|boolean|break|byte|case|catch|char|class|const|continue|default|do|double|else|enum|extends|final|finally|float|for|if|implements|import|instanceof|int|interface|long|native|new|null|package|private|protected|public|return|short|static|strictfp|super|switch|synchronized|this|throw|throws|transient|try|void|volatile|while",
+    javascript: "async|await|break|case|catch|class|const|continue|debugger|default|delete|do|else|export|extends|false|finally|for|from|function|if|import|in|instanceof|let|new|null|of|return|static|super|switch|this|throw|true|try|typeof|undefined|var|void|while|yield",
+    python: "and|as|assert|async|await|break|class|continue|def|del|elif|else|except|False|finally|for|from|global|if|import|in|is|lambda|None|nonlocal|not|or|pass|raise|return|True|try|while|with|yield",
+    html: "html|head|body|main|section|article|div|span|script|style|link|meta|title|header|footer|nav|button|input|form|label|img|a|p|pre|code"
+  };
+  const keywords = keywordMap[normalizeCodeLanguage(language)] || keywordMap.javascript;
+  html = html.replace(new RegExp(`\\b(${keywords})\\b`, "g"), '<span class="code-token-keyword">$1</span>');
+  html = html.replace(/@@CODE_TOKEN_(\d+)@@/g, (_match, index) => tokens[Number(index)] || "");
+  return html;
+}
+
+function renderRichCodeBlock(block = {}) {
+  const language = normalizeCodeLanguage(block.language || detectCodeLanguage(block.code || ""));
+  const code = normalizeCodeText(block.code || "", block.pasteMode || "source");
+  return `
+    <figure class="rich-code-block rich-code-language-${language}">
+      <figcaption><span>&lt;/&gt;</span> ${escapeHtml(codeLanguageLabel(language))}</figcaption>
+      <pre><code>${tokenizedCodeHtml(code, language)}</code></pre>
+    </figure>
+  `;
 }
 
 function renderPlainMultiline(value = "") {
@@ -849,6 +952,7 @@ function renderRichContent(rich, fallbackText = "") {
           }
           return `<div class="rich-formula justify-${align}">${escapeHtml(formula)}</div>`;
         }
+        if (block.type === "code") return renderRichCodeBlock(block);
         const size = ["small", "normal", "large"].includes(block.fontSize) ? block.fontSize : "normal";
         const content = block.html
           ? sanitizeRichInlineHtml(block.html)
@@ -1133,6 +1237,8 @@ function richTextTerms(rich) {
     block.text,
     block.html,
     block.formula,
+    block.code,
+    block.language,
     block.title,
     block.caption,
     block.url
@@ -2760,6 +2866,7 @@ function richHasRenderableContent(rich) {
   return Boolean(rich?.blocks?.some((block) =>
     block.type === "image" && block.url ||
     block.type === "formula" && block.formula ||
+    block.type === "code" && block.code ||
     block.text ||
     block.title ||
     block.caption

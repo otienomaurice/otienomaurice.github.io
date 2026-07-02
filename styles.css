@@ -1469,6 +1469,54 @@ h3 {
   overflow-x: auto;
 }
 
+.rich-code-block {
+  display: grid;
+  gap: 0;
+  max-width: min(100%, var(--responsive-media-max, 860px));
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid rgba(15, 23, 42, 0.16);
+  border-radius: 8px;
+  background: #0f172a;
+  color: #e5edf6;
+  box-shadow: 0 14px 28px rgba(15, 23, 42, 0.12);
+}
+
+.rich-code-block figcaption {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-bottom: 1px solid rgba(226, 232, 240, 0.14);
+  color: #bfdbfe;
+  background: #111c32;
+  font-size: 0.76rem;
+  font-weight: 900;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.rich-code-block pre {
+  max-width: 100%;
+  margin: 0;
+  padding: 14px 16px;
+  overflow-x: auto;
+  white-space: pre;
+}
+
+.rich-code-block code {
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  tab-size: 2;
+}
+
+.code-token-keyword { color: #7dd3fc; font-weight: 800; }
+.code-token-string { color: #bef264; }
+.code-token-comment { color: #94a3b8; font-style: italic; }
+.code-token-number { color: #fdba74; }
+.code-token-tag { color: #c4b5fd; }
+
 .rich-download-only {
   margin: 0;
 }

@@ -293,8 +293,10 @@
             "fontFamily": "Arial",
             "fontPx": "",
             "fontSize": "normal",
-            "html": "<span style=\"font-family: Arial;\"><span style=\"color: rgb(0, 0, 0);\"><span style=\"font-size: 13px;\">In many systems, timing circuits are needed not only for synchronous digital design but also to control mixed-signal circuits and interface functions.   A few examples of clocked analog circuits include analog-to-digital converters, digital-to-analog converters, switched-capacitor filters, and chopper-stabilized op-amps.  A single IC may require multiple clock frequencies for its analog and digital cells.  Since \nthese clocks may not be related by simple integer ratios and created with dividers, voltage-controlled oscillators (VCO) are popular circuits to generate the required frequencies on chip.  In this project, I analyze, design, and characterize a VCO topology and use it to drive an LED via a PWM output.</span></span></span>",
+            "html": "<span style=\"font-family: Arial; display: inline;\"><span style=\"color: rgb(0, 0, 0); display: inline;\"><span style=\"font-size: 13px; display: inline;\">In many systems, timing circuits are needed not only for synchronous digital design but also to control mixed-signal circuits and interface functions.   A few examples of clocked analog circuits include analog-to-digital converters, digital-to-analog converters, switched-capacitor filters, and chopper-stabilized op-amps.  A single IC may require multiple clock frequencies for its analog and digital cells.  Since \nthese clocks may not be related by simple integer ratios and created with dividers, voltage-controlled oscillators (VCO) are popular circuits to generate the required frequencies on chip.  In this project, I analyze, design, and characterize a VCO topology and use it to drive an LED via a PWM output.</span></span></span>",
+            "italic": false,
             "text": "In many systems, timing circuits are needed not only for synchronous digital design but also to control mixed-signal circuits and interface functions.   A few examples of clocked analog circuits include analog-to-digital converters, digital-to-analog converters, switched-capacitor filters, and chopper-stabilized op-amps.  A single IC may require multiple clock frequencies for its analog and digital cells.  Since \nthese clocks may not be related by simple integer ratios and created with dividers, voltage-controlled oscillators (VCO) are popular circuits to generate the required frequencies on chip.  In this project, I analyze, design, and characterize a VCO topology and use it to drive an LED via a PWM output.",
+            "underline": false,
             "type": "paragraph"
           },
           {
@@ -304,8 +306,10 @@
             "fontFamily": "Arial",
             "fontPx": "",
             "fontSize": "normal",
-            "html": "<span style=\"font-family: Arial;\"><span style=\"color: rgb(0, 0, 0);\"><span style=\"font-size: 13px;\">The VCO was designed to produce an output frequency of approximately 1 kHz when driven by a 1 V control input. The system used a 10 V external power input, regulated down to 5 V using an LM317 voltage regulator to supply the full board.</span></span></span>",
+            "html": "<span style=\"font-family: Arial; display: inline;\"><span style=\"color: rgb(0, 0, 0); display: inline;\"><span style=\"font-size: 13px; display: inline;\">The VCO was designed to produce an output frequency of approximately 1 kHz when driven by a 1 V control input. The system used a 10 V external power input, regulated down to 5 V using an LM317 voltage regulator to supply the full board.</span></span></span>",
+            "italic": false,
             "text": "The VCO was designed to produce an output frequency of approximately 1 kHz when driven by a 1 V control input. The system used a 10 V external power input, regulated down to 5 V using an LM317 voltage regulator to supply the full board.",
+            "underline": false,
             "type": "paragraph"
           },
           {
@@ -315,8 +319,10 @@
             "fontFamily": "Arial",
             "fontPx": "",
             "fontSize": "normal",
-            "html": "<span style=\"font-family: Arial;\"><span style=\"color: rgb(0, 0, 0);\"><span style=\"font-size: 13px;\">The oscillator architecture was built around a voltage-to-current converter, current mirrors, MOS switching devices, an integrating capacitor, analog comparators, and an RS latch made from NAND gates. The control voltage sets the reference current, which charges and discharges the capacitor. As the capacitor voltage crosses the upper and lower comparator thresholds, the latch changes state and reverses the current direction, creating a continuous oscillation.</span></span></span>",
+            "html": "<span style=\"font-family: Arial; display: inline;\"><span style=\"color: rgb(0, 0, 0); display: inline;\"><span style=\"font-size: 13px; display: inline;\">The oscillator architecture was built around a voltage-to-current converter, current mirrors, MOS switching devices, an integrating capacitor, analog comparators, and an RS latch made from NAND gates. The control voltage sets the reference current, which charges and discharges the capacitor. As the capacitor voltage crosses the upper and lower comparator thresholds, the latch changes state and reverses the current direction, creating a continuous oscillation.</span></span></span>",
+            "italic": false,
             "text": "The oscillator architecture was built around a voltage-to-current converter, current mirrors, MOS switching devices, an integrating capacitor, analog comparators, and an RS latch made from NAND gates. The control voltage sets the reference current, which charges and discharges the capacitor. As the capacitor voltage crosses the upper and lower comparator thresholds, the latch changes state and reverses the current direction, creating a continuous oscillation.",
+            "underline": false,
             "type": "paragraph"
           },
           {
@@ -326,8 +332,10 @@
             "fontFamily": "Palatino Linotype",
             "fontPx": "14",
             "fontSize": "normal",
-            "html": "<span style=\"font-size: 14px;\"><span style=\"font-family: Arial;\"><span style=\"font-size: 13px;\"><span style=\"color: rgb(0, 0, 0);\"><span style=\"font-weight: 400;\"><span style=\"font-size: 13px;\">I completed the project through a full hardware design flow. This included theoretical calculations, component selection, KiCad schematic capture, LTSpice simulation, PCB layout, design-rule checking, Gerber generation, board fabrication, assembly, and bench</span></span></span></span></span></span><span style=\"font-size: 16px;\"><span style=\"font-family: Arial;\"><span style=\"font-size: 13px;\"><span style=\"color: rgb(0, 0, 0);\"><span style=\"font-weight: 400;\"><span style=\"font-size: 13px;\"> testing. T</span></span></span></span></span></span><span style=\"font-size: 14px;\"><span style=\"font-family: Arial;\"><span style=\"font-size: 13px;\"><span style=\"color: rgb(0, 0, 0);\"><span style=\"font-weight: 400;\"><span style=\"font-size: 13px;\">he final prototype allowed comparison between simulated and measured waveforms, subcircuit behavior, and output frequency versus control voltage. Overall, this project strengthened my understanding of analog timing circuits, current mirrors, comparator-based feedback, sequential logic, PCB design, and practical mixed-signal hardware debugging.</span></span></span></span></span></span>",
+            "html": "<span style=\"font-size: 14px; display: inline;\"><span style=\"font-family: Arial; display: inline;\"><span style=\"font-size: 13px; display: inline;\"><span style=\"color: rgb(0, 0, 0); display: inline;\"><span style=\"font-weight: 400; display: inline;\"><span style=\"font-size: 13px; display: inline;\">I completed the project through a full hardware design flow. This included theoretical calculations, component selection, KiCad schematic capture, LTSpice simulation, PCB layout, design-rule checking, Gerber generation, board fabrication, assembly, and bench</span></span></span></span></span></span><span style=\"font-size: 16px; display: inline;\"><span style=\"font-family: Arial; display: inline;\"><span style=\"font-size: 13px; display: inline;\"><span style=\"color: rgb(0, 0, 0); display: inline;\"><span style=\"font-weight: 400; display: inline;\"><span style=\"font-size: 13px; display: inline;\"> testing. T</span></span></span></span></span></span><span style=\"font-size: 14px; display: inline;\"><span style=\"font-family: Arial; display: inline;\"><span style=\"font-size: 13px; display: inline;\"><span style=\"color: rgb(0, 0, 0); display: inline;\"><span style=\"font-weight: 400; display: inline;\"><span style=\"font-size: 13px; display: inline;\">he final prototype allowed comparison between simulated and measured waveforms, subcircuit behavior, and output frequency versus control voltage. Overall, this project strengthened my understanding of analog timing circuits, current mirrors, comparator-based feedback, sequential logic, PCB design, and practical mixed-signal hardware debugging.</span></span></span></span></span></span>",
+            "italic": false,
             "text": "I completed the project through a full hardware design flow. This included theoretical calculations, component selection, KiCad schematic capture, LTSpice simulation, PCB layout, design-rule checking, Gerber generation, board fabrication, assembly, and bench testing. The final prototype allowed comparison between simulated and measured waveforms, subcircuit behavior, and output frequency versus control voltage. Overall, this project strengthened my understanding of analog timing circuits, current mirrors, comparator-based feedback, sequential logic, PCB design, and practical mixed-signal hardware debugging.",
+            "underline": false,
             "type": "paragraph"
           },
           {
@@ -337,8 +345,10 @@
             "fontFamily": "Arial",
             "fontPx": "",
             "fontSize": "normal",
-            "html": "<span style=\"font-family: Arial;\"><span style=\"color: rgb(0, 0, 0);\"><span style=\"font-size: 13px;\">In a later project I am beginning to work on, a different topology of an active oscillator satisfying the Barkhausen criterion is used as the VCO in a phase-locked loop circuit.</span></span></span>",
+            "html": "<span style=\"font-family: Arial; display: inline;\"><span style=\"color: rgb(0, 0, 0); display: inline;\"><span style=\"font-size: 13px; display: inline;\">In a later project I am beginning to work on, a different topology of an active oscillator satisfying the Barkhausen criterion is used as the VCO in a phase-locked loop circuit.</span></span></span>",
+            "italic": false,
             "text": "In a later project I am beginning to work on, a different topology of an active oscillator satisfying the Barkhausen criterion is used as the VCO in a phase-locked loop circuit.",
+            "underline": false,
             "type": "paragraph"
           },
           {
@@ -349,6 +359,7 @@
             "cropY": 50,
             "cropZoom": 1,
             "display": "show",
+            "source": "local",
             "title": "",
             "type": "image",
             "url": "docs/pwm-generating-voltage-controlled-oscillator/summary/image.png"
@@ -481,7 +492,9 @@
                 "fontPx": "",
                 "fontSize": "large",
                 "html": "sx",
+                "italic": false,
                 "text": "sx",
+                "underline": false,
                 "type": "paragraph"
               },
               {
@@ -492,6 +505,7 @@
                 "cropY": 50,
                 "cropZoom": 1,
                 "display": "show",
+                "source": "local",
                 "title": "",
                 "type": "image",
                 "url": "docs/pwm-generating-voltage-controlled-oscillator/design-overview/image.png"
@@ -512,6 +526,7 @@
                 "cropY": 50,
                 "cropZoom": 1,
                 "display": "show",
+                "source": "local",
                 "title": "",
                 "type": "image",
                 "url": "docs/pwm-generating-voltage-controlled-oscillator/documentation-overview/image.png"
@@ -550,7 +565,7 @@
         }
       },
       "portfolioView": {
-        "builtAt": "2026-07-02T06:13:58.721Z",
+        "builtAt": "2026-07-02T14:27:48.507Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -610,8 +625,10 @@
                       "fontFamily": "Arial",
                       "fontPx": "",
                       "fontSize": "normal",
-                      "html": "<span style=\"font-family: Arial;\"><span style=\"color: rgb(0, 0, 0);\"><span style=\"font-size: 13px;\">In many systems, timing circuits are needed not only for synchronous digital design but also to control mixed-signal circuits and interface functions.   A few examples of clocked analog circuits include analog-to-digital converters, digital-to-analog converters, switched-capacitor filters, and chopper-stabilized op-amps.  A single IC may require multiple clock frequencies for its analog and digital cells.  Since \nthese clocks may not be related by simple integer ratios and created with dividers, voltage-controlled oscillators (VCO) are popular circuits to generate the required frequencies on chip.  In this project, I analyze, design, and characterize a VCO topology and use it to drive an LED via a PWM output.</span></span></span>",
+                      "html": "<span style=\"font-family: Arial; display: inline;\"><span style=\"color: rgb(0, 0, 0); display: inline;\"><span style=\"font-size: 13px; display: inline;\">In many systems, timing circuits are needed not only for synchronous digital design but also to control mixed-signal circuits and interface functions.   A few examples of clocked analog circuits include analog-to-digital converters, digital-to-analog converters, switched-capacitor filters, and chopper-stabilized op-amps.  A single IC may require multiple clock frequencies for its analog and digital cells.  Since \nthese clocks may not be related by simple integer ratios and created with dividers, voltage-controlled oscillators (VCO) are popular circuits to generate the required frequencies on chip.  In this project, I analyze, design, and characterize a VCO topology and use it to drive an LED via a PWM output.</span></span></span>",
+                      "italic": false,
                       "text": "In many systems, timing circuits are needed not only for synchronous digital design but also to control mixed-signal circuits and interface functions.   A few examples of clocked analog circuits include analog-to-digital converters, digital-to-analog converters, switched-capacitor filters, and chopper-stabilized op-amps.  A single IC may require multiple clock frequencies for its analog and digital cells.  Since \nthese clocks may not be related by simple integer ratios and created with dividers, voltage-controlled oscillators (VCO) are popular circuits to generate the required frequencies on chip.  In this project, I analyze, design, and characterize a VCO topology and use it to drive an LED via a PWM output.",
+                      "underline": false,
                       "type": "paragraph"
                     },
                     {
@@ -621,8 +638,10 @@
                       "fontFamily": "Arial",
                       "fontPx": "",
                       "fontSize": "normal",
-                      "html": "<span style=\"font-family: Arial;\"><span style=\"color: rgb(0, 0, 0);\"><span style=\"font-size: 13px;\">The VCO was designed to produce an output frequency of approximately 1 kHz when driven by a 1 V control input. The system used a 10 V external power input, regulated down to 5 V using an LM317 voltage regulator to supply the full board.</span></span></span>",
+                      "html": "<span style=\"font-family: Arial; display: inline;\"><span style=\"color: rgb(0, 0, 0); display: inline;\"><span style=\"font-size: 13px; display: inline;\">The VCO was designed to produce an output frequency of approximately 1 kHz when driven by a 1 V control input. The system used a 10 V external power input, regulated down to 5 V using an LM317 voltage regulator to supply the full board.</span></span></span>",
+                      "italic": false,
                       "text": "The VCO was designed to produce an output frequency of approximately 1 kHz when driven by a 1 V control input. The system used a 10 V external power input, regulated down to 5 V using an LM317 voltage regulator to supply the full board.",
+                      "underline": false,
                       "type": "paragraph"
                     },
                     {
@@ -632,8 +651,10 @@
                       "fontFamily": "Arial",
                       "fontPx": "",
                       "fontSize": "normal",
-                      "html": "<span style=\"font-family: Arial;\"><span style=\"color: rgb(0, 0, 0);\"><span style=\"font-size: 13px;\">The oscillator architecture was built around a voltage-to-current converter, current mirrors, MOS switching devices, an integrating capacitor, analog comparators, and an RS latch made from NAND gates. The control voltage sets the reference current, which charges and discharges the capacitor. As the capacitor voltage crosses the upper and lower comparator thresholds, the latch changes state and reverses the current direction, creating a continuous oscillation.</span></span></span>",
+                      "html": "<span style=\"font-family: Arial; display: inline;\"><span style=\"color: rgb(0, 0, 0); display: inline;\"><span style=\"font-size: 13px; display: inline;\">The oscillator architecture was built around a voltage-to-current converter, current mirrors, MOS switching devices, an integrating capacitor, analog comparators, and an RS latch made from NAND gates. The control voltage sets the reference current, which charges and discharges the capacitor. As the capacitor voltage crosses the upper and lower comparator thresholds, the latch changes state and reverses the current direction, creating a continuous oscillation.</span></span></span>",
+                      "italic": false,
                       "text": "The oscillator architecture was built around a voltage-to-current converter, current mirrors, MOS switching devices, an integrating capacitor, analog comparators, and an RS latch made from NAND gates. The control voltage sets the reference current, which charges and discharges the capacitor. As the capacitor voltage crosses the upper and lower comparator thresholds, the latch changes state and reverses the current direction, creating a continuous oscillation.",
+                      "underline": false,
                       "type": "paragraph"
                     },
                     {
@@ -643,8 +664,10 @@
                       "fontFamily": "Palatino Linotype",
                       "fontPx": "14",
                       "fontSize": "normal",
-                      "html": "<span style=\"font-size: 14px;\"><span style=\"font-family: Arial;\"><span style=\"font-size: 13px;\"><span style=\"color: rgb(0, 0, 0);\"><span style=\"font-weight: 400;\"><span style=\"font-size: 13px;\">I completed the project through a full hardware design flow. This included theoretical calculations, component selection, KiCad schematic capture, LTSpice simulation, PCB layout, design-rule checking, Gerber generation, board fabrication, assembly, and bench</span></span></span></span></span></span><span style=\"font-size: 16px;\"><span style=\"font-family: Arial;\"><span style=\"font-size: 13px;\"><span style=\"color: rgb(0, 0, 0);\"><span style=\"font-weight: 400;\"><span style=\"font-size: 13px;\"> testing. T</span></span></span></span></span></span><span style=\"font-size: 14px;\"><span style=\"font-family: Arial;\"><span style=\"font-size: 13px;\"><span style=\"color: rgb(0, 0, 0);\"><span style=\"font-weight: 400;\"><span style=\"font-size: 13px;\">he final prototype allowed comparison between simulated and measured waveforms, subcircuit behavior, and output frequency versus control voltage. Overall, this project strengthened my understanding of analog timing circuits, current mirrors, comparator-based feedback, sequential logic, PCB design, and practical mixed-signal hardware debugging.</span></span></span></span></span></span>",
+                      "html": "<span style=\"font-size: 14px; display: inline;\"><span style=\"font-family: Arial; display: inline;\"><span style=\"font-size: 13px; display: inline;\"><span style=\"color: rgb(0, 0, 0); display: inline;\"><span style=\"font-weight: 400; display: inline;\"><span style=\"font-size: 13px; display: inline;\">I completed the project through a full hardware design flow. This included theoretical calculations, component selection, KiCad schematic capture, LTSpice simulation, PCB layout, design-rule checking, Gerber generation, board fabrication, assembly, and bench</span></span></span></span></span></span><span style=\"font-size: 16px; display: inline;\"><span style=\"font-family: Arial; display: inline;\"><span style=\"font-size: 13px; display: inline;\"><span style=\"color: rgb(0, 0, 0); display: inline;\"><span style=\"font-weight: 400; display: inline;\"><span style=\"font-size: 13px; display: inline;\"> testing. T</span></span></span></span></span></span><span style=\"font-size: 14px; display: inline;\"><span style=\"font-family: Arial; display: inline;\"><span style=\"font-size: 13px; display: inline;\"><span style=\"color: rgb(0, 0, 0); display: inline;\"><span style=\"font-weight: 400; display: inline;\"><span style=\"font-size: 13px; display: inline;\">he final prototype allowed comparison between simulated and measured waveforms, subcircuit behavior, and output frequency versus control voltage. Overall, this project strengthened my understanding of analog timing circuits, current mirrors, comparator-based feedback, sequential logic, PCB design, and practical mixed-signal hardware debugging.</span></span></span></span></span></span>",
+                      "italic": false,
                       "text": "I completed the project through a full hardware design flow. This included theoretical calculations, component selection, KiCad schematic capture, LTSpice simulation, PCB layout, design-rule checking, Gerber generation, board fabrication, assembly, and bench testing. The final prototype allowed comparison between simulated and measured waveforms, subcircuit behavior, and output frequency versus control voltage. Overall, this project strengthened my understanding of analog timing circuits, current mirrors, comparator-based feedback, sequential logic, PCB design, and practical mixed-signal hardware debugging.",
+                      "underline": false,
                       "type": "paragraph"
                     },
                     {
@@ -654,8 +677,10 @@
                       "fontFamily": "Arial",
                       "fontPx": "",
                       "fontSize": "normal",
-                      "html": "<span style=\"font-family: Arial;\"><span style=\"color: rgb(0, 0, 0);\"><span style=\"font-size: 13px;\">In a later project I am beginning to work on, a different topology of an active oscillator satisfying the Barkhausen criterion is used as the VCO in a phase-locked loop circuit.</span></span></span>",
+                      "html": "<span style=\"font-family: Arial; display: inline;\"><span style=\"color: rgb(0, 0, 0); display: inline;\"><span style=\"font-size: 13px; display: inline;\">In a later project I am beginning to work on, a different topology of an active oscillator satisfying the Barkhausen criterion is used as the VCO in a phase-locked loop circuit.</span></span></span>",
+                      "italic": false,
                       "text": "In a later project I am beginning to work on, a different topology of an active oscillator satisfying the Barkhausen criterion is used as the VCO in a phase-locked loop circuit.",
+                      "underline": false,
                       "type": "paragraph"
                     },
                     {
@@ -666,6 +691,7 @@
                       "cropY": 50,
                       "cropZoom": 1,
                       "display": "show",
+                      "source": "local",
                       "title": "",
                       "type": "image",
                       "url": "docs/pwm-generating-voltage-controlled-oscillator/summary/image.png"
@@ -697,7 +723,9 @@
                       "fontPx": "",
                       "fontSize": "large",
                       "html": "sx",
+                      "italic": false,
                       "text": "sx",
+                      "underline": false,
                       "type": "paragraph"
                     },
                     {
@@ -708,6 +736,7 @@
                       "cropY": 50,
                       "cropZoom": 1,
                       "display": "show",
+                      "source": "local",
                       "title": "",
                       "type": "image",
                       "url": "docs/pwm-generating-voltage-controlled-oscillator/design-overview/image.png"
@@ -749,6 +778,7 @@
                       "cropY": 50,
                       "cropZoom": 1,
                       "display": "show",
+                      "source": "local",
                       "title": "",
                       "type": "image",
                       "url": "docs/pwm-generating-voltage-controlled-oscillator/documentation-overview/image.png"
@@ -951,7 +981,7 @@
         }
       },
       "portfolioView": {
-        "builtAt": "2026-07-02T06:13:58.721Z",
+        "builtAt": "2026-07-02T14:27:48.507Z",
         "template": {
           "group": "Appearance",
           "id": "",
@@ -1135,7 +1165,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-07-02T06:13:58.722Z",
+        "builtAt": "2026-07-02T14:27:48.507Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -1460,7 +1490,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-07-02T06:13:58.722Z",
+        "builtAt": "2026-07-02T14:27:48.507Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-steel-teal-click",
@@ -1738,7 +1768,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-07-02T06:13:58.722Z",
+        "builtAt": "2026-07-02T14:27:48.508Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-graphite-white-click",
@@ -1896,8 +1926,17 @@
       "templateVisual": null,
       "category": "digital",
       "status": "Draft",
-      "summary": "",
-      "summaryRich": null,
+      "summary": "// _cplusplus.cpp : This file contains the 'main' function. Program execution begins and ends there.\n//\n\n#include <iostream>\ntypedef enum device_address {\n  DEVICE1 = 0x64,\n  DEVICE2 = 0x200,\n  DEVICE3 = 0x7F\n};\nenum devices {\nLTC2944,\nINA238,\nINA228};\n\nstatic void assign_device_address(enum devices device) {\n  switch (device) {\n  case LTC2944:\n    std::cout << \"Assigning address \" << std::hex << address << \" to LTC2944\" << std::endl;\n    break;\n  case INA238:\n    std::cout << \"Assigning address \" << std::hex << address << \" to INA238\" << std::endl;\n    break;\n  case INA228:\n    std::cout << \"Assigning address \" << std::hex << address << \" to INA228\" << std::endl;\n    break;\n  default:\n    std::cout << \"Unknown device\" << std::endl;\n    break;\n  }\n}\nint main()\n{\n    std::cout << \"Hello World!\\n\";\n  assign_device_address(LTC2944, DEVICE1);\n}",
+      "summaryRich": {
+        "blocks": [
+          {
+            "code": "// _cplusplus.cpp : This file contains the 'main' function. Program execution begins and ends there.\n//\n\n#include <iostream>\ntypedef enum device_address {\n  DEVICE1 = 0x64,\n  DEVICE2 = 0x200,\n  DEVICE3 = 0x7F\n};\nenum devices {\nLTC2944,\nINA238,\nINA228};\n\nstatic void assign_device_address(enum devices device) {\n  switch (device) {\n  case LTC2944:\n    std::cout << \"Assigning address \" << std::hex << address << \" to LTC2944\" << std::endl;\n    break;\n  case INA238:\n    std::cout << \"Assigning address \" << std::hex << address << \" to INA238\" << std::endl;\n    break;\n  case INA228:\n    std::cout << \"Assigning address \" << std::hex << address << \" to INA228\" << std::endl;\n    break;\n  default:\n    std::cout << \"Unknown device\" << std::endl;\n    break;\n  }\n}\nint main()\n{\n    std::cout << \"Hello World!\\n\";\n  assign_device_address(LTC2944, DEVICE1);\n}",
+            "language": "cpp",
+            "pasteMode": "source",
+            "type": "code"
+          }
+        ]
+      },
       "focus": [],
       "highlights": [],
       "documents": [],
@@ -1925,7 +1964,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-07-02T06:13:58.722Z",
+        "builtAt": "2026-07-02T14:27:48.508Z",
         "template": {
           "group": "Appearance",
           "id": "",
@@ -1949,6 +1988,31 @@
         },
         "title": "FPGA -based LED Matrix Panel Controller for ultra-fast Display",
         "sections": [
+          {
+            "description": "",
+            "id": "brief",
+            "items": [
+              {
+                "children": [],
+                "description": "// _cplusplus.cpp : This file contains the 'main' function. Program execution begins and ends there.\n//\n\n#include <iostream>\ntypedef enum device_address {\n  DEVICE1 = 0x64,\n  DEVICE2 = 0x200,\n  DEVICE3 = 0x7F\n};\nenum devices {\nLTC2944,\nINA238,\nINA228};\n\nstatic void assign_device_address(enum devices device) {\n  switch (device) {\n  case LTC2944:\n    std::cout << \"Assigning address \" << std::hex << address << \" to LTC2944\" << std::endl;\n    break;\n  case INA238:\n    std::cout << \"Assigning address \" << std::hex << address << \" to INA238\" << std::endl;\n    break;\n  case INA228:\n    std::cout << \"Assigning address \" << std::hex << address << \" to INA228\" << std::endl;\n    break;\n  default:\n    std::cout << \"Unknown device\" << std::endl;\n    break;\n  }\n}\nint main()\n{\n    std::cout << \"Hello World!\\n\";\n  assign_device_address(LTC2944, DEVICE1);\n}",
+                "kind": "summary",
+                "meta": "Overview",
+                "title": "Overview",
+                "url": "",
+                "rich": {
+                  "blocks": [
+                    {
+                      "code": "// _cplusplus.cpp : This file contains the 'main' function. Program execution begins and ends there.\n//\n\n#include <iostream>\ntypedef enum device_address {\n  DEVICE1 = 0x64,\n  DEVICE2 = 0x200,\n  DEVICE3 = 0x7F\n};\nenum devices {\nLTC2944,\nINA238,\nINA228};\n\nstatic void assign_device_address(enum devices device) {\n  switch (device) {\n  case LTC2944:\n    std::cout << \"Assigning address \" << std::hex << address << \" to LTC2944\" << std::endl;\n    break;\n  case INA238:\n    std::cout << \"Assigning address \" << std::hex << address << \" to INA238\" << std::endl;\n    break;\n  case INA228:\n    std::cout << \"Assigning address \" << std::hex << address << \" to INA228\" << std::endl;\n    break;\n  default:\n    std::cout << \"Unknown device\" << std::endl;\n    break;\n  }\n}\nint main()\n{\n    std::cout << \"Hello World!\\n\";\n  assign_device_address(LTC2944, DEVICE1);\n}",
+                      "language": "cpp",
+                      "pasteMode": "source",
+                      "type": "code"
+                    }
+                  ]
+                }
+              }
+            ],
+            "title": "Overview"
+          },
           {
             "description": "https://github.com/otienomaurice/32X16_LED_Matrix_Controller.git",
             "id": "custom:software-hdl",
@@ -2012,7 +2076,7 @@
       "links": [],
       "sections": [],
       "portfolioView": {
-        "builtAt": "2026-07-02T06:13:58.722Z",
+        "builtAt": "2026-07-02T14:27:48.508Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
