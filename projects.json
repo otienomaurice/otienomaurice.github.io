@@ -156,7 +156,7 @@
           "fontFamily": "Arial",
           "fontPx": "",
           "fontSize": "normal",
-          "html": "<span style=\"color: rgb(14, 165, 233); display: inline;\"><span style=\"color: rgb(23, 32, 42); display: inline;\"><span style=\"color: rgb(255, 255, 255); display: inline;\"><span style=\"color: rgb(29, 78, 216); display: inline;\"><span style=\"color: rgb(148, 163, 184); display: inline;\"><span style=\"font-weight: 400; display: inline;\"><span style=\"font-weight: 700; display: inline;\"><span style=\"font-weight: 400; display: inline;\"><span style=\"font-weight: 700; display: inline;\"><span style=\"font-weight: 400; display: inline;\"><span style=\"font-weight: 700; display: inline;\">Hardware and software engineer focused on analog design, mixed-signal systems, embedded platforms, and digital hardware.</span></span></span></span></span></span></span></span></span></span></span>",
+          "html": "<span style=\"color: rgb(14, 165, 233); display: inline;\"><span style=\"color: rgb(23, 32, 42); display: inline;\"><span style=\"color: rgb(255, 255, 255); display: inline;\"><span style=\"color: rgb(29, 78, 216); display: inline;\"><span style=\"color: rgb(148, 163, 184); display: inline;\"><span style=\"font-weight: 400; display: inline;\"><span style=\"font-weight: 700; display: inline;\"><span style=\"font-weight: 400; display: inline;\"><span style=\"font-weight: 700; display: inline;\"><span style=\"font-weight: 400; display: inline;\"><span style=\"font-weight: 700; display: inline;\"><span style=\"color: rgb(31, 110, 212); display: inline;\"><span style=\"color: rgb(14, 165, 233); display: inline;\">Hardware and software engineer focused on analog design, mixed-signal systems, embedded platforms, and digital hardware</span></span><span style=\"color: rgb(14, 165, 233); display: inline;\">.</span></span></span></span></span></span></span></span></span></span></span></span>",
           "italic": false,
           "text": "Hardware and software engineer focused on analog design, mixed-signal systems, embedded platforms, and digital hardware.",
           "underline": false,
@@ -190,7 +190,7 @@
           "fontFamily": "Arial",
           "fontPx": "",
           "fontSize": "normal",
-          "html": "<span style=\"color: rgb(14, 165, 233); display: inline;\"><span style=\"color: rgb(23, 32, 42); display: inline;\"><span style=\"color: rgb(255, 255, 255); display: inline;\"><span style=\"color: rgb(37, 99, 235); display: inline;\"><span style=\"color: rgb(148, 163, 184); display: inline;\"><span style=\"font-weight: 400; display: inline;\"><span style=\"font-weight: 700; display: inline;\"><span style=\"font-weight: 400; display: inline;\"><span style=\"font-weight: 700; display: inline;\"><span style=\"font-weight: 400; display: inline;\"><span style=\"font-weight: 700; display: inline;\"><span style=\"font-weight: 400; display: inline;\"><span style=\"font-weight: 700; display: inline;\">Electrical and Computer Engineering Portfolio</span></span></span></span></span></span></span></span></span></span></span></span></span>",
+          "html": "<span style=\"color: rgb(14, 165, 233); display: inline;\"><span style=\"color: rgb(23, 32, 42); display: inline;\"><span style=\"color: rgb(255, 255, 255); display: inline;\"><span style=\"color: rgb(37, 99, 235); display: inline;\"><span style=\"color: rgb(148, 163, 184); display: inline;\"><span style=\"font-weight: 400; display: inline;\"><span style=\"font-weight: 700; display: inline;\"><span style=\"font-weight: 400; display: inline;\"><span style=\"font-weight: 700; display: inline;\"><span style=\"font-weight: 400; display: inline;\"><span style=\"font-weight: 700; display: inline;\"><span style=\"font-weight: 400; display: inline;\"><span style=\"font-weight: 700; display: inline;\"><span style=\"color: rgb(14, 165, 233); display: inline;\">Electrical and Computer Engineering Portfolio</span></span></span></span></span></span></span></span></span></span></span></span></span></span>",
           "italic": false,
           "text": "Electrical and Computer Engineering Portfolio",
           "underline": false,
@@ -565,7 +565,7 @@
         }
       },
       "portfolioView": {
-        "builtAt": "2026-07-02T18:39:53.958Z",
+        "builtAt": "2026-07-05T03:00:56.717Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -937,6 +937,13 @@
             "title": "Printed Circuit Board"
           }
         ]
+      },
+      "compileCode": {
+        "files": [],
+        "activeFileId": "",
+        "terminal": "",
+        "appendTargetId": "project-overview",
+        "messages": []
       }
     },
     {
@@ -981,7 +988,7 @@
         }
       },
       "portfolioView": {
-        "builtAt": "2026-07-02T18:39:53.958Z",
+        "builtAt": "2026-07-05T03:00:56.717Z",
         "template": {
           "group": "Appearance",
           "id": "",
@@ -1005,6 +1012,13 @@
         },
         "title": "Phase locked Loop (status - ongoing)",
         "sections": []
+      },
+      "compileCode": {
+        "files": [],
+        "activeFileId": "",
+        "terminal": "",
+        "appendTargetId": "project-overview",
+        "messages": []
       }
     },
     {
@@ -1165,7 +1179,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-07-02T18:39:53.958Z",
+        "builtAt": "2026-07-05T03:00:56.718Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -1351,6 +1365,13 @@
             }
           }
         ]
+      },
+      "compileCode": {
+        "files": [],
+        "activeFileId": "",
+        "terminal": "",
+        "appendTargetId": "project-overview",
+        "messages": []
       }
     },
     {
@@ -1490,7 +1511,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-07-02T18:39:53.959Z",
+        "builtAt": "2026-07-05T03:00:56.718Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-steel-teal-click",
@@ -1639,6 +1660,13 @@
             "title": "Tests"
           }
         ]
+      },
+      "compileCode": {
+        "files": [],
+        "activeFileId": "",
+        "terminal": "",
+        "appendTargetId": "project-overview",
+        "messages": []
       }
     },
     {
@@ -1768,7 +1796,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-07-02T18:39:53.959Z",
+        "builtAt": "2026-07-05T03:00:56.719Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-graphite-white-click",
@@ -1915,6 +1943,13 @@
             "title": "Software"
           }
         ]
+      },
+      "compileCode": {
+        "files": [],
+        "activeFileId": "",
+        "terminal": "",
+        "appendTargetId": "project-overview",
+        "messages": []
       }
     },
     {
@@ -1964,7 +1999,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-07-02T18:39:53.959Z",
+        "builtAt": "2026-07-05T03:00:56.719Z",
         "template": {
           "group": "Appearance",
           "id": "",
@@ -2029,6 +2064,13 @@
             }
           }
         ]
+      },
+      "compileCode": {
+        "files": [],
+        "activeFileId": "",
+        "terminal": "",
+        "appendTargetId": "project-overview",
+        "messages": []
       }
     },
     {
@@ -2076,7 +2118,7 @@
       "links": [],
       "sections": [],
       "portfolioView": {
-        "builtAt": "2026-07-02T18:39:53.959Z",
+        "builtAt": "2026-07-05T03:00:56.719Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -2132,6 +2174,13 @@
             "title": "Design"
           }
         ]
+      },
+      "compileCode": {
+        "files": [],
+        "activeFileId": "",
+        "terminal": "",
+        "appendTargetId": "project-overview",
+        "messages": []
       }
     }
   ],
