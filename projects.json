@@ -23,6 +23,24 @@
       "description": "",
       "id": "software-engineering",
       "label": "Software Engineering"
+    },
+    {
+      "accent": "#1677a8",
+      "description": "",
+      "id": "power-electronics",
+      "label": "POWER ELECTRONICS"
+    },
+    {
+      "accent": "#1677a8",
+      "description": "",
+      "id": "rf",
+      "label": "RF"
+    },
+    {
+      "accent": "#1677a8",
+      "description": "",
+      "id": "ai-and-machine-learning",
+      "label": "AI and Machine Learning"
     }
   ],
   "fieldStyles": {},
@@ -565,7 +583,7 @@
         }
       },
       "portfolioView": {
-        "builtAt": "2026-07-05T03:00:56.717Z",
+        "builtAt": "2026-07-05T03:58:49.300Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -988,7 +1006,7 @@
         }
       },
       "portfolioView": {
-        "builtAt": "2026-07-05T03:00:56.717Z",
+        "builtAt": "2026-07-05T03:58:49.300Z",
         "template": {
           "group": "Appearance",
           "id": "",
@@ -1179,7 +1197,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-07-05T03:00:56.718Z",
+        "builtAt": "2026-07-05T03:58:49.300Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -1511,7 +1529,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-07-05T03:00:56.718Z",
+        "builtAt": "2026-07-05T03:58:49.300Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-steel-teal-click",
@@ -1796,7 +1814,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-07-05T03:00:56.719Z",
+        "builtAt": "2026-07-05T03:58:49.300Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-graphite-white-click",
@@ -1999,7 +2017,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-07-05T03:00:56.719Z",
+        "builtAt": "2026-07-05T03:58:49.300Z",
         "template": {
           "group": "Appearance",
           "id": "",
@@ -2118,7 +2136,7 @@
       "links": [],
       "sections": [],
       "portfolioView": {
-        "builtAt": "2026-07-05T03:00:56.719Z",
+        "builtAt": "2026-07-05T03:58:49.300Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -2176,11 +2194,349 @@
         ]
       },
       "compileCode": {
-        "files": [],
-        "activeFileId": "",
-        "terminal": "",
+        "files": [
+          {
+            "id": "main-js-1783220595193-3ba64f9649093",
+            "title": "main",
+            "fileName": "main.cpp",
+            "language": "cpp",
+            "code": "#include <stdio.h>\n#define PARAMETER 32\nint main(){\n  char line[PARAMETER];\n  while(fgets(line,PARAMETER,stdin) != (NULL)){\n    printf(\"%s\",line);\n  }\nreturn 0;\n}",
+            "stdin": "who you be",
+            "savedPath": "C:\\Users\\otien\\AppData\\Local\\OMB Portfolio Builder\\compile-code\\fpga-base-health-monitor-pulse-sensor-and-reaction-timer-controllers\\main-js-1783220595193-3ba64f9649093\\main.c",
+            "savedAt": "2026-07-05T03:13:53.392Z",
+            "lastResult": null,
+            "dirty": true
+          }
+        ],
+        "activeFileId": "main-js-1783220595193-3ba64f9649093",
+        "terminal": "C++ build profile: -std=c++20, warnings enabled, debug symbols enabled\n\nCompiler: g++.exe (MinGW-W64 x86_64-ucrt-posix-seh, built by Brecht Sanders, r2) 16.1.0\n\n$ g++.exe main.cpp -o main.exe -std=c++20 -Wall -Wextra -Wpedantic -Wshadow -O0 -g3 -fdiagnostics-color=never\nExit code 0 in 1.05s\nCompleted without diagnostic output.\n\nGenerated binary: C:\\Users\\otien\\AppData\\Local\\OMB Portfolio Builder\\compile-code\\fpga-base-health-monitor-pulse-sensor-and-reaction-timer-controllers\\.build-cache\\cpp\\e9659179a0375eda3851b41b\\main.exe\n\n$ main.exe\nProgram exit code 0 in 0.08s\nwho you be",
         "appendTargetId": "project-overview",
-        "messages": []
+        "messages": [
+          {
+            "id": "message-1783223789168-b721b43f92cd58",
+            "at": "2026-07-05T03:56:29.168Z",
+            "level": "success",
+            "text": "Compile/run succeeded for main.cpp."
+          },
+          {
+            "id": "message-1783223787736-c2425ba10abd78",
+            "at": "2026-07-05T03:56:27.736Z",
+            "level": "info",
+            "text": "Saved main.cpp."
+          },
+          {
+            "id": "message-1783223787708-6aaadd75072eb",
+            "at": "2026-07-05T03:56:27.708Z",
+            "level": "info",
+            "text": "Compile/run started for main.cpp."
+          },
+          {
+            "id": "message-1783223737742-786dd111632a3",
+            "at": "2026-07-05T03:55:37.742Z",
+            "level": "error",
+            "text": "Compile/run completed with errors for main.sv."
+          },
+          {
+            "id": "message-1783223736924-a844f334c86748",
+            "at": "2026-07-05T03:55:36.924Z",
+            "level": "info",
+            "text": "Saved main.sv."
+          },
+          {
+            "id": "message-1783223736892-5898cf7a6374f8",
+            "at": "2026-07-05T03:55:36.892Z",
+            "level": "info",
+            "text": "Compile/run started for main.sv."
+          },
+          {
+            "id": "message-1783221259192-6ab816ee63e948",
+            "at": "2026-07-05T03:14:19.192Z",
+            "level": "success",
+            "text": "Compile/run succeeded for main.c."
+          },
+          {
+            "id": "message-1783221259146-8f111127f21bc8",
+            "at": "2026-07-05T03:14:19.146Z",
+            "level": "info",
+            "text": "Saved main.c."
+          },
+          {
+            "id": "message-1783221259109-9298fd8b39933",
+            "at": "2026-07-05T03:14:19.109Z",
+            "level": "info",
+            "text": "Compile/run started for main.c."
+          },
+          {
+            "id": "message-1783221251012-8e70ef1889d61",
+            "at": "2026-07-05T03:14:11.012Z",
+            "level": "success",
+            "text": "Compile/run succeeded for main.c."
+          },
+          {
+            "id": "message-1783221250964-d974f0a805766",
+            "at": "2026-07-05T03:14:10.964Z",
+            "level": "info",
+            "text": "Saved main.c."
+          },
+          {
+            "id": "message-1783221250938-db40f5956b14c",
+            "at": "2026-07-05T03:14:10.938Z",
+            "level": "info",
+            "text": "Compile/run started for main.c."
+          },
+          {
+            "id": "message-1783221247170-5636f882a592d8",
+            "at": "2026-07-05T03:14:07.170Z",
+            "level": "success",
+            "text": "Compile/run succeeded for main.c."
+          },
+          {
+            "id": "message-1783221247123-47c38f9a2f43e",
+            "at": "2026-07-05T03:14:07.123Z",
+            "level": "info",
+            "text": "Saved main.c."
+          },
+          {
+            "id": "message-1783221247091-50a7b5d7ffc5c",
+            "at": "2026-07-05T03:14:07.091Z",
+            "level": "info",
+            "text": "Compile/run started for main.c."
+          },
+          {
+            "id": "message-1783221238515-da73dec3d15e58",
+            "at": "2026-07-05T03:13:58.515Z",
+            "level": "success",
+            "text": "Compile/run succeeded for main.c."
+          },
+          {
+            "id": "message-1783221238156-612bd46f5af73",
+            "at": "2026-07-05T03:13:58.156Z",
+            "level": "info",
+            "text": "Saved main.c."
+          },
+          {
+            "id": "message-1783221238131-dab0f8566aaa1",
+            "at": "2026-07-05T03:13:58.131Z",
+            "level": "info",
+            "text": "Compile/run started for main.c."
+          },
+          {
+            "id": "message-1783221233401-8c367cd550985",
+            "at": "2026-07-05T03:13:53.401Z",
+            "level": "info",
+            "text": "Saved main.c."
+          },
+          {
+            "id": "message-1783221209797-7db3a9691583b8",
+            "at": "2026-07-05T03:13:29.797Z",
+            "level": "success",
+            "text": "Compile/run succeeded for main.c."
+          },
+          {
+            "id": "message-1783221209432-9b2deac4ee8f7",
+            "at": "2026-07-05T03:13:29.432Z",
+            "level": "info",
+            "text": "Saved main.c."
+          },
+          {
+            "id": "message-1783221209411-5214e6c98f2df",
+            "at": "2026-07-05T03:13:29.411Z",
+            "level": "info",
+            "text": "Rebuild started for main.c."
+          },
+          {
+            "id": "message-1783221207370-ab4e370ca2a548",
+            "at": "2026-07-05T03:13:27.370Z",
+            "level": "info",
+            "text": "Terminal output cleared."
+          },
+          {
+            "id": "message-1783221202675-9d9d5c7f609d28",
+            "at": "2026-07-05T03:13:22.675Z",
+            "level": "info",
+            "text": "Displayed terminal output for main.c."
+          },
+          {
+            "id": "message-1783221199780-b0822f7c93bae8",
+            "at": "2026-07-05T03:13:19.780Z",
+            "level": "info",
+            "text": "Displayed terminal output for main.c."
+          },
+          {
+            "id": "message-1783221199107-12af6cac0759",
+            "at": "2026-07-05T03:13:19.107Z",
+            "level": "info",
+            "text": "Displayed terminal output for main.c."
+          },
+          {
+            "id": "message-1783221195948-1c6499c55abcc",
+            "at": "2026-07-05T03:13:15.948Z",
+            "level": "info",
+            "text": "Displayed terminal output for main.c."
+          },
+          {
+            "id": "message-1783221186685-58c87bb930d538",
+            "at": "2026-07-05T03:13:06.685Z",
+            "level": "success",
+            "text": "Compile/run succeeded for main.c."
+          },
+          {
+            "id": "message-1783221186631-a601c36d7d2458",
+            "at": "2026-07-05T03:13:06.631Z",
+            "level": "info",
+            "text": "Saved main.c."
+          },
+          {
+            "id": "message-1783221186596-2251904b6a927",
+            "at": "2026-07-05T03:13:06.596Z",
+            "level": "info",
+            "text": "Compile/run started for main.c."
+          },
+          {
+            "id": "message-1783221172334-32eec95c6b722",
+            "at": "2026-07-05T03:12:52.334Z",
+            "level": "success",
+            "text": "Compile/run succeeded for main.c."
+          },
+          {
+            "id": "message-1783221172283-350a13d043eb78",
+            "at": "2026-07-05T03:12:52.283Z",
+            "level": "info",
+            "text": "Saved main.c."
+          },
+          {
+            "id": "message-1783221172252-a9d12dfe233ae",
+            "at": "2026-07-05T03:12:52.252Z",
+            "level": "info",
+            "text": "Compile/run started for main.c."
+          },
+          {
+            "id": "message-1783221159662-74faa52eea2d4",
+            "at": "2026-07-05T03:12:39.662Z",
+            "level": "success",
+            "text": "Compile/run succeeded for main.c."
+          },
+          {
+            "id": "message-1783221159615-223a3edcc7f948",
+            "at": "2026-07-05T03:12:39.615Z",
+            "level": "info",
+            "text": "Saved main.c."
+          },
+          {
+            "id": "message-1783221159596-c1b5fc9f419dd",
+            "at": "2026-07-05T03:12:39.596Z",
+            "level": "info",
+            "text": "Compile/run started for main.c."
+          },
+          {
+            "id": "message-1783221149426-8dec18fb4aa7f8",
+            "at": "2026-07-05T03:12:29.426Z",
+            "level": "success",
+            "text": "Compile/run succeeded for main.c."
+          },
+          {
+            "id": "message-1783221149370-03f96da441076",
+            "at": "2026-07-05T03:12:29.370Z",
+            "level": "info",
+            "text": "Saved main.c."
+          },
+          {
+            "id": "message-1783221149354-f3b05e848ef9b8",
+            "at": "2026-07-05T03:12:29.354Z",
+            "level": "info",
+            "text": "Compile/run started for main.c."
+          },
+          {
+            "id": "message-1783221128149-2269d843ac62e",
+            "at": "2026-07-05T03:12:08.149Z",
+            "level": "success",
+            "text": "Compile/run succeeded for main.c."
+          },
+          {
+            "id": "message-1783221128102-939ea2e90e4198",
+            "at": "2026-07-05T03:12:08.102Z",
+            "level": "info",
+            "text": "Saved main.c."
+          },
+          {
+            "id": "message-1783221128090-90214a211e124",
+            "at": "2026-07-05T03:12:08.090Z",
+            "level": "info",
+            "text": "Compile/run started for main.c."
+          },
+          {
+            "id": "message-1783221106131-7738bbaf7a12",
+            "at": "2026-07-05T03:11:46.131Z",
+            "level": "success",
+            "text": "Compile/run succeeded for main.c."
+          },
+          {
+            "id": "message-1783221105257-f796b8e67eaf58",
+            "at": "2026-07-05T03:11:45.257Z",
+            "level": "info",
+            "text": "Saved main.c."
+          },
+          {
+            "id": "message-1783221105242-57135a341dc5c8",
+            "at": "2026-07-05T03:11:45.242Z",
+            "level": "info",
+            "text": "Compile/run started for main.c."
+          },
+          {
+            "id": "message-1783221104307-d3baf73cab18d8",
+            "at": "2026-07-05T03:11:44.308Z",
+            "level": "info",
+            "text": "Saved main.c."
+          },
+          {
+            "id": "message-1783221033102-9ea769547189a8",
+            "at": "2026-07-05T03:10:33.102Z",
+            "level": "error",
+            "text": "Compile/run completed with errors for main.c."
+          },
+          {
+            "id": "message-1783221032976-d34834d62862",
+            "at": "2026-07-05T03:10:32.976Z",
+            "level": "info",
+            "text": "Saved main.c."
+          },
+          {
+            "id": "message-1783221032962-e7d7832cca2668",
+            "at": "2026-07-05T03:10:32.962Z",
+            "level": "info",
+            "text": "Compile/run started for main.c."
+          },
+          {
+            "id": "message-1783221009244-5f8bdaef8ccef8",
+            "at": "2026-07-05T03:10:09.244Z",
+            "level": "error",
+            "text": "Compile/run completed with errors for main.c."
+          },
+          {
+            "id": "message-1783221008543-2e397239859278",
+            "at": "2026-07-05T03:10:08.543Z",
+            "level": "info",
+            "text": "Saved main.c."
+          },
+          {
+            "id": "message-1783221008530-0674db8448484",
+            "at": "2026-07-05T03:10:08.530Z",
+            "level": "info",
+            "text": "Compile/run started for main.c."
+          },
+          {
+            "id": "message-1783221006207-348f79ffed6f28",
+            "at": "2026-07-05T03:10:06.207Z",
+            "level": "info",
+            "text": "Saved main.c."
+          },
+          {
+            "id": "message-1783220619226-f0dfe47febabb8",
+            "at": "2026-07-05T03:03:39.226Z",
+            "level": "info",
+            "text": "Displayed terminal output for main.js."
+          }
+        ]
       }
     }
   ],
