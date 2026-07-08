@@ -174,7 +174,7 @@
           "fontFamily": "Arial",
           "fontPx": "",
           "fontSize": "normal",
-          "html": "<span style=\"color: rgb(14, 165, 233); display: inline;\"><span style=\"color: rgb(23, 32, 42); display: inline;\"><span style=\"color: rgb(255, 255, 255); display: inline;\"><span style=\"color: rgb(29, 78, 216); display: inline;\"><span style=\"color: rgb(148, 163, 184); display: inline;\"><span style=\"font-weight: 400; display: inline;\"><span style=\"font-weight: 700; display: inline;\"><span style=\"font-weight: 400; display: inline;\"><span style=\"font-weight: 700; display: inline;\"><span style=\"font-weight: 400; display: inline;\"><span style=\"font-weight: 700; display: inline;\"><span style=\"color: rgb(31, 110, 212); display: inline;\"><span style=\"color: rgb(14, 165, 233); display: inline;\">Hardware and software engineer focused on analog design, mixed-signal systems, embedded platforms, and digital hardware</span></span><span style=\"color: rgb(14, 165, 233); display: inline;\">.</span></span></span></span></span></span></span></span></span></span></span></span>",
+          "html": "<span style=\"color: rgb(14, 165, 233); display: inline;\"><span style=\"color: rgb(23, 32, 42); display: inline;\"><span style=\"color: rgb(255, 255, 255); display: inline;\"><span style=\"color: rgb(29, 78, 216); display: inline;\"><span style=\"color: rgb(148, 163, 184); display: inline;\"><span style=\"font-weight: 400; display: inline;\"><span style=\"font-weight: 700; display: inline;\"><span style=\"font-weight: 400; display: inline;\"><span style=\"font-weight: 700; display: inline;\"><span style=\"font-weight: 400; display: inline;\"><span style=\"font-weight: 700; display: inline;\"><span style=\"color: rgb(31, 110, 212); display: inline;\"><span style=\"color: rgb(14, 165, 233); display: inline;\"><span style=\"color: rgb(255, 255, 255); display: inline;\"><span style=\"color: rgb(148, 163, 184); display: inline;\">Hardware and software engineer focused on analog design, mixed-signal systems, embedded platforms, and digital hardware</span></span></span></span><span style=\"color: rgb(14, 165, 233); display: inline;\"><span style=\"color: rgb(255, 255, 255); display: inline;\"><span style=\"color: rgb(148, 163, 184); display: inline;\">.</span></span></span></span></span></span></span></span></span></span></span></span></span></span>",
           "italic": false,
           "text": "Hardware and software engineer focused on analog design, mixed-signal systems, embedded platforms, and digital hardware.",
           "underline": false,
@@ -208,7 +208,7 @@
           "fontFamily": "Arial",
           "fontPx": "",
           "fontSize": "normal",
-          "html": "<span style=\"color: rgb(14, 165, 233); display: inline;\"><span style=\"color: rgb(23, 32, 42); display: inline;\"><span style=\"color: rgb(255, 255, 255); display: inline;\"><span style=\"color: rgb(37, 99, 235); display: inline;\"><span style=\"color: rgb(148, 163, 184); display: inline;\"><span style=\"font-weight: 400; display: inline;\"><span style=\"font-weight: 700; display: inline;\"><span style=\"font-weight: 400; display: inline;\"><span style=\"font-weight: 700; display: inline;\"><span style=\"font-weight: 400; display: inline;\"><span style=\"font-weight: 700; display: inline;\"><span style=\"font-weight: 400; display: inline;\"><span style=\"font-weight: 700; display: inline;\"><span style=\"color: rgb(14, 165, 233); display: inline;\">Electrical and Computer Engineering Portfolio</span></span></span></span></span></span></span></span></span></span></span></span></span></span>",
+          "html": "<span style=\"color: rgb(14, 165, 233); display: inline;\"><span style=\"color: rgb(23, 32, 42); display: inline;\"><span style=\"color: rgb(255, 255, 255); display: inline;\"><span style=\"color: rgb(37, 99, 235); display: inline;\"><span style=\"color: rgb(148, 163, 184); display: inline;\"><span style=\"font-weight: 400; display: inline;\"><span style=\"font-weight: 700; display: inline;\"><span style=\"font-weight: 400; display: inline;\"><span style=\"font-weight: 700; display: inline;\"><span style=\"font-weight: 400; display: inline;\"><span style=\"font-weight: 700; display: inline;\"><span style=\"font-weight: 400; display: inline;\"><span style=\"font-weight: 700; display: inline;\"><span style=\"color: rgb(14, 165, 233); display: inline;\"><span style=\"color: rgb(148, 163, 184); display: inline;\">Electrical and Computer Engineering Portfolio</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span>",
           "italic": false,
           "text": "Electrical and Computer Engineering Portfolio",
           "underline": false,
@@ -232,7 +232,7 @@
           "fontFamily": "Arial",
           "fontPx": "",
           "fontSize": "normal",
-          "html": "Engineering portfolio",
+          "html": "<span style=\"color: rgb(0, 0, 0); display: inline;\">Engineering portfolio</span>",
           "italic": false,
           "text": "Engineering portfolio",
           "underline": false,
@@ -249,7 +249,7 @@
           "fontFamily": "Arial",
           "fontPx": "",
           "fontSize": "normal",
-          "html": "Analog, embedded, and digital systems.",
+          "html": "<span style=\"color: rgb(0, 0, 0); display: inline;\">Analog, embedded, and digital systems.</span>",
           "italic": false,
           "text": "Analog, embedded, and digital systems.",
           "underline": false,
@@ -266,7 +266,7 @@
           "fontFamily": "Arial",
           "fontPx": "",
           "fontSize": "normal",
-          "html": "This portfolio presents selected work, technical artifacts, and the engineering decisions behind each build.",
+          "html": "<span style=\"color: rgb(0, 0, 0); display: inline;\">This portfolio presents selected work, technical artifacts, and the engineering decisions behind each build.</span>",
           "italic": false,
           "text": "This portfolio presents selected work, technical artifacts, and the engineering decisions behind each build.",
           "underline": false,
@@ -583,7 +583,7 @@
         }
       },
       "portfolioView": {
-        "builtAt": "2026-07-05T04:01:34.605Z",
+        "builtAt": "2026-07-08T03:43:49.237Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -1006,7 +1006,7 @@
         }
       },
       "portfolioView": {
-        "builtAt": "2026-07-05T04:01:34.606Z",
+        "builtAt": "2026-07-08T03:43:49.237Z",
         "template": {
           "group": "Appearance",
           "id": "",
@@ -1074,8 +1074,10 @@
             "fontFamily": "Arial",
             "fontPx": "",
             "fontSize": "normal",
-            "html": "<span style=\"color: rgb(220, 38, 38); display: inline;\">STRIDE, the Smart Technology Rollator for Independence, Detection, and Empowerment, is a senior design project developed to improve mobility, safety, and independence for users who need more support than a cane but do not require a wheelchair. Traditional rollators are useful on flat ground, but they become difficult to control on ramps and nearly impossible for many users to move safely up or down stairs. STRIDE addresses this problem by combining a powered rollator, stair-climbing mechanism, obstacle detection, embedded control, custom electronics, and an accessible user interface into one integrated prototype.</span>",
+            "html": "<span style=\"color: rgb(220, 38, 38); display: inline;\"><span style=\"color: rgb(0, 0, 0); display: inline;\">STRIDE, the Smart Technology Rollator for Independence, Detection, and Empowerment, is a senior design project developed to improve mobility, safety, and independence for users who need more support than a cane but do not require a wheelchair. Traditional rollators are useful on flat ground, but they become difficult to control on ramps and nearly impossible for many users to move safely up or down stairs. STRIDE addresses this problem by combining a powered rollator, stair-climbing mechanism, obstacle detection, embedded control, custom electronics, and an accessible user interface into one integrated prototype.</span></span>",
+            "italic": false,
             "text": "STRIDE, the Smart Technology Rollator for Independence, Detection, and Empowerment, is a senior design project developed to improve mobility, safety, and independence for users who need more support than a cane but do not require a wheelchair. Traditional rollators are useful on flat ground, but they become difficult to control on ramps and nearly impossible for many users to move safely up or down stairs. STRIDE addresses this problem by combining a powered rollator, stair-climbing mechanism, obstacle detection, embedded control, custom electronics, and an accessible user interface into one integrated prototype.",
+            "underline": false,
             "type": "paragraph"
           },
           {
@@ -1098,8 +1100,10 @@
             "fontFamily": "Arial",
             "fontPx": "",
             "fontSize": "normal",
-            "html": "The system is built around four tri-wheel assemblies. The front tri-wheels are powered by ElectroCraft brushless DC motors through a gear-chain transmission, while the rear tri-wheels use omnidirectional wheels to preserve steering and support passive stair traversal. This allows STRIDE to move like a standard rollator on flat ground and transition into stair-climbing operation when needed. The frame was fabricated from aluminum tubing to balance strength, weight, and manufacturability, with custom motor plates, protective panels, battery mounting, and internal electronics support.",
+            "html": "<span style=\"color: rgb(0, 0, 0); display: inline;\">The system is built around four tri-wheel assemblies. The front tri-wheels are powered by ElectroCraft brushless DC motors through a gear-chain transmission, while the rear tri-wheels use omnidirectional wheels to preserve steering and support passive stair traversal. This allows STRIDE to move like a standard rollator on flat ground and transition into stair-climbing operation when needed. The frame was fabricated from aluminum tubing to balance strength, weight, and manufacturability, with custom motor plates, protective panels, battery mounting, and internal electronics support.</span>",
+            "italic": false,
             "text": "The system is built around four tri-wheel assemblies. The front tri-wheels are powered by ElectroCraft brushless DC motors through a gear-chain transmission, while the rear tri-wheels use omnidirectional wheels to preserve steering and support passive stair traversal. This allows STRIDE to move like a standard rollator on flat ground and transition into stair-climbing operation when needed. The frame was fabricated from aluminum tubing to balance strength, weight, and manufacturability, with custom motor plates, protective panels, battery mounting, and internal electronics support.",
+            "underline": false,
             "type": "paragraph"
           },
           {
@@ -1109,8 +1113,10 @@
             "fontFamily": "Arial",
             "fontPx": "",
             "fontSize": "normal",
-            "html": "My work involved major electrical and embedded-system contributions, including motor control, battery monitoring, power distribution, firmware architecture, and system integration. STRIDE uses a centralized 24 V LiFePO₄ battery, custom power distribution board, LTC2944-based battery monitor, STM32 microcontrollers, an ESP32 wireless interface, and a Jetson Orin Nano for high-level decision-making. The STM32 handles real-time low-level control such as motor commands, brake inputs, battery readings, sensor communication, and feedback to the Jetson.",
+            "html": "<span style=\"color: rgb(0, 0, 0); display: inline;\">My work involved major electrical and embedded-system contributions, including motor control, battery monitoring, power distribution, firmware architecture, and system integration. STRIDE uses a centralized 24 V LiFePO₄ battery, custom power distribution board, LTC2944-based battery monitor, STM32 microcontrollers, an ESP32 wireless interface, and a Jetson Orin Nano for high-level decision-making. The STM32 handles real-time low-level control such as motor commands, brake inputs, battery readings, sensor communication, and feedback to the Jetson.</span>",
+            "italic": false,
             "text": "My work involved major electrical and embedded-system contributions, including motor control, battery monitoring, power distribution, firmware architecture, and system integration. STRIDE uses a centralized 24 V LiFePO₄ battery, custom power distribution board, LTC2944-based battery monitor, STM32 microcontrollers, an ESP32 wireless interface, and a Jetson Orin Nano for high-level decision-making. The STM32 handles real-time low-level control such as motor commands, brake inputs, battery readings, sensor communication, and feedback to the Jetson.",
+            "underline": false,
             "type": "paragraph"
           },
           {
@@ -1120,8 +1126,10 @@
             "fontFamily": "Arial",
             "fontPx": "",
             "fontSize": "normal",
-            "html": "For safety, STRIDE combines a ZED 2i depth camera with ultrasonic sensors to detect obstacles, classify ground and walls, and provide redundant sensing for transparent or low-light conditions. The project demonstrates practical experience in PCB design, embedded C/C++, motor control, sensor integration, power electronics, hardware debugging, and full-system testing. STRIDE reflects my ability to turn a real user problem into a working electromechanical system.",
+            "html": "<span style=\"color: rgb(0, 0, 0); display: inline;\">For safety, STRIDE combines a ZED 2i depth camera with ultrasonic sensors to detect obstacles, classify ground and walls, and provide redundant sensing for transparent or low-light conditions. The project demonstrates practical experience in PCB design, embedded C/C++, motor control, sensor integration, power electronics, hardware debugging, and full-system testing. STRIDE reflects my ability to turn a real user problem into a working electromechanical system.</span>",
+            "italic": false,
             "text": "For safety, STRIDE combines a ZED 2i depth camera with ultrasonic sensors to detect obstacles, classify ground and walls, and provide redundant sensing for transparent or low-light conditions. The project demonstrates practical experience in PCB design, embedded C/C++, motor control, sensor integration, power electronics, hardware debugging, and full-system testing. STRIDE reflects my ability to turn a real user problem into a working electromechanical system.",
+            "underline": false,
             "type": "paragraph"
           },
           {
@@ -1197,7 +1205,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-07-05T04:01:34.606Z",
+        "builtAt": "2026-07-08T03:43:49.237Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -1257,8 +1265,10 @@
                       "fontFamily": "Arial",
                       "fontPx": "",
                       "fontSize": "normal",
-                      "html": "<span style=\"color: rgb(220, 38, 38); display: inline;\">STRIDE, the Smart Technology Rollator for Independence, Detection, and Empowerment, is a senior design project developed to improve mobility, safety, and independence for users who need more support than a cane but do not require a wheelchair. Traditional rollators are useful on flat ground, but they become difficult to control on ramps and nearly impossible for many users to move safely up or down stairs. STRIDE addresses this problem by combining a powered rollator, stair-climbing mechanism, obstacle detection, embedded control, custom electronics, and an accessible user interface into one integrated prototype.</span>",
+                      "html": "<span style=\"color: rgb(220, 38, 38); display: inline;\"><span style=\"color: rgb(0, 0, 0); display: inline;\">STRIDE, the Smart Technology Rollator for Independence, Detection, and Empowerment, is a senior design project developed to improve mobility, safety, and independence for users who need more support than a cane but do not require a wheelchair. Traditional rollators are useful on flat ground, but they become difficult to control on ramps and nearly impossible for many users to move safely up or down stairs. STRIDE addresses this problem by combining a powered rollator, stair-climbing mechanism, obstacle detection, embedded control, custom electronics, and an accessible user interface into one integrated prototype.</span></span>",
+                      "italic": false,
                       "text": "STRIDE, the Smart Technology Rollator for Independence, Detection, and Empowerment, is a senior design project developed to improve mobility, safety, and independence for users who need more support than a cane but do not require a wheelchair. Traditional rollators are useful on flat ground, but they become difficult to control on ramps and nearly impossible for many users to move safely up or down stairs. STRIDE addresses this problem by combining a powered rollator, stair-climbing mechanism, obstacle detection, embedded control, custom electronics, and an accessible user interface into one integrated prototype.",
+                      "underline": false,
                       "type": "paragraph"
                     },
                     {
@@ -1281,8 +1291,10 @@
                       "fontFamily": "Arial",
                       "fontPx": "",
                       "fontSize": "normal",
-                      "html": "The system is built around four tri-wheel assemblies. The front tri-wheels are powered by ElectroCraft brushless DC motors through a gear-chain transmission, while the rear tri-wheels use omnidirectional wheels to preserve steering and support passive stair traversal. This allows STRIDE to move like a standard rollator on flat ground and transition into stair-climbing operation when needed. The frame was fabricated from aluminum tubing to balance strength, weight, and manufacturability, with custom motor plates, protective panels, battery mounting, and internal electronics support.",
+                      "html": "<span style=\"color: rgb(0, 0, 0); display: inline;\">The system is built around four tri-wheel assemblies. The front tri-wheels are powered by ElectroCraft brushless DC motors through a gear-chain transmission, while the rear tri-wheels use omnidirectional wheels to preserve steering and support passive stair traversal. This allows STRIDE to move like a standard rollator on flat ground and transition into stair-climbing operation when needed. The frame was fabricated from aluminum tubing to balance strength, weight, and manufacturability, with custom motor plates, protective panels, battery mounting, and internal electronics support.</span>",
+                      "italic": false,
                       "text": "The system is built around four tri-wheel assemblies. The front tri-wheels are powered by ElectroCraft brushless DC motors through a gear-chain transmission, while the rear tri-wheels use omnidirectional wheels to preserve steering and support passive stair traversal. This allows STRIDE to move like a standard rollator on flat ground and transition into stair-climbing operation when needed. The frame was fabricated from aluminum tubing to balance strength, weight, and manufacturability, with custom motor plates, protective panels, battery mounting, and internal electronics support.",
+                      "underline": false,
                       "type": "paragraph"
                     },
                     {
@@ -1292,8 +1304,10 @@
                       "fontFamily": "Arial",
                       "fontPx": "",
                       "fontSize": "normal",
-                      "html": "My work involved major electrical and embedded-system contributions, including motor control, battery monitoring, power distribution, firmware architecture, and system integration. STRIDE uses a centralized 24 V LiFePO₄ battery, custom power distribution board, LTC2944-based battery monitor, STM32 microcontrollers, an ESP32 wireless interface, and a Jetson Orin Nano for high-level decision-making. The STM32 handles real-time low-level control such as motor commands, brake inputs, battery readings, sensor communication, and feedback to the Jetson.",
+                      "html": "<span style=\"color: rgb(0, 0, 0); display: inline;\">My work involved major electrical and embedded-system contributions, including motor control, battery monitoring, power distribution, firmware architecture, and system integration. STRIDE uses a centralized 24 V LiFePO₄ battery, custom power distribution board, LTC2944-based battery monitor, STM32 microcontrollers, an ESP32 wireless interface, and a Jetson Orin Nano for high-level decision-making. The STM32 handles real-time low-level control such as motor commands, brake inputs, battery readings, sensor communication, and feedback to the Jetson.</span>",
+                      "italic": false,
                       "text": "My work involved major electrical and embedded-system contributions, including motor control, battery monitoring, power distribution, firmware architecture, and system integration. STRIDE uses a centralized 24 V LiFePO₄ battery, custom power distribution board, LTC2944-based battery monitor, STM32 microcontrollers, an ESP32 wireless interface, and a Jetson Orin Nano for high-level decision-making. The STM32 handles real-time low-level control such as motor commands, brake inputs, battery readings, sensor communication, and feedback to the Jetson.",
+                      "underline": false,
                       "type": "paragraph"
                     },
                     {
@@ -1303,8 +1317,10 @@
                       "fontFamily": "Arial",
                       "fontPx": "",
                       "fontSize": "normal",
-                      "html": "For safety, STRIDE combines a ZED 2i depth camera with ultrasonic sensors to detect obstacles, classify ground and walls, and provide redundant sensing for transparent or low-light conditions. The project demonstrates practical experience in PCB design, embedded C/C++, motor control, sensor integration, power electronics, hardware debugging, and full-system testing. STRIDE reflects my ability to turn a real user problem into a working electromechanical system.",
+                      "html": "<span style=\"color: rgb(0, 0, 0); display: inline;\">For safety, STRIDE combines a ZED 2i depth camera with ultrasonic sensors to detect obstacles, classify ground and walls, and provide redundant sensing for transparent or low-light conditions. The project demonstrates practical experience in PCB design, embedded C/C++, motor control, sensor integration, power electronics, hardware debugging, and full-system testing. STRIDE reflects my ability to turn a real user problem into a working electromechanical system.</span>",
+                      "italic": false,
                       "text": "For safety, STRIDE combines a ZED 2i depth camera with ultrasonic sensors to detect obstacles, classify ground and walls, and provide redundant sensing for transparent or low-light conditions. The project demonstrates practical experience in PCB design, embedded C/C++, motor control, sensor integration, power electronics, hardware debugging, and full-system testing. STRIDE reflects my ability to turn a real user problem into a working electromechanical system.",
+                      "underline": false,
                       "type": "paragraph"
                     },
                     {
@@ -1529,7 +1545,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-07-05T04:01:34.606Z",
+        "builtAt": "2026-07-08T03:43:49.237Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-steel-teal-click",
@@ -1814,7 +1830,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-07-05T04:01:34.606Z",
+        "builtAt": "2026-07-08T03:43:49.238Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-graphite-white-click",
@@ -2017,7 +2033,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-07-05T04:01:34.607Z",
+        "builtAt": "2026-07-08T03:43:49.238Z",
         "template": {
           "group": "Appearance",
           "id": "",
@@ -2136,7 +2152,7 @@
       "links": [],
       "sections": [],
       "portfolioView": {
-        "builtAt": "2026-07-05T04:01:34.607Z",
+        "builtAt": "2026-07-08T03:43:49.238Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -2206,12 +2222,252 @@
             "savedAt": "2026-07-05T03:13:53.392Z",
             "lastResult": null,
             "dirty": true
+          },
+          {
+            "id": "main-js-1783224320050-524fe28e029818",
+            "title": "ltspice",
+            "fileName": "main.cir",
+            "language": "ltspice",
+            "code": "v1 1 0 5 DC \nR1 0 0 10k\nR2 1 3 10k\nx1 3 5 2 1\n.op",
+            "stdin": "",
+            "savedPath": "C:\\Users\\otien\\AppData\\Local\\OMB Portfolio Builder\\compile-code\\fpga-base-health-monitor-pulse-sensor-and-reaction-timer-controllers\\main-js-1783224320050-524fe28e029818\\main.py",
+            "savedAt": "2026-07-05T04:06:42.332Z",
+            "lastResult": null,
+            "dirty": true
           }
         ],
-        "activeFileId": "main-js-1783220595193-3ba64f9649093",
-        "terminal": "C++ build profile: -std=c++20, warnings enabled, debug symbols enabled\n\nCompiler: g++.exe (MinGW-W64 x86_64-ucrt-posix-seh, built by Brecht Sanders, r2) 16.1.0\n\n$ g++.exe main.cpp -o main.exe -std=c++20 -Wall -Wextra -Wpedantic -Wshadow -O0 -g3 -fdiagnostics-color=never\nExit code 0 in 1.05s\nCompleted without diagnostic output.\n\nGenerated binary: C:\\Users\\otien\\AppData\\Local\\OMB Portfolio Builder\\compile-code\\fpga-base-health-monitor-pulse-sensor-and-reaction-timer-controllers\\.build-cache\\cpp\\e9659179a0375eda3851b41b\\main.exe\n\n$ main.exe\nProgram exit code 0 in 0.08s\nwho you be",
+        "activeFileId": "main-js-1783224320050-524fe28e029818",
+        "terminal": "$ LTspice.exe -b main.cir\nExit code 1 in 0.60s\nNo compiler output was returned.\n\nLTspice 26.0.2 for Windows\nCircuit: C:\\Users\\otien\\AppData\\Local\\OMB Portfolio Builder\\compile-code\\fpga-base-health-monitor-pulse-sensor-and-reaction-timer-controllers\\.runs\\1783224995003-a739241fcadb6\\main.cir\nStart Time: Sun Jul  5 00:16:35 2026\nC:\\Users\\otien\\AppData\\Local\\OMB Portfolio Builder\\compile-code\\fpga-base-health-monitor-pulse-sensor-and-reaction-timer-controllers\\.runs\\1783224995003-a739241fcadb6\\main.cir(4): This sub-circuit name is not defined.\nx1 3 5 2 1\n         ^",
         "appendTargetId": "project-overview",
         "messages": [
+          {
+            "id": "message-1783224995621-6c3c6c23455e9",
+            "at": "2026-07-05T04:16:35.621Z",
+            "level": "error",
+            "text": "Compile/run completed with errors for main.cir."
+          },
+          {
+            "id": "message-1783224994991-043fe9ea485b08",
+            "at": "2026-07-05T04:16:34.991Z",
+            "level": "info",
+            "text": "Saved main.cir."
+          },
+          {
+            "id": "message-1783224994939-79a1144df1cb08",
+            "at": "2026-07-05T04:16:34.939Z",
+            "level": "info",
+            "text": "Compile/run started for main.cir."
+          },
+          {
+            "id": "message-1783224963896-88baa8b2e8e358",
+            "at": "2026-07-05T04:16:03.896Z",
+            "level": "error",
+            "text": "Compile/run completed with errors for main.cir."
+          },
+          {
+            "id": "message-1783224963288-d7e376f53866f8",
+            "at": "2026-07-05T04:16:03.288Z",
+            "level": "info",
+            "text": "Saved main.cir."
+          },
+          {
+            "id": "message-1783224963235-062dc73a0056c8",
+            "at": "2026-07-05T04:16:03.235Z",
+            "level": "info",
+            "text": "Compile/run started for main.cir."
+          },
+          {
+            "id": "message-1783224939106-ab52d40d4d8548",
+            "at": "2026-07-05T04:15:39.106Z",
+            "level": "error",
+            "text": "Compile/run completed with errors for main.cir."
+          },
+          {
+            "id": "message-1783224938509-307f75edc848d",
+            "at": "2026-07-05T04:15:38.509Z",
+            "level": "info",
+            "text": "Saved main.cir."
+          },
+          {
+            "id": "message-1783224938451-9d8b35b233c41",
+            "at": "2026-07-05T04:15:38.451Z",
+            "level": "info",
+            "text": "Compile/run started for main.cir."
+          },
+          {
+            "id": "message-1783224785510-5b10075f48027",
+            "at": "2026-07-05T04:13:05.510Z",
+            "level": "error",
+            "text": "Compile/run completed with errors for main.cir."
+          },
+          {
+            "id": "message-1783224784710-1f82f2ba771af8",
+            "at": "2026-07-05T04:13:04.710Z",
+            "level": "info",
+            "text": "Saved main.cir."
+          },
+          {
+            "id": "message-1783224784668-eb368e803217f",
+            "at": "2026-07-05T04:13:04.668Z",
+            "level": "info",
+            "text": "Compile/run started for main.cir."
+          },
+          {
+            "id": "message-1783224773112-a98fd023a2cc58",
+            "at": "2026-07-05T04:12:53.112Z",
+            "level": "error",
+            "text": "Compile/run completed with errors for main.cpp."
+          },
+          {
+            "id": "message-1783224772873-02a000e7a4937",
+            "at": "2026-07-05T04:12:52.873Z",
+            "level": "info",
+            "text": "Saved main.cpp."
+          },
+          {
+            "id": "message-1783224772829-bafeeac555599",
+            "at": "2026-07-05T04:12:52.829Z",
+            "level": "info",
+            "text": "Compile/run started for main.cpp."
+          },
+          {
+            "id": "message-1783224640361-cb8c9b0fee5ec",
+            "at": "2026-07-05T04:10:40.361Z",
+            "level": "success",
+            "text": "Compile/run succeeded for main.py."
+          },
+          {
+            "id": "message-1783224640153-13d8b11a182708",
+            "at": "2026-07-05T04:10:40.153Z",
+            "level": "info",
+            "text": "Saved main.py."
+          },
+          {
+            "id": "message-1783224640099-5fa3234e93e358",
+            "at": "2026-07-05T04:10:40.099Z",
+            "level": "info",
+            "text": "Compile/run started for main.py."
+          },
+          {
+            "id": "message-1783224634151-c177ceaf7342a8",
+            "at": "2026-07-05T04:10:34.151Z",
+            "level": "success",
+            "text": "Compile/run succeeded for main.py."
+          },
+          {
+            "id": "message-1783224633940-399d600a682248",
+            "at": "2026-07-05T04:10:33.940Z",
+            "level": "info",
+            "text": "Saved main.py."
+          },
+          {
+            "id": "message-1783224633898-af53449b2d44e8",
+            "at": "2026-07-05T04:10:33.898Z",
+            "level": "info",
+            "text": "Compile/run started for main.py."
+          },
+          {
+            "id": "message-1783224625813-93fa2bc9e5215",
+            "at": "2026-07-05T04:10:25.813Z",
+            "level": "success",
+            "text": "Compile/run succeeded for main.py."
+          },
+          {
+            "id": "message-1783224625596-713fbc6052989",
+            "at": "2026-07-05T04:10:25.596Z",
+            "level": "info",
+            "text": "Saved main.py."
+          },
+          {
+            "id": "message-1783224625554-06373c9893e6b",
+            "at": "2026-07-05T04:10:25.554Z",
+            "level": "info",
+            "text": "Compile/run started for main.py."
+          },
+          {
+            "id": "message-1783224525178-4721ec38382428",
+            "at": "2026-07-05T04:08:45.178Z",
+            "level": "info",
+            "text": "Displayed terminal output for main.py."
+          },
+          {
+            "id": "message-1783224495756-0d5f06d5fcd82",
+            "at": "2026-07-05T04:08:15.756Z",
+            "level": "success",
+            "text": "Compile/run succeeded for main.py."
+          },
+          {
+            "id": "message-1783224495525-5662d5650c2b1",
+            "at": "2026-07-05T04:08:15.525Z",
+            "level": "info",
+            "text": "Saved main.py."
+          },
+          {
+            "id": "message-1783224495489-31c38c669b253",
+            "at": "2026-07-05T04:08:15.489Z",
+            "level": "info",
+            "text": "Compile/run started for main.py."
+          },
+          {
+            "id": "message-1783224486381-d5273ef7171af",
+            "at": "2026-07-05T04:08:06.381Z",
+            "level": "error",
+            "text": "Compile/run completed with errors for main.py."
+          },
+          {
+            "id": "message-1783224486218-d7a921780b8ed",
+            "at": "2026-07-05T04:08:06.218Z",
+            "level": "info",
+            "text": "Saved main.py."
+          },
+          {
+            "id": "message-1783224486179-7905c596071aa",
+            "at": "2026-07-05T04:08:06.179Z",
+            "level": "info",
+            "text": "Compile/run started for main.py."
+          },
+          {
+            "id": "message-1783224424965-12a9164f3c6d9",
+            "at": "2026-07-05T04:07:04.965Z",
+            "level": "success",
+            "text": "Compile/run succeeded for main.py."
+          },
+          {
+            "id": "message-1783224424746-a0af078dd8501",
+            "at": "2026-07-05T04:07:04.746Z",
+            "level": "info",
+            "text": "Saved main.py."
+          },
+          {
+            "id": "message-1783224424713-95983dbbb33e88",
+            "at": "2026-07-05T04:07:04.713Z",
+            "level": "info",
+            "text": "Compile/run started for main.py."
+          },
+          {
+            "id": "message-1783224404869-f3db21387a2268",
+            "at": "2026-07-05T04:06:44.869Z",
+            "level": "error",
+            "text": "Compile/run completed with errors for main.py."
+          },
+          {
+            "id": "message-1783224404323-bb9aa7da62abb",
+            "at": "2026-07-05T04:06:44.323Z",
+            "level": "info",
+            "text": "Saved main.py."
+          },
+          {
+            "id": "message-1783224404289-d47ca009c8a7",
+            "at": "2026-07-05T04:06:44.289Z",
+            "level": "info",
+            "text": "Compile/run started for main.py."
+          },
+          {
+            "id": "message-1783224402345-82d779682e243",
+            "at": "2026-07-05T04:06:42.345Z",
+            "level": "info",
+            "text": "Saved main.py."
+          },
           {
             "id": "message-1783223789168-b721b43f92cd58",
             "at": "2026-07-05T03:56:29.168Z",
@@ -2463,78 +2719,6 @@
             "at": "2026-07-05T03:12:08.090Z",
             "level": "info",
             "text": "Compile/run started for main.c."
-          },
-          {
-            "id": "message-1783221106131-7738bbaf7a12",
-            "at": "2026-07-05T03:11:46.131Z",
-            "level": "success",
-            "text": "Compile/run succeeded for main.c."
-          },
-          {
-            "id": "message-1783221105257-f796b8e67eaf58",
-            "at": "2026-07-05T03:11:45.257Z",
-            "level": "info",
-            "text": "Saved main.c."
-          },
-          {
-            "id": "message-1783221105242-57135a341dc5c8",
-            "at": "2026-07-05T03:11:45.242Z",
-            "level": "info",
-            "text": "Compile/run started for main.c."
-          },
-          {
-            "id": "message-1783221104307-d3baf73cab18d8",
-            "at": "2026-07-05T03:11:44.308Z",
-            "level": "info",
-            "text": "Saved main.c."
-          },
-          {
-            "id": "message-1783221033102-9ea769547189a8",
-            "at": "2026-07-05T03:10:33.102Z",
-            "level": "error",
-            "text": "Compile/run completed with errors for main.c."
-          },
-          {
-            "id": "message-1783221032976-d34834d62862",
-            "at": "2026-07-05T03:10:32.976Z",
-            "level": "info",
-            "text": "Saved main.c."
-          },
-          {
-            "id": "message-1783221032962-e7d7832cca2668",
-            "at": "2026-07-05T03:10:32.962Z",
-            "level": "info",
-            "text": "Compile/run started for main.c."
-          },
-          {
-            "id": "message-1783221009244-5f8bdaef8ccef8",
-            "at": "2026-07-05T03:10:09.244Z",
-            "level": "error",
-            "text": "Compile/run completed with errors for main.c."
-          },
-          {
-            "id": "message-1783221008543-2e397239859278",
-            "at": "2026-07-05T03:10:08.543Z",
-            "level": "info",
-            "text": "Saved main.c."
-          },
-          {
-            "id": "message-1783221008530-0674db8448484",
-            "at": "2026-07-05T03:10:08.530Z",
-            "level": "info",
-            "text": "Compile/run started for main.c."
-          },
-          {
-            "id": "message-1783221006207-348f79ffed6f28",
-            "at": "2026-07-05T03:10:06.207Z",
-            "level": "info",
-            "text": "Saved main.c."
-          },
-          {
-            "id": "message-1783220619226-f0dfe47febabb8",
-            "at": "2026-07-05T03:03:39.226Z",
-            "level": "info",
-            "text": "Displayed terminal output for main.js."
           }
         ]
       }
@@ -2579,7 +2763,7 @@
                 "fontFamily": "Arial",
                 "fontPx": "",
                 "fontSize": "normal",
-                "html": "<span style=\"font-size: 12px; display: inline;\"><span style=\"color: rgb(0, 0, 0); display: inline;\"><span style=\"color: rgb(71, 85, 105); font-weight: 400; display: inline;\"><span style=\"color: rgb(0, 0, 0); display: inline;\"><span style=\"font-size: 13px; display: inline;\">I enjoy creating projects from the ground up as well as reverse engineering existing ones, taking them from the initial idea to full realization. This often involves working on everything from project constraints and budget to design, implementation, testing, and validation.</span></span></span></span></span>",
+                "html": "<span style=\"font-size: 12px; display: inline;\"><span style=\"color: rgb(0, 0, 0); display: inline;\"><span style=\"color: rgb(71, 85, 105); font-weight: 400; display: inline;\"><span style=\"color: rgb(0, 0, 0); display: inline;\"><span style=\"font-size: 13px; display: inline;\"><span style=\"color: rgb(0, 0, 0); display: inline;\">I enjoy creating projects from the ground up as well as reverse engineering existing ones, taking them from the initial idea to full realization. This often involves working on everything from project constraints and budget to design, implementation, testing, and validation.</span></span></span></span></span></span>",
                 "italic": false,
                 "text": "I enjoy creating projects from the ground up as well as reverse engineering existing ones, taking them from the initial idea to full realization. This often involves working on everything from project constraints and budget to design, implementation, testing, and validation.",
                 "underline": false,
