@@ -1490,7 +1490,7 @@ function assistantEndpoint() {
   const metaEndpoint = document.querySelector('meta[name="portfolio-ai-endpoint"]')?.content || "";
   if (metaEndpoint.trim()) return String(metaEndpoint).trim();
   if (["localhost", "127.0.0.1"].includes(window.location.hostname)) return "/api/portfolio-ai";
-  return String(metaEndpoint || "").trim();
+  return "/api/portfolio-ai";
 }
 
 function assistantSourceLabel(result = {}) {
@@ -2125,10 +2125,15 @@ function assistantLocalAnswer(question = "", results = [], intent = assistantQue
   }
 
   if (intent === "general_knowledge") {
+    const generalAnswer = assistantGeneralEngineeringAnswer(question);
+    if (generalAnswer) return generalAnswer;
     return [
-      "I can answer that as a general question when the AI backend is available.",
+      "I can answer that as a general question from the local fallback, but the live model will usually give a deeper answer when it is reachable.",
       "",
-      "If this appears instead of a full answer, the backend model is not reachable from this browser session. Try again after the AI endpoint is configured, or ask a portfolio-specific question that can be answered from the local catalog."
+      "Short answer:",
+      `- ${question.replace(/\?+$/, "")} is a topic I can discuss by breaking it into definition, purpose, main parts, and practical examples.`,
+      "- If the question connects to Maurice's portfolio, I will use the saved project context and links as evidence.",
+      "- If it is broader than the portfolio, I will answer it as a general engineering or technology concept first."
     ].join("\n");
   }
 
@@ -3419,7 +3424,6 @@ function ensureSectionDialog() {
           <h2 id="section-view-title">Section</h2>
         </div>
         <div class="section-view-actions">
-          <button class="section-view-minimize" type="button" title="Minimize window" aria-label="Minimize window">-</button>
           <button class="section-view-close" type="button" aria-label="Close section">&times;</button>
         </div>
       </div>
@@ -3427,7 +3431,6 @@ function ensureSectionDialog() {
     </div>
   `;
   document.body.append(dialog);
-  dialog.querySelector(".section-view-minimize")?.addEventListener("click", () => toggleSectionDialogMinimized(dialog));
   dialog.querySelector(".section-view-close").addEventListener("click", () => closeSectionDialog(dialog));
   dialog.addEventListener("cancel", () => clearSectionRouteInHistory());
   dialog.addEventListener("close", () => {

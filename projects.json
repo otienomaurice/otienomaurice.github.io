@@ -583,7 +583,7 @@
         }
       },
       "portfolioView": {
-        "builtAt": "2026-07-08T22:27:34.687Z",
+        "builtAt": "2026-07-10T01:18:44.740Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -1006,7 +1006,7 @@
         }
       },
       "portfolioView": {
-        "builtAt": "2026-07-08T22:27:34.687Z",
+        "builtAt": "2026-07-10T01:18:44.740Z",
         "template": {
           "group": "Appearance",
           "id": "",
@@ -1205,7 +1205,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-07-08T22:27:34.687Z",
+        "builtAt": "2026-07-10T01:18:44.741Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -1545,7 +1545,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-07-08T22:27:34.688Z",
+        "builtAt": "2026-07-10T01:18:44.741Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-steel-teal-click",
@@ -1830,7 +1830,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-07-08T22:27:34.688Z",
+        "builtAt": "2026-07-10T01:18:44.741Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-graphite-white-click",
@@ -1995,16 +1995,9 @@
       "templateVisual": null,
       "category": "digital",
       "status": "Draft",
-      "summary": "// _cplusplus.cpp : This file contains the 'main' function. Program execution begins and ends there.\n//\n\n#include <iostream>\ntypedef enum device_address {\n  DEVICE1 = 0x64,\n  DEVICE2 = 0x200,\n  DEVICE3 = 0x7F\n};\nenum devices {\nLTC2944,\nINA238,\nINA228};\n\nstatic void assign_device_address(enum devices device) {\n  switch (device) {\n  case LTC2944:\n    std::cout << \"Assigning address \" << std::hex << address << \" to LTC2944\" << std::endl;\n    break;\n  case INA238:\n    std::cout << \"Assigning address \" << std::hex << address << \" to INA238\" << std::endl;\n    break;\n  case INA228:\n    std::cout << \"Assigning address \" << std::hex << address << \" to INA228\" << std::endl;\n    break;\n  default:\n    std::cout << \"Unknown device\" << std::endl;\n    break;\n  }\n}\nint main()\n{\n    std::cout << \"Hello World!\\n\";\n  assign_device_address(LTC2944, DEVICE1);\n}",
+      "summary": "",
       "summaryRich": {
-        "blocks": [
-          {
-            "code": "// _cplusplus.cpp : This file contains the 'main' function. Program execution begins and ends there.\n//\n\n#include <iostream>\ntypedef enum device_address {\n  DEVICE1 = 0x64,\n  DEVICE2 = 0x200,\n  DEVICE3 = 0x7F\n};\nenum devices {\nLTC2944,\nINA238,\nINA228};\n\nstatic void assign_device_address(enum devices device) {\n  switch (device) {\n  case LTC2944:\n    std::cout << \"Assigning address \" << std::hex << address << \" to LTC2944\" << std::endl;\n    break;\n  case INA238:\n    std::cout << \"Assigning address \" << std::hex << address << \" to INA238\" << std::endl;\n    break;\n  case INA228:\n    std::cout << \"Assigning address \" << std::hex << address << \" to INA228\" << std::endl;\n    break;\n  default:\n    std::cout << \"Unknown device\" << std::endl;\n    break;\n  }\n}\nint main()\n{\n    std::cout << \"Hello World!\\n\";\n  assign_device_address(LTC2944, DEVICE1);\n}",
-            "language": "cpp",
-            "pasteMode": "source",
-            "type": "code"
-          }
-        ]
+        "blocks": []
       },
       "focus": [],
       "highlights": [],
@@ -2033,7 +2026,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-07-08T22:27:34.688Z",
+        "builtAt": "2026-07-10T01:18:44.741Z",
         "template": {
           "group": "Appearance",
           "id": "",
@@ -2057,31 +2050,6 @@
         },
         "title": "FPGA -based LED Matrix Panel Controller for ultra-fast Display",
         "sections": [
-          {
-            "description": "",
-            "id": "brief",
-            "items": [
-              {
-                "children": [],
-                "description": "// _cplusplus.cpp : This file contains the 'main' function. Program execution begins and ends there.\n//\n\n#include <iostream>\ntypedef enum device_address {\n  DEVICE1 = 0x64,\n  DEVICE2 = 0x200,\n  DEVICE3 = 0x7F\n};\nenum devices {\nLTC2944,\nINA238,\nINA228};\n\nstatic void assign_device_address(enum devices device) {\n  switch (device) {\n  case LTC2944:\n    std::cout << \"Assigning address \" << std::hex << address << \" to LTC2944\" << std::endl;\n    break;\n  case INA238:\n    std::cout << \"Assigning address \" << std::hex << address << \" to INA238\" << std::endl;\n    break;\n  case INA228:\n    std::cout << \"Assigning address \" << std::hex << address << \" to INA228\" << std::endl;\n    break;\n  default:\n    std::cout << \"Unknown device\" << std::endl;\n    break;\n  }\n}\nint main()\n{\n    std::cout << \"Hello World!\\n\";\n  assign_device_address(LTC2944, DEVICE1);\n}",
-                "kind": "summary",
-                "meta": "Overview",
-                "title": "Overview",
-                "url": "",
-                "rich": {
-                  "blocks": [
-                    {
-                      "code": "// _cplusplus.cpp : This file contains the 'main' function. Program execution begins and ends there.\n//\n\n#include <iostream>\ntypedef enum device_address {\n  DEVICE1 = 0x64,\n  DEVICE2 = 0x200,\n  DEVICE3 = 0x7F\n};\nenum devices {\nLTC2944,\nINA238,\nINA228};\n\nstatic void assign_device_address(enum devices device) {\n  switch (device) {\n  case LTC2944:\n    std::cout << \"Assigning address \" << std::hex << address << \" to LTC2944\" << std::endl;\n    break;\n  case INA238:\n    std::cout << \"Assigning address \" << std::hex << address << \" to INA238\" << std::endl;\n    break;\n  case INA228:\n    std::cout << \"Assigning address \" << std::hex << address << \" to INA228\" << std::endl;\n    break;\n  default:\n    std::cout << \"Unknown device\" << std::endl;\n    break;\n  }\n}\nint main()\n{\n    std::cout << \"Hello World!\\n\";\n  assign_device_address(LTC2944, DEVICE1);\n}",
-                      "language": "cpp",
-                      "pasteMode": "source",
-                      "type": "code"
-                    }
-                  ]
-                }
-              }
-            ],
-            "title": "Overview"
-          },
           {
             "description": "https://github.com/otienomaurice/32X16_LED_Matrix_Controller.git",
             "id": "custom:software-hdl",
@@ -2191,7 +2159,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-07-08T22:27:34.688Z",
+        "builtAt": "2026-07-10T01:18:44.742Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -2293,10 +2261,12 @@
             "title": "main",
             "fileName": "main.cpp",
             "language": "cpp",
+            "role": "source",
             "code": "#include <stdio.h>\n#define PARAMETER 32\nint main(){\n  char line[PARAMETER];\n  while(fgets(line,PARAMETER,stdin) != (NULL)){\n    printf(\"%s\",line);\n  }\nreturn 0;\n}",
             "stdin": "who you be",
             "savedPath": "C:\\Users\\otien\\AppData\\Local\\OMB Portfolio Builder\\compile-code\\fpga-base-health-monitor-pulse-sensor-and-reaction-timer-controllers\\main-js-1783220595193-3ba64f9649093\\main.c",
             "savedAt": "2026-07-05T03:13:53.392Z",
+            "waveform": null,
             "lastResult": null,
             "dirty": true
           },
@@ -2305,10 +2275,12 @@
             "title": "ltspice",
             "fileName": "main.cir",
             "language": "ltspice",
+            "role": "source",
             "code": "v1 1 0 5 DC \nR1 0 0 10k\nR2 1 3 10k\nx1 3 5 2 1\n.op",
             "stdin": "",
             "savedPath": "C:\\Users\\otien\\AppData\\Local\\OMB Portfolio Builder\\compile-code\\fpga-base-health-monitor-pulse-sensor-and-reaction-timer-controllers\\main-js-1783224320050-524fe28e029818\\main.py",
             "savedAt": "2026-07-05T04:06:42.332Z",
+            "waveform": null,
             "lastResult": null,
             "dirty": true
           },
@@ -2317,18 +2289,26 @@
             "title": "lab10_top",
             "fileName": "lab10_top.sv",
             "language": "systemverilog",
+            "role": "design",
             "code": "//-----------------------------------------------------------------------------\n// Module Name : lab10_top\n// Project : ECE 211 Digital Circuits 1\n//-----------------------------------------------------------------------------\n// Author : Otieno Maurice <otienom@lafayette.edu>\n// John Nestor <nestorj@lafayette.edu>\n// Created : April 2023\n//-----------------------------------------------------------------------------\n// Description : Top-level module for Lab 10 - Health Monitor\n/*Inputs:\n• analog_pos_in - brings in positive analog signal from the pulse sensor\n• analog_neg_in - brings in negative analog signal from the pulse sensor\n• enter - signal to stop time count and display the value on the seven-segment display\n• start - signal to start the reaction timer\n• reset - resets the entire system\n• clock - clock signal at which the sensor operates. Must be divided for other components\nto 1kHz\noutputs:\n• led -display digitized pulse sensor value\n• pulse - display pulse as red LED\n• a_n- turn on the seven-segment display digits,\n• segs_n - display value of data received\n• dot - display decimal point,\n• led_r,led_g,led_b, - display the colors on the reaction timer LED\n*/\n//-----------------------------------------------------------------------------\nmodule lab10_top(\n  input logic clock, switch, // CLOCK 100 MHz\n  input logic reset,enter, start,\n  output logic led_r,led_g,led_b,\n  input analog_pos_in, // pulse sensor positive input\n  input analog_neg_in, // pulse sensor negative input\n  output logic [15:0] led, // display digitized pulse sensor value\n  output logic dot, pulse_led, // display pulse as red LED\n  output logic [7:0] a_n,\n  output logic [6:0] segs_n\n);\nlogic enable, pulse_in;\nlogic [3:0] d3p, d2p, d1p, d0p;\nlogic [3:0] d3r,d2r, d1r, d0r;\nlogic [3:0] d0, d1, d2, d3;\nlogic [15:0] reaction_value, pulse_value;\nlogic sclk, rs_en; // DIVIDED CLOCK 1KHz\nlogic rst,led_r1,led_g1,led_b1,din;\n\npulse_monitor PULSE_MONITOR(.clk(sclk), .pulse_in(d_pulse), .d0p, .d1p,.d2p,.d3p, .rst );\n\nsingle_pulser PULSE(.d_pulse,.clk(sclk),.din(pulse_in));\n\nreaction_timer REACTION_TIMER(.clk(sclk),.start, .enter,.rst,.d0r,.d1r,.d2r,\n  .d3r,.led_r(led_r1),.led_b(led_b1),.led_g(led_g1),.rs_en);\n\nclkdiv CLKDIV( .clk(clock),.sclk(sclk),.reset(1'b0));\n\nsevenseg_control SEVENSEG_CONTROL(.clk(sclk),.rst, .d0(d0), .d1(d1), .d2(d2),\n  .d3(d3), .y_n(a_n),.segs_n,.dot, .en(enable));\n\npulse_sensor PULSE_SENSOR(.clk(clock), .rst, .analog_pos_in, .analog_neg_in, .led, .pulse(pulse_in));\n\n// add clock divider and other modules here\n\nassign rst = reset;\nassign reaction_value = {d3r ,d2r ,d1r ,d0r};\nassign pulse_value = {d3p, d2p, d1p, d0p};\nassign pulse_led = pulse_in;\n\n//Code\nalways_comb\nif (switch)\nbegin\nled_r = led_r1;\nled_g = led_g1;\nled_b = led_b1;\nenable = rs_en;\nd0 = reaction_value [3:0] ;\nd1 = reaction_value [7:4] ;\nd2 = reaction_value [11:8] ;\nd3 = reaction_value [15:12] ;\nend\n\nelse\nbegin\nenable = 1; led_r =0; led_g = 0; led_b =0;\nd0 = pulse_value [3:0] ;\nd1 = pulse_value [7:4] ;\nd2 = pulse_value [11:8] ;\nd3 = pulse_value [15:12] ;\nend\nendmodule:lab10_top",
             "stdin": "",
             "savedPath": "",
             "savedAt": "",
+            "waveform": null,
             "lastResult": null,
             "dirty": true
           }
         ],
         "activeFileId": "lab10-top-sv-1783488899555-9c5b2becc896b",
-        "terminal": "$ iverilog.exe -g2012 -Wall\nExit code 7 in 0.81s\nC:\\Users\\otien\\AppData\\Local\\OMB Portfolio Builder\\compile-code\\fpga-base-health-monitor-pulse-sensor-and-reaction-timer-controllers\\.runs\\1783488930609-37edc4e50ec1b8\\lab10_top.sv:46: warning: implicit definition of wire 'd_pulse'.\r\nC:\\Users\\otien\\AppData\\Local\\OMB Portfolio Builder\\compile-code\\fpga-base-health-monitor-pulse-sensor-and-reaction-timer-controllers\\.runs\\1783488930609-37edc4e50ec1b8\\lab10_top.sv:46: error: Unknown module type: pulse_monitor\r\nC:\\Users\\otien\\AppData\\Local\\OMB Portfolio Builder\\compile-code\\fpga-base-health-monitor-pulse-sensor-and-reaction-timer-controllers\\.runs\\1783488930609-37edc4e50ec1b8\\lab10_top.sv:48: error: Unknown module type: single_pulser\r\nC:\\Users\\otien\\AppData\\Local\\OMB Portfolio Builder\\compile-code\\fpga-base-health-monitor-pulse-sensor-and-reaction-timer-controllers\\.runs\\1783488930609-37edc4e50ec1b8\\lab10_top.sv:50: error: Unknown module type: reaction_timer\r\nC:\\Users\\otien\\AppData\\Local\\OMB Portfolio Builder\\compile-code\\fpga-base-health-monitor-pulse-sensor-and-reaction-timer-controllers\\.runs\\1783488930609-37edc4e50ec1b8\\lab10_top.sv:53: error: Unknown module type: clkdiv\r\nC:\\Users\\otien\\AppData\\Local\\OMB Portfolio Builder\\compile-code\\fpga-base-health-monitor-pulse-sensor-and-reaction-timer-controllers\\.runs\\1783488930609-37edc4e50ec1b8\\lab10_top.sv:55: error: Unknown module type: sevenseg_control\r\nC:\\Users\\otien\\AppData\\Local\\OMB Portfolio Builder\\compile-code\\fpga-base-health-monitor-pulse-sensor-and-reaction-timer-controllers\\.runs\\1783488930609-37edc4e50ec1b8\\lab10_top.sv:58: error: Unknown module type: pulse_sensor\r\n7 error(s) during elaboration.\r\n*** These modules were missing:\r\n        clkdiv referenced 1 times.\r\n        pulse_monitor referenced 1 times.\r\n        pulse_sensor referenced 1 times.\r\n        reaction_timer referenced 1 times.\r\n        sevenseg_control referenced 1 times.\r\n        single_pulser referenced 1 times.\r\n***",
+        "terminal": "",
         "appendTargetId": "project-overview",
         "messages": [
+          {
+            "id": "message-1783643715303-3e73ba2aa559",
+            "at": "2026-07-10T00:35:15.303Z",
+            "level": "info",
+            "text": "Terminal output cleared."
+          },
           {
             "id": "message-1783488994809-3eb61fb14cc93",
             "at": "2026-07-08T05:36:34.809Z",
@@ -2802,12 +2782,6 @@
             "at": "2026-07-05T03:12:39.615Z",
             "level": "info",
             "text": "Saved main.c."
-          },
-          {
-            "id": "message-1783221159596-c1b5fc9f419dd",
-            "at": "2026-07-05T03:12:39.596Z",
-            "level": "info",
-            "text": "Compile/run started for main.c."
           }
         ]
       }
