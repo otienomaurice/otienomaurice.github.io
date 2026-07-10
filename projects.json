@@ -2153,13 +2153,78 @@
                 "blocks": []
               },
               "type": "Text",
-              "status": "draft"
+              "status": "draft",
+              "children": [
+                {
+                  "title": "add3.sv",
+                  "description": "",
+                  "type": "File",
+                  "url": "docs/fpga-base-health-monitor-pulse-sensor-and-reaction-timer-controllers/hdl/add3.sv",
+                  "status": "uploaded"
+                },
+                {
+                  "title": "allcounters.sv",
+                  "description": "",
+                  "type": "File",
+                  "url": "docs/fpga-base-health-monitor-pulse-sensor-and-reaction-timer-controllers/hdl/allcounters.sv",
+                  "status": "uploaded"
+                },
+                {
+                  "title": "binary_to_bcd.sv",
+                  "description": "",
+                  "type": "File",
+                  "url": "docs/fpga-base-health-monitor-pulse-sensor-and-reaction-timer-controllers/hdl/binary_to_bcd.sv",
+                  "status": "uploaded"
+                },
+                {
+                  "title": "clkdiv.sv",
+                  "description": "",
+                  "type": "File",
+                  "url": "docs/fpga-base-health-monitor-pulse-sensor-and-reaction-timer-controllers/hdl/clkdiv.sv",
+                  "status": "uploaded"
+                },
+                {
+                  "title": "count_3bit.sv",
+                  "description": "",
+                  "type": "File",
+                  "url": "docs/fpga-base-health-monitor-pulse-sensor-and-reaction-timer-controllers/hdl/count_3bit.sv",
+                  "status": "uploaded"
+                },
+                {
+                  "title": "counter_bcd.sv",
+                  "description": "",
+                  "type": "File",
+                  "url": "docs/fpga-base-health-monitor-pulse-sensor-and-reaction-timer-controllers/hdl/counter_bcd.sv",
+                  "status": "uploaded"
+                },
+                {
+                  "title": "dec_3_5.sv",
+                  "description": "",
+                  "type": "File",
+                  "url": "docs/fpga-base-health-monitor-pulse-sensor-and-reaction-timer-controllers/hdl/dec_3_5.sv",
+                  "status": "uploaded"
+                },
+                {
+                  "title": "delay_counter.sv",
+                  "description": "",
+                  "type": "File",
+                  "url": "docs/fpga-base-health-monitor-pulse-sensor-and-reaction-timer-controllers/hdl/delay_counter.sv",
+                  "status": "uploaded"
+                },
+                {
+                  "title": "delay_counter5.sv",
+                  "description": "",
+                  "type": "File",
+                  "url": "docs/fpga-base-health-monitor-pulse-sensor-and-reaction-timer-controllers/hdl/delay_counter5.sv",
+                  "status": "uploaded"
+                }
+              ]
             }
           ]
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-07-10T01:19:40.873Z",
+        "builtAt": "2026-07-10T01:26:58.072Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -2191,9 +2256,9 @@
           },
           "cardLayout": "single",
           "contentMax": "980px",
-          "density": "simple",
+          "density": "balanced",
           "mediaMax": "720px",
-          "sectionCardMin": "280px",
+          "sectionCardMin": "240px",
           "touchTarget": "44px",
           "windowMode": "full-screen"
         },
@@ -2251,6 +2316,94 @@
               }
             ],
             "title": "Design"
+          },
+          {
+            "description": "",
+            "id": "custom:hdl",
+            "items": [
+              {
+                "children": [
+                  {
+                    "children": [],
+                    "description": "",
+                    "kind": "file",
+                    "meta": "File",
+                    "title": "add3.sv",
+                    "url": "docs/fpga-base-health-monitor-pulse-sensor-and-reaction-timer-controllers/hdl/add3.sv"
+                  },
+                  {
+                    "children": [],
+                    "description": "",
+                    "kind": "file",
+                    "meta": "File",
+                    "title": "allcounters.sv",
+                    "url": "docs/fpga-base-health-monitor-pulse-sensor-and-reaction-timer-controllers/hdl/allcounters.sv"
+                  },
+                  {
+                    "children": [],
+                    "description": "",
+                    "kind": "file",
+                    "meta": "File",
+                    "title": "binary_to_bcd.sv",
+                    "url": "docs/fpga-base-health-monitor-pulse-sensor-and-reaction-timer-controllers/hdl/binary_to_bcd.sv"
+                  },
+                  {
+                    "children": [],
+                    "description": "",
+                    "kind": "file",
+                    "meta": "File",
+                    "title": "clkdiv.sv",
+                    "url": "docs/fpga-base-health-monitor-pulse-sensor-and-reaction-timer-controllers/hdl/clkdiv.sv"
+                  },
+                  {
+                    "children": [],
+                    "description": "",
+                    "kind": "file",
+                    "meta": "File",
+                    "title": "count_3bit.sv",
+                    "url": "docs/fpga-base-health-monitor-pulse-sensor-and-reaction-timer-controllers/hdl/count_3bit.sv"
+                  },
+                  {
+                    "children": [],
+                    "description": "",
+                    "kind": "file",
+                    "meta": "File",
+                    "title": "counter_bcd.sv",
+                    "url": "docs/fpga-base-health-monitor-pulse-sensor-and-reaction-timer-controllers/hdl/counter_bcd.sv"
+                  },
+                  {
+                    "children": [],
+                    "description": "",
+                    "kind": "file",
+                    "meta": "File",
+                    "title": "dec_3_5.sv",
+                    "url": "docs/fpga-base-health-monitor-pulse-sensor-and-reaction-timer-controllers/hdl/dec_3_5.sv"
+                  },
+                  {
+                    "children": [],
+                    "description": "",
+                    "kind": "file",
+                    "meta": "File",
+                    "title": "delay_counter.sv",
+                    "url": "docs/fpga-base-health-monitor-pulse-sensor-and-reaction-timer-controllers/hdl/delay_counter.sv"
+                  },
+                  {
+                    "children": [],
+                    "description": "",
+                    "kind": "file",
+                    "meta": "File",
+                    "title": "delay_counter5.sv",
+                    "url": "docs/fpga-base-health-monitor-pulse-sensor-and-reaction-timer-controllers/hdl/delay_counter5.sv"
+                  }
+                ],
+                "description": "",
+                "kind": "subsection",
+                "meta": "Subsection",
+                "title": "Design files",
+                "url": ""
+              }
+            ],
+            "title": "HDL"
           }
         ]
       },
@@ -2295,7 +2448,10 @@
             "savedPath": "",
             "savedAt": "",
             "waveform": null,
-            "lastResult": null,
+            "lastResult": {
+              "ok": null,
+              "terminal": ""
+            },
             "dirty": true
           }
         ],
@@ -2303,6 +2459,36 @@
         "terminal": "",
         "appendTargetId": "project-overview",
         "messages": [
+          {
+            "id": "message-1783646515804-4f9e0daa66169",
+            "at": "2026-07-10T01:21:55.804Z",
+            "level": "info",
+            "text": "Terminal output cleared."
+          },
+          {
+            "id": "message-1783646506757-38066220705ca",
+            "at": "2026-07-10T01:21:46.757Z",
+            "level": "info",
+            "text": "Displayed HDL scope for lab10_top.sv."
+          },
+          {
+            "id": "message-1783646505780-a2ab2999da2228",
+            "at": "2026-07-10T01:21:45.780Z",
+            "level": "info",
+            "text": "Displayed HDL scope for lab10_top.sv."
+          },
+          {
+            "id": "message-1783646504772-8a9571df378c58",
+            "at": "2026-07-10T01:21:44.772Z",
+            "level": "info",
+            "text": "Displayed HDL scope for lab10_top.sv."
+          },
+          {
+            "id": "message-1783646499685-e4d37e5320b4d",
+            "at": "2026-07-10T01:21:39.685Z",
+            "level": "info",
+            "text": "Displayed HDL scope for lab10_top.sv."
+          },
           {
             "id": "message-1783643715303-3e73ba2aa559",
             "at": "2026-07-10T00:35:15.303Z",
@@ -2752,36 +2938,6 @@
             "at": "2026-07-05T03:13:06.596Z",
             "level": "info",
             "text": "Compile/run started for main.c."
-          },
-          {
-            "id": "message-1783221172334-32eec95c6b722",
-            "at": "2026-07-05T03:12:52.334Z",
-            "level": "success",
-            "text": "Compile/run succeeded for main.c."
-          },
-          {
-            "id": "message-1783221172283-350a13d043eb78",
-            "at": "2026-07-05T03:12:52.283Z",
-            "level": "info",
-            "text": "Saved main.c."
-          },
-          {
-            "id": "message-1783221172252-a9d12dfe233ae",
-            "at": "2026-07-05T03:12:52.252Z",
-            "level": "info",
-            "text": "Compile/run started for main.c."
-          },
-          {
-            "id": "message-1783221159662-74faa52eea2d4",
-            "at": "2026-07-05T03:12:39.662Z",
-            "level": "success",
-            "text": "Compile/run succeeded for main.c."
-          },
-          {
-            "id": "message-1783221159615-223a3edcc7f948",
-            "at": "2026-07-05T03:12:39.615Z",
-            "level": "info",
-            "text": "Saved main.c."
           }
         ]
       }
