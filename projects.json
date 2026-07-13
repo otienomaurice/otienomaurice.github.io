@@ -499,57 +499,16 @@
       ],
       "design": {
         "brief": {
-          "summary": "sx",
+          "summary": "",
           "summaryRich": {
-            "blocks": [
-              {
-                "align": "left",
-                "bold": false,
-                "color": "",
-                "fontFamily": "Arial",
-                "fontPx": "",
-                "fontSize": "large",
-                "html": "sx",
-                "italic": false,
-                "text": "sx",
-                "underline": false,
-                "type": "paragraph"
-              },
-              {
-                "align": "left",
-                "caption": "",
-                "cropAspect": "original",
-                "cropX": 50,
-                "cropY": 50,
-                "cropZoom": 1,
-                "display": "show",
-                "source": "local",
-                "title": "",
-                "type": "image",
-                "url": "docs/pwm-generating-voltage-controlled-oscillator/design-overview/image.png"
-              }
-            ]
+            "blocks": []
           },
           "files": []
         },
         "documentation": {
           "summary": "",
           "summaryRich": {
-            "blocks": [
-              {
-                "align": "left",
-                "caption": "",
-                "cropAspect": "original",
-                "cropX": 50,
-                "cropY": 50,
-                "cropZoom": 1,
-                "display": "show",
-                "source": "local",
-                "title": "",
-                "type": "image",
-                "url": "docs/pwm-generating-voltage-controlled-oscillator/documentation-overview/image.png"
-              }
-            ]
+            "blocks": []
           },
           "files": [],
           "references": [],
@@ -583,7 +542,7 @@
         }
       },
       "portfolioView": {
-        "builtAt": "2026-07-13T15:55:54.008Z",
+        "builtAt": "2026-07-13T16:00:37.191Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -614,9 +573,9 @@
             "desktop": 1180
           },
           "cardLayout": "single",
-          "contentMax": "1180px",
+          "contentMax": "980px",
           "density": "balanced",
-          "mediaMax": "860px",
+          "mediaMax": "720px",
           "sectionCardMin": "240px",
           "touchTarget": "44px",
           "windowMode": "full-screen"
@@ -719,93 +678,6 @@
               }
             ],
             "title": "Overview"
-          },
-          {
-            "description": "",
-            "id": "design",
-            "items": [
-              {
-                "children": [],
-                "description": "sx",
-                "kind": "subsection",
-                "meta": "Subsection",
-                "title": "Design Overview",
-                "url": "",
-                "rich": {
-                  "blocks": [
-                    {
-                      "align": "left",
-                      "bold": false,
-                      "color": "",
-                      "fontFamily": "Arial",
-                      "fontPx": "",
-                      "fontSize": "large",
-                      "html": "sx",
-                      "italic": false,
-                      "text": "sx",
-                      "underline": false,
-                      "type": "paragraph"
-                    },
-                    {
-                      "align": "left",
-                      "caption": "",
-                      "cropAspect": "original",
-                      "cropX": 50,
-                      "cropY": 50,
-                      "cropZoom": 1,
-                      "display": "show",
-                      "source": "local",
-                      "title": "",
-                      "type": "image",
-                      "url": "docs/pwm-generating-voltage-controlled-oscillator/design-overview/image.png"
-                    }
-                  ]
-                }
-              },
-              {
-                "children": [
-                  {
-                    "children": [],
-                    "description": "",
-                    "kind": "subsection",
-                    "meta": "Subsection",
-                    "title": "References",
-                    "url": ""
-                  },
-                  {
-                    "children": [],
-                    "description": "",
-                    "kind": "subsection",
-                    "meta": "Subsection",
-                    "title": "Math / Analysis",
-                    "url": ""
-                  }
-                ],
-                "description": "",
-                "kind": "subsection",
-                "meta": "Subsection",
-                "title": "Documentation",
-                "url": "",
-                "rich": {
-                  "blocks": [
-                    {
-                      "align": "left",
-                      "caption": "",
-                      "cropAspect": "original",
-                      "cropX": 50,
-                      "cropY": 50,
-                      "cropZoom": 1,
-                      "display": "show",
-                      "source": "local",
-                      "title": "",
-                      "type": "image",
-                      "url": "docs/pwm-generating-voltage-controlled-oscillator/documentation-overview/image.png"
-                    }
-                  ]
-                }
-              }
-            ],
-            "title": "Design"
           },
           {
             "description": "",
@@ -1006,7 +878,7 @@
         }
       },
       "portfolioView": {
-        "builtAt": "2026-07-13T15:55:54.008Z",
+        "builtAt": "2026-07-13T16:00:37.191Z",
         "template": {
           "group": "Appearance",
           "id": "",
@@ -1205,7 +1077,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-07-13T15:55:54.008Z",
+        "builtAt": "2026-07-13T16:00:37.192Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -1545,7 +1417,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-07-13T15:55:54.008Z",
+        "builtAt": "2026-07-13T16:00:37.193Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-steel-teal-click",
@@ -1830,7 +1702,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-07-13T15:55:54.008Z",
+        "builtAt": "2026-07-13T16:00:37.193Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-graphite-white-click",
@@ -2026,7 +1898,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-07-13T15:55:54.008Z",
+        "builtAt": "2026-07-13T16:00:37.193Z",
         "template": {
           "group": "Appearance",
           "id": "",
@@ -2221,10 +2093,16 @@
               ]
             }
           ]
+        },
+        {
+          "id": "this",
+          "title": "this",
+          "description": "",
+          "items": []
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-07-13T15:55:54.009Z",
+        "builtAt": "2026-07-13T16:03:15.376Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
