@@ -2617,26 +2617,43 @@ h3 {
     }
 .section-file-list {
     display: grid;
-    justify-items: start;
-    gap: 8px;
+    justify-items: stretch;
+    gap: 0;
     width: 100%;
+    overflow: hidden;
+    border-top: 1px solid #cfe5ef;
+    border-bottom: 1px solid #cfe5ef;
+    background: #ffffff;
 }
 
 .section-file-link {
-    display: inline;
-    padding: 0;
+    display: block;
+    width: 100%;
+    min-height: 28px;
+    padding: 5px 16px;
     border: 0;
-    color: var(--teal);
-    background: transparent;
-    font-size: 0.84rem;
-    font-weight: 800;
-    text-decoration: underline;
-    text-underline-offset: 3px;
+    color: #17202a;
+    background: #ffffff;
+    font-size: 0.88rem;
+    font-weight: 520;
+    line-height: 1.35;
+    text-decoration: none;
 }
 
     .section-file-link:hover {
-        color: var(--focus);
-        background: transparent;
+        color: #ffffff;
+        background: #1f6ed4;
+    }
+
+    .section-file-link:focus-visible {
+        color: #ffffff;
+        background: #1f6ed4;
+        outline: none;
+    }
+
+    .section-file-link:active {
+        color: #17202a;
+        background: #ffffff;
     }
 
 .section-view-content {

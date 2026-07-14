@@ -27,12 +27,6 @@
     {
       "accent": "#1677a8",
       "description": "",
-      "id": "power-electronics",
-      "label": "POWER ELECTRONICS"
-    },
-    {
-      "accent": "#1677a8",
-      "description": "",
       "id": "rf",
       "label": "RF"
     },
@@ -395,23 +389,6 @@
       "links": [],
       "sections": [
         {
-          "id": "tests",
-          "title": "Bench Tests and Validation",
-          "description": "",
-          "items": [
-            {
-              "title": "final_build and characterization.xlsx",
-              "description": "",
-              "type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-              "url": "docs/pwm-generating-voltage-controlled-oscillator/tests/final_build-and-characterization.xlsx",
-              "status": "uploaded"
-            }
-          ],
-          "richDescription": {
-            "blocks": []
-          }
-        },
-        {
           "id": "tools-used",
           "title": "Tools Used",
           "description": "Kicad -  Schematic Capture and PCB design\n\nLTSPICE - circuit simulation\n\nBench Supplies - for power Supply\n\nOscilloscope - Frequency measurements during validation\n\nDigital Multimeters - voltage, continuity, and component measurements\n\nSoldering lab and supplies - Soldering components",
@@ -420,81 +397,84 @@
             "blocks": [
               {
                 "align": "left",
+                "bold": false,
                 "color": "",
-                "fontFamily": "",
+                "fontFamily": "Arial",
                 "fontPx": "",
                 "fontSize": "normal",
+                "html": "<span style=\"font-weight: 700; display: inline;\"><span style=\"font-weight: 400; display: inline;\"><span style=\"font-weight: 700; display: inline;\">Kicad</span></span></span> -  Schematic Capture and PCB design",
+                "italic": false,
                 "text": "Kicad -  Schematic Capture and PCB design",
+                "underline": false,
                 "type": "paragraph"
               },
               {
                 "align": "left",
+                "bold": false,
                 "color": "",
-                "fontFamily": "",
+                "fontFamily": "Arial",
                 "fontPx": "",
                 "fontSize": "normal",
+                "html": "<span style=\"font-weight: 700; display: inline;\"><span style=\"font-weight: 400; display: inline;\"><span style=\"font-weight: 700; display: inline;\">LTSPICE</span></span></span> - circuit simulation",
+                "italic": false,
                 "text": "LTSPICE - circuit simulation",
+                "underline": false,
                 "type": "paragraph"
               },
               {
                 "align": "left",
+                "bold": false,
                 "color": "",
-                "fontFamily": "",
+                "fontFamily": "Arial",
                 "fontPx": "",
                 "fontSize": "normal",
+                "html": "<span style=\"font-weight: 700; display: inline;\">Bench Supplies </span>- for power Supply",
+                "italic": false,
                 "text": "Bench Supplies - for power Supply",
+                "underline": false,
                 "type": "paragraph"
               },
               {
                 "align": "left",
+                "bold": false,
                 "color": "",
-                "fontFamily": "",
+                "fontFamily": "Arial",
                 "fontPx": "",
                 "fontSize": "normal",
+                "html": "<span style=\"font-weight: 700; display: inline;\">Oscilloscope</span> - Frequency measurements during validation",
+                "italic": false,
                 "text": "Oscilloscope - Frequency measurements during validation",
+                "underline": false,
                 "type": "paragraph"
               },
               {
                 "align": "left",
+                "bold": false,
                 "color": "",
-                "fontFamily": "",
+                "fontFamily": "Arial",
                 "fontPx": "",
                 "fontSize": "normal",
+                "html": "<span style=\"font-weight: 700; display: inline;\">Digital Multimeters</span> - voltage, continuity, and component measurements",
+                "italic": false,
                 "text": "Digital Multimeters - voltage, continuity, and component measurements",
+                "underline": false,
                 "type": "paragraph"
               },
               {
                 "align": "left",
+                "bold": false,
                 "color": "",
-                "fontFamily": "",
+                "fontFamily": "Arial",
                 "fontPx": "",
                 "fontSize": "normal",
+                "html": "<span style=\"font-weight: 700; display: inline;\">Soldering lab and supplies</span> - Soldering components",
+                "italic": false,
                 "text": "Soldering lab and supplies - Soldering components",
+                "underline": false,
                 "type": "paragraph"
               }
             ]
           }
-        },
-        {
-          "id": "printed-circuit-board",
-          "title": "Printed Circuit Board",
-          "description": "",
-          "items": [
-            {
-              "title": "VOLTAGE_CONTROLLED_OSCILLATOR.zip",
-              "description": "",
-              "type": "application/x-zip-compressed",
-              "url": "docs/pwm-generating-voltage-controlled-oscillator/printed-circuit-board/voltage_controlled_oscillator.zip",
-              "status": "uploaded"
-            },
-            {
-              "title": "VCO_Gerber.zip",
-              "description": "Gerber files",
-              "type": "application/x-zip-compressed",
-              "url": "docs/pwm-generating-voltage-controlled-oscillator/printed-circuit-board/vco_gerber.zip",
-              "status": "uploaded"
-            }
-          ]
         }
       ],
       "design": {
@@ -542,7 +522,7 @@
         }
       },
       "portfolioView": {
-        "builtAt": "2026-07-13T16:00:37.191Z",
+        "builtAt": "2026-07-14T13:19:31.350Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -574,9 +554,9 @@
           },
           "cardLayout": "single",
           "contentMax": "980px",
-          "density": "balanced",
+          "density": "simple",
           "mediaMax": "720px",
-          "sectionCardMin": "240px",
+          "sectionCardMin": "280px",
           "touchTarget": "44px",
           "windowMode": "full-screen"
         },
@@ -680,66 +660,6 @@
             "title": "Overview"
           },
           {
-            "description": "",
-            "id": "simulation",
-            "items": [
-              {
-                "children": [],
-                "description": "",
-                "kind": "subsection",
-                "meta": "Subsection",
-                "title": "Simulation Overview",
-                "url": "",
-                "rich": {
-                  "blocks": [
-                    {
-                      "align": "left",
-                      "color": "",
-                      "fontFamily": "",
-                      "fontPx": "",
-                      "fontSize": "normal",
-                      "text": "The simulations used are given at",
-                      "type": "paragraph"
-                    }
-                  ]
-                }
-              },
-              {
-                "children": [
-                  {
-                    "children": [],
-                    "description": "",
-                    "kind": "simulation-file",
-                    "meta": "text/plain",
-                    "title": "VCO_MauriceO.txt",
-                    "url": "docs/pwm-generating-voltage-controlled-oscillator/simulations/vco_mauriceo.txt"
-                  }
-                ],
-                "description": "",
-                "kind": "subsection",
-                "meta": "Subsection",
-                "title": "Simulation Files",
-                "url": ""
-              }
-            ],
-            "title": "Simulation"
-          },
-          {
-            "description": "",
-            "id": "custom:tests",
-            "items": [
-              {
-                "children": [],
-                "description": "",
-                "kind": "file",
-                "meta": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-                "title": "final_build and characterization.xlsx",
-                "url": "docs/pwm-generating-voltage-controlled-oscillator/tests/final_build-and-characterization.xlsx"
-              }
-            ],
-            "title": "Bench Tests and Validation"
-          },
-          {
             "description": "Kicad -  Schematic Capture and PCB design\n\nLTSPICE - circuit simulation\n\nBench Supplies - for power Supply\n\nOscilloscope - Frequency measurements during validation\n\nDigital Multimeters - voltage, continuity, and component measurements\n\nSoldering lab and supplies - Soldering components",
             "id": "custom:tools-used",
             "items": [],
@@ -748,93 +668,373 @@
               "blocks": [
                 {
                   "align": "left",
+                  "bold": false,
                   "color": "",
-                  "fontFamily": "",
+                  "fontFamily": "Arial",
                   "fontPx": "",
                   "fontSize": "normal",
+                  "html": "<span style=\"font-weight: 700; display: inline;\"><span style=\"font-weight: 400; display: inline;\"><span style=\"font-weight: 700; display: inline;\">Kicad</span></span></span> -  Schematic Capture and PCB design",
+                  "italic": false,
                   "text": "Kicad -  Schematic Capture and PCB design",
+                  "underline": false,
                   "type": "paragraph"
                 },
                 {
                   "align": "left",
+                  "bold": false,
                   "color": "",
-                  "fontFamily": "",
+                  "fontFamily": "Arial",
                   "fontPx": "",
                   "fontSize": "normal",
+                  "html": "<span style=\"font-weight: 700; display: inline;\"><span style=\"font-weight: 400; display: inline;\"><span style=\"font-weight: 700; display: inline;\">LTSPICE</span></span></span> - circuit simulation",
+                  "italic": false,
                   "text": "LTSPICE - circuit simulation",
+                  "underline": false,
                   "type": "paragraph"
                 },
                 {
                   "align": "left",
+                  "bold": false,
                   "color": "",
-                  "fontFamily": "",
+                  "fontFamily": "Arial",
                   "fontPx": "",
                   "fontSize": "normal",
+                  "html": "<span style=\"font-weight: 700; display: inline;\">Bench Supplies </span>- for power Supply",
+                  "italic": false,
                   "text": "Bench Supplies - for power Supply",
+                  "underline": false,
                   "type": "paragraph"
                 },
                 {
                   "align": "left",
+                  "bold": false,
                   "color": "",
-                  "fontFamily": "",
+                  "fontFamily": "Arial",
                   "fontPx": "",
                   "fontSize": "normal",
+                  "html": "<span style=\"font-weight: 700; display: inline;\">Oscilloscope</span> - Frequency measurements during validation",
+                  "italic": false,
                   "text": "Oscilloscope - Frequency measurements during validation",
+                  "underline": false,
                   "type": "paragraph"
                 },
                 {
                   "align": "left",
+                  "bold": false,
                   "color": "",
-                  "fontFamily": "",
+                  "fontFamily": "Arial",
                   "fontPx": "",
                   "fontSize": "normal",
+                  "html": "<span style=\"font-weight: 700; display: inline;\">Digital Multimeters</span> - voltage, continuity, and component measurements",
+                  "italic": false,
                   "text": "Digital Multimeters - voltage, continuity, and component measurements",
+                  "underline": false,
                   "type": "paragraph"
                 },
                 {
                   "align": "left",
+                  "bold": false,
                   "color": "",
-                  "fontFamily": "",
+                  "fontFamily": "Arial",
                   "fontPx": "",
                   "fontSize": "normal",
+                  "html": "<span style=\"font-weight: 700; display: inline;\">Soldering lab and supplies</span> - Soldering components",
+                  "italic": false,
                   "text": "Soldering lab and supplies - Soldering components",
+                  "underline": false,
                   "type": "paragraph"
                 }
               ]
             }
-          },
-          {
-            "description": "",
-            "id": "custom:printed-circuit-board",
-            "items": [
-              {
-                "children": [],
-                "description": "",
-                "kind": "file",
-                "meta": "application/x-zip-compressed",
-                "title": "VOLTAGE_CONTROLLED_OSCILLATOR.zip",
-                "url": "docs/pwm-generating-voltage-controlled-oscillator/printed-circuit-board/voltage_controlled_oscillator.zip"
-              },
-              {
-                "children": [],
-                "description": "Gerber files",
-                "kind": "file",
-                "meta": "application/x-zip-compressed",
-                "title": "VCO_Gerber.zip",
-                "url": "docs/pwm-generating-voltage-controlled-oscillator/printed-circuit-board/vco_gerber.zip"
-              }
-            ],
-            "title": "Printed Circuit Board"
           }
         ]
       },
       "compileCode": {
-        "files": [],
-        "activeFileId": "",
-        "terminal": "",
+        "files": [
+          {
+            "id": "main-js-1783994121324-53fdb41af4f71",
+            "title": "main.java",
+            "fileName": "main.java",
+            "relativePath": "main.java",
+            "language": "java",
+            "role": "source",
+            "code": "public class main{\n   public static void main(String[]args){\n System.out.println(\"My name\");\n}\n}",
+            "stdin": "",
+            "savedPath": "",
+            "savedAt": "",
+            "waveform": null,
+            "lastResult": null,
+            "dirty": true
+          },
+          {
+            "id": "main-js-1784002870649-ae1003e8e434",
+            "title": "main.js",
+            "fileName": "main.js",
+            "relativePath": "main.js",
+            "language": "javascript",
+            "role": "source",
+            "code": "",
+            "stdin": "",
+            "savedPath": "",
+            "savedAt": "",
+            "waveform": null,
+            "lastResult": null,
+            "dirty": true
+          },
+          {
+            "id": "tb-design-sv-1784003265142-6e02840a699c6",
+            "title": "tb_design.sv",
+            "fileName": "tb_design.sv",
+            "relativePath": "tb_design.sv",
+            "language": "systemverilog",
+            "role": "testbench",
+            "code": "`timescale 1ns/1ps\n\nmodule tb_design;\n  // Declare testbench signals here.\n  // Example: reg clk = 0; reg reset_n = 0; wire done;\n\n  // Instantiate the design under test and connect the signals.\n  // Example: design dut (.clk(clk), .reset_n(reset_n), .done(done));\n\n  initial begin\n    $dumpfile(\"waveform.vcd\");\n    $dumpvars(0, tb_design);\n\n    // Drive stimulus over time here.\n    #100;\n    $finish;\n  end\nendmodule",
+            "stdin": "",
+            "savedPath": "",
+            "savedAt": "",
+            "waveform": null,
+            "lastResult": null,
+            "dirty": true
+          },
+          {
+            "id": "main-js-1784006749738-8412a382fbabb8",
+            "title": "main.py",
+            "fileName": "main.py",
+            "relativePath": "main.py",
+            "language": "python",
+            "role": "source",
+            "code": "print(\"Maurice\")",
+            "stdin": "",
+            "savedPath": "",
+            "savedAt": "",
+            "waveform": null,
+            "lastResult": null,
+            "dirty": true
+          }
+        ],
+        "activeFileId": "main-js-1783994121324-53fdb41af4f71",
+        "terminal": "Build project request for main.java\n\nJava workspace sources: main.java\n\n$ javac.exe workspace sources\nExit code 0 in 0.77s\nCompleted without diagnostic output.\n\nBuild project completed. Use Run to execute main.",
         "appendTargetId": "project-overview",
-        "messages": []
-      }
+        "messages": [
+          {
+            "id": "message-1784007010903-e893cbeeee63b",
+            "at": "2026-07-14T05:30:10.903Z",
+            "level": "info",
+            "text": "Displayed terminal output for main.java."
+          },
+          {
+            "id": "message-1784007007888-ba375234df5888",
+            "at": "2026-07-14T05:30:07.888Z",
+            "level": "info",
+            "text": "Displayed terminal output for main.java."
+          },
+          {
+            "id": "message-1784006998234-a5d3a7df2bf43",
+            "at": "2026-07-14T05:29:58.234Z",
+            "level": "success",
+            "text": "Build project succeeded for main.java."
+          },
+          {
+            "id": "message-1784006997438-058b09a9aefc88",
+            "at": "2026-07-14T05:29:57.438Z",
+            "level": "info",
+            "text": "Saved main.java."
+          },
+          {
+            "id": "message-1784006997403-4fcd714df1a9d8",
+            "at": "2026-07-14T05:29:57.403Z",
+            "level": "info",
+            "text": "Build project started for main.java."
+          },
+          {
+            "id": "message-1784006990398-9e916e1fadfec8",
+            "at": "2026-07-14T05:29:50.398Z",
+            "level": "success",
+            "text": "Run succeeded for main.java."
+          },
+          {
+            "id": "message-1784006990175-77a4bf01c0dd18",
+            "at": "2026-07-14T05:29:50.175Z",
+            "level": "info",
+            "text": "Saved main.java."
+          },
+          {
+            "id": "message-1784006990138-e6e366c41db1e8",
+            "at": "2026-07-14T05:29:50.138Z",
+            "level": "info",
+            "text": "Run started for main.java."
+          },
+          {
+            "id": "message-1784006982839-11a7ccd1a9f27",
+            "at": "2026-07-14T05:29:42.839Z",
+            "level": "success",
+            "text": "Compile succeeded for main.java."
+          },
+          {
+            "id": "message-1784006982817-954a3093f0a8d8",
+            "at": "2026-07-14T05:29:42.817Z",
+            "level": "info",
+            "text": "Saved main.java."
+          },
+          {
+            "id": "message-1784006982787-ec3939e4532338",
+            "at": "2026-07-14T05:29:42.787Z",
+            "level": "info",
+            "text": "Compile started for main.java."
+          },
+          {
+            "id": "message-1784006971644-308b337a76bb9",
+            "at": "2026-07-14T05:29:31.644Z",
+            "level": "success",
+            "text": "Run succeeded for main.py."
+          },
+          {
+            "id": "message-1784006971403-2e9b9407fae888",
+            "at": "2026-07-14T05:29:31.403Z",
+            "level": "info",
+            "text": "Saved main.py."
+          },
+          {
+            "id": "message-1784006971377-a32bbc66bd6f7",
+            "at": "2026-07-14T05:29:31.377Z",
+            "level": "info",
+            "text": "Run started for main.py."
+          },
+          {
+            "id": "message-1784006964675-8e4d4abe124968",
+            "at": "2026-07-14T05:29:24.675Z",
+            "level": "success",
+            "text": "Compile succeeded for main.py."
+          },
+          {
+            "id": "message-1784006964501-1e380978879b7",
+            "at": "2026-07-14T05:29:24.501Z",
+            "level": "info",
+            "text": "Saved main.py."
+          },
+          {
+            "id": "message-1784006964474-cf7c0fd750557",
+            "at": "2026-07-14T05:29:24.474Z",
+            "level": "info",
+            "text": "Compile started for main.py."
+          },
+          {
+            "id": "message-1784006896626-6d079a1bb1ac98",
+            "at": "2026-07-14T05:28:16.626Z",
+            "level": "info",
+            "text": "Terminal output cleared."
+          },
+          {
+            "id": "message-1784006867466-49d3ad0737a98",
+            "at": "2026-07-14T05:27:47.466Z",
+            "level": "success",
+            "text": "Compile succeeded for main.py."
+          },
+          {
+            "id": "message-1784006867268-290cd12c464508",
+            "at": "2026-07-14T05:27:47.268Z",
+            "level": "info",
+            "text": "Saved main.py."
+          },
+          {
+            "id": "message-1784006867242-e344cdc4babb8",
+            "at": "2026-07-14T05:27:47.242Z",
+            "level": "info",
+            "text": "Compile started for main.py."
+          },
+          {
+            "id": "message-1784006854578-5c6b61c35f9998",
+            "at": "2026-07-14T05:27:34.578Z",
+            "level": "error",
+            "text": "Build project completed with errors for main.py."
+          },
+          {
+            "id": "message-1784006854085-5d72f15c4a7808",
+            "at": "2026-07-14T05:27:34.085Z",
+            "level": "info",
+            "text": "Saved main.py."
+          },
+          {
+            "id": "message-1784006854057-e0b602a50fdbe",
+            "at": "2026-07-14T05:27:34.057Z",
+            "level": "info",
+            "text": "Build project started for main.py."
+          },
+          {
+            "id": "message-1784006798123-13e1b66c460e",
+            "at": "2026-07-14T05:26:38.123Z",
+            "level": "success",
+            "text": "Terminal command finished: python3"
+          },
+          {
+            "id": "message-1784006797105-a1d00024f1922",
+            "at": "2026-07-14T05:26:37.105Z",
+            "level": "info",
+            "text": "Terminal command started: python3"
+          },
+          {
+            "id": "message-1784006535224-37ba3342230ba",
+            "at": "2026-07-14T05:22:15.224Z",
+            "level": "success",
+            "text": "Compile succeeded for main.java."
+          },
+          {
+            "id": "message-1784006535180-72d567a5990238",
+            "at": "2026-07-14T05:22:15.180Z",
+            "level": "info",
+            "text": "Saved main.java."
+          },
+          {
+            "id": "message-1784006535144-e47e9a7ef2997",
+            "at": "2026-07-14T05:22:15.144Z",
+            "level": "info",
+            "text": "Compile started for main.java."
+          },
+          {
+            "id": "message-1784005956450-2b3226a2f2b5c",
+            "at": "2026-07-14T05:12:36.450Z",
+            "level": "error",
+            "text": "Simulate completed with errors for tb_design.sv."
+          },
+          {
+            "id": "message-1784005954996-1c19b27251e1a",
+            "at": "2026-07-14T05:12:34.996Z",
+            "level": "info",
+            "text": "Saved tb_design.sv."
+          },
+          {
+            "id": "message-1784005954959-6652f311811848",
+            "at": "2026-07-14T05:12:34.959Z",
+            "level": "info",
+            "text": "Simulate started for tb_design.sv."
+          },
+          {
+            "id": "message-1784003265142-aef537704f8ab8",
+            "at": "2026-07-14T04:27:45.142Z",
+            "level": "info",
+            "text": "Created an HDL testbench with $dumpfile and $dumpvars for the signal scope."
+          }
+        ],
+        "directories": [],
+        "systemTerminal": {
+          "cwd": "",
+          "command": "python3",
+          "output": "",
+          "rootPath": "",
+          "cwdAbsolute": "",
+          "promptPath": "",
+          "history": []
+        },
+        "activePanel": "console",
+        "waveform": null,
+        "appendPanelOpen": false,
+        "outputDockUnlocked": false,
+        "outputDockPosition": {
+          "x": 566.7644577026367,
+          "y": 108.13241577148438
+        }
+      },
+      "sectionModelVersion": 3
     },
     {
       "id": "phase-locked-loop-status-ongoing",
@@ -878,7 +1078,7 @@
         }
       },
       "portfolioView": {
-        "builtAt": "2026-07-13T16:00:37.191Z",
+        "builtAt": "2026-07-14T13:19:31.350Z",
         "template": {
           "group": "Appearance",
           "id": "",
@@ -908,8 +1108,26 @@
         "activeFileId": "",
         "terminal": "",
         "appendTargetId": "project-overview",
-        "messages": []
-      }
+        "messages": [],
+        "directories": [],
+        "systemTerminal": {
+          "cwd": "",
+          "command": "",
+          "output": "",
+          "rootPath": "",
+          "cwdAbsolute": "",
+          "promptPath": "",
+          "history": []
+        },
+        "activePanel": "console",
+        "appendPanelOpen": false,
+        "outputDockUnlocked": false,
+        "outputDockPosition": {
+          "x": 72,
+          "y": 120
+        }
+      },
+      "sectionModelVersion": 3
     },
     {
       "id": "smart-technology-rollator-for-independence-detection-and-empowerment-stride",
@@ -1058,7 +1276,8 @@
                 ]
               },
               "type": "Text",
-              "status": "draft"
+              "status": "draft",
+              "children": []
             }
           ],
           "richDescription": {
@@ -1077,7 +1296,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-07-13T16:00:37.192Z",
+        "builtAt": "2026-07-14T13:19:31.350Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -1215,21 +1434,6 @@
             "title": "Overview"
           },
           {
-            "description": "",
-            "id": "design",
-            "items": [
-              {
-                "children": [],
-                "description": "",
-                "kind": "document",
-                "meta": "Document",
-                "title": "STRIDE.pdf",
-                "url": "docs/smart-technology-rollator-for-independence-detection-and-empowerment-stride/documents/stride.pdf"
-              }
-            ],
-            "title": "Design"
-          },
-          {
             "description": "The software driving the STRIDE system at the MCU and MPU level is still under a lot of development. ,The project started as a custom bare-metal C/C++ software environment but was migrated to a FreeRTOS model.",
             "id": "custom:system-software",
             "items": [
@@ -1237,7 +1441,7 @@
                 "children": [],
                 "description": "https://github.com/otienomaurice/STRIDE.git",
                 "kind": "subsection",
-                "meta": "Subsection",
+                "meta": "Text",
                 "title": "Repository",
                 "url": "",
                 "rich": {
@@ -1277,8 +1481,26 @@
         "activeFileId": "",
         "terminal": "",
         "appendTargetId": "project-overview",
-        "messages": []
-      }
+        "messages": [],
+        "directories": [],
+        "systemTerminal": {
+          "cwd": "",
+          "command": "",
+          "output": "",
+          "rootPath": "",
+          "cwdAbsolute": "",
+          "promptPath": "",
+          "history": []
+        },
+        "activePanel": "console",
+        "appendPanelOpen": false,
+        "outputDockUnlocked": false,
+        "outputDockPosition": {
+          "x": 72,
+          "y": 120
+        }
+      },
+      "sectionModelVersion": 3
     },
     {
       "id": "stride-battery-status-monitor",
@@ -1374,7 +1596,8 @@
               "description": "",
               "type": "application/x-zip-compressed",
               "url": "docs/stride-battery-status-monitor/battery-status-monitor-pcb/battery_monitor_gerber_files_version2.zip",
-              "status": "uploaded"
+              "status": "uploaded",
+              "children": []
             }
           ]
         },
@@ -1388,7 +1611,8 @@
               "description": "",
               "type": "application/pdf",
               "url": "docs/stride-battery-status-monitor/user-manual/stride-battery-status-monitor-board-user-manual.pdf",
-              "status": "uploaded"
+              "status": "uploaded",
+              "children": []
             }
           ]
         },
@@ -1398,26 +1622,18 @@
           "description": "",
           "items": [
             {
-              "title": "Test Plans",
-              "description": "",
-              "richDescription": {
-                "blocks": []
-              },
-              "type": "Text",
-              "status": "draft"
-            },
-            {
               "title": "STRIDE_Battery_Status_Monitoring_Board_Test_Plan.docx (1).pdf",
               "description": "",
               "type": "application/pdf",
               "url": "docs/stride-battery-status-monitor/tests/stride_battery_status_monitoring_board_test_plan.docx-1.pdf",
-              "status": "uploaded"
+              "status": "uploaded",
+              "children": []
             }
           ]
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-07-13T16:00:37.193Z",
+        "builtAt": "2026-07-14T13:19:31.351Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-steel-teal-click",
@@ -1572,8 +1788,26 @@
         "activeFileId": "",
         "terminal": "",
         "appendTargetId": "project-overview",
-        "messages": []
-      }
+        "messages": [],
+        "directories": [],
+        "systemTerminal": {
+          "cwd": "",
+          "command": "",
+          "output": "",
+          "rootPath": "",
+          "cwdAbsolute": "",
+          "promptPath": "",
+          "history": []
+        },
+        "activePanel": "console",
+        "appendPanelOpen": false,
+        "outputDockUnlocked": false,
+        "outputDockPosition": {
+          "x": 72,
+          "y": 120
+        }
+      },
+      "sectionModelVersion": 3
     },
     {
       "id": "stride-the-motor-control-system",
@@ -1696,13 +1930,14 @@
                 ]
               },
               "type": "Text",
-              "status": "draft"
+              "status": "draft",
+              "children": []
             }
           ]
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-07-13T16:00:37.193Z",
+        "builtAt": "2026-07-14T13:19:31.351Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-graphite-white-click",
@@ -1826,7 +2061,7 @@
                 "children": [],
                 "description": "fwtwyhgha",
                 "kind": "subsection",
-                "meta": "Subsection",
+                "meta": "Text",
                 "title": "C++",
                 "url": "",
                 "rich": {
@@ -1855,8 +2090,26 @@
         "activeFileId": "",
         "terminal": "",
         "appendTargetId": "project-overview",
-        "messages": []
-      }
+        "messages": [],
+        "directories": [],
+        "systemTerminal": {
+          "cwd": "",
+          "command": "",
+          "output": "",
+          "rootPath": "",
+          "cwdAbsolute": "",
+          "promptPath": "",
+          "history": []
+        },
+        "activePanel": "console",
+        "appendPanelOpen": false,
+        "outputDockUnlocked": false,
+        "outputDockPosition": {
+          "x": 72,
+          "y": 120
+        }
+      },
+      "sectionModelVersion": 3
     },
     {
       "id": "fpga-based-led-matrix-panel-controller-for-ultra-fast-display",
@@ -1898,7 +2151,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-07-13T16:00:37.193Z",
+        "builtAt": "2026-07-14T13:19:31.351Z",
         "template": {
           "group": "Appearance",
           "id": "",
@@ -1940,12 +2193,280 @@
         ]
       },
       "compileCode": {
-        "files": [],
-        "activeFileId": "",
-        "terminal": "",
+        "files": [
+          {
+            "id": "main-js-1784007296930-a9d61979d9727",
+            "title": "jk_flip_flop.v",
+            "fileName": "jk_flip_flop.v",
+            "relativePath": "jk_flip_flop.v",
+            "language": "verilog",
+            "role": "design",
+            "code": "module jk_flip_flop (\n    input  wire clk,\n    input  wire rst_n, // Asynchronous active-low reset\n    input  wire j,\n    input  wire k,\n    output reg  q,\n    output wire q_bar\n);\n\n    // Complementary output logic\n    assign q_bar = ~q;\n\n    // Sequential logic block (Using standard always for Icarus)\n    always @(posedge clk or negedge rst_n) begin\n        if (!rst_n) begin\n            q <= 1'b0;\n        end else begin\n            case ({j, k})\n                2'b00 : q <= q;    // Hold state\n                2'b01 : q <= 1'b0; // Reset state\n                2'b10 : q <= 1'b1; // Set state\n                2'b11 : q <= ~q;   // Toggle state\n            endcase\n        end\n    end\n\nendmodule\n",
+            "stdin": "",
+            "savedPath": "",
+            "savedAt": "",
+            "waveform": null,
+            "lastResult": null,
+            "dirty": true
+          },
+          {
+            "id": "main-js-1784007444268-6b8693335d83d8",
+            "title": "jk_ff_wave.v",
+            "fileName": "jk_ff_wave.v",
+            "relativePath": "jk_ff_wave.v",
+            "language": "verilog",
+            "role": "testbench",
+            "code": "`timescale 1ns/1ps\n\nmodule tb_jk_flip_flop;\n\n    // Signal declarations\n    reg  clk;\n    reg  rst_n;\n    reg  j;\n    reg  k;\n    wire q;\n    wire q_bar;\n\n    // Instantiate the Device Under Test (DUT)\n    jk_flip_flop dut (\n        .clk   (clk),\n        .rst_n (rst_n),\n        .j     (j),\n        .k     (k),\n        .q     (q),\n        .q_bar (q_bar)\n    );\n\n    // Clock generator (50MHz / 20ns period)\n    always begin\n        clk = 1'b0;\n        #10;\n        clk = 1'b1;\n        #10;\n    end\n\n    // Stimulus process\n    initial begin\n        // Required for Icarus Verilog to generate waveform files\n        $dumpfile(\"jk_ff_wave.vcd\");\n        $dumpvars(0, tb_jk_flip_flop);\n\n        // Initialize inputs\n        j = 1'b0;\n        k = 1'b0;\n        rst_n = 1'b0; // Apply reset\n        #25;          // Wait for a non-edge time\n\n        rst_n = 1'b1; // Release reset\n        #5;\n\n        // Test Case 1: Hold State (J=0, K=0)\n        j = 1'b0; k = 1'b0; #20;\n\n        // Test Case 2: Set State (J=1, K=0)\n        j = 1'b1; k = 1'b0; #20;\n\n        // Test Case 3: Hold State (J=0, K=0)\n        j = 1'b0; k = 1'b0; #20;\n\n        // Test Case 4: Reset State (J=0, K=1)\n        j = 1'b0; k = 1'b1; #20;\n\n        // Test Case 5: Toggle State (J=1, K=1)\n        j = 1'b1; k = 1'b1; #20;\n\n        // Test Case 6: Toggle State continuous (J=1, K=1)\n        #20;\n\n        // Test Case 7: Asynchronous Reset during operation\n        #5;\n        rst_n = 1'b0; \n        #15;\n        \n        // Finish simulation\n        $display(\"Simulation completed successfully.\");\n        $finish;\n    end\n\n    // Monitor changes in the console terminal\n    initial begin\n        $monitor(\"Time=%0d ns | Reset=%b | J=%b K=%b | Q=%b Q_bar=%b\", \n                 $time, rst_n, j, k, q, q_bar);\n    end\n\nendmodule\n",
+            "stdin": "",
+            "savedPath": "",
+            "savedAt": "",
+            "waveform": null,
+            "lastResult": null,
+            "dirty": true
+          }
+        ],
+        "activeFileId": "main-js-1784007444268-6b8693335d83d8",
+        "terminal": "Simulate request for jk_ff_wave.v\n\nVerilog simulation set: 1 design file, 1 testbench file\n\nTestbench top: tb_jk_flip_flop\n\nVerilog simulation cache hit: using existing artifact\nC:\\Users\\otien\\AppData\\Local\\OMB Portfolio Builder\\compile-code\\fpga-based-led-matrix-panel-controller-for-ultra-fast-display\\.build-cache\\verilog\\fe2100088397892cf21789a0\\simulation.vvp\n\nGenerated simulation: C:\\Users\\otien\\AppData\\Local\\OMB Portfolio Builder\\compile-code\\fpga-based-led-matrix-panel-controller-for-ultra-fast-display\\.build-cache\\verilog\\fe2100088397892cf21789a0\\simulation.vvp\n\n$ vvp.exe simulation.vvp\nSimulation exit code 0 in 0.34s\nVCD info: dumpfile jk_ff_wave.vcd opened for output.\nTime=0 ns | Reset=0 | J=0 K=0 | Q=0 Q_bar=1\nTime=25 ns | Reset=1 | J=0 K=0 | Q=0 Q_bar=1\nTime=50 ns | Reset=1 | J=1 K=0 | Q=1 Q_bar=0\nTime=70 ns | Reset=1 | J=0 K=0 | Q=1 Q_bar=0\nTime=90 ns | Reset=1 | J=0 K=1 | Q=0 Q_bar=1\nTime=110 ns | Reset=1 | J=1 K=1 | Q=1 Q_bar=0\nTime=130 ns | Reset=1 | J=1 K=1 | Q=0 Q_bar=1\nTime=150 ns | Reset=1 | J=1 K=1 | Q=1 Q_bar=0\nTime=155 ns | Reset=0 | J=1 K=1 | Q=0 Q_bar=1\nSimulation completed successfully.\n$finish called at 170000 (1ps)\n\nScope waveform: jk_ff_wave.vcd (6 signals, 0 to 170000 1ps)",
         "appendTargetId": "project-overview",
-        "messages": []
-      }
+        "messages": [],
+        "directories": [],
+        "systemTerminal": {
+          "cwd": "",
+          "command": "",
+          "output": "",
+          "rootPath": "",
+          "cwdAbsolute": "",
+          "promptPath": "",
+          "history": []
+        },
+        "activePanel": "console",
+        "appendPanelOpen": false,
+        "outputDockUnlocked": false,
+        "outputDockPosition": {
+          "x": 679.96044921875,
+          "y": 40.5799674987793
+        },
+        "waveform": {
+          "source": "jk_ff_wave.vcd",
+          "timeScale": "1ps",
+          "maxTime": 170000,
+          "signals": [
+            {
+              "code": "!",
+              "name": "tb_jk_flip_flop.q_bar",
+              "reference": "q_bar",
+              "width": 1,
+              "changes": [
+                {
+                  "time": 0,
+                  "value": "1"
+                },
+                {
+                  "time": 50000,
+                  "value": "0"
+                },
+                {
+                  "time": 90000,
+                  "value": "1"
+                },
+                {
+                  "time": 110000,
+                  "value": "0"
+                },
+                {
+                  "time": 130000,
+                  "value": "1"
+                },
+                {
+                  "time": 150000,
+                  "value": "0"
+                },
+                {
+                  "time": 155000,
+                  "value": "1"
+                }
+              ]
+            },
+            {
+              "code": "\"",
+              "name": "tb_jk_flip_flop.q",
+              "reference": "q",
+              "width": 1,
+              "changes": [
+                {
+                  "time": 0,
+                  "value": "0"
+                },
+                {
+                  "time": 50000,
+                  "value": "1"
+                },
+                {
+                  "time": 90000,
+                  "value": "0"
+                },
+                {
+                  "time": 110000,
+                  "value": "1"
+                },
+                {
+                  "time": 130000,
+                  "value": "0"
+                },
+                {
+                  "time": 150000,
+                  "value": "1"
+                },
+                {
+                  "time": 155000,
+                  "value": "0"
+                }
+              ]
+            },
+            {
+              "code": "#",
+              "name": "tb_jk_flip_flop.clk",
+              "reference": "clk",
+              "width": 1,
+              "changes": [
+                {
+                  "time": 0,
+                  "value": "0"
+                },
+                {
+                  "time": 10000,
+                  "value": "1"
+                },
+                {
+                  "time": 20000,
+                  "value": "0"
+                },
+                {
+                  "time": 30000,
+                  "value": "1"
+                },
+                {
+                  "time": 40000,
+                  "value": "0"
+                },
+                {
+                  "time": 50000,
+                  "value": "1"
+                },
+                {
+                  "time": 60000,
+                  "value": "0"
+                },
+                {
+                  "time": 70000,
+                  "value": "1"
+                },
+                {
+                  "time": 80000,
+                  "value": "0"
+                },
+                {
+                  "time": 90000,
+                  "value": "1"
+                },
+                {
+                  "time": 100000,
+                  "value": "0"
+                },
+                {
+                  "time": 110000,
+                  "value": "1"
+                },
+                {
+                  "time": 120000,
+                  "value": "0"
+                },
+                {
+                  "time": 130000,
+                  "value": "1"
+                },
+                {
+                  "time": 140000,
+                  "value": "0"
+                },
+                {
+                  "time": 150000,
+                  "value": "1"
+                },
+                {
+                  "time": 160000,
+                  "value": "0"
+                },
+                {
+                  "time": 170000,
+                  "value": "1"
+                }
+              ]
+            },
+            {
+              "code": "$",
+              "name": "tb_jk_flip_flop.j",
+              "reference": "j",
+              "width": 1,
+              "changes": [
+                {
+                  "time": 0,
+                  "value": "0"
+                },
+                {
+                  "time": 50000,
+                  "value": "1"
+                },
+                {
+                  "time": 70000,
+                  "value": "0"
+                },
+                {
+                  "time": 110000,
+                  "value": "1"
+                }
+              ]
+            },
+            {
+              "code": "%",
+              "name": "tb_jk_flip_flop.k",
+              "reference": "k",
+              "width": 1,
+              "changes": [
+                {
+                  "time": 0,
+                  "value": "0"
+                },
+                {
+                  "time": 90000,
+                  "value": "1"
+                }
+              ]
+            },
+            {
+              "code": "&",
+              "name": "tb_jk_flip_flop.rst_n",
+              "reference": "rst_n",
+              "width": 1,
+              "changes": [
+                {
+                  "time": 0,
+                  "value": "0"
+                },
+                {
+                  "time": 25000,
+                  "value": "1"
+                },
+                {
+                  "time": 155000,
+                  "value": "0"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "sectionModelVersion": 3
     },
     {
       "id": "fpga-base-health-monitor-pulse-sensor-and-reaction-timer-controllers",
@@ -1976,23 +2497,23 @@
       "summaryRich": {
         "blocks": [
           {
-            "align": "center",
+            "code": "//-----------------------------------------------------------------------------\n// Module Name : lab10_top\n// Project : ECE 211 Digital Circuits 1\n//-----------------------------------------------------------------------------\n// Author : Otieno Maurice <otienom@lafayette.edu>\n// John Nestor <nestorj@lafayette.edu>\n// Created : April 2023\n//-----------------------------------------------------------------------------\n// Description : Top-level module for Lab 10 - Health Monitor\n/*Inputs:\n• analog_pos_in - brings in positive analog signal from the pulse sensor\n• analog_neg_in - brings in negative analog signal from the pulse sensor\n• enter - signal to stop time count and display the value on the seven-segment display\n• start - signal to start the reaction timer\n• reset - resets the entire system\n• clock - clock signal at which the sensor operates. Must be divided for other components\nto 1kHz\noutputs:\n• led -display digitized pulse sensor value\n• pulse - display pulse as red LED\n• a_n- turn on the seven-segment display digits,\n• segs_n - display value of data received\n• dot - display decimal point,\n• led_r,led_g,led_b, - display the colors on the reaction timer LED\n*/\n//-----------------------------------------------------------------------------\nmodule lab10_top(\n  input logic clock, switch, // CLOCK 100 MHz\n  input logic reset,enter, start,\n  output logic led_r,led_g,led_b,\n  input analog_pos_in, // pulse sensor positive input\n  input analog_neg_in, // pulse sensor negative input\n  output logic [15:0] led, // display digitized pulse sensor value\n  output logic dot, pulse_led, // display pulse as red LED\n  output logic [7:0] a_n,\n  output logic [6:0] segs_n\n);\nlogic enable, pulse_in;\nlogic [3:0] d3p, d2p, d1p, d0p;\nlogic [3:0] d3r,d2r, d1r, d0r;\nlogic [3:0] d0, d1, d2, d3;\nlogic [15:0] reaction_value, pulse_value;\nlogic sclk, rs_en; // DIVIDED CLOCK 1KHz\nlogic rst,led_r1,led_g1,led_b1,din;\n\npulse_monitor PULSE_MONITOR(.clk(sclk), .pulse_in(d_pulse), .d0p, .d1p,.d2p,.d3p, .rst );\n\nsingle_pulser PULSE(.d_pulse,.clk(sclk),.din(pulse_in));\n\nreaction_timer REACTION_TIMER(.clk(sclk),.start, .enter,.rst,.d0r,.d1r,.d2r,.d3r,.led_r(led_r1),.led_b(led_b1),.led_g(led_g1),.rs_en);\n\nclkdiv CLKDIV( .clk(clock),.sclk(sclk),.reset(1'b0));\n\nsevenseg_control SEVENSEG_CONTROL(.clk(sclk),.rst, .d0(d0), .d1(d1), .d2(d2),.d3(d3), .y_n(a_n),.segs_n,.dot, .en(enable));\n\npulse_sensor PULSE_SENSOR(.clk(clock), .rst, .analog_pos_in, .analog_neg_in, .led, .pulse(pulse_in));\n\n// add clock divider and other modules here\n\nassign rst = reset;\nassign reaction_value = {d3r ,d2r ,d1r ,d0r};\nassign pulse_value = {d3p, d2p, d1p, d0p};\nassign pulse_led = pulse_in;\n\n//Code\nalways_comb\nif (switch)\nbegin\nled_r = led_r1;\nled_g = led_g1;\nled_b = led_b1;\nenable = rs_en;\nd0 = reaction_value [3:0] ;\nd1 = reaction_value [7:4] ;\nd2 = reaction_value [11:8] ;\nd3 = reaction_value [15:12] ;\nend\n\nelse\nbegin\nenable = 1; led_r =0; led_g = 0; led_b =0;\nd0 = pulse_value [3:0] ;\nd1 = pulse_value [7:4] ;\nd2 = pulse_value [11:8] ;\nd3 = pulse_value [15:12] ;\nend\nendmodule:lab10_top",
+            "language": "systemverilog",
+            "pasteMode": "source",
+            "type": "code"
+          },
+          {
+            "align": "left",
             "caption": "",
             "cropAspect": "original",
             "cropX": 50,
             "cropY": 50,
-            "cropZoom": 1,
+            "cropZoom": 1.1,
             "display": "show",
             "source": "local",
             "title": "",
             "type": "image",
             "url": "docs/fpga-base-health-monitor-pulse-sensor-and-reaction-timer-controllers/summary/image.png"
-          },
-          {
-            "code": "//-----------------------------------------------------------------------------\n// Module Name : lab10_top\n// Project : ECE 211 Digital Circuits 1\n//-----------------------------------------------------------------------------\n// Author : Otieno Maurice <otienom@lafayette.edu>\n// John Nestor <nestorj@lafayette.edu>\n// Created : April 2023\n//-----------------------------------------------------------------------------\n// Description : Top-level module for Lab 10 - Health Monitor\n/*Inputs:\n• analog_pos_in - brings in positive analog signal from the pulse sensor\n• analog_neg_in - brings in negative analog signal from the pulse sensor\n• enter - signal to stop time count and display the value on the seven-segment display\n• start - signal to start the reaction timer\n• reset - resets the entire system\n• clock - clock signal at which the sensor operates. Must be divided for other components\nto 1kHz\noutputs:\n• led -display digitized pulse sensor value\n• pulse - display pulse as red LED\n• a_n- turn on the seven-segment display digits,\n• segs_n - display value of data received\n• dot - display decimal point,\n• led_r,led_g,led_b, - display the colors on the reaction timer LED\n*/\n//-----------------------------------------------------------------------------\nmodule lab10_top(\n  input logic clock, switch, // CLOCK 100 MHz\n  input logic reset,enter, start,\n  output logic led_r,led_g,led_b,\n  input analog_pos_in, // pulse sensor positive input\n  input analog_neg_in, // pulse sensor negative input\n  output logic [15:0] led, // display digitized pulse sensor value\n  output logic dot, pulse_led, // display pulse as red LED\n  output logic [7:0] a_n,\n  output logic [6:0] segs_n\n);\nlogic enable, pulse_in;\nlogic [3:0] d3p, d2p, d1p, d0p;\nlogic [3:0] d3r,d2r, d1r, d0r;\nlogic [3:0] d0, d1, d2, d3;\nlogic [15:0] reaction_value, pulse_value;\nlogic sclk, rs_en; // DIVIDED CLOCK 1KHz\nlogic rst,led_r1,led_g1,led_b1,din;\n\npulse_monitor PULSE_MONITOR(.clk(sclk), .pulse_in(d_pulse), .d0p, .d1p,.d2p,.d3p, .rst );\n\nsingle_pulser PULSE(.d_pulse,.clk(sclk),.din(pulse_in));\n\nreaction_timer REACTION_TIMER(.clk(sclk),.start, .enter,.rst,.d0r,.d1r,.d2r,.d3r,.led_r(led_r1),.led_b(led_b1),.led_g(led_g1),.rs_en);\n\nclkdiv CLKDIV( .clk(clock),.sclk(sclk),.reset(1'b0));\n\nsevenseg_control SEVENSEG_CONTROL(.clk(sclk),.rst, .d0(d0), .d1(d1), .d2(d2),.d3(d3), .y_n(a_n),.segs_n,.dot, .en(enable));\n\npulse_sensor PULSE_SENSOR(.clk(clock), .rst, .analog_pos_in, .analog_neg_in, .led, .pulse(pulse_in));\n\n// add clock divider and other modules here\n\nassign rst = reset;\nassign reaction_value = {d3r ,d2r ,d1r ,d0r};\nassign pulse_value = {d3p, d2p, d1p, d0p};\nassign pulse_led = pulse_in;\n\n//Code\nalways_comb\nif (switch)\nbegin\nled_r = led_r1;\nled_g = led_g1;\nled_b = led_b1;\nenable = rs_en;\nd0 = reaction_value [3:0] ;\nd1 = reaction_value [7:4] ;\nd2 = reaction_value [11:8] ;\nd3 = reaction_value [15:12] ;\nend\n\nelse\nbegin\nenable = 1; led_r =0; led_g = 0; led_b =0;\nd0 = pulse_value [3:0] ;\nd1 = pulse_value [7:4] ;\nd2 = pulse_value [11:8] ;\nd3 = pulse_value [15:12] ;\nend\nendmodule:lab10_top",
-            "language": "systemverilog",
-            "pasteMode": "source",
-            "type": "code"
           }
         ]
       },
@@ -2032,77 +2553,80 @@
                   "description": "",
                   "type": "File",
                   "url": "docs/fpga-base-health-monitor-pulse-sensor-and-reaction-timer-controllers/hdl/add3.sv",
-                  "status": "uploaded"
+                  "status": "uploaded",
+                  "children": []
                 },
                 {
                   "title": "allcounters.sv",
                   "description": "",
                   "type": "File",
                   "url": "docs/fpga-base-health-monitor-pulse-sensor-and-reaction-timer-controllers/hdl/allcounters.sv",
-                  "status": "uploaded"
+                  "status": "uploaded",
+                  "children": []
                 },
                 {
                   "title": "binary_to_bcd.sv",
                   "description": "",
                   "type": "File",
                   "url": "docs/fpga-base-health-monitor-pulse-sensor-and-reaction-timer-controllers/hdl/binary_to_bcd.sv",
-                  "status": "uploaded"
+                  "status": "uploaded",
+                  "children": []
                 },
                 {
                   "title": "clkdiv.sv",
                   "description": "",
                   "type": "File",
                   "url": "docs/fpga-base-health-monitor-pulse-sensor-and-reaction-timer-controllers/hdl/clkdiv.sv",
-                  "status": "uploaded"
+                  "status": "uploaded",
+                  "children": []
                 },
                 {
                   "title": "count_3bit.sv",
                   "description": "",
                   "type": "File",
                   "url": "docs/fpga-base-health-monitor-pulse-sensor-and-reaction-timer-controllers/hdl/count_3bit.sv",
-                  "status": "uploaded"
+                  "status": "uploaded",
+                  "children": []
                 },
                 {
                   "title": "counter_bcd.sv",
                   "description": "",
                   "type": "File",
                   "url": "docs/fpga-base-health-monitor-pulse-sensor-and-reaction-timer-controllers/hdl/counter_bcd.sv",
-                  "status": "uploaded"
+                  "status": "uploaded",
+                  "children": []
                 },
                 {
                   "title": "dec_3_5.sv",
                   "description": "",
                   "type": "File",
                   "url": "docs/fpga-base-health-monitor-pulse-sensor-and-reaction-timer-controllers/hdl/dec_3_5.sv",
-                  "status": "uploaded"
+                  "status": "uploaded",
+                  "children": []
                 },
                 {
                   "title": "delay_counter.sv",
                   "description": "",
                   "type": "File",
                   "url": "docs/fpga-base-health-monitor-pulse-sensor-and-reaction-timer-controllers/hdl/delay_counter.sv",
-                  "status": "uploaded"
+                  "status": "uploaded",
+                  "children": []
                 },
                 {
                   "title": "delay_counter5.sv",
                   "description": "",
                   "type": "File",
                   "url": "docs/fpga-base-health-monitor-pulse-sensor-and-reaction-timer-controllers/hdl/delay_counter5.sv",
-                  "status": "uploaded"
+                  "status": "uploaded",
+                  "children": []
                 }
               ]
             }
           ]
-        },
-        {
-          "id": "this",
-          "title": "this",
-          "description": "",
-          "items": []
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-07-13T16:03:15.376Z",
+        "builtAt": "2026-07-14T13:19:31.352Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -2156,44 +2680,29 @@
                 "rich": {
                   "blocks": [
                     {
-                      "align": "center",
+                      "code": "//-----------------------------------------------------------------------------\n// Module Name : lab10_top\n// Project : ECE 211 Digital Circuits 1\n//-----------------------------------------------------------------------------\n// Author : Otieno Maurice <otienom@lafayette.edu>\n// John Nestor <nestorj@lafayette.edu>\n// Created : April 2023\n//-----------------------------------------------------------------------------\n// Description : Top-level module for Lab 10 - Health Monitor\n/*Inputs:\n• analog_pos_in - brings in positive analog signal from the pulse sensor\n• analog_neg_in - brings in negative analog signal from the pulse sensor\n• enter - signal to stop time count and display the value on the seven-segment display\n• start - signal to start the reaction timer\n• reset - resets the entire system\n• clock - clock signal at which the sensor operates. Must be divided for other components\nto 1kHz\noutputs:\n• led -display digitized pulse sensor value\n• pulse - display pulse as red LED\n• a_n- turn on the seven-segment display digits,\n• segs_n - display value of data received\n• dot - display decimal point,\n• led_r,led_g,led_b, - display the colors on the reaction timer LED\n*/\n//-----------------------------------------------------------------------------\nmodule lab10_top(\n  input logic clock, switch, // CLOCK 100 MHz\n  input logic reset,enter, start,\n  output logic led_r,led_g,led_b,\n  input analog_pos_in, // pulse sensor positive input\n  input analog_neg_in, // pulse sensor negative input\n  output logic [15:0] led, // display digitized pulse sensor value\n  output logic dot, pulse_led, // display pulse as red LED\n  output logic [7:0] a_n,\n  output logic [6:0] segs_n\n);\nlogic enable, pulse_in;\nlogic [3:0] d3p, d2p, d1p, d0p;\nlogic [3:0] d3r,d2r, d1r, d0r;\nlogic [3:0] d0, d1, d2, d3;\nlogic [15:0] reaction_value, pulse_value;\nlogic sclk, rs_en; // DIVIDED CLOCK 1KHz\nlogic rst,led_r1,led_g1,led_b1,din;\n\npulse_monitor PULSE_MONITOR(.clk(sclk), .pulse_in(d_pulse), .d0p, .d1p,.d2p,.d3p, .rst );\n\nsingle_pulser PULSE(.d_pulse,.clk(sclk),.din(pulse_in));\n\nreaction_timer REACTION_TIMER(.clk(sclk),.start, .enter,.rst,.d0r,.d1r,.d2r,.d3r,.led_r(led_r1),.led_b(led_b1),.led_g(led_g1),.rs_en);\n\nclkdiv CLKDIV( .clk(clock),.sclk(sclk),.reset(1'b0));\n\nsevenseg_control SEVENSEG_CONTROL(.clk(sclk),.rst, .d0(d0), .d1(d1), .d2(d2),.d3(d3), .y_n(a_n),.segs_n,.dot, .en(enable));\n\npulse_sensor PULSE_SENSOR(.clk(clock), .rst, .analog_pos_in, .analog_neg_in, .led, .pulse(pulse_in));\n\n// add clock divider and other modules here\n\nassign rst = reset;\nassign reaction_value = {d3r ,d2r ,d1r ,d0r};\nassign pulse_value = {d3p, d2p, d1p, d0p};\nassign pulse_led = pulse_in;\n\n//Code\nalways_comb\nif (switch)\nbegin\nled_r = led_r1;\nled_g = led_g1;\nled_b = led_b1;\nenable = rs_en;\nd0 = reaction_value [3:0] ;\nd1 = reaction_value [7:4] ;\nd2 = reaction_value [11:8] ;\nd3 = reaction_value [15:12] ;\nend\n\nelse\nbegin\nenable = 1; led_r =0; led_g = 0; led_b =0;\nd0 = pulse_value [3:0] ;\nd1 = pulse_value [7:4] ;\nd2 = pulse_value [11:8] ;\nd3 = pulse_value [15:12] ;\nend\nendmodule:lab10_top",
+                      "language": "systemverilog",
+                      "pasteMode": "source",
+                      "type": "code"
+                    },
+                    {
+                      "align": "left",
                       "caption": "",
                       "cropAspect": "original",
                       "cropX": 50,
                       "cropY": 50,
-                      "cropZoom": 1,
+                      "cropZoom": 1.1,
                       "display": "show",
                       "source": "local",
                       "title": "",
                       "type": "image",
                       "url": "docs/fpga-base-health-monitor-pulse-sensor-and-reaction-timer-controllers/summary/image.png"
-                    },
-                    {
-                      "code": "//-----------------------------------------------------------------------------\n// Module Name : lab10_top\n// Project : ECE 211 Digital Circuits 1\n//-----------------------------------------------------------------------------\n// Author : Otieno Maurice <otienom@lafayette.edu>\n// John Nestor <nestorj@lafayette.edu>\n// Created : April 2023\n//-----------------------------------------------------------------------------\n// Description : Top-level module for Lab 10 - Health Monitor\n/*Inputs:\n• analog_pos_in - brings in positive analog signal from the pulse sensor\n• analog_neg_in - brings in negative analog signal from the pulse sensor\n• enter - signal to stop time count and display the value on the seven-segment display\n• start - signal to start the reaction timer\n• reset - resets the entire system\n• clock - clock signal at which the sensor operates. Must be divided for other components\nto 1kHz\noutputs:\n• led -display digitized pulse sensor value\n• pulse - display pulse as red LED\n• a_n- turn on the seven-segment display digits,\n• segs_n - display value of data received\n• dot - display decimal point,\n• led_r,led_g,led_b, - display the colors on the reaction timer LED\n*/\n//-----------------------------------------------------------------------------\nmodule lab10_top(\n  input logic clock, switch, // CLOCK 100 MHz\n  input logic reset,enter, start,\n  output logic led_r,led_g,led_b,\n  input analog_pos_in, // pulse sensor positive input\n  input analog_neg_in, // pulse sensor negative input\n  output logic [15:0] led, // display digitized pulse sensor value\n  output logic dot, pulse_led, // display pulse as red LED\n  output logic [7:0] a_n,\n  output logic [6:0] segs_n\n);\nlogic enable, pulse_in;\nlogic [3:0] d3p, d2p, d1p, d0p;\nlogic [3:0] d3r,d2r, d1r, d0r;\nlogic [3:0] d0, d1, d2, d3;\nlogic [15:0] reaction_value, pulse_value;\nlogic sclk, rs_en; // DIVIDED CLOCK 1KHz\nlogic rst,led_r1,led_g1,led_b1,din;\n\npulse_monitor PULSE_MONITOR(.clk(sclk), .pulse_in(d_pulse), .d0p, .d1p,.d2p,.d3p, .rst );\n\nsingle_pulser PULSE(.d_pulse,.clk(sclk),.din(pulse_in));\n\nreaction_timer REACTION_TIMER(.clk(sclk),.start, .enter,.rst,.d0r,.d1r,.d2r,.d3r,.led_r(led_r1),.led_b(led_b1),.led_g(led_g1),.rs_en);\n\nclkdiv CLKDIV( .clk(clock),.sclk(sclk),.reset(1'b0));\n\nsevenseg_control SEVENSEG_CONTROL(.clk(sclk),.rst, .d0(d0), .d1(d1), .d2(d2),.d3(d3), .y_n(a_n),.segs_n,.dot, .en(enable));\n\npulse_sensor PULSE_SENSOR(.clk(clock), .rst, .analog_pos_in, .analog_neg_in, .led, .pulse(pulse_in));\n\n// add clock divider and other modules here\n\nassign rst = reset;\nassign reaction_value = {d3r ,d2r ,d1r ,d0r};\nassign pulse_value = {d3p, d2p, d1p, d0p};\nassign pulse_led = pulse_in;\n\n//Code\nalways_comb\nif (switch)\nbegin\nled_r = led_r1;\nled_g = led_g1;\nled_b = led_b1;\nenable = rs_en;\nd0 = reaction_value [3:0] ;\nd1 = reaction_value [7:4] ;\nd2 = reaction_value [11:8] ;\nd3 = reaction_value [15:12] ;\nend\n\nelse\nbegin\nenable = 1; led_r =0; led_g = 0; led_b =0;\nd0 = pulse_value [3:0] ;\nd1 = pulse_value [7:4] ;\nd2 = pulse_value [11:8] ;\nd3 = pulse_value [15:12] ;\nend\nendmodule:lab10_top",
-                      "language": "systemverilog",
-                      "pasteMode": "source",
-                      "type": "code"
                     }
                   ]
                 }
               }
             ],
             "title": "Overview"
-          },
-          {
-            "description": "",
-            "id": "design",
-            "items": [
-              {
-                "children": [],
-                "description": "",
-                "kind": "document",
-                "meta": "Document",
-                "title": "HEALTH MONITOR.pdf",
-                "url": "docs/fpga-base-health-monitor-pulse-sensor-and-reaction-timer-controllers/documents/health-monitor.pdf"
-              }
-            ],
-            "title": "Design"
           },
           {
             "description": "",
@@ -2276,7 +2785,7 @@
                 ],
                 "description": "",
                 "kind": "subsection",
-                "meta": "Subsection",
+                "meta": "Text",
                 "title": "Design files",
                 "url": ""
               }
@@ -2289,8 +2798,9 @@
         "files": [
           {
             "id": "main-js-1783220595193-3ba64f9649093",
-            "title": "main",
+            "title": "main.cpp",
             "fileName": "main.cpp",
+            "relativePath": "main.cpp",
             "language": "cpp",
             "role": "source",
             "code": "#include <stdio.h>\n#define PARAMETER 32\nint main(){\n  char line[PARAMETER];\n  while(fgets(line,PARAMETER,stdin) != (NULL)){\n    printf(\"%s\",line);\n  }\nreturn 0;\n}",
@@ -2303,8 +2813,9 @@
           },
           {
             "id": "main-js-1783224320050-524fe28e029818",
-            "title": "ltspice",
+            "title": "main.cir",
             "fileName": "main.cir",
+            "relativePath": "main.cir",
             "language": "ltspice",
             "role": "source",
             "code": "v1 1 0 5 DC \nR1 0 0 10k\nR2 1 3 10k\nx1 3 5 2 1\n.op",
@@ -2317,8 +2828,9 @@
           },
           {
             "id": "lab10-top-sv-1783488899555-9c5b2becc896b",
-            "title": "lab10_top",
+            "title": "lab10_top.sv",
             "fileName": "lab10_top.sv",
+            "relativePath": "lab10_top.sv",
             "language": "systemverilog",
             "role": "design",
             "code": "//-----------------------------------------------------------------------------\n// Module Name : lab10_top\n// Project : ECE 211 Digital Circuits 1\n//-----------------------------------------------------------------------------\n// Author : Otieno Maurice <otienom@lafayette.edu>\n// John Nestor <nestorj@lafayette.edu>\n// Created : April 2023\n//-----------------------------------------------------------------------------\n// Description : Top-level module for Lab 10 - Health Monitor\n/*Inputs:\n• analog_pos_in - brings in positive analog signal from the pulse sensor\n• analog_neg_in - brings in negative analog signal from the pulse sensor\n• enter - signal to stop time count and display the value on the seven-segment display\n• start - signal to start the reaction timer\n• reset - resets the entire system\n• clock - clock signal at which the sensor operates. Must be divided for other components\nto 1kHz\noutputs:\n• led -display digitized pulse sensor value\n• pulse - display pulse as red LED\n• a_n- turn on the seven-segment display digits,\n• segs_n - display value of data received\n• dot - display decimal point,\n• led_r,led_g,led_b, - display the colors on the reaction timer LED\n*/\n//-----------------------------------------------------------------------------\nmodule lab10_top(\n  input logic clock, switch, // CLOCK 100 MHz\n  input logic reset,enter, start,\n  output logic led_r,led_g,led_b,\n  input analog_pos_in, // pulse sensor positive input\n  input analog_neg_in, // pulse sensor negative input\n  output logic [15:0] led, // display digitized pulse sensor value\n  output logic dot, pulse_led, // display pulse as red LED\n  output logic [7:0] a_n,\n  output logic [6:0] segs_n\n);\nlogic enable, pulse_in;\nlogic [3:0] d3p, d2p, d1p, d0p;\nlogic [3:0] d3r,d2r, d1r, d0r;\nlogic [3:0] d0, d1, d2, d3;\nlogic [15:0] reaction_value, pulse_value;\nlogic sclk, rs_en; // DIVIDED CLOCK 1KHz\nlogic rst,led_r1,led_g1,led_b1,din;\n\npulse_monitor PULSE_MONITOR(.clk(sclk), .pulse_in(d_pulse), .d0p, .d1p,.d2p,.d3p, .rst );\n\nsingle_pulser PULSE(.d_pulse,.clk(sclk),.din(pulse_in));\n\nreaction_timer REACTION_TIMER(.clk(sclk),.start, .enter,.rst,.d0r,.d1r,.d2r,\n  .d3r,.led_r(led_r1),.led_b(led_b1),.led_g(led_g1),.rs_en);\n\nclkdiv CLKDIV( .clk(clock),.sclk(sclk),.reset(1'b0));\n\nsevenseg_control SEVENSEG_CONTROL(.clk(sclk),.rst, .d0(d0), .d1(d1), .d2(d2),\n  .d3(d3), .y_n(a_n),.segs_n,.dot, .en(enable));\n\npulse_sensor PULSE_SENSOR(.clk(clock), .rst, .analog_pos_in, .analog_neg_in, .led, .pulse(pulse_in));\n\n// add clock divider and other modules here\n\nassign rst = reset;\nassign reaction_value = {d3r ,d2r ,d1r ,d0r};\nassign pulse_value = {d3p, d2p, d1p, d0p};\nassign pulse_led = pulse_in;\n\n//Code\nalways_comb\nif (switch)\nbegin\nled_r = led_r1;\nled_g = led_g1;\nled_b = led_b1;\nenable = rs_en;\nd0 = reaction_value [3:0] ;\nd1 = reaction_value [7:4] ;\nd2 = reaction_value [11:8] ;\nd3 = reaction_value [15:12] ;\nend\n\nelse\nbegin\nenable = 1; led_r =0; led_g = 0; led_b =0;\nd0 = pulse_value [3:0] ;\nd1 = pulse_value [7:4] ;\nd2 = pulse_value [11:8] ;\nd3 = pulse_value [15:12] ;\nend\nendmodule:lab10_top",
@@ -2817,8 +3329,26 @@
             "level": "info",
             "text": "Compile/run started for main.c."
           }
-        ]
-      }
+        ],
+        "directories": [],
+        "systemTerminal": {
+          "cwd": "",
+          "command": "",
+          "output": "",
+          "rootPath": "",
+          "cwdAbsolute": "",
+          "promptPath": "",
+          "history": []
+        },
+        "activePanel": "console",
+        "appendPanelOpen": false,
+        "outputDockUnlocked": false,
+        "outputDockPosition": {
+          "x": 72,
+          "y": 120
+        }
+      },
+      "sectionModelVersion": 3
     }
   ],
   "siteSections": [

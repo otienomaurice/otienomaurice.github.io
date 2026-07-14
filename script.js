@@ -1521,6 +1521,61 @@ function assistantProjectSummary(project = {}) {
   };
 }
 
+function assistantSectionInventory(section = {}, parentPath = "") {
+  const title = displayTitle(section.title, "Section");
+  const pathLabel = [parentPath, title].filter(Boolean).join(" / ");
+  const children = (section.items || section.children || [])
+    .filter((item) => !item.url && !item.artifact)
+    .flatMap((item) => assistantSectionInventory(item, pathLabel));
+  const files = (section.items || section.children || [])
+    .filter((item) => item.url || item.artifact)
+    .map((item) => ({
+      description: item.description || "",
+      title: item.title || item.label || fileNameFromUrl(item.url || ""),
+      type: item.type || item.kind || "file",
+      url: assistantAbsoluteUrl(item.url || "")
+    }));
+  return [{
+    files,
+    overview: flattenSearchText([section.description, section.summary, section.richDescription]).slice(0, 1200),
+    path: pathLabel,
+    title
+  }, ...children];
+}
+
+function assistantPortfolioInventory() {
+  return {
+    categories: categories.map((category) => ({
+      id: category.id,
+      label: category.label,
+      projectCount: projects.filter((project) => project.category === category.id).length
+    })),
+    profile: normalizeProfile(profile || {}),
+    projects: projects.map((project) => {
+      const sections = (project.portfolioView?.sections || [])
+        .filter(sectionHasRenderableContent)
+        .flatMap((section) => assistantSectionInventory(section));
+      return {
+        category: slugLabel(project.category),
+        filesAndLinks: assistantProjectEvidence(project).slice(0, 30),
+        focus: project.focus || [],
+        id: project.id,
+        overview: flattenSearchText([project.summary, project.portfolioView?.sections?.find((section) => section.id === "brief")]).slice(0, 1600),
+        sections,
+        title: project.portfolioView?.title || project.title,
+        tools: project.tools || []
+      };
+    }),
+    publicLinks: assistantPublicProfileLinks(),
+    siteSections: siteSections.filter(siteSectionRenderable).map((section) => ({
+      id: section.id,
+      links: section.links || [],
+      overview: flattenSearchText([section.description, section.richDescription]).slice(0, 900),
+      title: section.title
+    }))
+  };
+}
+
 function assistantProjectTitleAcronyms(title = "") {
   const words = normalize(title)
     .split(/\s+/)
@@ -1707,9 +1762,11 @@ function assistantQuestionIntent(question = "", history = assistantChatHistory) 
     return "general_conversation";
   }
   const hasPortfolioIntent = assistantQuestionHasPortfolioIntent(question);
+  const isEngineeringConcept = assistantQuestionIsEngineeringRelated(question) || assistantQuestionLooksConceptual(question);
   if (!hasPortfolioIntent && assistantConversationSuggestsPortfolioContext(history) && /\b(name|you|your|he|his|him|that|this|it)\b/.test(normalize(question))) {
     return "general_conversation";
   }
+  if (hasPortfolioIntent && isEngineeringConcept) return "portfolio_and_general";
   if (!hasPortfolioIntent && assistantQuestionIsEngineeringRelated(question)) return "general_engineering";
   if (!hasPortfolioIntent && assistantQuestionLooksConceptual(question)) return "general_engineering";
   if (hasPortfolioIntent) return "portfolio_specific";
@@ -1776,7 +1833,7 @@ function assistantNamedProjectTopicTokens(question = "", namedIds = assistantNam
 }
 
 function assistantSourcesForDisplay(question = "", results = [], intent = assistantQuestionIntent(question)) {
-  if (intent !== "portfolio_specific") return [];
+  if (!["portfolio_specific", "portfolio_and_general"].includes(intent)) return [];
   const tokens = assistantSpecificSourceTokens(question);
   const namedProjectIdList = assistantNamedProjectIds(question);
   const namedProjectIds = new Set(namedProjectIdList);
@@ -1824,7 +1881,7 @@ function assistantContextForQuestion(question = "", intent = assistantQuestionIn
     .map((id) => projects.find((project) => project.id === id))
     .filter(Boolean)
     .slice(0, 5);
-  const includePortfolioLinkContext = intent === "portfolio_specific";
+  const includePortfolioLinkContext = ["portfolio_specific", "portfolio_and_general"].includes(intent);
   const wantsPublicCode = /\b(github|repo|repository|repositories|source\s+code|code|snippet|firmware|verilog|systemverilog|python|javascript)\b/.test(normalize(question));
   const publicProfileFetches = includePortfolioLinkContext
     ? assistantPublicProfileLinks()
@@ -1860,6 +1917,7 @@ function assistantContextForQuestion(question = "", intent = assistantQuestionIn
   return {
     categories: categories.map((category) => ({ id: category.id, label: category.label })),
     intent,
+    fullPortfolioInventory: includePortfolioLinkContext ? assistantPortfolioInventory() : null,
     profile: normalizeProfile(profile || {}),
     knowledgeManifest: {
       publicProfiles: includePortfolioLinkContext ? assistantPublicProfileLinks() : [],
@@ -1872,7 +1930,9 @@ function assistantContextForQuestion(question = "", intent = assistantQuestionIn
       note: "Image records include filenames, captions, descriptions, and neighboring portfolio text. Use a vision-capable backend before claiming visual details not present in captions or text."
     },
     portfolioContextPolicy: intent !== "portfolio_specific"
-      ? "Answer from general knowledge first. Do not lead with the portfolio owner's project context unless the visitor explicitly asks to connect the concept to the portfolio."
+      ? (intent === "portfolio_and_general"
+        ? "Answer the general concept clearly, then connect it to specific saved portfolio evidence that appears in the supplied context."
+        : "Answer from general knowledge first. Do not lead with the portfolio owner's project context unless the visitor explicitly asks to connect the concept to the portfolio.")
       : "Answer from the configured portfolio context first. Do not invent project details outside the supplied context.",
     projects: matchedProjects.map(assistantProjectSummary),
     question,
@@ -1912,7 +1972,7 @@ function assistantConversationForRequest(currentQuestion = "", priorConversation
 }
 
 function assistantFallbackResults(question = "", intent = assistantQuestionIntent(question)) {
-  if (intent !== "portfolio_specific") return [];
+  if (!["portfolio_specific", "portfolio_and_general"].includes(intent)) return [];
   const clean = normalize(question).trim();
   if (!clean) return [];
   const namedProjectIds = assistantNamedProjectIds(question);
@@ -2121,6 +2181,17 @@ function assistantLocalAnswer(question = "", results = [], intent = assistantQue
       "I can answer that as a general engineering question, but I need a little more detail to make the answer useful.",
       "",
       "Try asking about a specific circuit, device, tool, protocol, waveform, or failure mode."
+    ].join("\n");
+  }
+
+  if (intent === "portfolio_and_general") {
+    const generalAnswer = assistantGeneralEngineeringAnswer(question);
+    const portfolioAnswer = assistantLocalAnswer(question, results, "portfolio_specific");
+    return [
+      generalAnswer || "This question connects a general engineering idea to the saved portfolio.",
+      "",
+      "Portfolio connection:",
+      portfolioAnswer
     ].join("\n");
   }
 
@@ -2424,6 +2495,13 @@ async function answerAssistantQuestion(question = "") {
     const intent = assistantQuestionIntent(cleanQuestion, priorConversation);
     const rawSources = assistantFallbackResults(cleanQuestion, intent);
     const sources = assistantSourcesForDisplay(cleanQuestion, rawSources, intent);
+    if (intent === "general_conversation") {
+      const localConversationAnswer = assistantLocalAnswer(cleanQuestion, sources, intent);
+      replaceAssistantMessage(pendingMessage, localConversationAnswer, []);
+      assistantRemember("assistant", localConversationAnswer);
+      setAssistantStatus("Ready");
+      return;
+    }
     const context = assistantContextForQuestion(cleanQuestion, intent, rawSources);
     const conversation = assistantConversationForRequest(cleanQuestion, priorConversation);
     try {
