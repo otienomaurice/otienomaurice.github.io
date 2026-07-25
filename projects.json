@@ -510,7 +510,7 @@
         }
       },
       "portfolioView": {
-        "builtAt": "2026-07-25T01:24:08.073Z",
+        "builtAt": "2026-07-25T02:00:01.949Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -1198,7 +1198,7 @@
         }
       },
       "portfolioView": {
-        "builtAt": "2026-07-25T01:24:08.073Z",
+        "builtAt": "2026-07-25T02:00:01.949Z",
         "template": {
           "group": "Appearance",
           "id": "",
@@ -1536,7 +1536,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-07-25T01:24:08.073Z",
+        "builtAt": "2026-07-25T02:00:01.949Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -1902,7 +1902,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-07-25T01:24:08.074Z",
+        "builtAt": "2026-07-25T02:00:01.949Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-steel-teal-click",
@@ -2235,7 +2235,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-07-25T01:24:08.074Z",
+        "builtAt": "2026-07-25T02:00:01.949Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-graphite-white-click",
@@ -2476,7 +2476,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-07-25T01:24:08.074Z",
+        "builtAt": "2026-07-25T02:00:01.950Z",
         "template": {
           "group": "Appearance",
           "id": "",
@@ -3212,7 +3212,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-07-25T01:24:08.075Z",
+        "builtAt": "2026-07-25T02:00:01.950Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -4073,7 +4073,7 @@
             "dirty": true
           }
         ],
-        "activeFileId": "lab10-top-sv-1783488899555-9c5b2becc896b",
+        "activeFileId": "pulse-fsm-sv-1784921500726-af68314ab7cae8",
         "terminal": "",
         "appendTargetId": "project-overview",
         "messages": [
@@ -4125,7 +4125,9 @@
           "pulse-monitor-sv-1784921500729-24029a5b1732e",
           "pulse-fm-sv-1784921500728-e785d94dc22c28",
           "pulse-counter-sv-1784921500724-07b791be43398",
-          "clkdiv-sv-1784921500708-0fe4c182575fb"
+          "clkdiv-sv-1784921500708-0fe4c182575fb",
+          "count-3bit-sv-1784921500710-a24522db1ec098",
+          "pulse-fsm-sv-1784921500726-af68314ab7cae8"
         ],
         "outputDockHeight": 274,
         "scopeSettings": {},
@@ -4134,7 +4136,7 @@
         "scopeZoom": 1,
         "sidebarWidth": 340,
         "selectedFileIds": [
-          "lab10-top-sv-1783488899555-9c5b2becc896b"
+          "pulse-fsm-sv-1784921500726-af68314ab7cae8"
         ],
         "stdinWindowOpen": false,
         "showFileDetails": false,
@@ -4156,8 +4158,8 @@
         "scopeCursorTime": 0,
         "waveform": null,
         "liveDiagnostics": {
-          "fileId": "lab10-top-sv-1784921500716-c1661da352b5b8",
-          "fileName": "lab10_top.sv",
+          "fileId": "pulse-fsm-sv-1784921500726-af68314ab7cae8",
+          "fileName": "pulse_fsm.sv",
           "language": "systemverilog",
           "checking": false,
           "ok": false,
@@ -4213,8 +4215,8 @@
               "language": "systemverilog"
             }
           ],
-          "terminal": "Compile request for lab10_top.sv\n\nSystemVerilog simulation set: 33 design files, 0 testbench files\n\nHDL timing and verification notes:\n- Timing: lab10_top.sv, pulse_fm.sv do not declare `timescale. Add `timescale 1ns/1ps or the intended resolution so # delays and the scope timeline are predictable.\n\nHDL debug tools: Verilator lint not installed; GTKWave viewer not installed.\n\n$ iverilog.exe -g2012 -Wall -o simulation.vvp\nExit code 4 in 0.17s\nlab10_top.sv:27: warning: timescale for lab10_top inherited from another file.\r\nincrementor.sv:1: ...: The inherited timescale is here.\r\nlab10_top.sv:46: warning: implicit definition of wire 'd_pulse'.\r\nlab10_top_1.sv:9: error: 'lab10_top' has already been declared in this scope.\r\nlab10_top.sv:27:      : It was declared here as a module.\r\nlab10_top_1.sv:81: Module lab10_top was already declared here: lab10_top.sv:27\r\n\r\npulse_fm.sv:12: warning: timescale for pulse_fsm inherited from another file.\r\npulse_delay_counter.sv:1: ...: The inherited timescale is here.\r\npulse_fsm.sv:10: error: 'pulse_fsm' has already been declared in this scope.\r\npulse_fm.sv:12:      : It was declared here as a module.\r\npulse_fsm.sv:52: Module pulse_fsm was already declared here: pulse_fm.sv:12",
-          "checkedAt": "2026-07-24T19:33:57.888Z"
+          "terminal": "Compile request for pulse_fsm.sv\n\nSystemVerilog simulation set: 33 design files, 0 testbench files\n\nHDL timing and verification notes:\n- Timing: lab10_top.sv, pulse_fm.sv do not declare `timescale. Add `timescale 1ns/1ps or the intended resolution so # delays and the scope timeline are predictable.\n\nHDL debug tools: Verilator lint available at C:\\Users\\otien\\AppData\\Local\\Programs\\OSS CAD Suite\\oss-cad-suite\\bin\\verilator; GTKWave viewer available at C:\\Users\\otien\\AppData\\Local\\Programs\\OSS CAD Suite\\oss-cad-suite\\bin\\gtkwave.exe.\n\n$ verilator --lint-only --sv\nExit code -1 in 0.00s\nspawn C:\\Users\\otien\\AppData\\Local\\Programs\\OSS CAD Suite\\oss-cad-suite\\bin\\verilator ENOENT\n\nVerilator lint reported issues. This advisory lint does not replace the integrated Icarus/VVP simulation used to generate the built-in scope.\n\n$ iverilog.exe -g2012 -Wall -o simulation.vvp\nExit code 4 in 0.11s\nlab10_top.sv:27: warning: timescale for lab10_top inherited from another file.\r\nincrementor.sv:1: ...: The inherited timescale is here.\r\nlab10_top.sv:46: warning: implicit definition of wire 'd_pulse'.\r\nlab10_top_1.sv:9: error: 'lab10_top' has already been declared in this scope.\r\nlab10_top.sv:27:      : It was declared here as a module.\r\nlab10_top_1.sv:81: Module lab10_top was already declared here: lab10_top.sv:27\r\n\r\npulse_fm.sv:12: warning: timescale for pulse_fsm inherited from another file.\r\npulse_delay_counter.sv:1: ...: The inherited timescale is here.\r\npulse_fsm.sv:10: error: 'pulse_fsm' has already been declared in this scope.\r\npulse_fm.sv:12:      : It was declared here as a module.\r\npulse_fsm.sv:52: Module pulse_fsm was already declared here: pulse_fm.sv:12",
+          "checkedAt": "2026-07-25T01:58:50.027Z"
         }
       },
       "sectionModelVersion": 3
