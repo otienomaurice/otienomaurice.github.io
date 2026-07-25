@@ -1260,6 +1260,84 @@ function richImageDownloadLink(block = {}) {
   `;
 }
 
+function normalizeRichMediaWidth(value = 76) {
+    const width = Number(value);
+    return Number.isFinite(width) ? Math.min(100, Math.max(24, width)) : 76;
+}
+
+function normalizeRichVideoPlayback(value = "") {
+    return ["controls", "loop-muted", "autoplay-loop-muted"].includes(value) ? value : "controls";
+}
+
+function richVideoFigureStyle(block = {}) {
+    return ` style="${escapeHtml(`--rich-video-width: ${normalizeRichMediaWidth(block.width)}%`)}"`;
+}
+
+function richVideoCaptionHtml(block = {}) {
+  const title = String(block.title || "").trim();
+  const caption = String(block.caption || "").trim();
+  if (!title && !caption) return "";
+  return `<figcaption>${title ? `<strong>${escapeHtml(title)}</strong>` : ""}${caption ? `<span>${escapeHtml(caption)}</span>` : ""}</figcaption>`;
+}
+
+function videoEmbedInfo(value = "") {
+  const target = normalizeLinkTarget(value, { assumeWeb: true });
+  if (/^data:video\//i.test(target) || /\.(mp4|webm|ogg|ogv|m4v|mov)([?#].*)?$/i.test(target)) {
+    return { kind: "video-file", src: target };
+  }
+  if (/^data:image\//i.test(target) || /\.(gif|apng|webp|svg)([?#].*)?$/i.test(target)) {
+    return { kind: "animation-file", src: target };
+  }
+  try {
+    const parsed = new URL(target);
+    const host = parsed.hostname.replace(/^www\./, "").toLowerCase();
+    if (host === "youtu.be") {
+      const id = parsed.pathname.split("/").filter(Boolean)[0] || "";
+      if (id) return { kind: "iframe", src: `https://www.youtube-nocookie.com/embed/${encodeURIComponent(id)}` };
+    }
+    if (host.endsWith("youtube.com")) {
+      const id = parsed.searchParams.get("v") || parsed.pathname.split("/").filter(Boolean).pop() || "";
+      if (id) return { kind: "iframe", src: `https://www.youtube-nocookie.com/embed/${encodeURIComponent(id)}` };
+    }
+    if (host.endsWith("vimeo.com")) {
+      const id = parsed.pathname.split("/").filter(Boolean).find((part) => /^\d+$/.test(part)) || "";
+      if (id) return { kind: "iframe", src: `https://player.vimeo.com/video/${encodeURIComponent(id)}` };
+    }
+    if (/drive\.google\.com$/i.test(host)) {
+      const fileId = parsed.pathname.match(/\/file\/d\/([^/]+)/)?.[1] || parsed.searchParams.get("id") || "";
+      if (fileId) return { kind: "iframe", src: `https://drive.google.com/file/d/${encodeURIComponent(fileId)}/preview` };
+    }
+  } catch {
+    // Leave unparseable values as external links.
+  }
+  return { kind: "link", src: target };
+}
+
+function richVideoDownloadLink(block = {}) {
+  const label = escapeHtml(block.title || block.caption || "Video or animation");
+  const target = normalizeLinkTarget(block.url || "#", { assumeWeb: true });
+  return `<p class="rich-download-only"><a class="resource-link" href="${escapeHtml(target)}"${linkAttributes(target, block)}${downloadAttribute(target, block)}>${label}</a></p>`;
+}
+
+function renderRichVideoEmbed(block = {}) {
+  const url = normalizeLinkTarget(block.url || "", { assumeWeb: true });
+  const embed = videoEmbedInfo(url);
+  const playback = normalizeRichVideoPlayback(block.playback);
+  if (embed.kind === "video-file") {
+    const loop = playback.includes("loop") ? " loop" : "";
+    const muted = playback.includes("muted") ? " muted" : "";
+    const autoplay = playback.includes("autoplay") ? " autoplay" : "";
+    return `<video controls${loop}${muted}${autoplay} playsinline preload="metadata" src="${escapeHtml(embed.src)}"></video>`;
+  }
+  if (embed.kind === "animation-file") {
+    return `<img src="${escapeHtml(embed.src)}" alt="${escapeHtml(block.title || block.caption || "Animation")}">`;
+  }
+  if (embed.kind === "iframe") {
+    return `<iframe src="${escapeHtml(embed.src)}" title="${escapeHtml(block.title || "Embedded video")}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
+  }
+  return `<a class="resource-link" href="${escapeHtml(embed.src)}"${linkAttributes(embed.src, block)}>Open video link</a>`;
+}
+
 function cleanRichImageTitle(block = {}) {
   const title = String(block.title || "").trim();
   return /^pasted image\b/i.test(title) ? "" : title;
@@ -1303,6 +1381,15 @@ function renderRichContent(rich, fallbackText = "") {
                 ${captionPosition === "bottom" || captionPosition === "right" ? richImageCaptionHtml(block) : ""}
               </figure>
             `;
+        }
+        if (block.type === "video") {
+          if (block.display === "download") return richVideoDownloadLink(block);
+          return `
+            <figure class="rich-video justify-${align}"${richVideoFigureStyle(block)}>
+              <div class="rich-video-frame">${renderRichVideoEmbed(block)}</div>
+              ${richVideoCaptionHtml(block)}
+            </figure>
+          `;
         }
         if (block.type === "table") {
           const rows = normalizeRichTableRows(block.rows, block.rows?.length || block.rowCount || 3, block.rows?.[0]?.length || block.columnCount || 3);
@@ -2959,24 +3046,52 @@ function detailBlock(title, className, content) {
 
 function mediaGrid(items) {
   if (!items || !items.length) {
-    return `<p class="evidence-empty">No project images have been added yet.</p>`;
+    return `<p class="evidence-empty">No project media has been added yet.</p>`;
   }
 
   return `
     <div class="media-grid">
       ${items.map((item) => `
         <figure>
-          <a href="${escapeHtml(normalizeLinkTarget(item.url, { assumeWeb: isWebsiteLinkItem(item, item.url) }))}"${linkAttributes(item.url, item)}>
-            <img src="${escapeHtml(normalizeLinkTarget(item.url, { assumeWeb: isWebsiteLinkItem(item, item.url) }))}" alt="${escapeHtml(item.title)}">
-          </a>
+          ${mediaGridPreview(item)}
           <figcaption>
-            <strong>${escapeHtml(item.title)}</strong>
-            <span>${escapeHtml(item.caption || "")}</span>
+            <strong>${escapeHtml(itemLabel(item, "Media"))}</strong>
+            <span>${escapeHtml(item.description || item.caption || "")}</span>
           </figcaption>
         </figure>
       `).join("")}
     </div>
   `;
+}
+
+function mediaGridPreview(item = {}) {
+  const rawUrl = itemUrl(item);
+  const target = normalizeLinkTarget(rawUrl, { assumeWeb: isWebsiteLinkItem(item, rawUrl) });
+  const title = itemLabel(item, "Media");
+  if (!target || item.status === "planned") {
+    return `<div class="media-placeholder">${escapeHtml(title)}</div>`;
+  }
+  const embed = videoEmbedInfo(target);
+  if (embed.kind !== "link") {
+    return `
+      <div class="media-grid-frame">
+        ${renderRichVideoEmbed({
+          caption: item.description || item.caption || "",
+          playback: item.playback || "controls",
+          title,
+          url: target
+        })}
+      </div>
+    `;
+  }
+  if (isImageUrl(target)) {
+    return `
+      <a href="${escapeHtml(target)}"${linkAttributes(target, item)}>
+        <img src="${escapeHtml(target)}" alt="${escapeHtml(title)}">
+      </a>
+    `;
+  }
+  return `<div class="media-placeholder">${resourceLink({ ...item, url: target }, title)}</div>`;
 }
 
 function siteSectionHasContent(section) {
@@ -3076,12 +3191,17 @@ function normalizeDownloadAsset(item = {}, fallbackType = "File") {
 function collectRichDownloads(rich, fallbackType = "File", output = []) {
     (rich?.blocks || []).forEach((block) => {
         if (!block?.url) return;
+        const type = block.type === "image"
+            ? "Image"
+            : block.type === "video"
+              ? "Video / animation"
+              : fallbackType;
 
         output.push({
             title: cleanRichImageTitle(block) || block.title || block.caption || fileNameFromUrl(block.url),
             url: block.url,
             status: "uploaded",
-            type: block.type === "image" ? "Image" : fallbackType,
+            type,
             description: block.caption || ""
         });
     });
