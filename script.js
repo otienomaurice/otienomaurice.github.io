@@ -355,6 +355,49 @@ function escapeHtml(value) {
     .replaceAll("'", "&#039;");
 }
 
+const projectStatusOptions = ["Draft", "In progress", "Completed", "Archived"];
+
+function normalizeProjectStatus(value = "") {
+  const clean = String(value || "").trim().toLowerCase().replace(/[-_]+/g, " ");
+  if (!clean) return "Draft";
+  if (["inprogress", "in progress", "progress", "ongoing", "in work"].includes(clean)) return "In progress";
+  const match = projectStatusOptions.find((status) => status.toLowerCase() === clean);
+  return match || "Draft";
+}
+
+function projectStatusClass(status = "") {
+  return normalizeProjectStatus(status)
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "_")
+    .replace(/^_|_$/g, "") || "draft";
+}
+
+function projectStatusVisible(project = {}) {
+  if (project?.portfolioView && Object.prototype.hasOwnProperty.call(project.portfolioView, "showStatus")) {
+    return project.portfolioView.showStatus !== false;
+  }
+  return project?.showStatusOnPortfolio !== false;
+}
+
+function projectStatusText(project = {}) {
+  return normalizeProjectStatus(project?.portfolioView?.status || project?.status || "Draft");
+}
+
+function projectStatusBadge(project = {}) {
+  if (!projectStatusVisible(project)) return "";
+  const status = projectStatusText(project);
+  return `<span class="project-status-badge project-status-${escapeHtml(projectStatusClass(status))}">${escapeHtml(status)}</span>`;
+}
+
+function projectTitleHeading(title, project = {}) {
+  return `
+    <div class="project-title-row">
+      <h3>${escapeHtml(title || "Untitled project")}</h3>
+      ${projectStatusBadge(project)}
+    </div>
+  `;
+}
+
 function normalizeCodeLanguage(value = "") {
   const clean = String(value || "").trim().toLowerCase().replace(/[_-]+/g, " ");
   const match = supportedCodeLanguages.find((language) =>
@@ -3168,7 +3211,7 @@ function projectCard(project) {
     return `
       <article class="project-card catalog-card ${projectTemplateClass(project)} ${projectResponsiveClass(project)}" id="${project.id}" style="${projectTemplateStyle(project, accent)}">
         <div class="project-body">
-          <h3>${project.portfolioView.title || project.title}</h3>
+          ${projectTitleHeading(project.portfolioView.title || project.title, project)}
           ${renderParsedBriefBlock(briefSection, project.summary)}
           <div class="evidence-grid" aria-label="${project.title} parsed project content">
   ${otherSections.map((section, index) => parsedSection(section, index, project)).join("")}
@@ -3184,7 +3227,7 @@ function projectCard(project) {
   return `
       <article class="project-card catalog-card ${projectTemplateClass(project)} ${projectResponsiveClass(project)}" id="${project.id}" style="${projectTemplateStyle(project, accent)}">
         <div class="project-body">
-          <h3>${project.title}</h3>
+          ${projectTitleHeading(project.title, project)}
           <p class="rich-paragraph">${renderMultilineInlineText(project.summary)}</p>
 
           ${project.highlights && project.highlights.length ? detailBlock("Project highlights", "project-drawer", `
@@ -3479,8 +3522,7 @@ function renderProjects() {
   grid.innerHTML = categories
     .map((category) => {
       const visibleProjects = visible.filter((project) => project.category === category.id);
-      const shouldShowEmptyCategory = !query && (activeFilter === "all" || activeFilter === category.id);
-      return visibleProjects.length || shouldShowEmptyCategory ? categorySection(category, visibleProjects) : "";
+      return visibleProjects.length ? categorySection(category, visibleProjects) : "";
     })
     .join("");
   queueSearchHighlights();
