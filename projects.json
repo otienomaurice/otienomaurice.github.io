@@ -380,33 +380,7 @@
           "id": "tools-used",
           "title": "Tools Used",
           "description": "KiCad -  Schematic Capture and PCB design\n\nLTSPICE - circuit simulation\n\nBench Supplies - for power Supply\n\nOscilloscope - Frequency measurements during validation\n\nDigital Multimeters - voltage, continuity, and component measurements\n\nSoldering lab and supplies - Soldering components",
-          "items": [
-            {
-              "id": "pwm-generating-voltage-controlled-oscillator-compile-code-1784920887616",
-              "title": "PWM Generating Voltage Controlled oscillator / Compile Code",
-              "description": "PWM Generating Voltage Controlled oscillator / Compile Code",
-              "richDescription": {
-                "blocks": [
-                  {
-                    "align": "left",
-                    "bold": false,
-                    "color": "",
-                    "fontFamily": "Arial",
-                    "fontPx": "",
-                    "fontSize": "normal",
-                    "html": "PWM Generating Voltage Controlled oscillator / Compile Code",
-                    "italic": false,
-                    "text": "PWM Generating Voltage Controlled oscillator / Compile Code",
-                    "underline": false,
-                    "type": "paragraph"
-                  }
-                ]
-              },
-              "type": "Text",
-              "status": "draft",
-              "children": []
-            }
-          ],
+          "items": [],
           "richDescription": {
             "blocks": [
               {
@@ -536,7 +510,7 @@
         }
       },
       "portfolioView": {
-        "builtAt": "2026-07-25T00:19:48.125Z",
+        "builtAt": "2026-07-25T01:24:08.073Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -678,33 +652,7 @@
           {
             "description": "KiCad -  Schematic Capture and PCB design\n\nLTSPICE - circuit simulation\n\nBench Supplies - for power Supply\n\nOscilloscope - Frequency measurements during validation\n\nDigital Multimeters - voltage, continuity, and component measurements\n\nSoldering lab and supplies - Soldering components",
             "id": "custom:tools-used",
-            "items": [
-              {
-                "children": [],
-                "description": "PWM Generating Voltage Controlled oscillator / Compile Code",
-                "kind": "subsection",
-                "meta": "Text",
-                "title": "PWM Generating Voltage Controlled oscillator / Compile Code",
-                "url": "",
-                "rich": {
-                  "blocks": [
-                    {
-                      "align": "left",
-                      "bold": false,
-                      "color": "",
-                      "fontFamily": "Arial",
-                      "fontPx": "",
-                      "fontSize": "normal",
-                      "html": "PWM Generating Voltage Controlled oscillator / Compile Code",
-                      "italic": false,
-                      "text": "PWM Generating Voltage Controlled oscillator / Compile Code",
-                      "underline": false,
-                      "type": "paragraph"
-                    }
-                  ]
-                }
-              }
-            ],
+            "items": [],
             "title": "Tools Used",
             "rich": {
               "blocks": [
@@ -845,21 +793,65 @@
             "dirty": true
           }
         ],
-        "activeFileId": "tb-counter-tb-uvm-style-sv-1784592202976-af8b70626e7d3",
+        "activeFileId": "main-js-1784562803339-5bba21c85bc428",
         "terminal": "Simulate request for counter_tb.v\n\nVerilog simulation set: 1 design file, 1 testbench file\n\nTestbench top: counter_tb\n\nHDL debug tools: Verilator lint not installed; GTKWave viewer not installed.\n\nVerilog simulation cache hit: using existing artifact\nC:\\Users\\otien\\AppData\\Local\\OMB Portfolio Builder\\compile-code\\pwm-generating-voltage-controlled-oscillator\\.build-cache\\verilog\\f801cefe0b6f939694778551\\simulation.vvp\n\nGenerated simulation: C:\\Users\\otien\\AppData\\Local\\OMB Portfolio Builder\\compile-code\\pwm-generating-voltage-controlled-oscillator\\.build-cache\\verilog\\f801cefe0b6f939694778551\\simulation.vvp\n\n$ vvp.exe simulation.vvp\nSimulation exit code 0 in 0.05s\nVCD info: dumpfile counter_wave.vcd opened for output.\n$finish called at 112000 (1ps)\n\nScope waveform: counter_wave.vcd (4 signals, 0 to 112000 1ps)",
         "appendTargetId": "project-overview",
-        "messages": [],
+        "messages": [
+          {
+            "id": "message-1784940576535-942eedee69673",
+            "at": "2026-07-25T00:49:36.535Z",
+            "level": "info",
+            "text": "Collapsed bus signal into a single waveform row."
+          },
+          {
+            "id": "message-1784940568999-01a574a29c6378",
+            "at": "2026-07-25T00:49:28.999Z",
+            "level": "info",
+            "text": "Expanded bus signal into individual bit waveforms."
+          },
+          {
+            "id": "message-1784940566718-62bf1b5b9e634",
+            "at": "2026-07-25T00:49:26.718Z",
+            "level": "info",
+            "text": "Scope cursor removed."
+          },
+          {
+            "id": "message-1784940537290-3254762a0ac8a",
+            "at": "2026-07-25T00:48:57.290Z",
+            "level": "info",
+            "text": "HDL scope width set to natural width."
+          },
+          {
+            "id": "message-1784940533138-fd243b64764b1",
+            "at": "2026-07-25T00:48:53.138Z",
+            "level": "info",
+            "text": "HDL scope zoom set to 1x."
+          },
+          {
+            "id": "message-1784940530930-da753a8bd0b158",
+            "at": "2026-07-25T00:48:50.930Z",
+            "level": "info",
+            "text": "HDL scope zoom set to 8x."
+          },
+          {
+            "id": "message-1784940518556-956a03dfc3c268",
+            "at": "2026-07-25T00:48:38.556Z",
+            "level": "success",
+            "text": "Opened Windows PowerShell at C:\\Users\\otien\\AppData\\Local\\OMB Portfolio Builder\\compile-code\\pwm-generating-voltage-controlled-oscillator."
+          }
+        ],
         "directories": [],
         "systemTerminal": {
           "cwd": "",
-          "command": "dir",
+          "command": "",
           "output": "PS C:\\Users\\otien\\AppData\\Local\\OMB Portfolio Builder\\compile-code\\pwm-generating-voltage-controlled-oscillator> ls\nPS C:\\Users\\otien\\AppData\\Local\\OMB Portfolio Builder\\compile-code\\pwm-generating-voltage-controlled-oscillator> python3\nPS C:\\Users\\otien\\AppData\\Local\\OMB Portfolio Builder\\compile-code\\pwm-generating-voltage-controlled-oscillator> dir",
-          "rootPath": "",
-          "cwdAbsolute": "",
-          "promptPath": "",
+          "rootPath": "C:\\Users\\otien\\AppData\\Local\\OMB Portfolio Builder\\compile-code",
+          "cwdAbsolute": "C:\\Users\\otien\\AppData\\Local\\OMB Portfolio Builder\\compile-code\\pwm-generating-voltage-controlled-oscillator",
+          "promptPath": "C:\\Users\\otien\\AppData\\Local\\OMB Portfolio Builder\\compile-code\\pwm-generating-voltage-controlled-oscillator",
+          "openedAt": "2026-07-25T00:48:38.555Z",
           "history": []
         },
-        "activePanel": "console",
+        "activePanel": "messages",
         "waveform": {
           "source": "counter_wave.vcd",
           "timeScale": "1ps",
@@ -1102,8 +1094,8 @@
         "appendPanelOpen": false,
         "outputDockUnlocked": false,
         "outputDockPosition": {
-          "x": 589,
-          "y": 141
+          "x": 309,
+          "y": 467
         },
         "openFileIds": [
           "main-js-1784561927575-f9ae2618f97f38",
@@ -1135,10 +1127,10 @@
         },
         "hdlSimulationTimeoutMs": 120000,
         "scopeFilter": "",
-        "scopeZoom": 2,
+        "scopeZoom": 1,
         "sidebarWidth": 240,
         "selectedFileIds": [
-          "tb-counter-tb-uvm-style-sv-1784592202976-af8b70626e7d3"
+          "main-js-1784562803339-5bba21c85bc428"
         ],
         "stdinWindowOpen": false,
         "showFileDetails": false,
@@ -1150,13 +1142,13 @@
           "x": 1023,
           "y": 120
         },
-        "scopeView": "fit",
+        "scopeView": "natural",
         "scopeExpandedSignals": [],
         "outputDockSize": {
           "width": 1009,
           "height": 420
         },
-        "scopeCursorEnabled": true,
+        "scopeCursorEnabled": false,
         "scopeCursorTime": 1930.5305882504113
       },
       "sectionModelVersion": 3,
@@ -1206,7 +1198,7 @@
         }
       },
       "portfolioView": {
-        "builtAt": "2026-07-25T00:19:48.126Z",
+        "builtAt": "2026-07-25T01:24:08.073Z",
         "template": {
           "group": "Appearance",
           "id": "",
@@ -1338,6 +1330,7 @@
           "rootPath": "",
           "cwdAbsolute": "",
           "promptPath": "",
+          "openedAt": "",
           "history": []
         },
         "activePanel": "terminal",
@@ -1543,7 +1536,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-07-25T00:19:48.126Z",
+        "builtAt": "2026-07-25T01:24:08.073Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -1739,6 +1732,7 @@
           "rootPath": "",
           "cwdAbsolute": "",
           "promptPath": "",
+          "openedAt": "",
           "history": []
         },
         "activePanel": "console",
@@ -1908,7 +1902,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-07-25T00:19:48.126Z",
+        "builtAt": "2026-07-25T01:24:08.074Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-steel-teal-click",
@@ -2074,6 +2068,7 @@
           "rootPath": "",
           "cwdAbsolute": "",
           "promptPath": "",
+          "openedAt": "",
           "history": []
         },
         "activePanel": "console",
@@ -2240,7 +2235,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-07-25T00:19:48.127Z",
+        "builtAt": "2026-07-25T01:24:08.074Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-graphite-white-click",
@@ -2404,6 +2399,7 @@
           "rootPath": "",
           "cwdAbsolute": "",
           "promptPath": "",
+          "openedAt": "",
           "history": []
         },
         "activePanel": "console",
@@ -2480,7 +2476,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-07-25T00:19:48.127Z",
+        "builtAt": "2026-07-25T01:24:08.074Z",
         "template": {
           "group": "Appearance",
           "id": "",
@@ -2581,6 +2577,7 @@
           "rootPath": "",
           "cwdAbsolute": "",
           "promptPath": "",
+          "openedAt": "",
           "history": []
         },
         "activePanel": "scope",
@@ -3215,7 +3212,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-07-25T00:19:48.128Z",
+        "builtAt": "2026-07-25T01:24:08.075Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -4077,14 +4074,20 @@
           }
         ],
         "activeFileId": "lab10-top-sv-1783488899555-9c5b2becc896b",
-        "terminal": "Compile request for main.cpp\n\nC++ build profile: -std=c++20, warnings enabled, debug symbols enabled\n\nWorkspace sources visible to compiler: main.cpp\n\nCompiler: g++.exe (MinGW-W64 x86_64-ucrt-posix-seh, built by Brecht Sanders, r2) 16.1.0\n\n$ g++.exe main.cpp -o main.exe -std=c++20 -Wall -Wextra -Wpedantic -Wshadow -O0 -g3 -fdiagnostics-color=never\nExit code 0 in 0.32s\nCompleted without diagnostic output.\n\nGenerated binary: C:\\Users\\otien\\AppData\\Local\\OMB Portfolio Builder\\compile-code\\fpga-base-health-monitor-pulse-sensor-and-reaction-timer-controllers\\.build-cache\\cpp\\4d5335811fb68f34bafab85a\\main.exe\n\nCompile completed. Use Run to execute the generated binary.",
+        "terminal": "",
         "appendTargetId": "project-overview",
         "messages": [
           {
-            "id": "message-1784938397802-a938dc4ae9fba8",
-            "at": "2026-07-25T00:13:17.802Z",
-            "level": "info",
-            "text": "Displayed terminal output for lab10_top.sv."
+            "id": "message-1784942048588-cccd9154c0ca6",
+            "at": "2026-07-25T01:14:08.588Z",
+            "level": "success",
+            "text": "Opened Windows PowerShell at C:\\Users\\otien\\AppData\\Local\\OMB Portfolio Builder\\compile-code\\fpga-base-health-monitor-pulse-sensor-and-reaction-timer-controllers."
+          },
+          {
+            "id": "message-1784942042354-295434ae3e8718",
+            "at": "2026-07-25T01:14:02.354Z",
+            "level": "success",
+            "text": "Opened Windows PowerShell at C:\\Users\\otien\\AppData\\Local\\OMB Portfolio Builder\\compile-code\\fpga-base-health-monitor-pulse-sensor-and-reaction-timer-controllers."
           }
         ],
         "directories": [
@@ -4095,12 +4098,13 @@
           "cwd": "",
           "command": "",
           "output": "",
-          "rootPath": "",
-          "cwdAbsolute": "",
-          "promptPath": "",
+          "rootPath": "C:\\Users\\otien\\AppData\\Local\\OMB Portfolio Builder\\compile-code",
+          "cwdAbsolute": "C:\\Users\\otien\\AppData\\Local\\OMB Portfolio Builder\\compile-code\\fpga-base-health-monitor-pulse-sensor-and-reaction-timer-controllers",
+          "promptPath": "C:\\Users\\otien\\AppData\\Local\\OMB Portfolio Builder\\compile-code\\fpga-base-health-monitor-pulse-sensor-and-reaction-timer-controllers",
+          "openedAt": "2026-07-25T01:14:08.587Z",
           "history": []
         },
-        "activePanel": "messages",
+        "activePanel": "console",
         "appendPanelOpen": false,
         "outputDockUnlocked": false,
         "outputDockPosition": {
@@ -4114,7 +4118,14 @@
           "counter-bcd-sv-1784921500711-bb5eb62dfe0718",
           "lab10-top-sv-1784921500716-c1661da352b5b8",
           "add3-sv-1784921500702-b75da79e166e68",
-          "allcounters-sv-1784921500704-0ee1edfd642ee8"
+          "allcounters-sv-1784921500704-0ee1edfd642ee8",
+          "binary-to-bcd-sv-1784921500705-c02ee4f325e498",
+          "xadc-wiz-0-v-1784921500744-663250018e7d2",
+          "pulse-sensor-sv-1784921500733-dbc412df812878",
+          "pulse-monitor-sv-1784921500729-24029a5b1732e",
+          "pulse-fm-sv-1784921500728-e785d94dc22c28",
+          "pulse-counter-sv-1784921500724-07b791be43398",
+          "clkdiv-sv-1784921500708-0fe4c182575fb"
         ],
         "outputDockHeight": 274,
         "scopeSettings": {},

@@ -2138,6 +2138,45 @@ h3 {
   white-space: normal;
 }
 
+.parsed-subsection-stack {
+  display: grid;
+  gap: 8px;
+  width: 100%;
+}
+
+.parsed-subsection-accordion {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.92);
+  overflow: hidden;
+}
+
+.parsed-subsection-accordion summary {
+  min-height: 34px;
+  padding: 7px 12px;
+  color: var(--ink);
+  background: rgba(215, 241, 250, 0.62);
+  cursor: pointer;
+  font-size: 0.92rem;
+  font-weight: 800;
+}
+
+.parsed-subsection-accordion summary:hover {
+  color: #ffffff;
+  background: var(--template-hover, #1f6ed4);
+}
+
+.parsed-subsection-accordion[open] > summary {
+  border-bottom: 1px solid var(--line);
+  background: rgba(226, 247, 253, 0.84);
+}
+
+.parsed-subsection-accordion > .parsed-window-panel {
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
 .parsed-window-panel {
   display: grid;
   gap: 14px;

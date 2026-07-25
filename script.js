@@ -3137,27 +3137,17 @@ function nodeOverviewDetails(node, children = []) {
   `;
 }
 
-function parsedNodeCard(node, projectId, sectionIndex, path) {
-  const title = displayTitle(node.title);
-  return `
-    <button
-      class="section-open-card subsection-open-card"
-      type="button"
-      data-section-project="${projectId}"
-      data-section-index="${sectionIndex}"
-      data-resource-path="${pathToString(path)}"
-    >
-      <span>${escapeHtml(title)}</span>
-    </button>
-  `;
-}
-
-function parsedChildCards(children, projectId, sectionIndex, basePath = []) {
+function parsedChildAccordions(children, projectId, sectionIndex, basePath = []) {
   const visibleChildren = children.filter((child) => nodeHasRenderableContent(child) && !child.url && !nodeIsOverview(child));
   if (!visibleChildren.length) return "";
   return `
-    <div class="subsection-grid section-content-grid">
-      ${children.map((child, index) => nodeHasRenderableContent(child) && !child.url && !nodeIsOverview(child) ? parsedNodeCard(child, projectId, sectionIndex, [...basePath, index]) : "").join("")}
+    <div class="parsed-subsection-stack" aria-label="Subsections">
+      ${children.map((child, index) => nodeHasRenderableContent(child) && !child.url && !nodeIsOverview(child) ? `
+        <details class="parsed-subsection-accordion">
+          <summary>${escapeHtml(displayTitle(child.title, "Subsection"))}</summary>
+          ${parsedNodeContent(child, projectId, sectionIndex, [...basePath, index])}
+        </details>
+      ` : "").join("")}
     </div>
   `;
 }
@@ -3172,7 +3162,7 @@ function parsedNodeContent(node, projectId, sectionIndex, path = []) {
     return `
     <article class="parsed-window-panel section-directory">
       ${nodeOverviewDetails(node, children)}
-      ${parsedChildCards(children, projectId, sectionIndex, path)}
+      ${parsedChildAccordions(children, projectId, sectionIndex, path)}
       ${renderInlineSectionFiles(contentChildren)}
     </article>
   `;
