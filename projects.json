@@ -116,7 +116,7 @@
           "fontFamily": "Arial",
           "fontPx": "",
           "fontSize": "normal",
-          "html": "<span><span><span><span><span><span style=\"font-weight: 400; display: inline;\"><span style=\"font-weight: 700; display: inline;\"><span style=\"font-weight: 400; display: inline;\"><span><span><span style=\"font-weight: 700; display: inline;\"><span><span>+14845451567</span></span></span></span></span></span></span></span></span></span></span></span></span>",
+          "html": "<span><span><span><span><span><span style=\"font-weight: 400; display: inline;\"><span style=\"font-weight: 700; display: inline;\"><span style=\"font-weight: 400; display: inline;\"><span><span><span style=\"font-weight: 700; display: inline;\"><span><span><span style=\"color: rgb(37, 99, 235); display: inline;\">+14845451567</span></span></span></span></span></span></span></span></span></span></span></span></span></span>",
           "italic": false,
           "text": "+14845451567",
           "underline": false,
@@ -133,7 +133,7 @@
           "fontFamily": "Arial",
           "fontPx": "",
           "fontSize": "normal",
-          "html": "<span><span><span><span><span><span><span style=\"font-weight: 400; display: inline;\"><span style=\"font-weight: 700; display: inline;\"><span style=\"font-weight: 400; display: inline;\"><span style=\"font-weight: 700; display: inline;\"><span><span><span style=\"font-weight: 400; display: inline;\"><span style=\"font-weight: 700; display: inline;\"><span>otienomaurice12340@gmail.com</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span>",
+          "html": "<span><span><span><span><span><span><span style=\"font-weight: 400; display: inline;\"><span style=\"font-weight: 700; display: inline;\"><span style=\"font-weight: 400; display: inline;\"><span style=\"font-weight: 700; display: inline;\"><span><span><span style=\"font-weight: 400; display: inline;\"><span style=\"font-weight: 700; display: inline;\"><span><span style=\"color: rgb(37, 99, 235); display: inline;\">otienomaurice12340@gmail.com</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span>",
           "italic": false,
           "text": "otienomaurice12340@gmail.com",
           "underline": false,
@@ -507,7 +507,7 @@
         }
       },
       "portfolioView": {
-        "builtAt": "2026-07-27T06:13:52.132Z",
+        "builtAt": "2026-07-27T06:14:53.163Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -1220,7 +1220,7 @@
         }
       },
       "portfolioView": {
-        "builtAt": "2026-07-27T06:13:52.132Z",
+        "builtAt": "2026-07-27T06:14:53.163Z",
         "template": {
           "group": "Appearance",
           "id": "",
@@ -1558,7 +1558,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-07-27T06:13:52.133Z",
+        "builtAt": "2026-07-27T06:14:53.163Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -1924,7 +1924,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-07-27T06:13:52.133Z",
+        "builtAt": "2026-07-27T06:14:53.163Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-steel-teal-click",
@@ -2257,7 +2257,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-07-27T06:13:52.134Z",
+        "builtAt": "2026-07-27T06:14:53.164Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-graphite-white-click",
@@ -2498,7 +2498,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-07-27T06:13:52.134Z",
+        "builtAt": "2026-07-27T06:14:53.164Z",
         "template": {
           "group": "Appearance",
           "id": "",
@@ -3237,7 +3237,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-07-27T06:13:52.135Z",
+        "builtAt": "2026-07-27T06:14:53.165Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
