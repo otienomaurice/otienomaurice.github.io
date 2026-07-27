@@ -17,12 +17,6 @@
       "description": "MCU-based systems with firmware, board bring-up, interfaces, sensing, control, and hardware/software integration.",
       "id": "embedded",
       "label": "Embedded Systems"
-    },
-    {
-      "accent": "#4c7c94",
-      "description": "",
-      "id": "software-engineering",
-      "label": "Software Engineering"
     }
   ],
   "fieldStyles": {},
@@ -34,11 +28,11 @@
       {
         "align": "left",
         "bold": false,
-        "color": "#4493ee",
+        "color": "",
         "fontFamily": "Arial",
         "fontPx": "",
         "fontSize": "normal",
-        "html": "<span style=\"font-size: 8px; display: inline;\"><span style=\"font-size: 13px; display: inline;\"><span style=\"color: rgb(0, 0, 0); display: inline;\"><span style=\"font-size: 13px; display: inline;\"><span style=\"font-weight: 700; display: inline;\"><span style=\"font-family: Tahoma; display: inline;\"><span style=\"color: rgb(8, 127, 155); display: inline;\"><span style=\"color: rgb(190, 18, 60); display: inline;\"><span style=\"color: rgb(185, 28, 28); display: inline;\"><span style=\"color: rgb(0, 0, 0); display: inline;\"><span style=\"color: rgb(49, 115, 191); display: inline;\"><span style=\"color: rgb(68, 147, 238); display: inline;\">I built the builder to create this portfolio, letting me add text and files while parsing the provided input. You can download it as a standalone desktop app by clicking the link below. It would, however, require you to specify a GitHub Pages website where your portfolio will be hosted.</span></span></span></span></span></span></span></span></span></span></span></span><span style=\"font-size: 13px; display: inline;\">\n</span><br>",
+        "html": "<span style=\"font-size: 8px; display: inline;\"><span style=\"font-size: 13px; display: inline;\"><span><span style=\"font-size: 13px; display: inline;\"><span style=\"font-weight: 700; display: inline;\"><span style=\"font-family: Tahoma; display: inline;\"><span><span><span><span><span><span>I built the builder to create this portfolio, letting me add text and files while parsing the provided input. You can download it as a standalone desktop app by clicking the link below. It would, however, require you to specify a GitHub Pages website where your portfolio will be hosted.</span></span></span></span></span></span></span></span></span></span></span></span><span style=\"font-size: 13px; display: inline;\">\n</span><br>",
         "italic": false,
         "text": "I built the builder to create this portfolio, letting me add text and files while parsing the provided input. You can download it as a standalone desktop app by clicking the link below. It would, however, require you to specify a GitHub Pages website where your portfolio will be hosted.",
         "underline": false,
@@ -71,7 +65,7 @@
           "fontFamily": "Arial",
           "fontPx": "",
           "fontSize": "normal",
-          "html": "<span style=\"font-size: 11px; display: inline;\"><span style=\"font-size: 13px; display: inline;\"><span style=\"font-size: 14px; display: inline;\"><span style=\"font-size: 13px; display: inline;\"><span style=\"color: rgb(14, 165, 233); display: inline;\"><a href=\"https://www.linkedin.com/in/maurice-otieno-037a55341\" target=\"_blank\" rel=\"noreferrer\"><span style=\"color: rgb(14, 165, 233); display: inline;\"><span style=\"color: rgb(23, 32, 42); display: inline;\"><span style=\"color: rgb(255, 255, 255); display: inline;\"><span style=\"color: rgb(29, 78, 216); display: inline;\"><span style=\"color: rgb(148, 163, 184); display: inline;\"><span style=\"font-weight: 400; display: inline;\"><span style=\"font-weight: 700; display: inline;\"><span style=\"font-weight: 400; display: inline;\"><span style=\"color: rgb(14, 165, 233); display: inline;\">https://www.linkedin.com/in/maurice-otieno-037a55341</span></span></span></span></span></span></span></span></span></a></span></span></span></span></span>",
+          "html": "<span style=\"font-size: 11px; display: inline;\"><span style=\"font-size: 13px; display: inline;\"><span style=\"font-size: 14px; display: inline;\"><span style=\"font-size: 13px; display: inline;\"><span><a href=\"https://www.linkedin.com/in/maurice-otieno-037a55341\" target=\"_blank\" rel=\"noreferrer\"><span><span><span><span><span><span style=\"font-weight: 400; display: inline;\"><span style=\"font-weight: 700; display: inline;\"><span style=\"font-weight: 400; display: inline;\"><span><span style=\"color: rgb(37, 99, 235); display: inline;\"><span style=\"font-weight: 700; display: inline;\">https://www.linkedin.com/in/maurice-otieno-037a55341</span></span></span></span></span></span></span></span></span></span></span></a></span></span></span></span></span>",
           "italic": false,
           "text": "https://www.linkedin.com/in/maurice-otieno-037a55341",
           "underline": false,
@@ -84,11 +78,11 @@
         {
           "align": "left",
           "bold": false,
-          "color": "",
+          "color": "#4a8fe8",
           "fontFamily": "Arial",
           "fontPx": "",
           "fontSize": "normal",
-          "html": "<span style=\"color: rgb(14, 165, 233); display: inline;\"><a href=\"https://mauriceotieno.com\" target=\"_blank\" rel=\"noreferrer\"><span style=\"color: rgb(14, 165, 233); display: inline;\"><span style=\"color: rgb(23, 32, 42); display: inline;\"><span style=\"color: rgb(255, 255, 255); display: inline;\"><span style=\"color: rgb(29, 78, 216); display: inline;\"><span style=\"color: rgb(148, 163, 184); display: inline;\"><span style=\"font-weight: 400; display: inline;\"><span style=\"font-weight: 700; display: inline;\"><span style=\"font-weight: 400; display: inline;\"><span style=\"color: rgb(14, 165, 233); display: inline;\">https://mauriceotieno.com</span></span></span></span></span></span></span></span></span></a></span>",
+          "html": "<span><a href=\"https://mauriceotieno.com\" target=\"_blank\" rel=\"noreferrer\"><span><span><span><span><span><span style=\"font-weight: 400; display: inline;\"><span style=\"font-weight: 700; display: inline;\"><span style=\"font-weight: 400; display: inline;\"><span><span style=\"font-weight: 700; display: inline;\"><span style=\"font-weight: 400; display: inline;\"><span style=\"font-weight: 700; display: inline;\"><span style=\"font-weight: 400; display: inline;\"><span style=\"font-style: italic; display: inline;\"><span style=\"text-decoration: underline; display: inline;\"><span><span style=\"text-decoration: underline; display: inline;\"><span style=\"color: rgb(114, 160, 44); display: inline;\"><span style=\"color: rgb(112, 172, 22); display: inline;\"><span style=\"color: rgb(44, 94, 160); display: inline;\"><span style=\"color: rgb(65, 139, 236); display: inline;\"><span style=\"color: rgb(19, 104, 216); display: inline;\"><span style=\"color: rgb(99, 161, 242); display: inline;\"><span style=\"color: rgb(98, 161, 244); display: inline;\"><span style=\"color: rgb(74, 143, 232); display: inline;\"><span style=\"color: rgb(37, 99, 235); display: inline;\"><span style=\"font-weight: 700; display: inline;\">https://mauriceotieno.com</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></a></span>",
           "italic": false,
           "text": "https://mauriceotieno.com",
           "underline": false,
@@ -101,11 +95,11 @@
         {
           "align": "left",
           "bold": false,
-          "color": "",
+          "color": "#2ca074",
           "fontFamily": "Arial",
           "fontPx": "",
           "fontSize": "normal",
-          "html": "<span style=\"color: rgb(14, 165, 233); display: inline;\"><a href=\"https://github.com/otienomaurice\" target=\"_blank\" rel=\"noreferrer\"><span style=\"color: rgb(14, 165, 233); display: inline;\"><span style=\"color: rgb(23, 32, 42); display: inline;\"><span style=\"color: rgb(255, 255, 255); display: inline;\"><span style=\"color: rgb(29, 78, 216); display: inline;\"><span style=\"color: rgb(148, 163, 184); display: inline;\"><span style=\"font-weight: 400; display: inline;\"><span style=\"font-weight: 700; display: inline;\"><span style=\"color: rgb(14, 165, 233); display: inline;\"><span style=\"font-weight: 400; display: inline;\">https://github.com/otienomaurice</span></span></span></span></span></span></span></span></span></a></span>",
+          "html": "<span><a href=\"https://github.com/otienomaurice\" target=\"_blank\" rel=\"noreferrer\"><span><span><span><span><span><span style=\"font-weight: 400; display: inline;\"><span style=\"font-weight: 700; display: inline;\"><span><span style=\"font-weight: 400; display: inline;\"><span><span style=\"color: rgb(37, 99, 235); display: inline;\"><span style=\"font-weight: 700; display: inline;\"><span style=\"color: rgb(37, 99, 235); display: inline;\"><span style=\"color: rgb(37, 99, 235); display: inline;\">https://github.com/otienomaurice</span></span></span></span></span></span></span></span></span></span></span></span></span></span></a></span>",
           "italic": false,
           "text": "https://github.com/otienomaurice",
           "underline": false,
@@ -122,7 +116,7 @@
           "fontFamily": "Arial",
           "fontPx": "",
           "fontSize": "normal",
-          "html": "<span style=\"color: rgb(14, 165, 233); display: inline;\"><span style=\"color: rgb(23, 32, 42); display: inline;\"><span style=\"color: rgb(255, 255, 255); display: inline;\"><span style=\"color: rgb(29, 78, 216); display: inline;\"><span style=\"color: rgb(148, 163, 184); display: inline;\"><span style=\"font-weight: 400; display: inline;\"><span style=\"font-weight: 700; display: inline;\"><span style=\"font-weight: 400; display: inline;\"><span style=\"color: rgb(14, 165, 233); display: inline;\">+14845451567</span></span></span></span></span></span></span></span></span>",
+          "html": "<span><span><span><span><span><span style=\"font-weight: 400; display: inline;\"><span style=\"font-weight: 700; display: inline;\"><span style=\"font-weight: 400; display: inline;\"><span><span><span style=\"font-weight: 700; display: inline;\"><span><span>+14845451567</span></span></span></span></span></span></span></span></span></span></span></span></span>",
           "italic": false,
           "text": "+14845451567",
           "underline": false,
@@ -139,7 +133,7 @@
           "fontFamily": "Arial",
           "fontPx": "",
           "fontSize": "normal",
-          "html": "<span style=\"color: rgb(14, 165, 233); display: inline;\"><span style=\"color: rgb(8, 145, 178); display: inline;\"><span style=\"color: rgb(23, 32, 42); display: inline;\"><span style=\"color: rgb(255, 255, 255); display: inline;\"><span style=\"color: rgb(29, 78, 216); display: inline;\"><span style=\"color: rgb(148, 163, 184); display: inline;\"><span style=\"font-weight: 400; display: inline;\"><span style=\"font-weight: 700; display: inline;\"><span style=\"font-weight: 400; display: inline;\"><span style=\"font-weight: 700; display: inline;\"><span style=\"color: rgb(14, 165, 233); display: inline;\">otienomaurice12340@gmail.com</span></span></span></span></span></span></span></span></span></span></span>",
+          "html": "<span><span><span><span><span><span><span style=\"font-weight: 400; display: inline;\"><span style=\"font-weight: 700; display: inline;\"><span style=\"font-weight: 400; display: inline;\"><span style=\"font-weight: 700; display: inline;\"><span><span><span style=\"font-weight: 400; display: inline;\"><span style=\"font-weight: 700; display: inline;\"><span>otienomaurice12340@gmail.com</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span>",
           "italic": false,
           "text": "otienomaurice12340@gmail.com",
           "underline": false,
@@ -156,7 +150,7 @@
           "fontFamily": "Arial",
           "fontPx": "",
           "fontSize": "normal",
-          "html": "<span style=\"color: rgb(14, 165, 233); display: inline;\"><span style=\"color: rgb(23, 32, 42); display: inline;\"><span style=\"color: rgb(255, 255, 255); display: inline;\"><span style=\"color: rgb(29, 78, 216); display: inline;\"><span style=\"color: rgb(148, 163, 184); display: inline;\"><span style=\"font-weight: 400; display: inline;\"><span style=\"font-weight: 700; display: inline;\"><span style=\"font-weight: 400; display: inline;\"><span style=\"font-weight: 700; display: inline;\"><span style=\"font-weight: 400; display: inline;\"><span style=\"font-weight: 700; display: inline;\"><span style=\"color: rgb(31, 110, 212); display: inline;\"><span style=\"color: rgb(14, 165, 233); display: inline;\"><span style=\"color: rgb(255, 255, 255); display: inline;\"><span style=\"color: rgb(148, 163, 184); display: inline;\"><span style=\"color: rgb(14, 165, 233); display: inline;\">Hardware and software engineer focused on analog design, mixed-signal systems, embedded platforms, and digital hardware</span></span></span></span></span><span style=\"color: rgb(14, 165, 233); display: inline;\"><span style=\"color: rgb(255, 255, 255); display: inline;\"><span style=\"color: rgb(148, 163, 184); display: inline;\"><span style=\"color: rgb(14, 165, 233); display: inline;\">.</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span>",
+          "html": "<span><span><span><span><span><span style=\"font-weight: 400; display: inline;\"><span style=\"font-weight: 700; display: inline;\"><span style=\"font-weight: 400; display: inline;\"><span style=\"font-weight: 700; display: inline;\"><span style=\"font-weight: 400; display: inline;\"><span style=\"font-weight: 700; display: inline;\"><span><span><span><span><span><span style=\"color: rgb(37, 99, 235); display: inline;\">Hardware and software engineer focused on analog design, mixed-signal systems, embedded platforms, and digital hardware</span></span></span></span></span></span><span><span><span><span><span style=\"color: rgb(37, 99, 235); display: inline;\">.</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span>",
           "italic": false,
           "text": "Hardware and software engineer focused on analog design, mixed-signal systems, embedded platforms, and digital hardware.",
           "underline": false,
@@ -169,11 +163,11 @@
         {
           "align": "left",
           "bold": false,
-          "color": "",
+          "color": "#1b2631",
           "fontFamily": "Arial",
           "fontPx": "",
           "fontSize": "normal",
-          "html": "<span style=\"color: rgb(14, 165, 233); display: inline;\">Maurice Otieno</span>",
+          "html": "<span><span style=\"color: rgb(37, 99, 235); display: inline;\"><span style=\"color: rgb(27, 38, 49); display: inline;\"><span style=\"color: rgb(246, 247, 249); display: inline;\"><span style=\"color: rgb(246, 247, 249); display: inline;\">Maurice Otieno</span></span></span></span></span>",
           "italic": false,
           "text": "Maurice Otieno",
           "underline": false,
@@ -190,7 +184,7 @@
           "fontFamily": "Arial",
           "fontPx": "",
           "fontSize": "normal",
-          "html": "<span style=\"color: rgb(14, 165, 233); display: inline;\"><span style=\"color: rgb(23, 32, 42); display: inline;\"><span style=\"color: rgb(255, 255, 255); display: inline;\"><span style=\"color: rgb(37, 99, 235); display: inline;\"><span style=\"color: rgb(148, 163, 184); display: inline;\"><span style=\"font-weight: 400; display: inline;\"><span style=\"font-weight: 700; display: inline;\"><span style=\"font-weight: 400; display: inline;\"><span style=\"font-weight: 700; display: inline;\"><span style=\"font-weight: 400; display: inline;\"><span style=\"font-weight: 700; display: inline;\"><span style=\"font-weight: 400; display: inline;\"><span style=\"font-weight: 700; display: inline;\"><span style=\"color: rgb(14, 165, 233); display: inline;\"><span style=\"color: rgb(148, 163, 184); display: inline;\"><span style=\"color: rgb(14, 165, 233); display: inline;\">Electrical and Computer Engineering Portfolio</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span>",
+          "html": "<span><span><span><span><span><span style=\"font-weight: 400; display: inline;\"><span style=\"font-weight: 700; display: inline;\"><span style=\"font-weight: 400; display: inline;\"><span style=\"font-weight: 700; display: inline;\"><span style=\"font-weight: 400; display: inline;\"><span style=\"font-weight: 700; display: inline;\"><span style=\"font-weight: 400; display: inline;\"><span style=\"font-weight: 700; display: inline;\"><span><span><span><span style=\"color: rgb(1, 32, 42); display: inline;\"><span style=\"color: rgb(10, 32, 42); display: inline;\"><span style=\"color: rgb(104, 32, 42); display: inline;\"><span style=\"color: rgb(104, 1, 42); display: inline;\"><span style=\"color: rgb(104, 10, 42); display: inline;\"><span style=\"color: rgb(104, 107, 42); display: inline;\"><span style=\"color: rgb(104, 107, 6); display: inline;\"><span style=\"color: rgb(104, 107, 63); display: inline;\"><span style=\"color: rgb(104, 107, 3); display: inline;\"><span style=\"color: rgb(104, 107, 23); display: inline;\"><span style=\"color: rgb(104, 107, 2); display: inline;\"><span style=\"color: rgb(104, 107, 23); display: inline;\"><span style=\"color: rgb(104, 107, 230); display: inline;\"><span style=\"color: rgb(104, 107, 230); display: inline;\"><span style=\"color: rgb(37, 99, 235); display: inline;\">Electrical and Computer Engineering Portfolio</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span>",
           "italic": false,
           "text": "Electrical and Computer Engineering Portfolio",
           "underline": false,
@@ -214,7 +208,7 @@
           "fontFamily": "Arial",
           "fontPx": "",
           "fontSize": "normal",
-          "html": "<span style=\"color: rgb(0, 0, 0); display: inline;\">Engineering portfolio</span>",
+          "html": "<span><span style=\"color: rgb(37, 99, 235); display: inline;\">Engineering portfolio</span></span>",
           "italic": false,
           "text": "Engineering portfolio",
           "underline": false,
@@ -227,11 +221,11 @@
         {
           "align": "left",
           "bold": false,
-          "color": "#3389e6",
+          "color": "",
           "fontFamily": "Arial",
           "fontPx": "",
           "fontSize": "normal",
-          "html": "<span style=\"color: rgb(0, 0, 0); display: inline;\"><span style=\"color: rgb(29, 24, 43); display: inline;\"><span style=\"color: rgb(33, 24, 43); display: inline;\"><span style=\"color: rgb(37, 24, 43); display: inline;\"><span style=\"color: rgb(38, 24, 43); display: inline;\"><span style=\"color: rgb(41, 24, 43); display: inline;\"><span style=\"color: rgb(31, 24, 43); display: inline;\"><span style=\"color: rgb(24, 24, 43); display: inline;\"><span style=\"color: rgb(24, 38, 43); display: inline;\"><span style=\"color: rgb(24, 31, 43); display: inline;\"><span style=\"color: rgb(24, 29, 43); display: inline;\"><span style=\"color: rgb(24, 24, 43); display: inline;\"><span style=\"color: rgb(153, 156, 234); display: inline;\"><span style=\"color: rgb(126, 130, 231); display: inline;\"><span style=\"color: rgb(122, 126, 230); display: inline;\"><span style=\"color: rgb(123, 127, 229); display: inline;\"><span style=\"color: rgb(116, 120, 226); display: inline;\"><span style=\"color: rgb(100, 104, 232); display: inline;\"><span style=\"color: rgb(99, 104, 242); display: inline;\"><span style=\"color: rgb(99, 195, 242); display: inline;\"><span style=\"color: rgb(99, 233, 242); display: inline;\"><span style=\"color: rgb(99, 207, 242); display: inline;\"><span style=\"color: rgb(99, 168, 242); display: inline;\"><span style=\"color: rgb(63, 140, 222); display: inline;\"><span style=\"color: rgb(51, 137, 230); display: inline;\"><span style=\"color: rgb(7, 121, 242); display: inline;\"><span style=\"color: rgb(51, 137, 230); display: inline;\">Analog, embedded, and digital systems.</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span>",
+          "html": "<span><span><span><span><span><span><span><span><span><span><span><span><span><span><span><span><span><span><span><span><span><span><span><span><span><span><span><span style=\"color: rgb(159, 199, 244); display: inline;\"><span style=\"color: rgb(107, 164, 230); display: inline;\"><span style=\"color: rgb(37, 99, 235); display: inline;\">Analog, embedded, and digital systems.</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span>",
           "italic": false,
           "text": "Analog, embedded, and digital systems.",
           "underline": false,
@@ -244,11 +238,11 @@
         {
           "align": "left",
           "bold": false,
-          "color": "",
+          "color": "#6ba4e6",
           "fontFamily": "Arial",
           "fontPx": "",
           "fontSize": "normal",
-          "html": "<span style=\"color: rgb(0, 0, 0); display: inline;\">This portfolio presents selected work, technical artifacts, and the engineering decisions behind each build.</span>",
+          "html": "<span><span style=\"color: rgb(87, 161, 244); display: inline;\"><span style=\"color: rgb(37, 99, 235); display: inline;\">This portfolio presents selected work, technical artifacts, and the engineering decisions behind each build.</span></span></span>",
           "italic": false,
           "text": "This portfolio presents selected work, technical artifacts, and the engineering decisions behind each build.",
           "underline": false,
@@ -364,7 +358,7 @@
             "title": "",
             "type": "image",
             "url": "docs/pwm-generating-voltage-controlled-oscillator/summary/image.png",
-            "width": 65.65448369041059,
+            "width": 98.49724124269564,
             "wrap": "left"
           }
         ]
@@ -513,7 +507,7 @@
         }
       },
       "portfolioView": {
-        "builtAt": "2026-07-25T03:26:44.417Z",
+        "builtAt": "2026-07-27T06:13:52.132Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -646,7 +640,7 @@
                       "title": "",
                       "type": "image",
                       "url": "docs/pwm-generating-voltage-controlled-oscillator/summary/image.png",
-                      "width": 65.65448369041059,
+                      "width": 98.49724124269564,
                       "wrap": "left"
                     }
                   ]
@@ -1226,7 +1220,7 @@
         }
       },
       "portfolioView": {
-        "builtAt": "2026-07-25T03:26:44.417Z",
+        "builtAt": "2026-07-27T06:13:52.132Z",
         "template": {
           "group": "Appearance",
           "id": "",
@@ -1564,7 +1558,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-07-25T03:26:44.417Z",
+        "builtAt": "2026-07-27T06:13:52.133Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -1930,7 +1924,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-07-25T03:26:44.418Z",
+        "builtAt": "2026-07-27T06:13:52.133Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-steel-teal-click",
@@ -2263,7 +2257,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-07-25T03:26:44.418Z",
+        "builtAt": "2026-07-27T06:13:52.134Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-graphite-white-click",
@@ -2504,7 +2498,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-07-25T03:26:44.419Z",
+        "builtAt": "2026-07-27T06:13:52.134Z",
         "template": {
           "group": "Appearance",
           "id": "",
@@ -3236,11 +3230,14 @@
               "status": "uploaded",
               "children": []
             }
-          ]
+          ],
+          "richDescription": {
+            "blocks": []
+          }
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-07-25T03:26:44.420Z",
+        "builtAt": "2026-07-27T06:13:52.135Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -3596,14 +3593,14 @@
             "role": "design",
             "code": "//-----------------------------------------------------------------------------\n// Module Name : lab10_top\n// Project : ECE 211 Digital Circuits 1\n//-----------------------------------------------------------------------------\n// Author : Otieno Maurice <otienom@lafayette.edu>\n// John Nestor <nestorj@lafayette.edu>\n// Created : April 2023\n//-----------------------------------------------------------------------------\n// Description : Top-level module for Lab 10 - Health Monitor\n/*Inputs:\n• analog_pos_in - brings in positive analog signal from the pulse sensor\n• analog_neg_in - brings in negative analog signal from the pulse sensor\n• enter - signal to stop time count and display the value on the seven-segment display\n• start - signal to start the reaction timer\n• reset - resets the entire system\n• clock - clock signal at which the sensor operates. Must be divided for other components\nto 1kHz\noutputs:\n• led -display digitized pulse sensor value\n• pulse - display pulse as red LED\n• a_n- turn on the seven-segment display digits,\n• segs_n - display value of data received\n• dot - display decimal point,\n• led_r,led_g,led_b, - display the colors on the reaction timer LED\n*/\n//-----------------------------------------------------------------------------\nmodule lab10_top(\n  input logic clock, switch, // CLOCK 100 MHz\n  input logic reset,enter, start,\n  output logic led_r,led_g,led_b,\n  input analog_pos_in, // pulse sensor positive input\n  input analog_neg_in, // pulse sensor negative input\n  output logic [15:0] led, // display digitized pulse sensor value\n  output logic dot, pulse_led, // display pulse as red LED\n  output logic [7:0] a_n,\n  output logic [6:0] segs_n\n);\nlogic enable, pulse_in;\nlogic [3:0] d3p, d2p, d1p, d0p;\nlogic [3:0] d3r,d2r, d1r, d0r;\nlogic [3:0] d0, d1, d2, d3;\nlogic [15:0] reaction_value, pulse_value;\nlogic sclk, rs_en; // DIVIDED CLOCK 1KHz\nlogic rst,led_r1,led_g1,led_b1,din;\n\npulse_monitor PULSE_MONITOR(.clk(sclk), .pulse_in(d_pulse), .d0p, .d1p,.d2p,.d3p, .rst );\n\nsingle_pulser PULSE(.d_pulse,.clk(sclk),.din(pulse_in));\n\nreaction_timer REACTION_TIMER(.clk(sclk),.start, .enter,.rst,.d0r,.d1r,.d2r,\n  .d3r,.led_r(led_r1),.led_b(led_b1),.led_g(led_g1),.rs_en);\n\nclkdiv CLKDIV( .clk(clock),.sclk(sclk),.reset(1'b0));\n\nsevenseg_control SEVENSEG_CONTROL(.clk(sclk),.rst, .d0(d0), .d1(d1), .d2(d2),\n  .d3(d3), .y_n(a_n),.segs_n,.dot, .en(enable));\n\npulse_sensor PULSE_SENSOR(.clk(clock), .rst, .analog_pos_in, .analog_neg_in, .led, .pulse(pulse_in));\n\n// add clock divider and other modules here\n\nassign rst = reset;\nassign reaction_value = {d3r ,d2r ,d1r ,d0r};\nassign pulse_value = {d3p, d2p, d1p, d0p};\nassign pulse_led = pulse_in;\n\n//Code\nalways_comb\nif (switch)\nbegin\nled_r = led_r1;\nled_g = led_g1;\nled_b = led_b1;\nenable = rs_en;\nd0 = reaction_value [3:0] ;\nd1 = reaction_value [7:4] ;\nd2 = reaction_value [11:8] ;\nd3 = reaction_value [15:12] ;\nend\n\nelse\nbegin\nenable = 1; led_r =0; led_g = 0; led_b =0;\nd0 = pulse_value [3:0] ;\nd1 = pulse_value [7:4] ;\nd2 = pulse_value [11:8] ;\nd3 = pulse_value [15:12] ;\nend\nendmodule:lab10_top",
             "stdin": "",
-            "savedPath": "",
-            "savedAt": "",
+            "savedPath": "C:\\Users\\otien\\AppData\\Local\\OMB Portfolio Builder\\compile-code\\fpga-base-health-monitor-pulse-sensor-and-reaction-timer-controllers\\lab10_top.sv",
+            "savedAt": "2026-07-27T04:45:32.486Z",
             "waveform": null,
             "lastResult": {
               "ok": null,
-              "terminal": ""
+              "terminal": "Build project started. Please wait..."
             },
-            "dirty": true
+            "dirty": false
           },
           {
             "id": "main-3-js-1784921446167-3f588981d4def8",
@@ -3627,13 +3624,16 @@
             "relativePath": "src/add3.sv",
             "language": "systemverilog",
             "role": "design",
-            "code": "`timescale 1ns / 1ps\n\nmodule add3(\n    input  logic [3:0] a,\n    output logic [3:0] y\n);\n    always_comb begin\n        if (a < 4'd5) y = a;\n        else          y = a + 4'd3;\n    end\nendmodule\n",
+            "code": "`timescale 1ns / 1ps\n\nmodule add3(\n    input  logic [3:0] a, i\n    output logic [3:0] y\n);\n    always_comb begin\n        if (a < 4'd5) y = a;\n        else          y = a + 4'd3;\n    end                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   \nendmodule \n",
             "stdin": "",
-            "savedPath": "",
-            "savedAt": "",
+            "savedPath": "C:\\Users\\otien\\AppData\\Local\\OMB Portfolio Builder\\compile-code\\fpga-base-health-monitor-pulse-sensor-and-reaction-timer-controllers\\src\\add3.sv",
+            "savedAt": "2026-07-27T04:24:29.821Z",
             "waveform": null,
-            "lastResult": null,
-            "dirty": true
+            "lastResult": {
+              "ok": null,
+              "terminal": "Synthesize started. Please wait..."
+            },
+            "dirty": false
           },
           {
             "id": "allcounters-sv-1784921500704-0ee1edfd642ee8",
@@ -3642,13 +3642,16 @@
             "relativePath": "src/allcounters.sv",
             "language": "systemverilog",
             "role": "design",
-            "code": "`timescale 1ns / 1ps\n\nmodule allcounters(\n    input  logic clk, rst, enable,\n    output logic [3:0] d0, d1, d2, d3,\n    output logic time_late\n);\n    logic carry1, carry2, carry3, carry4;\n    logic clkcommon, rstcommon;\n    logic [3:0] q0, q1, q2, q3;\n\n    counter_bcd D0(.enb(enable), .rst(rstcommon), .clk(clkcommon), .carry(carry1), .q(q0));\n    counter_bcd D1(.enb(carry1), .rst(rstcommon), .clk(clkcommon), .q(q1), .carry(carry2));\n    counter_bcd D2(.enb(carry2), .rst(rstcommon), .clk(clkcommon), .q(q2), .carry(carry3));\n    counter_bcd D3(.enb(carry3), .rst(rstcommon), .clk(clkcommon), .q(q3), .carry(carry4));\n\n    assign time_late = (q3 == 4'd5);\n    assign d0 = q0;\n    assign d1 = q1;\n    assign d2 = q2;\n    assign d3 = q3;\n    assign clkcommon = clk;\n    assign rstcommon = rst;\nendmodule\n",
+            "code": "`timescale 1ns / 1ps\n\nmodule allcounters(\n    input  logic clk, rst, enable,\n    output logic [3:0] d0, d1, d2, d3,\n    output logic time_late\n);\n    logic carry1, carry2, carry3, carry4;\n    logic clkcommon, rstcommon;                                                                                                                                                                                                                                                \n    logic [3:0] q0, q1, q2, q3;\n\n    counter_bcd D0(.enb(enable), .rst(rstcommon), .clk(clkcommon), .carry(carry1), .q(q0));\n    counter_bcd D1(.enb(carry1), .rst(rstcommon), .clk(clkcommon), .q(q1), .carry(carry2));\n    counter_bcd D2(.enb(carry2), .rst(rstcommon), .clk(clkcommon), .q(q2), .carry(carry3));\n    counter_bcd D3(.enb(carry3), .rst(rstcommon), .clk(clkcommon), .q(q3), .carry(carry4));\n\n    assign time_late = (q3 == 4'd5);\n    assign d0 = q0;\n    assign d1 = q1;\n    assign d2 = q2;\n    assign d3 = q3;\n    assign clkcommon = clk;\n    assign rstcommon = rst;\nendmodule\n",
             "stdin": "",
-            "savedPath": "",
-            "savedAt": "",
+            "savedPath": "C:\\Users\\otien\\AppData\\Local\\OMB Portfolio Builder\\compile-code\\fpga-base-health-monitor-pulse-sensor-and-reaction-timer-controllers\\src\\allcounters.sv",
+            "savedAt": "2026-07-27T04:45:01.958Z",
             "waveform": null,
-            "lastResult": null,
-            "dirty": true
+            "lastResult": {
+              "ok": null,
+              "terminal": "Build project started. Please wait..."
+            },
+            "dirty": false
           },
           {
             "id": "binary-to-bcd-sv-1784921500705-c02ee4f325e498",
@@ -3876,21 +3879,6 @@
             "dirty": true
           },
           {
-            "id": "pulse-fsm-sv-1784921500726-af68314ab7cae8",
-            "title": "pulse_fsm.sv",
-            "fileName": "pulse_fsm.sv",
-            "relativePath": "src/pulse_fsm.sv",
-            "language": "systemverilog",
-            "role": "design",
-            "code": "`timescale 1ns / 1ps\n//-----------------------------------------------------------------------------\n// Module Name   : pulse_fsm\n// Project       : ECE 211 Digital Circuits 1\n//-----------------------------------------------------------------------------\n// Description   : State machine that implements a simple comparator with hysteresis.\n//                 Threshold parameters THRESH_HI and THRESH_LO can be overridden.\n//-----------------------------------------------------------------------------\n\nmodule pulse_fsm(\n    input  logic clk,\n    input  logic rst,\n    input  logic [11:0] din,\n    output logic pulse\n);\n    parameter THRESH_HI = 12'd2800;\n    parameter THRESH_LO = 12'd2100;\n\n    logic din_gt_hi, din_gt_lo;\n\n    assign din_gt_hi = (din > THRESH_HI);\n    assign din_gt_lo = (din > THRESH_LO);\n\n    typedef enum logic { LO, HI } states_t;\n    states_t ps, ns;\n\n    always_ff @(posedge clk) begin\n        if (rst) ps <= LO;\n        else     ps <= ns;\n    end\n\n    always_comb begin\n        ns = LO;\n        pulse = 1'b0;\n        case (ps)\n            LO: begin\n                pulse = 1'b0;\n                if (din_gt_hi) ns = HI;\n                else           ns = LO;\n            end\n            HI: begin\n                pulse = 1'b1;\n                if (din_gt_lo) ns = HI;\n                else           ns = LO;\n            end\n            default: begin\n                ns = LO;\n                pulse = 1'b0;\n            end\n        endcase\n    end\nendmodule\n",
-            "stdin": "",
-            "savedPath": "",
-            "savedAt": "",
-            "waveform": null,
-            "lastResult": null,
-            "dirty": true
-          },
-          {
             "id": "incrementor-sv-1784921500727-ee0cde99c1fc28",
             "title": "incrementor.sv",
             "fileName": "incrementor.sv",
@@ -4101,19 +4089,37 @@
             "dirty": true
           }
         ],
-        "activeFileId": "pulse-fsm-sv-1784921500726-af68314ab7cae8",
-        "terminal": "",
-        "appendTargetId": "project-overview",
+        "activeFileId": "add3-sv-1784921500702-b75da79e166e68",
+        "terminal": "Build project request for lab10_top.sv\n\nSystemVerilog simulation set: 32 design files, 0 testbench files\n\nHDL timing and verification notes:\n- Timing: lab10_top.sv, pulse_fm.sv do not declare `timescale. Add `timescale 1ns/1ps or the intended resolution so # delays and the scope timeline are predictable.\n\nHDL debug tools: Verilator lint available at C:\\Users\\otien\\AppData\\Local\\Programs\\OSS CAD Suite\\oss-cad-suite\\bin\\verilator; GTKWave viewer available at C:\\Users\\otien\\AppData\\Local\\Programs\\OSS CAD Suite\\oss-cad-suite\\bin\\gtkwave.exe.\n\n$ verilator --lint-only --sv\nExit code -1 in 0.00s\nspawn C:\\Users\\otien\\AppData\\Local\\Programs\\OSS CAD Suite\\oss-cad-suite\\bin\\verilator ENOENT\n\nVerilator lint reported issues. This advisory lint does not replace the integrated Icarus/VVP simulation used to generate the built-in scope.\n\n$ iverilog.exe -g2012 -Wall -o simulation.vvp\nExit code 4 in 0.10s\nadd3.sv:5: syntax error\r\nadd3.sv:1: Errors in port declarations.\r\nlab10_top.sv:27: warning: timescale for lab10_top inherited from another file.\r\nincrementor.sv:1: ...: The inherited timescale is here.\r\nlab10_top.sv:46: warning: implicit definition of wire 'd_pulse'.\r\nlab10_top_1.sv:9: error: 'lab10_top' has already been declared in this scope.\r\nlab10_top.sv:27:      : It was declared here as a module.\r\nlab10_top_1.sv:81: Module lab10_top was already declared here: lab10_top.sv:27\r\n\r\npulse_fm.sv:12: warning: timescale for pulse_fsm inherited from another file.\r\npulse_delay_counter.sv:1: ...: The inherited timescale is here.",
+        "appendTargetId": "custom-hdl",
         "messages": [
           {
-            "id": "message-1784942048588-cccd9154c0ca6",
-            "at": "2026-07-25T01:14:08.588Z",
+            "id": "message-1785127680196-e025dd4e6e11e8",
+            "at": "2026-07-27T04:48:00.196Z",
+            "level": "success",
+            "text": "add3.sv appended to HDL overview."
+          },
+          {
+            "id": "message-1785127674686-5df3b465a905a",
+            "at": "2026-07-27T04:47:54.686Z",
+            "level": "info",
+            "text": "Append destination set to HDL overview."
+          },
+          {
+            "id": "message-1785127610076-1ae142432d2518",
+            "at": "2026-07-27T04:46:50.076Z",
             "level": "success",
             "text": "Opened Windows PowerShell at C:\\Users\\otien\\AppData\\Local\\OMB Portfolio Builder\\compile-code\\fpga-base-health-monitor-pulse-sensor-and-reaction-timer-controllers."
           },
           {
-            "id": "message-1784942042354-295434ae3e8718",
-            "at": "2026-07-25T01:14:02.354Z",
+            "id": "message-1785127604771-75c6436374aa9",
+            "at": "2026-07-27T04:46:44.771Z",
+            "level": "success",
+            "text": "Opened Windows PowerShell at C:\\Users\\otien\\AppData\\Local\\OMB Portfolio Builder\\compile-code\\fpga-base-health-monitor-pulse-sensor-and-reaction-timer-controllers."
+          },
+          {
+            "id": "message-1785127594581-4eb18e08def9c8",
+            "at": "2026-07-27T04:46:34.581Z",
             "level": "success",
             "text": "Opened Windows PowerShell at C:\\Users\\otien\\AppData\\Local\\OMB Portfolio Builder\\compile-code\\fpga-base-health-monitor-pulse-sensor-and-reaction-timer-controllers."
           }
@@ -4129,15 +4135,15 @@
           "rootPath": "C:\\Users\\otien\\AppData\\Local\\OMB Portfolio Builder\\compile-code",
           "cwdAbsolute": "C:\\Users\\otien\\AppData\\Local\\OMB Portfolio Builder\\compile-code\\fpga-base-health-monitor-pulse-sensor-and-reaction-timer-controllers",
           "promptPath": "C:\\Users\\otien\\AppData\\Local\\OMB Portfolio Builder\\compile-code\\fpga-base-health-monitor-pulse-sensor-and-reaction-timer-controllers",
-          "openedAt": "2026-07-25T01:14:08.587Z",
+          "openedAt": "2026-07-27T04:46:50.075Z",
           "history": []
         },
-        "activePanel": "console",
+        "activePanel": "messages",
         "appendPanelOpen": false,
         "outputDockUnlocked": false,
         "outputDockPosition": {
-          "x": 559,
-          "y": 139
+          "x": 369.84375,
+          "y": 357.703125
         },
         "openFileIds": [
           "lab10-top-sv-1783488899555-9c5b2becc896b",
@@ -4155,16 +4161,24 @@
           "pulse-counter-sv-1784921500724-07b791be43398",
           "clkdiv-sv-1784921500708-0fe4c182575fb",
           "count-3bit-sv-1784921500710-a24522db1ec098",
-          "pulse-fsm-sv-1784921500726-af68314ab7cae8"
+          "dec-3-5-sv-1784921500714-200fad2a497378",
+          "delay-counter-sv-1784921500712-0e75f82edcc0f",
+          "delay-counter5-sv-1784921500715-30c0e23d754018",
+          "incrementor-sv-1784921500727-ee0cde99c1fc28",
+          "mux5-sv-1784921500719-d494d09db3c2b",
+          "pulse-delay-counter-sv-1784921500725-0d84409aec7c58",
+          "pulse-registers-sv-1784921500732-861855200c9b3",
+          "pulse5-reg-1-sv-1784921500723-4745cf7197fa3",
+          "pulse5-reg-3-sv-1784921500721-9fd3ae56358ed"
         ],
-        "outputDockHeight": 274,
+        "outputDockHeight": 348,
         "scopeSettings": {},
         "hdlSimulationTimeoutMs": 30000,
         "scopeFilter": "",
         "scopeZoom": 1,
         "sidebarWidth": 340,
         "selectedFileIds": [
-          "pulse-fsm-sv-1784921500726-af68314ab7cae8"
+          "add3-sv-1784921500702-b75da79e166e68"
         ],
         "stdinWindowOpen": false,
         "showFileDetails": false,
@@ -4186,66 +4200,367 @@
         "scopeCursorTime": 0,
         "waveform": null,
         "liveDiagnostics": {
-          "fileId": "pulse-fsm-sv-1784921500726-af68314ab7cae8",
-          "fileName": "pulse_fsm.sv",
+          "fileId": "add3-sv-1784921500702-b75da79e166e68",
+          "fileName": "add3.sv",
           "language": "systemverilog",
           "checking": false,
           "ok": false,
           "diagnostics": [
             {
-              "file": "lab10_top.sv",
-              "line": 27,
-              "column": 1,
-              "character": 1,
-              "characterEstimated": true,
-              "severity": "warning",
-              "message": "warning: timescale for lab10_top inherited from another file.",
-              "language": "systemverilog"
-            },
-            {
-              "file": "lab10_top.sv",
-              "line": 46,
-              "column": 1,
-              "character": 1,
-              "characterEstimated": true,
-              "severity": "warning",
-              "message": "warning: implicit definition of wire 'd_pulse'.",
-              "language": "systemverilog"
-            },
-            {
-              "file": "lab10_top_1.sv",
-              "line": 9,
-              "column": 1,
-              "character": 1,
-              "characterEstimated": true,
+              "file": "source",
+              "line": null,
+              "column": null,
+              "character": null,
               "severity": "error",
-              "message": "error: 'lab10_top' has already been declared in this scope.",
-              "language": "systemverilog"
-            },
-            {
-              "file": "pulse_fm.sv",
-              "line": 12,
-              "column": 1,
-              "character": 1,
-              "characterEstimated": true,
-              "severity": "warning",
-              "message": "warning: timescale for pulse_fsm inherited from another file.",
-              "language": "systemverilog"
-            },
-            {
-              "file": "pulse_fsm.sv",
-              "line": 10,
-              "column": 1,
-              "character": 1,
-              "characterEstimated": true,
-              "severity": "error",
-              "message": "error: 'pulse_fsm' has already been declared in this scope.",
-              "language": "systemverilog"
+              "message": "EBUSY: resource busy or locked, rmdir 'C:\\Users\\otien\\AppData\\Local\\OMB Portfolio Builder\\compile-code\\fpga-base-health-monitor-pulse-sensor-and-reaction-timer-controllers\\.build-cache\\systemverilog\\0bd7eb7d6dec980287ba32a0'",
+              "language": ""
             }
           ],
-          "terminal": "Compile request for pulse_fsm.sv\n\nSystemVerilog simulation set: 33 design files, 0 testbench files\n\nHDL timing and verification notes:\n- Timing: lab10_top.sv, pulse_fm.sv do not declare `timescale. Add `timescale 1ns/1ps or the intended resolution so # delays and the scope timeline are predictable.\n\nHDL debug tools: Verilator lint available at C:\\Users\\otien\\AppData\\Local\\Programs\\OSS CAD Suite\\oss-cad-suite\\bin\\verilator; GTKWave viewer available at C:\\Users\\otien\\AppData\\Local\\Programs\\OSS CAD Suite\\oss-cad-suite\\bin\\gtkwave.exe.\n\n$ verilator --lint-only --sv\nExit code -1 in 0.00s\nspawn C:\\Users\\otien\\AppData\\Local\\Programs\\OSS CAD Suite\\oss-cad-suite\\bin\\verilator ENOENT\n\nVerilator lint reported issues. This advisory lint does not replace the integrated Icarus/VVP simulation used to generate the built-in scope.\n\n$ iverilog.exe -g2012 -Wall -o simulation.vvp\nExit code 4 in 0.11s\nlab10_top.sv:27: warning: timescale for lab10_top inherited from another file.\r\nincrementor.sv:1: ...: The inherited timescale is here.\r\nlab10_top.sv:46: warning: implicit definition of wire 'd_pulse'.\r\nlab10_top_1.sv:9: error: 'lab10_top' has already been declared in this scope.\r\nlab10_top.sv:27:      : It was declared here as a module.\r\nlab10_top_1.sv:81: Module lab10_top was already declared here: lab10_top.sv:27\r\n\r\npulse_fm.sv:12: warning: timescale for pulse_fsm inherited from another file.\r\npulse_delay_counter.sv:1: ...: The inherited timescale is here.\r\npulse_fsm.sv:10: error: 'pulse_fsm' has already been declared in this scope.\r\npulse_fm.sv:12:      : It was declared here as a module.\r\npulse_fsm.sv:52: Module pulse_fsm was already declared here: pulse_fm.sv:12",
-          "checkedAt": "2026-07-25T01:58:50.027Z"
-        }
+          "terminal": "EBUSY: resource busy or locked, rmdir 'C:\\Users\\otien\\AppData\\Local\\OMB Portfolio Builder\\compile-code\\fpga-base-health-monitor-pulse-sensor-and-reaction-timer-controllers\\.build-cache\\systemverilog\\0bd7eb7d6dec980287ba32a0'",
+          "checkedAt": "2026-07-27T04:46:14.113Z"
+        },
+        "synthesis": {
+          "available": true,
+          "tool": "Yosys",
+          "graph": {
+            "nodes": [
+              {
+                "id": "add3",
+                "fileName": "add3.sv"
+              },
+              {
+                "id": "allcounters",
+                "fileName": "allcounters.sv"
+              },
+              {
+                "id": "binary_to_bcd",
+                "fileName": "binary_to_bcd.sv"
+              },
+              {
+                "id": "clkdiv",
+                "fileName": "clkdiv.sv"
+              },
+              {
+                "id": "count_3bit",
+                "fileName": "count_3bit.sv"
+              },
+              {
+                "id": "counter_bcd",
+                "fileName": "counter_bcd.sv"
+              },
+              {
+                "id": "dec_3_5",
+                "fileName": "dec_3_5.sv"
+              },
+              {
+                "id": "delay_counter",
+                "fileName": "delay_counter.sv"
+              },
+              {
+                "id": "delay_counter5",
+                "fileName": "delay_counter5.sv"
+              },
+              {
+                "id": "incrementor",
+                "fileName": "incrementor.sv"
+              },
+              {
+                "id": "lab10_top",
+                "fileName": "lab10_top.sv"
+              },
+              {
+                "id": "multiplier",
+                "fileName": "multiplier.sv"
+              },
+              {
+                "id": "mux5",
+                "fileName": "mux5.sv"
+              },
+              {
+                "id": "pulse_counter",
+                "fileName": "pulse_counter.sv"
+              },
+              {
+                "id": "pulse_delay_counter",
+                "fileName": "pulse_delay_counter.sv"
+              },
+              {
+                "id": "pulse_fsm",
+                "fileName": "pulse_fsm.sv"
+              },
+              {
+                "id": "pulse_monitor",
+                "fileName": "pulse_monitor.sv"
+              },
+              {
+                "id": "pulse_registers",
+                "fileName": "pulse_registers.sv"
+              },
+              {
+                "id": "pulse_sensor",
+                "fileName": "pulse_sensor.sv"
+              },
+              {
+                "id": "pulse5_reg_1",
+                "fileName": "pulse5_reg_1.sv"
+              },
+              {
+                "id": "pulse5_reg_2",
+                "fileName": "pulse5_reg_2.sv"
+              },
+              {
+                "id": "pulse5_reg_3",
+                "fileName": "pulse5_reg_3.sv"
+              },
+              {
+                "id": "random_wait",
+                "fileName": "random_wait.sv"
+              },
+              {
+                "id": "randomnum_reg",
+                "fileName": "randomnum_reg.sv"
+              },
+              {
+                "id": "reaction_FSM",
+                "fileName": "reaction_fsm.sv"
+              },
+              {
+                "id": "reaction_timer",
+                "fileName": "reaction_timer.sv"
+              },
+              {
+                "id": "rgb_pwm",
+                "fileName": "rgb_pwm.sv"
+              },
+              {
+                "id": "sevenseg_control",
+                "fileName": "sevenseg_control.sv"
+              },
+              {
+                "id": "sevenseg_hex",
+                "fileName": "sevenseg_hex.sv"
+              },
+              {
+                "id": "single_pulser",
+                "fileName": "single_pulser.sv"
+              },
+              {
+                "id": "xadc_wiz_0",
+                "fileName": "xadc_wiz_0.v"
+              }
+            ],
+            "edges": [
+              {
+                "from": "allcounters",
+                "to": "counter_bcd",
+                "instance": "D0"
+              },
+              {
+                "from": "allcounters",
+                "to": "counter_bcd",
+                "instance": "D1"
+              },
+              {
+                "from": "allcounters",
+                "to": "counter_bcd",
+                "instance": "D2"
+              },
+              {
+                "from": "allcounters",
+                "to": "counter_bcd",
+                "instance": "D3"
+              },
+              {
+                "from": "binary_to_bcd",
+                "to": "add3",
+                "instance": "U_ADD3_1"
+              },
+              {
+                "from": "binary_to_bcd",
+                "to": "add3",
+                "instance": "U_ADD3_2"
+              },
+              {
+                "from": "binary_to_bcd",
+                "to": "add3",
+                "instance": "U_ADD3_3"
+              },
+              {
+                "from": "binary_to_bcd",
+                "to": "add3",
+                "instance": "U_ADD3_4"
+              },
+              {
+                "from": "binary_to_bcd",
+                "to": "add3",
+                "instance": "U_ADD3_5"
+              },
+              {
+                "from": "binary_to_bcd",
+                "to": "add3",
+                "instance": "U_ADD3_6"
+              },
+              {
+                "from": "binary_to_bcd",
+                "to": "add3",
+                "instance": "U_ADD3_7"
+              },
+              {
+                "from": "lab10_top",
+                "to": "pulse_monitor",
+                "instance": "PULSE_MONITOR"
+              },
+              {
+                "from": "lab10_top",
+                "to": "single_pulser",
+                "instance": "PULSE"
+              },
+              {
+                "from": "lab10_top",
+                "to": "reaction_timer",
+                "instance": "REACTION_TIMER"
+              },
+              {
+                "from": "lab10_top",
+                "to": "clkdiv",
+                "instance": "CLKDIV"
+              },
+              {
+                "from": "lab10_top",
+                "to": "sevenseg_control",
+                "instance": "SEVENSEG_CONTROL"
+              },
+              {
+                "from": "lab10_top",
+                "to": "pulse_sensor",
+                "instance": "PULSE_SENSOR"
+              },
+              {
+                "from": "pulse_monitor",
+                "to": "binary_to_bcd",
+                "instance": "BCD_CONVERTER"
+              },
+              {
+                "from": "pulse_monitor",
+                "to": "pulse_registers",
+                "instance": "PULSE_REGISTER"
+              },
+              {
+                "from": "pulse_registers",
+                "to": "pulse_counter",
+                "instance": "PULSE_COUNTER"
+              },
+              {
+                "from": "pulse_registers",
+                "to": "pulse5_reg_1",
+                "instance": "REG1"
+              },
+              {
+                "from": "pulse_registers",
+                "to": "pulse5_reg_2",
+                "instance": "REG2"
+              },
+              {
+                "from": "pulse_registers",
+                "to": "pulse5_reg_3",
+                "instance": "REG3"
+              },
+              {
+                "from": "pulse_registers",
+                "to": "pulse_delay_counter",
+                "instance": "PDELAY"
+              },
+              {
+                "from": "pulse_sensor",
+                "to": "pulse_fsm",
+                "instance": "U_PFSM"
+              },
+              {
+                "from": "pulse_sensor",
+                "to": "xadc_wiz_0",
+                "instance": "U_ADC"
+              },
+              {
+                "from": "random_wait",
+                "to": "delay_counter",
+                "instance": "WAIT5"
+              },
+              {
+                "from": "random_wait",
+                "to": "count_3bit",
+                "instance": "COUNT3"
+              },
+              {
+                "from": "random_wait",
+                "to": "incrementor",
+                "instance": "INC"
+              },
+              {
+                "from": "random_wait",
+                "to": "randomnum_reg",
+                "instance": "RANDOM"
+              },
+              {
+                "from": "random_wait",
+                "to": "multiplier",
+                "instance": "MULTIPLY"
+              },
+              {
+                "from": "reaction_timer",
+                "to": "allcounters",
+                "instance": "TIMECOUNT"
+              },
+              {
+                "from": "reaction_timer",
+                "to": "rgb_pwm",
+                "instance": "RGB"
+              },
+              {
+                "from": "reaction_timer",
+                "to": "random_wait",
+                "instance": "RANDOMW"
+              },
+              {
+                "from": "reaction_timer",
+                "to": "delay_counter5",
+                "instance": "DELAYC5"
+              },
+              {
+                "from": "reaction_timer",
+                "to": "reaction_FSM",
+                "instance": "REACFSM"
+              },
+              {
+                "from": "sevenseg_control",
+                "to": "count_3bit",
+                "instance": "COUNT_3"
+              },
+              {
+                "from": "sevenseg_control",
+                "to": "dec_3_5",
+                "instance": "DEC"
+              },
+              {
+                "from": "sevenseg_control",
+                "to": "mux5",
+                "instance": "MUX"
+              },
+              {
+                "from": "sevenseg_control",
+                "to": "sevenseg_hex",
+                "instance": "SEVENSEG"
+              }
+            ],
+            "topModule": "lab10_top"
+          },
+          "outputPath": "C:\\Users\\otien\\AppData\\Local\\OMB Portfolio Builder\\compile-code\\fpga-base-health-monitor-pulse-sensor-and-reaction-timer-controllers\\.build-cache\\systemverilog\\a6277fdd51d31af6325edea4\\synthesis.json",
+          "netlistPath": "C:\\Users\\otien\\AppData\\Local\\OMB Portfolio Builder\\compile-code\\fpga-base-health-monitor-pulse-sensor-and-reaction-timer-controllers\\.build-cache\\systemverilog\\a6277fdd51d31af6325edea4\\synthesis.json",
+          "dotPath": "C:\\Users\\otien\\AppData\\Local\\OMB Portfolio Builder\\compile-code\\fpga-base-health-monitor-pulse-sensor-and-reaction-timer-controllers\\.build-cache\\systemverilog\\a6277fdd51d31af6325edea4\\synthesis.dot",
+          "terminal": "Synthesize request for add3.sv\n\nSystemVerilog synthesis set: 33 design HDL files\n\nInferred synthesis top: lab10_top\n\nSynthesis tool: Yosys 0.67+92 (git sha1 30fe16c7f-dirty, Release, GNU /usr/bin/x86_64-w64-mingw32-g++ 13.2.1)\n\n$ yosys.exe -s synthesis.ys\nExit code 1 in 0.06s\n\r\n /----------------------------------------------------------------------------\\\r\n |  yosys -- Yosys Open SYnthesis Suite                                       |\r\n |  Copyright (C) 2012 - 2026  Claire Xenia Wolf <claire@yosyshq.com>         |\r\n |  Distributed under an ISC-like license, type \"license\" to see terms        |\r\n \\----------------------------------------------------------------------------/\r\n Yosys 0.67+92 (git sha1 30fe16c7f-dirty, Release, GNU /usr/bin/x86_64-w64-mingw32-g++ 13.2.1)\r\n\r\n-- Executing script file `synthesis.ys' --\r\n\r\n1. Executing Verilog-2005 frontend: add3.sv\r\nParsing SystemVerilog input from `add3.sv' to AST representation.\nadd3.sv:5: ERROR: syntax error, unexpected TOK_OUTPUT, expecting TOK_ID or ')' or ',' or '='\n\nSynthesis did not complete. Check the Yosys diagnostics above.\n\nSynthesis diagram DOT written: C:\\Users\\otien\\AppData\\Local\\OMB Portfolio Builder\\compile-code\\fpga-base-health-monitor-pulse-sensor-and-reaction-timer-controllers\\.build-cache\\systemverilog\\a6277fdd51d31af6325edea4\\synthesis.dot",
+          "synthesizedAt": "2026-07-27T04:24:29.998Z"
+        },
+        "synthesisDiagramWindowOpen": false,
+        "synthesisDiagramZoom": 3
       },
       "sectionModelVersion": 3
     }
@@ -4257,7 +4572,7 @@
       "eyebrow": "Professional profile",
       "description": "",
       "visible": true,
-      "backgroundImage": "",
+      "backgroundImage": "docs/_site-sections/professional-profile/tea_background.png",
       "links": [
         {
           "label": "Resume",
