@@ -1343,6 +1343,12 @@ function cleanRichImageTitle(block = {}) {
   return /^pasted image\b/i.test(title) ? "" : title;
 }
 
+function richImageIsSchematic(block = {}) {
+  const haystack = `${block.title || ""} ${block.caption || ""} ${block.url || ""}`.toLowerCase();
+  return /\.(sch|kicad_sch|kicad_pcb|asc|cir|net|spice|svg|dsn)(\?.*)?$/i.test(block.url || "") ||
+    /\b(schematic|circuit|pcb|layout|ltspice|kicad|netlist|diagram|op amp|vco|charger)\b/.test(haystack);
+}
+
 function richImageCaptionHtml(block = {}) {
   const title = cleanRichImageTitle(block);
   if (!title && !block.caption) return "";
@@ -1372,8 +1378,9 @@ function renderRichContent(rich, fallbackText = "") {
           const imageSrc = normalizeLinkTarget(block.url, { assumeWeb: true });
           const wrap = normalizeRichImageWrap(block.wrap);
           const captionPosition = normalizeRichCaptionPosition(block.captionPosition);
+          const schematicClass = richImageIsSchematic(block) ? " is-schematic-image" : "";
             return `
-              <figure class="rich-image justify-${align} wrap-${wrap} caption-${captionPosition}"${richImageFigureStyle(block)}>
+              <figure class="rich-image justify-${align} wrap-${wrap} caption-${captionPosition}${schematicClass}"${richImageFigureStyle(block)}>
                 ${captionPosition === "top" || captionPosition === "left" ? richImageCaptionHtml(block) : ""}
                 <span class="rich-image-viewport crop-${normalizeCropAspect(block.cropAspect) === "original" ? "original" : "active"}"${richImageCropStyle(block)}>
                   <img src="${escapeHtml(imageSrc)}" alt="${escapeHtml(title || "Overview image")}">

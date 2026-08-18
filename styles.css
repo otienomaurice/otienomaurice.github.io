@@ -1610,6 +1610,37 @@ h3 {
   clear: both;
 }
 
+.rich-image.is-schematic-image {
+  float: none;
+  clear: both;
+  width: min(100%, var(--rich-image-width, 94%));
+  max-width: min(100%, 1180px);
+  margin: 12px 0 18px;
+}
+
+.rich-image.is-schematic-image.wrap-inline,
+.rich-image.is-schematic-image.wrap-left,
+.rich-image.is-schematic-image.wrap-right {
+  float: none;
+  display: grid;
+  margin: 12px 0 18px;
+}
+
+.rich-image.is-schematic-image .rich-image-viewport {
+  padding: 8px;
+  border: 1px solid #b7d6e4;
+  background:
+    linear-gradient(90deg, rgba(14, 116, 144, 0.08) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(14, 116, 144, 0.08) 1px, transparent 1px),
+    #ffffff;
+  background-size: 24px 24px;
+}
+
+.rich-image.is-schematic-image img {
+  object-fit: contain;
+  border-radius: 4px;
+}
+
 .rich-image img {
   display: block;
   width: 100%;
