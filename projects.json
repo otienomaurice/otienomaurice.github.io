@@ -339,14 +339,14 @@
             "fontFamily": "Arial",
             "fontPx": "",
             "fontSize": "normal",
-            "html": "<span style=\"font-family: Arial; display: inline;\"><span style=\"color: rgb(0, 0, 0); display: inline;\"><span style=\"font-size: 13px; display: inline;\">In a later project I am beginning to work on, a different topology of an active oscillator satisfying the Barkhausen criterion is used as the VCO in a phase-locked loop circuit.</span></span></span>",
+            "html": "<span style=\"font-family: Arial; display: inline;\"><span style=\"color: rgb(0, 0, 0); display: inline;\"><span style=\"font-size: 13px; display: inline;\">In a later project I am beginning to work on, a different topology of an active oscillator satisfying the Barkhausen criterion is used as the VCO in a phase-locked loop circuit.</span></span></span><br>",
             "italic": false,
             "text": "In a later project I am beginning to work on, a different topology of an active oscillator satisfying the Barkhausen criterion is used as the VCO in a phase-locked loop circuit.",
             "underline": false,
             "type": "paragraph"
           },
           {
-            "align": "left",
+            "align": "center",
             "caption": "",
             "captionPosition": "bottom",
             "cropAspect": "original",
@@ -359,7 +359,7 @@
             "type": "image",
             "url": "docs/pwm-generating-voltage-controlled-oscillator/summary/image.png",
             "width": 98.49724124269564,
-            "wrap": "left"
+            "wrap": "block"
           }
         ]
       },
@@ -460,6 +460,21 @@
               }
             ]
           }
+        },
+        {
+          "id": "design",
+          "title": "Design",
+          "description": "",
+          "items": [
+            {
+              "title": "VCO_design.pdf",
+              "description": "",
+              "type": "application/pdf",
+              "url": "docs/pwm-generating-voltage-controlled-oscillator/design/vco_design.pdf",
+              "status": "uploaded",
+              "children": []
+            }
+          ]
         }
       ],
       "design": {
@@ -507,7 +522,7 @@
         }
       },
       "portfolioView": {
-        "builtAt": "2026-08-18T20:21:35.724Z",
+        "builtAt": "2026-08-24T05:33:14.053Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -621,14 +636,14 @@
                       "fontFamily": "Arial",
                       "fontPx": "",
                       "fontSize": "normal",
-                      "html": "<span style=\"font-family: Arial; display: inline;\"><span style=\"color: rgb(0, 0, 0); display: inline;\"><span style=\"font-size: 13px; display: inline;\">In a later project I am beginning to work on, a different topology of an active oscillator satisfying the Barkhausen criterion is used as the VCO in a phase-locked loop circuit.</span></span></span>",
+                      "html": "<span style=\"font-family: Arial; display: inline;\"><span style=\"color: rgb(0, 0, 0); display: inline;\"><span style=\"font-size: 13px; display: inline;\">In a later project I am beginning to work on, a different topology of an active oscillator satisfying the Barkhausen criterion is used as the VCO in a phase-locked loop circuit.</span></span></span><br>",
                       "italic": false,
                       "text": "In a later project I am beginning to work on, a different topology of an active oscillator satisfying the Barkhausen criterion is used as the VCO in a phase-locked loop circuit.",
                       "underline": false,
                       "type": "paragraph"
                     },
                     {
-                      "align": "left",
+                      "align": "center",
                       "caption": "",
                       "captionPosition": "bottom",
                       "cropAspect": "original",
@@ -641,7 +656,7 @@
                       "type": "image",
                       "url": "docs/pwm-generating-voltage-controlled-oscillator/summary/image.png",
                       "width": 98.49724124269564,
-                      "wrap": "left"
+                      "wrap": "block"
                     }
                   ]
                 }
@@ -736,6 +751,21 @@
                 }
               ]
             }
+          },
+          {
+            "description": "",
+            "id": "custom:design",
+            "items": [
+              {
+                "children": [],
+                "description": "",
+                "kind": "file",
+                "meta": "application/pdf",
+                "title": "VCO_design.pdf",
+                "url": "docs/pwm-generating-voltage-controlled-oscillator/design/vco_design.pdf"
+              }
+            ],
+            "title": "Design"
           }
         ]
       },
@@ -22095,7 +22125,7 @@
         }
       },
       "portfolioView": {
-        "builtAt": "2026-08-18T20:21:35.724Z",
+        "builtAt": "2026-08-24T04:47:26.015Z",
         "template": {
           "group": "Appearance",
           "id": "",
@@ -22449,7 +22479,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-08-18T20:21:35.725Z",
+        "builtAt": "2026-08-24T04:47:26.016Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -22831,7 +22861,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-08-18T20:21:35.725Z",
+        "builtAt": "2026-08-24T04:47:26.017Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-steel-teal-click",
@@ -23180,7 +23210,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-08-18T20:21:35.725Z",
+        "builtAt": "2026-08-24T04:47:26.017Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-graphite-white-click",
@@ -23437,7 +23467,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-08-18T20:21:35.725Z",
+        "builtAt": "2026-08-24T04:47:26.017Z",
         "template": {
           "group": "Appearance",
           "id": "",
@@ -24192,7 +24222,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-08-18T20:21:35.726Z",
+        "builtAt": "2026-08-24T04:47:26.018Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
