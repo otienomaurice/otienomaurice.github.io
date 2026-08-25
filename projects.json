@@ -522,7 +522,7 @@
         }
       },
       "portfolioView": {
-        "builtAt": "2026-08-24T05:33:14.053Z",
+        "builtAt": "2026-08-25T03:04:31.658Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -22125,7 +22125,7 @@
         }
       },
       "portfolioView": {
-        "builtAt": "2026-08-24T04:47:26.015Z",
+        "builtAt": "2026-08-25T03:04:31.658Z",
         "template": {
           "group": "Appearance",
           "id": "",
@@ -22476,10 +22476,25 @@
               }
             ]
           }
+        },
+        {
+          "id": "design",
+          "title": "Design",
+          "description": "",
+          "items": [
+            {
+              "title": "STRIDE.pdf",
+              "description": "",
+              "type": "application/pdf",
+              "url": "docs/smart-technology-rollator-for-independence-detection-and-empowerment-stride/design/stride.pdf",
+              "status": "uploaded",
+              "children": []
+            }
+          ]
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-08-24T04:47:26.016Z",
+        "builtAt": "2026-08-25T03:04:31.659Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
@@ -22658,6 +22673,21 @@
                 }
               ]
             }
+          },
+          {
+            "description": "",
+            "id": "custom:design",
+            "items": [
+              {
+                "children": [],
+                "description": "",
+                "kind": "file",
+                "meta": "application/pdf",
+                "title": "STRIDE.pdf",
+                "url": "docs/smart-technology-rollator-for-independence-detection-and-empowerment-stride/design/stride.pdf"
+              }
+            ],
+            "title": "Design"
           }
         ]
       },
@@ -22861,7 +22891,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-08-24T04:47:26.017Z",
+        "builtAt": "2026-08-25T03:04:31.659Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-steel-teal-click",
@@ -23210,7 +23240,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-08-24T04:47:26.017Z",
+        "builtAt": "2026-08-25T03:04:31.659Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-graphite-white-click",
@@ -23467,7 +23497,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-08-24T04:47:26.017Z",
+        "builtAt": "2026-08-25T03:04:31.659Z",
         "template": {
           "group": "Appearance",
           "id": "",
@@ -24222,7 +24252,7 @@
         }
       ],
       "portfolioView": {
-        "builtAt": "2026-08-24T04:47:26.018Z",
+        "builtAt": "2026-08-25T03:04:31.660Z",
         "template": {
           "group": "Appearance",
           "id": "appearance-white-blue-click",
